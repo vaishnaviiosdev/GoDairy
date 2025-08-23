@@ -19,7 +19,7 @@ struct LoginResponse: Codable {
     
     enum CodingKeys: String, CodingKey {
         case success = "success"
-        case data = "Data"//qad-801090
+        case data = "Data"
     }
 }
 
