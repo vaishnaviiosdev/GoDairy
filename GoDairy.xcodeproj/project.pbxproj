@@ -1,0 +1,661 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		07E32C68A0641E6220EA5C56 /* Pods_GoDairy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F6C07366FD3E932DB09DFA /* Pods_GoDairy.framework */; };
+		3810CE752CA67F980049206C /* GetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3810CE742CA67F980049206C /* GetView.swift */; };
+		381CCF842CE5C41900159560 /* MyDayPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381CCF832CE5C41900159560 /* MyDayPlan.swift */; };
+		385EDAEA2E544DD6003F7AD0 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385EDAE92E544DCF003F7AD0 /* LoginModel.swift */; };
+		385EDAF02E54521E003F7AD0 /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385EDAEF2E54521E003F7AD0 /* PrivacyPolicyView.swift */; };
+		385EDAF62E5480B6003F7AD0 /* PermissionAskingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385EDAF52E5480B6003F7AD0 /* PermissionAskingView.swift */; };
+		38A7A1382E56E56D006240D1 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A7A1372E56E56D006240D1 /* SplashScreenView.swift */; };
+		38AAD9D12CF6DEB0005ABC2D /* MapLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AAD9D02CF6DEB0005ABC2D /* MapLocation.swift */; };
+		38AAD9D32CF6FC8E005ABC2D /* shiftview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AAD9D22CF6FC8E005ABC2D /* shiftview.swift */; };
+		38AAEEBC2D2CFF9C00D6BF07 /* LeaveRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AAEEBB2D2CFF9C00D6BF07 /* LeaveRequestView.swift */; };
+		38AB43232E598CE700D33B3A /* MyDayPlanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB43222E598CDC00D33B3A /* MyDayPlanModel.swift */; };
+		38AB79F92E55939D003F4214 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB79F82E559385003F4214 /* PermissionManager.swift */; };
+		38AFDB5F2CB3AC03001E59EC /* Dashboard2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AFDB5E2CB3AC03001E59EC /* Dashboard2.swift */; };
+		38B5501F2CF5E2F3006C07E4 /* planview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5501E2CF5E2F3006C07E4 /* planview.swift */; };
+		38B550212CF5E40A006C07E4 /* DynamicHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B550202CF5E40A006C07E4 /* DynamicHeight.swift */; };
+		38BB2EC92CE711650002BAC6 /* popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BB2EC82CE711650002BAC6 /* popup.swift */; };
+		38C26F312D2BF75900595798 /* JsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C26F302D2BF75900595798 /* JsonModel.swift */; };
+		38C26F332D2BF97E00595798 /* RequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C26F322D2BF97E00595798 /* RequestView.swift */; };
+		38C563FE2C637D5200153761 /* GoDairyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C563FD2C637D5200153761 /* GoDairyApp.swift */; };
+		38C564002C637D5200153761 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C563FF2C637D5200153761 /* ContentView.swift */; };
+		38C564022C637D5300153761 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38C564012C637D5300153761 /* Assets.xcassets */; };
+		38C564052C637D5300153761 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38C564042C637D5300153761 /* Preview Assets.xcassets */; };
+		38C576582CDC8A3E005CF1B6 /* forgetpass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C576572CDC8A3E005CF1B6 /* forgetpass.swift */; };
+		38C83D552E5852A600354AFD /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C83D542E5852A600354AFD /* DashboardView.swift */; };
+		38C83D572E586CD900354AFD /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C83D562E586CD900354AFD /* Dummy.swift */; };
+		38CCC3E62CB648AD0096B309 /* MonthlyPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CCC3E52CB648AD0096B309 /* MonthlyPlan.swift */; };
+		38CCC3E82CB6865D0096B309 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CCC3E72CB6865D0096B309 /* CalendarView.swift */; };
+		38D2DE682D226E9F008C3239 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2DE672D226E9F008C3239 /* CameraController.swift */; };
+		38D51F7B2CF98A5A004292B4 /* Cameraview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D51F7A2CF98A5A004292B4 /* Cameraview.swift */; };
+		38D735AA2E53383A00197EA1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38D735A92E53383A00197EA1 /* Launch Screen.storyboard */; };
+		38D735AC2E533E0D00197EA1 /* DataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D735AB2E533DEA00197EA1 /* DataViewModel.swift */; };
+		38D735AE2E533E8C00197EA1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D735AD2E533E8000197EA1 /* NetworkManager.swift */; };
+		38D735B02E533F2B00197EA1 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D735AF2E533F2500197EA1 /* Model.swift */; };
+		38D735B22E5342B800197EA1 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D735B12E5342B200197EA1 /* Constant.swift */; };
+		38D7DB9D2CEDFCFF003A2149 /* checkInDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D7DB9C2CEDFCFF003A2149 /* checkInDashboard.swift */; };
+		38DDDDB02CFD88DD003D1647 /* CheckInbutton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DDDDAF2CFD88DD003D1647 /* CheckInbutton.swift */; };
+		38F1BA4D2CB1155B00D4DFF2 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1BA4C2CB1155B00D4DFF2 /* Dashboard.swift */; };
+		38F1BA502CB1213200D4DFF2 /* ColorFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1BA4F2CB1213200D4DFF2 /* ColorFile.swift */; };
+		38F1BA522CB138C300D4DFF2 /* Todayview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1BA512CB138C300D4DFF2 /* Todayview.swift */; };
+		38F1BA542CB138DC00D4DFF2 /* Monthlyview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1BA532CB138DC00D4DFF2 /* Monthlyview.swift */; };
+		38F1BA572CB1392B00D4DFF2 /* Gate in:out.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1BA562CB1392B00D4DFF2 /* Gate in:out.swift */; };
+		38FBA5422D1D1E5600C3B02F /* MIssedPunchview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FBA5412D1D1E5600C3B02F /* MIssedPunchview.swift */; };
+		3F67B5B62CA7D12400A1BCB7 /* Login_Page_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F67B5B52CA7D12400A1BCB7 /* Login_Page_View.swift */; };
+		3F67B5B92CA7D30F00A1BCB7 /* Toast message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F67B5B82CA7D30F00A1BCB7 /* Toast message.swift */; };
+		3F67B5BE2CA7DA5000A1BCB7 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F67B5BD2CA7DA5000A1BCB7 /* APIClient.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		17F6C07366FD3E932DB09DFA /* Pods_GoDairy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoDairy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3810CE742CA67F980049206C /* GetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetView.swift; sourceTree = "<group>"; };
+		381CCF832CE5C41900159560 /* MyDayPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDayPlan.swift; sourceTree = "<group>"; };
+		385EDAE92E544DCF003F7AD0 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		385EDAEF2E54521E003F7AD0 /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
+		385EDAF52E5480B6003F7AD0 /* PermissionAskingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionAskingView.swift; sourceTree = "<group>"; };
+		38A7A1372E56E56D006240D1 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		38AAD9D02CF6DEB0005ABC2D /* MapLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocation.swift; sourceTree = "<group>"; };
+		38AAD9D22CF6FC8E005ABC2D /* shiftview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shiftview.swift; sourceTree = "<group>"; };
+		38AAEEBB2D2CFF9C00D6BF07 /* LeaveRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveRequestView.swift; sourceTree = "<group>"; };
+		38AB43222E598CDC00D33B3A /* MyDayPlanModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDayPlanModel.swift; sourceTree = "<group>"; };
+		38AB79F82E559385003F4214 /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
+		38AFDB5E2CB3AC03001E59EC /* Dashboard2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard2.swift; sourceTree = "<group>"; };
+		38B5501E2CF5E2F3006C07E4 /* planview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = planview.swift; sourceTree = "<group>"; };
+		38B550202CF5E40A006C07E4 /* DynamicHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeight.swift; sourceTree = "<group>"; };
+		38BB2EC82CE711650002BAC6 /* popup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popup.swift; sourceTree = "<group>"; };
+		38C26F302D2BF75900595798 /* JsonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonModel.swift; sourceTree = "<group>"; };
+		38C26F322D2BF97E00595798 /* RequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestView.swift; sourceTree = "<group>"; };
+		38C563FA2C637D5200153761 /* GoDairy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoDairy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		38C563FD2C637D5200153761 /* GoDairyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoDairyApp.swift; sourceTree = "<group>"; };
+		38C563FF2C637D5200153761 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		38C564012C637D5300153761 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		38C564042C637D5300153761 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		38C576572CDC8A3E005CF1B6 /* forgetpass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = forgetpass.swift; sourceTree = "<group>"; };
+		38C83D542E5852A600354AFD /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		38C83D562E586CD900354AFD /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
+		38CCC3E52CB648AD0096B309 /* MonthlyPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyPlan.swift; sourceTree = "<group>"; };
+		38CCC3E72CB6865D0096B309 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		38D2DE672D226E9F008C3239 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
+		38D51F7A2CF98A5A004292B4 /* Cameraview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cameraview.swift; sourceTree = "<group>"; };
+		38D735A92E53383A00197EA1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		38D735AB2E533DEA00197EA1 /* DataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewModel.swift; sourceTree = "<group>"; };
+		38D735AD2E533E8000197EA1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		38D735AF2E533F2500197EA1 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		38D735B12E5342B200197EA1 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		38D7DB9C2CEDFCFF003A2149 /* checkInDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkInDashboard.swift; sourceTree = "<group>"; };
+		38DDDDAF2CFD88DD003D1647 /* CheckInbutton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInbutton.swift; sourceTree = "<group>"; };
+		38F1BA4C2CB1155B00D4DFF2 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
+		38F1BA4F2CB1213200D4DFF2 /* ColorFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorFile.swift; sourceTree = "<group>"; };
+		38F1BA512CB138C300D4DFF2 /* Todayview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todayview.swift; sourceTree = "<group>"; };
+		38F1BA532CB138DC00D4DFF2 /* Monthlyview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monthlyview.swift; sourceTree = "<group>"; };
+		38F1BA562CB1392B00D4DFF2 /* Gate in:out.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gate in:out.swift"; sourceTree = "<group>"; };
+		38FBA5412D1D1E5600C3B02F /* MIssedPunchview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIssedPunchview.swift; sourceTree = "<group>"; };
+		3F67B5B52CA7D12400A1BCB7 /* Login_Page_View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login_Page_View.swift; sourceTree = "<group>"; };
+		3F67B5B82CA7D30F00A1BCB7 /* Toast message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toast message.swift"; sourceTree = "<group>"; };
+		3F67B5BD2CA7DA5000A1BCB7 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		3F67B5BF2CA7E37400A1BCB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7FF180738FF69B385E02E85A /* Pods-GoDairy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoDairy.release.xcconfig"; path = "Target Support Files/Pods-GoDairy/Pods-GoDairy.release.xcconfig"; sourceTree = "<group>"; };
+		BBE54F58E266F27DAC336DEF /* Pods-GoDairy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoDairy.debug.xcconfig"; path = "Target Support Files/Pods-GoDairy/Pods-GoDairy.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		38C563F72C637D5200153761 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07E32C68A0641E6220EA5C56 /* Pods_GoDairy.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		156B15C02C9D0F27C1C4B614 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BBE54F58E266F27DAC336DEF /* Pods-GoDairy.debug.xcconfig */,
+				7FF180738FF69B385E02E85A /* Pods-GoDairy.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		2DF982A44D6DB5E28BE04C2A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				17F6C07366FD3E932DB09DFA /* Pods_GoDairy.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3800816E2E55CE670053B360 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				38D735AD2E533E8000197EA1 /* NetworkManager.swift */,
+				38AB79F82E559385003F4214 /* PermissionManager.swift */,
+				3F67B5BD2CA7DA5000A1BCB7 /* APIClient.swift */,
+				38CCC3E72CB6865D0096B309 /* CalendarView.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		385EDAEC2E544EB3003F7AD0 /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				38D735A22E53275700197EA1 /* Model */,
+				38D735A32E53276100197EA1 /* View */,
+				38D735A42E53276900197EA1 /* ViewModel */,
+			);
+			path = MVVM;
+			sourceTree = "<group>";
+		};
+		38AAD9CF2CF6DE75005ABC2D /* CheckIn view */ = {
+			isa = PBXGroup;
+			children = (
+				38AAD9D02CF6DEB0005ABC2D /* MapLocation.swift */,
+				38AAD9D22CF6FC8E005ABC2D /* shiftview.swift */,
+				38DDDDAF2CFD88DD003D1647 /* CheckInbutton.swift */,
+			);
+			path = "CheckIn view";
+			sourceTree = "<group>";
+		};
+		38C563F12C637D5200153761 = {
+			isa = PBXGroup;
+			children = (
+				3F67B5BC2CA7DA1000A1BCB7 /* Common */,
+				3800816E2E55CE670053B360 /* Services */,
+				385EDAEC2E544EB3003F7AD0 /* MVVM */,
+				38C563FC2C637D5200153761 /* GoDairy */,
+				38C564012C637D5300153761 /* Assets.xcassets */,
+				38D735A92E53383A00197EA1 /* Launch Screen.storyboard */,
+				38C563FB2C637D5200153761 /* Products */,
+				156B15C02C9D0F27C1C4B614 /* Pods */,
+				2DF982A44D6DB5E28BE04C2A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		38C563FB2C637D5200153761 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				38C563FA2C637D5200153761 /* GoDairy.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		38C563FC2C637D5200153761 /* GoDairy */ = {
+			isa = PBXGroup;
+			children = (
+				3F67B5BF2CA7E37400A1BCB7 /* Info.plist */,
+				38C564032C637D5300153761 /* Preview Content */,
+			);
+			path = GoDairy;
+			sourceTree = "<group>";
+		};
+		38C564032C637D5300153761 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				38C564042C637D5300153761 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		38D2DE662D226DC4008C3239 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				38D2DE672D226E9F008C3239 /* CameraController.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		38D735A22E53275700197EA1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				38AB43222E598CDC00D33B3A /* MyDayPlanModel.swift */,
+				38C26F302D2BF75900595798 /* JsonModel.swift */,
+				385EDAE92E544DCF003F7AD0 /* LoginModel.swift */,
+				38D735AF2E533F2500197EA1 /* Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		38D735A32E53276100197EA1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				38F1BA532CB138DC00D4DFF2 /* Monthlyview.swift */,
+				38AAEEBB2D2CFF9C00D6BF07 /* LeaveRequestView.swift */,
+				38C26F322D2BF97E00595798 /* RequestView.swift */,
+				38FBA5412D1D1E5600C3B02F /* MIssedPunchview.swift */,
+				38D51F7A2CF98A5A004292B4 /* Cameraview.swift */,
+				38F1BA562CB1392B00D4DFF2 /* Gate in:out.swift */,
+				38F1BA512CB138C300D4DFF2 /* Todayview.swift */,
+				38B5501E2CF5E2F3006C07E4 /* planview.swift */,
+				3F67B5B52CA7D12400A1BCB7 /* Login_Page_View.swift */,
+				38F1BA4C2CB1155B00D4DFF2 /* Dashboard.swift */,
+				38BB2EC82CE711650002BAC6 /* popup.swift */,
+				381CCF832CE5C41900159560 /* MyDayPlan.swift */,
+				3810CE742CA67F980049206C /* GetView.swift */,
+				38C563FD2C637D5200153761 /* GoDairyApp.swift */,
+				38D7DB9C2CEDFCFF003A2149 /* checkInDashboard.swift */,
+				38AFDB5E2CB3AC03001E59EC /* Dashboard2.swift */,
+				38C576572CDC8A3E005CF1B6 /* forgetpass.swift */,
+				38C563FF2C637D5200153761 /* ContentView.swift */,
+				38CCC3E52CB648AD0096B309 /* MonthlyPlan.swift */,
+				385EDAF52E5480B6003F7AD0 /* PermissionAskingView.swift */,
+				385EDAEF2E54521E003F7AD0 /* PrivacyPolicyView.swift */,
+				38D2DE662D226DC4008C3239 /* Camera */,
+				38AAD9CF2CF6DE75005ABC2D /* CheckIn view */,
+				38A7A1372E56E56D006240D1 /* SplashScreenView.swift */,
+				38C83D542E5852A600354AFD /* DashboardView.swift */,
+				38C83D562E586CD900354AFD /* Dummy.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		38D735A42E53276900197EA1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				38D735AB2E533DEA00197EA1 /* DataViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3F67B5BC2CA7DA1000A1BCB7 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				38B550202CF5E40A006C07E4 /* DynamicHeight.swift */,
+				38D735B12E5342B200197EA1 /* Constant.swift */,
+				3F67B5B82CA7D30F00A1BCB7 /* Toast message.swift */,
+				38F1BA4F2CB1213200D4DFF2 /* ColorFile.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		38C563F92C637D5200153761 /* GoDairy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 38C564082C637D5300153761 /* Build configuration list for PBXNativeTarget "GoDairy" */;
+			buildPhases = (
+				7FD7B06D73D5146A05D276AC /* [CP] Check Pods Manifest.lock */,
+				38C563F62C637D5200153761 /* Sources */,
+				38C563F72C637D5200153761 /* Frameworks */,
+				38C563F82C637D5200153761 /* Resources */,
+				DADA6ACB7C247C96D7B93B52 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GoDairy;
+			productName = GoDairy;
+			productReference = 38C563FA2C637D5200153761 /* GoDairy.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		38C563F22C637D5200153761 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					38C563F92C637D5200153761 = {
+						CreatedOnToolsVersion = 15.3;
+					};
+				};
+			};
+			buildConfigurationList = 38C563F52C637D5200153761 /* Build configuration list for PBXProject "GoDairy" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 38C563F12C637D5200153761;
+			productRefGroup = 38C563FB2C637D5200153761 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				38C563F92C637D5200153761 /* GoDairy */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		38C563F82C637D5200153761 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38D735AA2E53383A00197EA1 /* Launch Screen.storyboard in Resources */,
+				38C564052C637D5300153761 /* Preview Assets.xcassets in Resources */,
+				38C564022C637D5300153761 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7FD7B06D73D5146A05D276AC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GoDairy-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DADA6ACB7C247C96D7B93B52 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GoDairy/Pods-GoDairy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GoDairy/Pods-GoDairy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GoDairy/Pods-GoDairy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		38C563F62C637D5200153761 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38C26F332D2BF97E00595798 /* RequestView.swift in Sources */,
+				38B550212CF5E40A006C07E4 /* DynamicHeight.swift in Sources */,
+				38C83D572E586CD900354AFD /* Dummy.swift in Sources */,
+				38C576582CDC8A3E005CF1B6 /* forgetpass.swift in Sources */,
+				3F67B5B62CA7D12400A1BCB7 /* Login_Page_View.swift in Sources */,
+				38AAD9D32CF6FC8E005ABC2D /* shiftview.swift in Sources */,
+				38AFDB5F2CB3AC03001E59EC /* Dashboard2.swift in Sources */,
+				38F1BA502CB1213200D4DFF2 /* ColorFile.swift in Sources */,
+				3F67B5BE2CA7DA5000A1BCB7 /* APIClient.swift in Sources */,
+				385EDAF02E54521E003F7AD0 /* PrivacyPolicyView.swift in Sources */,
+				38D735B22E5342B800197EA1 /* Constant.swift in Sources */,
+				38F1BA572CB1392B00D4DFF2 /* Gate in:out.swift in Sources */,
+				38AB43232E598CE700D33B3A /* MyDayPlanModel.swift in Sources */,
+				38A7A1382E56E56D006240D1 /* SplashScreenView.swift in Sources */,
+				38AAD9D12CF6DEB0005ABC2D /* MapLocation.swift in Sources */,
+				38D735AC2E533E0D00197EA1 /* DataViewModel.swift in Sources */,
+				38D7DB9D2CEDFCFF003A2149 /* checkInDashboard.swift in Sources */,
+				38C564002C637D5200153761 /* ContentView.swift in Sources */,
+				38D51F7B2CF98A5A004292B4 /* Cameraview.swift in Sources */,
+				38C26F312D2BF75900595798 /* JsonModel.swift in Sources */,
+				38CCC3E62CB648AD0096B309 /* MonthlyPlan.swift in Sources */,
+				38FBA5422D1D1E5600C3B02F /* MIssedPunchview.swift in Sources */,
+				3F67B5B92CA7D30F00A1BCB7 /* Toast message.swift in Sources */,
+				38D735AE2E533E8C00197EA1 /* NetworkManager.swift in Sources */,
+				381CCF842CE5C41900159560 /* MyDayPlan.swift in Sources */,
+				38B5501F2CF5E2F3006C07E4 /* planview.swift in Sources */,
+				38CCC3E82CB6865D0096B309 /* CalendarView.swift in Sources */,
+				38C563FE2C637D5200153761 /* GoDairyApp.swift in Sources */,
+				38D735B02E533F2B00197EA1 /* Model.swift in Sources */,
+				385EDAF62E5480B6003F7AD0 /* PermissionAskingView.swift in Sources */,
+				385EDAEA2E544DD6003F7AD0 /* LoginModel.swift in Sources */,
+				38F1BA4D2CB1155B00D4DFF2 /* Dashboard.swift in Sources */,
+				38AAEEBC2D2CFF9C00D6BF07 /* LeaveRequestView.swift in Sources */,
+				38F1BA522CB138C300D4DFF2 /* Todayview.swift in Sources */,
+				38F1BA542CB138DC00D4DFF2 /* Monthlyview.swift in Sources */,
+				38AB79F92E55939D003F4214 /* PermissionManager.swift in Sources */,
+				38BB2EC92CE711650002BAC6 /* popup.swift in Sources */,
+				3810CE752CA67F980049206C /* GetView.swift in Sources */,
+				38D2DE682D226E9F008C3239 /* CameraController.swift in Sources */,
+				38C83D552E5852A600354AFD /* DashboardView.swift in Sources */,
+				38DDDDB02CFD88DD003D1647 /* CheckInbutton.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		38C564062C637D5300153761 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		38C564072C637D5300153761 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		38C564092C637D5300153761 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BBE54F58E266F27DAC336DEF /* Pods-GoDairy.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GoDairy/Preview Content\"";
+				DEVELOPMENT_TEAM = N89SJ534H4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GoDairy/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs access to the camera to take photos and videos.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We use your location fetch your current location";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "For requesting location while the app is in use";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to automatically detect your current location";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow GODIARY to access your photos and media";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.saneforce.GoDairy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		38C5640A2C637D5300153761 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FF180738FF69B385E02E85A /* Pods-GoDairy.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GoDairy/Preview Content\"";
+				DEVELOPMENT_TEAM = N89SJ534H4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GoDairy/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs access to the camera to take photos and videos.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We use your location fetch your current location";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "For requesting location while the app is in use";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to automatically detect your current location";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow GODIARY to access your photos and media";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.saneforce.GoDairy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		38C563F52C637D5200153761 /* Build configuration list for PBXProject "GoDairy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				38C564062C637D5300153761 /* Debug */,
+				38C564072C637D5300153761 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		38C564082C637D5300153761 /* Build configuration list for PBXNativeTarget "GoDairy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				38C564092C637D5300153761 /* Debug */,
+				38C5640A2C637D5300153761 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 38C563F22C637D5200153761 /* Project object */;
+}

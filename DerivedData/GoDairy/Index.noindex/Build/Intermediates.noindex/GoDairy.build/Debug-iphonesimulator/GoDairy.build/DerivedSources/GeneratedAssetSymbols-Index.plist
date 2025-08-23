@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>colors</key>
+	<array/>
+	<key>images</key>
+	<array>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/saneforce/Documents/Ios Project/GoDairy/GoDairy/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageName_A_1</string>
+			<key>relativePath</key>
+			<string>./A1.imageset</string>
+			<key>swiftSymbol</key>
+			<string>A_1</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/saneforce/Documents/Ios Project/GoDairy/GoDairy/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameCS</string>
+			<key>relativePath</key>
+			<string>./CS.imageset</string>
+			<key>swiftSymbol</key>
+			<string>CS</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/saneforce/Documents/Ios Project/GoDairy/GoDairy/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameGateIN</string>
+			<key>relativePath</key>
+			<string>./GateIN.imageset</string>
+			<key>swiftSymbol</key>
+			<string>gateIN</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/saneforce/Documents/Ios Project/GoDairy/GoDairy/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameGateOUT</string>
+			<key>relativePath</key>
+			<string>./GateOUT.imageset</string>
+			<key>swiftSymbol</key>
+			<string>gateOUT</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/saneforce/Documents/Ios Project/GoDairy/GoDairy/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameGroup15</string>
+			<key>relativePath</key>
+			<string>./Group 15.imageset</string>
+			<key>swiftSymbol</key>
+			<string>group15</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/saneforce/Documents/Ios Project/GoDairy/GoDairy/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameGroup17</string>
+			<key>relativePath</key>
+			<string>./Group 17.imageset</string>
+			<key>swiftSymbol</key>
+			<string>group17</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/saneforce/Documents/Ios Project/GoDairy/GoDairy/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameGroup2</string>
+			<key>relativePath</key>
+			<string>./Group 2.imageset</string>
+			<key>swiftSymbol</key>
+			<string>group2</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/saneforce/Documents/Ios Project/GoDairy/GoDairy/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameLate</string>
+			<key>relativePath</key>
+			<string>./Late.imageset</string>
+			<key>swiftSymbol</key>
+			<string>late</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/saneforce/Documents/Ios Project/GoDairy/GoDairy/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameNotification</string>
+			<key>relativePath</key>
+			<string>./Notification.imageset</string>
+			<key>swiftSymbol</key>
+			<string>notification</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/saneforce/Documents/Ios Project/GoDairy/GoDairy/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameTA</string>
+			<key>relativePath</key>
+			<string>./TA.imageset</string>
+			<key>swiftSymbol</key>
+			<string>TA</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/saneforce/Documents/Ios Project/GoDairy/GoDairy/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameVector</string>
+			<key>relativePath</key>
+			<string>./Vector.imageset</string>
+			<key>swiftSymbol</key>
+			<string>vector</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/saneforce/Documents/Ios Project/GoDairy/GoDairy/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameC1</string>
+			<key>relativePath</key>
+			<string>./c1.imageset</string>
+			<key>swiftSymbol</key>
+			<string>c1</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/saneforce/Documents/Ios Project/GoDairy/GoDairy/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameG1</string>
+			<key>relativePath</key>
+			<string>./g1.imageset</string>
+			<key>swiftSymbol</key>
+			<string>g1</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/saneforce/Documents/Ios Project/GoDairy/GoDairy/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameGd1</string>
+			<key>relativePath</key>
+			<string>./gd1.imageset</string>
+			<key>swiftSymbol</key>
+			<string>gd1</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/saneforce/Documents/Ios Project/GoDairy/GoDairy/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameGd2</string>
+			<key>relativePath</key>
+			<string>./gd2.imageset</string>
+			<key>swiftSymbol</key>
+			<string>gd2</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/saneforce/Documents/Ios Project/GoDairy/GoDairy/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameGd3</string>
+			<key>relativePath</key>
+			<string>./gd3.imageset</string>
+			<key>swiftSymbol</key>
+			<string>gd3</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/saneforce/Documents/Ios Project/GoDairy/GoDairy/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameLogopic</string>
+			<key>relativePath</key>
+			<string>./logopic.imageset</string>
+			<key>swiftSymbol</key>
+			<string>logopic</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/saneforce/Documents/Ios Project/GoDairy/GoDairy/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameMarker</string>
+			<key>relativePath</key>
+			<string>./marker.imageset</string>
+			<key>swiftSymbol</key>
+			<string>marker</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/saneforce/Documents/Ios Project/GoDairy/GoDairy/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameP1</string>
+			<key>relativePath</key>
+			<string>./p1.imageset</string>
+			<key>swiftSymbol</key>
+			<string>p1</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/saneforce/Documents/Ios Project/GoDairy/GoDairy/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNamePower</string>
+			<key>relativePath</key>
+			<string>./power.imageset</string>
+			<key>swiftSymbol</key>
+			<string>power</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/saneforce/Documents/Ios Project/GoDairy/GoDairy/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameUsersGear1</string>
+			<key>relativePath</key>
+			<string>./users-gear 1.imageset</string>
+			<key>swiftSymbol</key>
+			<string>usersGear1</string>
+		</dict>
+		<dict>
+			<key>catalogPath</key>
+			<string>/Users/saneforce/Documents/Ios Project/GoDairy/GoDairy/Assets.xcassets</string>
+			<key>objcSymbol</key>
+			<string>ACImageNameWrite</string>
+			<key>relativePath</key>
+			<string>./write.imageset</string>
+			<key>swiftSymbol</key>
+			<string>write</string>
+		</dict>
+	</array>
+	<key>symbols</key>
+	<array/>
+</dict>
+</plist>

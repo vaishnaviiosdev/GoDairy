@@ -1,0 +1,3 @@
+#!/bin/sh
+"${PODS_ROOT}/Target Support Files/Pods-GoDairy/Pods-GoDairy-frameworks.sh"
+
