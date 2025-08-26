@@ -46,12 +46,13 @@ struct PermissionAskingView: View {
         .onChange(of: permissionManager.locationGranted) { granted in
             print("The locationGranted granted is \(granted)")
             if granted {
-                navigateToHome = true
+                router.completePermissionFlow()
+               // navigateToHome = true
             }
         }
-        .navigationDestination(isPresented: $navigateToHome) {
-            ContentView()
-        }
+//        .navigationDestination(isPresented: $navigateToHome) {
+//            ContentView()
+//        }
         .padding(5)
     }
 }
@@ -59,3 +60,21 @@ struct PermissionAskingView: View {
 #Preview {
     PermissionAskingView()
 }
+
+//struct PermissionAskingView: View {
+//    @EnvironmentObject var router: AppRouter
+//    
+//    var body: some View {
+//        VStack {
+//            Text("Ask permissions here")
+//            Button("Allow & Continue") {
+//                router.completePermissionFlow()
+//            }
+//            .padding()
+//            .background(Color.blue)
+//            .foregroundColor(.white)
+//            .cornerRadius(8)
+//        }
+//    }
+//}
+

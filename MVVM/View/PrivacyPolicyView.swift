@@ -9,7 +9,12 @@ import SwiftUI
 import WebKit
 
 struct PrivacyPolicyView: View {
-    @State private var isActive = false
+//    @State private var isActive = false
+//    @State private var isChecked = false
+//    @State private var navigateToPermissions = false
+//    @AppStorage("PrivacyPolicy_Accepted") var privacyAccepted: Bool = false
+    
+    @EnvironmentObject var router: AppRouter
     @State private var isChecked = false
     
     var body: some View {
@@ -25,7 +30,6 @@ struct PrivacyPolicyView: View {
                                 .resizable()
                                 .frame(width: 25, height: 25)
                         }
-                        
                         Text("Please accept the Privacy Policy")
                             .fontWeight(.medium)
                             .font(.system(size: 12))
@@ -35,12 +39,18 @@ struct PrivacyPolicyView: View {
                     
                     Button(action: {
                         if isChecked {
-                            isActive = true
-                            print("Submit accepted ✅")
-                        }
-                        else {
-                            print("Please accept policy first ❌")
-                        }
+////                            privacyAccepted = true
+////                            navigateToPermissions = true
+////                            //isActive = true
+////                            print("Submit accepted ✅")
+//                            router.completePrivacyFlow()
+//                        }
+//                        else {
+//                            print("Please accept policy first ❌")
+//                        }
+                            
+                            router.completePrivacyFlow()
+                    }
                     }) {
                         Text("Submit")
                             .frame(maxWidth: .infinity, minHeight: 40)
@@ -54,10 +64,9 @@ struct PrivacyPolicyView: View {
                 .frame(height: 80)
                 .padding(.vertical, 8)
                 
-                NavigationLink(destination: PermissionAskingView(),
-                               isActive: $isActive) {
-                    EmptyView()
-                }
+//                NavigationLink(destination: PermissionAskingView(), isActive: $navigateToPermissions) {
+//                    EmptyView()
+//                }
             }
         }
     }

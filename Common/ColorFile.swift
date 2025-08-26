@@ -15,5 +15,7 @@ class colorData{
     var check_out_color:Color = Color(red:211/255, green: 84/255, blue: 0/255)
     
     var line_color:Color = Color(red:211/255, green:211/255, blue: 211/255)
+    var app_primary = Color.appPrimary
+    var app_primary1 = Color.appPrimary1
     
 }
