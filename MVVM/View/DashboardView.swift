@@ -6,13 +6,12 @@
 //
 
 import SwiftUI
-
-import SwiftUI
 import Alamofire
 
 struct DashboardView: View {
     @State private var currentTab:Int = 0
     @State private var sfName:String = ""
+    @State private var showLogoutAlert = false
     
     var body: some View {
         ZStack {
@@ -21,7 +20,6 @@ struct DashboardView: View {
             ScrollView {
                 VStack {
                     DashboardHeader(sfName: sfName)
-                    //check_in_button()
                     CheckInSection()
                     ZStack(alignment:.center) { Rectangle() .foregroundColor(colorData.shared.Background_color)
                         TabbarView(currentTab: $currentTab) }
@@ -39,10 +37,12 @@ struct DashboardView: View {
     }
 }
 
- //MARK: - HEADER VIEW
-
+//MARK: - HEADER VIEW
 struct DashboardHeader: View {
     var sfName: String
+    @State private var showLogoutAlert = false
+    @EnvironmentObject var router: AppRouter
+    @AppStorage("User_Login") var isLoggedIn: Bool = false
     
     var body: some View {
         HStack {
@@ -58,12 +58,27 @@ struct DashboardHeader: View {
                     .font(.subheadline)
             }
             Spacer()
-            Image("power")
-                .resizable()
-                .frame(width: 30, height: 30)
-                .padding(5)
+            Button(action: {
+                //router.root = .login
+                showLogoutAlert = true
+            }) {
+                Image("power")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .padding(5)
+            }
         }
         .padding()
+        .alert("Are you sure you want to logout?", isPresented: $showLogoutAlert) {
+            Button("Yes", role: .destructive) {
+                isLoggedIn = false
+                router.root = .login
+                //UserDefaults.standard.set(false, forKey: "User_Login")
+            }
+            Button("No", role: .cancel) {
+            
+            }
+        }
     }
 }
 
@@ -77,13 +92,10 @@ struct CheckInSection: View {
             HStack {
                 Text("Let’s get to work")
                     .font(.system(size: 12, weight: .semibold))
-                
                 Image("write")
-                
                 Spacer()
             }
-            
-            CustomBtn(
+            CustomBtn (
                 title: btnTitle,
                 height: 50,
                 backgroundColor: Color.appPrimary
@@ -228,7 +240,8 @@ struct TabbarItems: View {
                             .fontWeight(.semibold)
                             .foregroundColor(.black)
                             .padding(.top, 8)
-                    } else {
+                    }
+                    else {
                         Text(TabbarItemName)
                             .font(.system(size: 15))
                             .fontWeight(.semibold)
@@ -274,41 +287,84 @@ struct TabBar: View {
 }
 
 // MARK: - EXPLORE MORE
+//struct ExploreMore: View {
+//    @State private var showRequestStatus = false
+//    
+//    let items: [(name: String, image: String, action: (() -> Void)?)] = [
+//        ("Request & Status", "request", { }),
+//        ("TA & claim", "ta&claim", nil),
+//        ("Activity", "activity", nil),
+//        ("GateIN", "Group 5", nil),
+//        ("Gate OUT", "Group", nil),
+//        ("TP", "calendar", nil),
+//        ("Extended Shift", "Group 5", nil),
+//        ("Approvals", "CS", nil)
+//    ]
+//    
+//    let columns = Array(repeating: GridItem(.flexible()), count: 3)
+//    
+//    var body: some View {
+//        LazyVGrid(columns: columns) {
+//            ForEach(items, id: \.name) { item in
+//                Button {
+//                    if item.name == "Request & Status" {
+//                        showRequestStatus = true
+//                    }
+//                    item.action?()
+//                } label: {
+//                    GridItemView(name: item.name, image: item.image)
+//                }
+//                .buttonStyle(.plain)
+//            }
+//        }
+//        .fullScreenCover(isPresented: $showRequestStatus) {
+//            RequestView()
+//        }
+//    }
+//}
+
 struct ExploreMore: View {
     @State private var showRequestStatus = false
-    
-    let items: [(name: String, image: String, action: (() -> Void)?)] = [
-        ("Request & Status", "request", { }),
-        ("TA & claim", "ta&claim", nil),
-        ("Activity", "activity", nil),
-        ("GateIN", "Group 5", nil),
-        ("Gate OUT", "Group", nil),
-        ("TP", "calendar", nil),
-        ("Extended Shift", "Group 5", nil),
-        ("Approvals", "CS", nil)
-    ]
-    
-    let columns = Array(repeating: GridItem(.flexible()), count: 3)
+    @State private var showTAClaim = false
+    @State private var showActivity = false
+    @State private var showGateIn = false
+    @State private var showGateOut = false
+    @State private var showTP = false
+    @State private var showExtendedShift = false
+    @State private var showApprovals = false
     
     var body: some View {
-        LazyVGrid(columns: columns) {
+        let items: [(name: String, image: String, action: () -> Void)] = [
+            ("Request & Status", "request", { showRequestStatus = true }),
+            ("TA & claim", "ta&claim", { showTAClaim = true }),
+            ("Activity", "activity", { showActivity = true }),
+            ("GateIN", "Group 5", { showGateIn = true }),
+            ("Gate OUT", "Group", { showGateOut = true }),
+            ("TP", "calendar", { showTP = true }),
+            ("Extended Shift", "Group 5", { showExtendedShift = true }),
+            ("Approvals", "CS", { showApprovals = true })
+        ]
+        
+        LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3)) {
             ForEach(items, id: \.name) { item in
-                Button {
-                    if item.name == "Request & Status" {
-                        showRequestStatus = true
-                    }
-                    item.action?()
-                } label: {
+                Button(action: item.action) {
                     GridItemView(name: item.name, image: item.image)
                 }
                 .buttonStyle(.plain)
             }
         }
-        .fullScreenCover(isPresented: $showRequestStatus) {
-            RequestView()
-        }
+        // MARK: - FullScreen Modals
+        .fullScreenCover(isPresented: $showRequestStatus) { RequestView() }
+//        .fullScreenCover(isPresented: $showTAClaim) { TAClaimView() }
+//        .fullScreenCover(isPresented: $showActivity) { ActivityView() }
+//        .fullScreenCover(isPresented: $showGateIn) { GateInView() }
+//        .fullScreenCover(isPresented: $showGateOut) { GateOutView() }
+//        .fullScreenCover(isPresented: $showTP) { TPView() }
+//        .fullScreenCover(isPresented: $showExtendedShift) { ExtendedShiftView() }
+//        .fullScreenCover(isPresented: $showApprovals) { ApprovalsView() }
     }
 }
+
 
 // MARK: - GRID ITEM VIEW
 struct GridItemView: View {

@@ -1,10 +1,10 @@
+////
+////  ContentView.swift
+////  GoDairy
+////
+////  Created by San eforce on 07/08/24.
+////
 //
-//  ContentView.swift
-//  GoDairy
-//
-//  Created by San eforce on 07/08/24.
-//
-
 import SwiftUI
 import Combine
 class DataViewModel: ObservableObject {
@@ -45,6 +45,8 @@ struct Get: Codable, Identifiable {
 
 @available(iOS 16.0, *)
 struct ContentView: View {
+    
+    @EnvironmentObject var router: AppRouter
     
     var body: some View {
         NavigationStack {
@@ -104,8 +106,12 @@ struct ContentView: View {
                             destination:Login_Page_View(),
                             label: {
                                 SignINbutton()
-                                   
                             })
+//                        CustomBtn(title: "SIGN IN", height: 50, backgroundColor: Color.appPrimary) {
+//                            router.root = .loginView
+//                        }
+                        .padding()
+                        
                       /*  NavigationLink(
                             destination: gmail()
                                 .toolbarRole(.editor),
@@ -132,46 +138,6 @@ struct ContentView: View {
         }
     }
     
-    struct gmail:View {
-        var body: some View {
-            Text("Continue with google")
-        }
-    }
-    
-    struct page:View {
-        
-        @StateObject private var viewModel = DataViewModel()
-        var body: some View {
-            
-            NavigationView {
-                VStack {
-                    List {
-                        Button("GET", action: {
-                            viewModel.fetchData()
-                        })
-                        
-                        ForEach(viewModel.data) { item in
-                            VStack(alignment: .leading) {
-                                Text("title: \(item.title)")
-                                Text("base_url: \(item.base_url)")
-                            }
-                        }
-                        
-                    }
-                    
-                    HStack {
-                        Spacer()
-                        //EditButton()
-                        Spacer()
-                        Spacer()
-                    }
-                }
-                .navigationTitle("Custom List")
-                
-            }
-        }
-    }
-    
     struct SignINbutton: View {
         var body: some View {
             Text("SIGN IN")
@@ -182,41 +148,110 @@ struct ContentView: View {
                 .cornerRadius(9)
         }
     }
-   
-    struct forgetbtn:View {
-        var body: some View {
-            VStack(alignment: .trailing, spacing: 4){
-                Text("Forget Password?")
-                
-                    .frame(maxWidth: .infinity,alignment: .trailing)
-                // .background(Color.white)
-                    .font(.caption)
-                  //  .background(Color(red:255/255,green: 151/255,blue: 206/255))
-                    .foregroundColor(.primary)
-            }
-            .padding()
-            
-        }
-    }
     
-    struct Continuebtn: View {
-        let image:String = ""
-        var body: some View {
-            HStack {
-               Image("Group 2")
-                .background(Color.white)
-                .font(.headline)
-                .foregroundColor(.black)
-                .cornerRadius(9)
-                
-                Text("Continue with google")
-                    .foregroundColor(.black)
-                    .frame(width:200,height: 50,alignment: .center)
-                
-            }
-        }
-    }
+//    struct SignINbutton: View {
+//        var title: String = "SIGN IN"
+//        var action: () -> Void  // 🔹 Closure for custom action
+//        
+//        var body: some View {
+//            Button(action: action) {
+//                Text(title)
+//                    .frame(width: 350, height: 50, alignment: .center)
+//                    .background(Color(red: 25/255, green: 151/255, blue: 206/255))
+//                    .font(.headline)
+//                    .foregroundColor(.white)
+//                    .cornerRadius(9)
+//            }
+//        }
+//    }
 }
+
+//import SwiftUI
+//
+//struct ContentView: View {
+//    @EnvironmentObject var router: AppRouter
+//    
+//    var body: some View {
+//        NavigationStack {
+//            ZStack {
+//                // Background Gradient
+//                LinearGradient(
+//                    gradient: Gradient(colors: [Color.appPrimary, Color.white]),
+//                    startPoint: .top,
+//                    endPoint: .bottom
+//                )
+//                .ignoresSafeArea()
+//                
+//                VStack {
+//                    // Top Image
+//                    Image("Group 15")
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(maxWidth: .infinity)
+//                        .padding(.top, 20)
+//                    
+//                    // Illustration
+//                    Image("c1")
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(width: 200, height: 200)
+//                        .padding(.top, 10)
+//                    
+//                    // Title
+//                    VStack(spacing: 4) {
+//                        Text("Dairy Product")
+//                            .font(.largeTitle)
+//                            .fontWeight(.bold)
+//                            .foregroundColor(.white)
+//                        
+//                        Text("Delivery Solutions")
+//                            .font(.title)
+//                            .fontWeight(.bold)
+//                            .foregroundColor(.white)
+//                    }
+//                    .padding(.top, 20)
+//                    
+//                    Spacer()
+//                    
+//                    // SIGN IN Button → Router
+//                    Button(action: {
+//                        router.root = .login  // 🔹 Redirect to login
+//                    }) {
+//                        SignInButton()
+//                    }
+//                    .padding(.bottom, 40)
+//                    
+//                    // Bottom Logo
+//                    VStack(spacing: 8) {
+//                        Image("logopic")
+//                            .resizable()
+//                            .frame(width: 50, height: 50)
+//                        
+//                        Text("Powered by")
+//                            .font(.caption)
+//                            .foregroundColor(.gray)
+//                    }
+//                    .padding(.bottom, 20)
+//                }
+//                .padding(.horizontal, 20)
+//            }
+//        }
+//    }
+//}
+//
+//// MARK: - Sign In Button
+//struct SignInButton: View {
+//    var body: some View {
+//        Text("SIGN IN")
+//            .font(.headline)
+//            .frame(maxWidth: .infinity)
+//            .frame(height: 50)
+//            .foregroundColor(.white)
+//            .background(Color.appPrimary)
+//            .cornerRadius(10)
+//            .shadow(radius: 5)
+//    }
+//}
 
 #Preview {
     ContentView()

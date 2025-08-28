@@ -1,9 +1,9 @@
-//
+
 //  LeaveRequestView.swift
 //  GoDairy
 //
 //  Created by San eforce on 07/01/25.
-//
+
 
 import SwiftUI
 
@@ -16,9 +16,9 @@ struct LeaveRequestView: View {
     @State private var navigatetoDashboard = true
     
     var body: some View {
-        NavigationStack{
-            VStack(spacing: 16){
-                VStack(alignment: .center,spacing: 0){
+        NavigationStack {
+            VStack(spacing: 16) {
+                VStack(alignment: .center,spacing: 0) {
                    // Form{
                        // Section(header: Text("Type of leave")){
                     
@@ -27,7 +27,7 @@ struct LeaveRequestView: View {
 //                        }
                     Text("Type of leave")
                         .foregroundColor(.black)
-                    TextField(text: $LeaveType,prompt: Text(" leave type")){
+                    TextField(text: $LeaveType,prompt: Text(" leave type")) {
 //                        Text("Type of leave")
 //                            .foregroundColor(.black)
                     }
@@ -59,9 +59,10 @@ struct LeaveRequestView: View {
                             
                         }
                     Spacer()
-                        VStack(alignment: .leading,spacing: 0){
+                        VStack(alignment: .leading,spacing: 0) {
                             Text("No of days")
                                 .font(.headline)
+                                .fontWeight(.semibold)
                                 .foregroundColor(.white)
                                 .frame(maxWidth: .infinity,alignment: .center)
                                 .padding()
@@ -78,6 +79,7 @@ struct LeaveRequestView: View {
                         .background(Color.white)
                         .cornerRadius(14)
                         .padding(.horizontal)
+                        .shadow(radius: 3)
                         
                         
                         VStack(alignment: .leading) {
@@ -126,12 +128,9 @@ struct LeaveRequestView: View {
                 .background(Color.white)
                 .cornerRadius(12)
                 .padding(.horizontal)
-               
-                
             }
             
             .navigationBarTitleDisplayMode(.inline)
-            
             .toolbar {
                 ToolbarItem(placement: .principal){
                     Text("LEAVE REQUEST")
@@ -143,14 +142,11 @@ struct LeaveRequestView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(destination: checkInDashboard(),isActive: $navigatetoDashboard) {
                         EmptyView()
-                        
                         Spacer()
                         Image(systemName: "house.fill")
                             .foregroundColor(.white)
                     }
-                    
                 }
-                
             }
             .toolbarBackground(Color("App_Primary"), for: .navigationBar)
         }
@@ -159,27 +155,16 @@ struct LeaveRequestView: View {
         .toolbarBackground(.visible, for: .navigationBar)
         
        // .navigationBarBackButtonHidden(true)
-        
+        .ignoresSafeArea()
         .font(.headline)
         .foregroundColor(.white)
         .frame(maxWidth: .infinity,alignment: .leading)
         .padding()
-        
-//        .toolbar{
-//            ToolbarItem(placement: .navigationBarLeading){
-//                Button(action:{
-//                    NavigationLink(destination: RequestView()) {
-//                                                      EmptyView()
-//                                                 }
-//                }){
-//                    Image(systemName: "chevron.left")
-//                        .foregroundColor(.white)
-//                }
-//            }
-//        }
     }
 }
 
 #Preview {
     LeaveRequestView()
 }
+
+

@@ -144,7 +144,7 @@ struct DayPlanView: View {
     
     var body: some View {
         ZStack {
-            Color.secondary
+            Color.black.opacity(0.4)
             VStack {
 //                Button(action: {
 //                    dismiss()

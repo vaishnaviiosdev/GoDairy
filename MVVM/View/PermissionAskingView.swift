@@ -13,6 +13,8 @@ struct PermissionAskingView: View {
     @State private var navigateToHome = false
     @StateObject private var permissionManager = PermissionManager()
     
+    @EnvironmentObject var router: AppRouter
+    
     var body: some View {
         VStack(spacing: 30) {
             Image("circle")

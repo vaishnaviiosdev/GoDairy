@@ -19,3 +19,5 @@ class colorData{
     var app_primary1 = Color.appPrimary1
     
 }
+
+
