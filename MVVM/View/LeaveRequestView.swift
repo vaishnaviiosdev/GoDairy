@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LeaveView: View {
+struct LeaveRequestView: View {
     @State private var selectedLeaveType: String? = nil
     @State private var selectedShiftTiming: String? = nil
     @State private var selectedTypeOfHalfDay: String? = nil
@@ -373,11 +373,12 @@ struct CustomCard: View {
     let title: String
     let placeholderString: String
     var selectedValue: String? = nil
+    var fontWeight: Font.Weight = .light
     let action: () -> Void
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            titleView(title: title)
+            titleView(title: title, fontWeight: .semibold)
             Button(action: action) {
                 Text(selectedValue ?? placeholderString)
                     .foregroundColor(selectedValue == nil ? .gray : .black)
@@ -385,6 +386,7 @@ struct CustomCard: View {
                     .padding(.vertical, 8)
                     .padding(.horizontal, 10)
                     .font(.system(size: 14))
+                    .fontWeight(fontWeight)
                     .background(
                         RoundedRectangle(cornerRadius: 8).fill(Color.white)
                     )
@@ -402,6 +404,7 @@ struct CustomCard: View {
 
 struct DateCard: View {
     let title: String
+    var fontWeight: Font.Weight = .light
     let placeholder: String
     @Binding var selectedDate: Date?
     @State private var showDatePicker = false
@@ -409,7 +412,7 @@ struct DateCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            titleView(title: title)
+            titleView(title: title, fontWeight: fontWeight)
             
             Button(action: {
                 tempDate = selectedDate ?? Date()
@@ -464,7 +467,7 @@ struct DateCard: View {
 }
 
 #Preview {
-    LeaveView()
+    LeaveRequestView()
 }
 
 
