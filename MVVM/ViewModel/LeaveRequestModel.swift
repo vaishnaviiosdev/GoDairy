@@ -47,6 +47,35 @@ class LeaveRequestModel: ObservableObject {
         }
     }
     
-    
+    func saveProducts(leave_Type: String, from_Date: String, to_Date: String, halfDay_Type: String, Ukey: String) async {
+        guard let url = URL(string: save_LeaveRequestUrl) else { return }
+
+        let parameters: [String: Any] = [
+            "LeaveFormValidate": [
+                "Leave_Type": leave_Type,
+                "From_Date": from_Date,
+                "To_Date": to_Date,
+                "Shift": "",
+                "PChk": 0,
+                "HalfDay_Type": halfDay_Type,
+                "HalfDay": "0",
+                "Shift_Id": "",
+                "value": "",
+                "Intime": "",
+                "Outime": "",
+                "NoofHrs": "",
+                "EligDys": "",
+                "Ukey": Ukey
+            ]
+        ]
+
+        do {
+            let response: leaveSavedResponse = try await NetworkManager.shared.postData(to: url.absoluteString, parameters: parameters, as: leaveSavedResponse.self)
+            print(response)
+        }
+        catch {
+            print("Failed to post data: \(error)")
+        }
+    }
 }
 

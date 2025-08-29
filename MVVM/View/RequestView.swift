@@ -9,7 +9,7 @@ struct RequestView: View {
     // Reusable list of items
     private let requestItems: [(title: String, destination: AnyView)] = [
         ("Advance Request", AnyView(AdvanceRequestView())),
-        ("Leave Request", AnyView(LeaveView())),
+        ("Leave Request", AnyView(LeaveRequestView())),
         ("Permission Request", AnyView(PermissionView())),
         ("Missed Punch", AnyView(MIssedPunchview())),
         ("Weekly-Off", AnyView(WeeklyOffView())),

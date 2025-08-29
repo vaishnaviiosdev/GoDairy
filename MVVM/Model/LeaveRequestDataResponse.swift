@@ -37,3 +37,13 @@ struct LeaveShiftTimeDataResponse: Codable {
         case name = "name"
     }
 }
+
+struct leaveSavedResponse: Codable {
+    let Msg: String
+    let success: Bool
+    
+    enum CodingKeys: String, CodingKey {
+        case Msg = "Msg"
+        case success = "success"
+    }
+}
