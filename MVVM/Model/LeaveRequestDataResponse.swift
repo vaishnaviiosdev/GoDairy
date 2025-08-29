@@ -27,3 +27,13 @@ struct LeaveRequestDataResponse: Codable, Identifiable {
         case Leave_Name = "Leave_Name"
     }
 }
+
+struct LeaveShiftTimeDataResponse: Codable {
+    let id: String
+    let name: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+    }
+}

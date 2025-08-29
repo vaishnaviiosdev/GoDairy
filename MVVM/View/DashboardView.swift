@@ -12,6 +12,7 @@ struct DashboardView: View {
     @State private var currentTab:Int = 0
     @State private var sfName:String = ""
     @State private var showLogoutAlert = false
+    @State private var goToDashboard = false
     
     var body: some View {
         ZStack {

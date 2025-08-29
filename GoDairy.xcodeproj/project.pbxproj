@@ -31,7 +31,6 @@
 		38C564052C637D5300153761 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38C564042C637D5300153761 /* Preview Assets.xcassets */; };
 		38C576582CDC8A3E005CF1B6 /* forgetpass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C576572CDC8A3E005CF1B6 /* forgetpass.swift */; };
 		38C83D552E5852A600354AFD /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C83D542E5852A600354AFD /* DashboardView.swift */; };
-		38C83D572E586CD900354AFD /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C83D562E586CD900354AFD /* Dummy.swift */; };
 		38CCC3E62CB648AD0096B309 /* MonthlyPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CCC3E52CB648AD0096B309 /* MonthlyPlan.swift */; };
 		38CCC3E82CB6865D0096B309 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CCC3E72CB6865D0096B309 /* CalendarView.swift */; };
 		38D2DE682D226E9F008C3239 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2DE672D226E9F008C3239 /* CameraController.swift */; };
@@ -86,7 +85,6 @@
 		38C564042C637D5300153761 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		38C576572CDC8A3E005CF1B6 /* forgetpass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = forgetpass.swift; sourceTree = "<group>"; };
 		38C83D542E5852A600354AFD /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
-		38C83D562E586CD900354AFD /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
 		38CCC3E52CB648AD0096B309 /* MonthlyPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyPlan.swift; sourceTree = "<group>"; };
 		38CCC3E72CB6865D0096B309 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		38D2DE672D226E9F008C3239 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
@@ -266,7 +264,6 @@
 				38AAD9CF2CF6DE75005ABC2D /* CheckIn view */,
 				38A7A1372E56E56D006240D1 /* SplashScreenView.swift */,
 				38C83D542E5852A600354AFD /* DashboardView.swift */,
-				38C83D562E586CD900354AFD /* Dummy.swift */,
 				38EA2C002E5C686000428C3C /* AdvanceRequestView.swift */,
 				38EA2C022E5C712900428C3C /* LeaveView.swift */,
 				38EEA3B22E5DC83200CAC7FD /* SelectionView.swift */,
@@ -412,7 +409,6 @@
 			files = (
 				38C26F332D2BF97E00595798 /* RequestView.swift in Sources */,
 				38B550212CF5E40A006C07E4 /* DynamicHeight.swift in Sources */,
-				38C83D572E586CD900354AFD /* Dummy.swift in Sources */,
 				38EA2C012E5C686000428C3C /* AdvanceRequestView.swift in Sources */,
 				38EA2C032E5C712900428C3C /* LeaveView.swift in Sources */,
 				38C576582CDC8A3E005CF1B6 /* forgetpass.swift in Sources */,

@@ -23,17 +23,18 @@ struct LeaveView: View {
         case shiftTiming
         case halfDay
     }
-    
+        
     var body: some View {
         NavigationStack {
             VStack {
-                homeBar()
+                homeBar(frameSize: 40)
                 ScrollView {
                     LeaveSectionCard(
                         title: "LEAVE REQUEST",
                         selectedLeaveType: $selectedLeaveType,
                         selectedShiftTiming: $selectedShiftTiming,
                         selectedTypeOfHalfDay: $selectedTypeOfHalfDay,
+                        LeaveModel: LeaveModel,
                         onLeaveTypeTap: {
                             activeSelection = .leaveType
                         },
@@ -45,6 +46,10 @@ struct LeaveView: View {
                         }
                     )
                 }
+                CustomBtn(title: "SUBMIT", height: 40, backgroundColor: .appPrimary1) {
+                    
+                }
+                .padding()
             }
             .overlay(
                 Group {
@@ -68,7 +73,7 @@ struct LeaveView: View {
                                     get: { activeSelection == .shiftTiming },
                                     set: { if !$0 { activeSelection = nil } }
                                 ),
-                                items: shiftTime,
+                                items: LeaveModel.shiftTimes,
                                 title: "Shift Timing"
                             ) { selected in
                                 selectedShiftTiming = selected
@@ -90,14 +95,12 @@ struct LeaveView: View {
                 }
             )
             .task {
-                await LeaveModel.fetchLeaveRequestData()
+                await LeaveModel.fetchLeaveAvailabilityData()
+                await LeaveModel.fetchShiftTimeData()
             }
-//            .onAppear {
-//                Task {
-//                    await LeaveModel.fetchLeaveRequestData()
-//                }
-//            }
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationTitle("")
     }
 }
 
@@ -131,6 +134,8 @@ struct LeaveSectionCard: View {
     @Binding var selectedLeaveType: String?
     @Binding var selectedShiftTiming: String?
     @Binding var selectedTypeOfHalfDay: String?
+    @ObservedObject var LeaveModel: LeaveRequestModel
+
     var onLeaveTypeTap: () -> Void
     var onShiftTimingTap: () -> Void
     var onHalfDayTap: () -> Void
@@ -177,6 +182,8 @@ struct LeaveSectionCard: View {
             .padding(.vertical, 10)
             .padding(.top, 5)
             
+            
+            
             if isHalfDaySelected && areDatesSameDay(FromDate, ToDate) {
                 CustomCard(title: "Shift Timing", placeholderString: "Shift Timing",selectedValue: selectedShiftTiming, action: onShiftTimingTap)
                 CustomCard(title: "Type of Half-Day", placeholderString: "Halfday Type",selectedValue: selectedTypeOfHalfDay, action: onHalfDayTap)
@@ -188,7 +195,7 @@ struct LeaveSectionCard: View {
                 .padding(.bottom, 10)
             
             
-            LeaveAvailabilityList(LeaveModel: LeaveRequestModel())
+            LeaveAvailabilityList(LeaveModel: LeaveModel)
         }
         .background(Color.white)
         .cornerRadius(12)
@@ -312,7 +319,7 @@ struct CustomTextView: View {
                     .foregroundColor(.gray)
                     .padding(.horizontal, 10)
                     .padding(.vertical, 12)
-                    .allowsHitTesting(false) // ✅ Let taps go through
+                    .allowsHitTesting(false)
             }
         }
     }
@@ -341,17 +348,13 @@ struct LeaveAvailabilityList: View {
                     LazyVStack {
                         ForEach(LeaveModel.LeaveRequestData) { leaveRequest in
                             HStack {
-                                // Leave Type
                                 titleView(title: leaveRequest.Leave_SName, foregroundColor: .black, fontWeight: .regular)
                                 
-                                // Eligibility
-                                titleView(title: String(format: "%.2f", leaveRequest.LeaveAvailability), foregroundColor: .black, fontWeight: .regular)
+                                titleView(title: String(format: "%.1f", Double(leaveRequest.LeaveValue)), foregroundColor: .black, fontWeight: .regular)
                                 
-                                // Taken
-                                titleView(title: String(format: "%.2f", leaveRequest.LeaveTaken), foregroundColor: .black, fontWeight: .regular)
+                                titleView(title: String(format: "%.1f", leaveRequest.LeaveTaken), foregroundColor: .black, fontWeight: .regular)
                                 
-                                // Available
-                                titleView(title: String(format: "%.2f", leaveRequest.LeaveAvailability - leaveRequest.LeaveTaken), foregroundColor: .black, fontWeight: .regular)
+                                titleView(title: String(format: "%.1f", leaveRequest.LeaveAvailability - leaveRequest.LeaveTaken), foregroundColor: .black, fontWeight: .regular)
                             }
                             .padding(.vertical, 5)
                             .background(Color.white)
@@ -365,58 +368,6 @@ struct LeaveAvailabilityList: View {
         }
     }
 }
-
-
-//struct LeaveAvailabilityList: View {
-//    @ObservedObject var LeaveModel: LeaveRequestModel
-//    
-//    var body: some View {
-//        VStack {
-//            titleView(title: "Leave Availability Status", foregroundColor: .green, fontWeight: .bold)
-//            
-//            // Header row
-//            HStack {
-//                titleView(title: "Type", foregroundColor: .black, fontWeight: .bold)
-//                titleView(title: "Eligibility", foregroundColor: .black, fontWeight: .bold)
-//                titleView(title: "Taken", foregroundColor: .black, fontWeight: .bold)
-//                titleView(title: "Available", foregroundColor: .black, fontWeight: .bold)
-//            }
-//            
-//            if LeaveModel.LeaveRequestData.isEmpty {
-//               Text("Data is empty")
-//            }
-//            else {
-//                ScrollView {
-//                    LazyVStack {
-//                        ForEach(LeaveModel.LeaveRequestData) { leaverequest in
-//                            
-//                        }
-//                    }
-//                }
-//                List(LeaveModel.LeaveRequestData, id: \.LeaveCode) { leaveRequest in
-//                    HStack {
-//                        // Leave Type
-//                        titleView(title: leaveRequest.Leave_SName, foregroundColor: .black, fontWeight: .regular)
-//                        
-//                        // Eligibility
-//                        titleView(title: String(format: "%.2f", leaveRequest.LeaveAvailability), foregroundColor: .black, fontWeight: .regular)
-//                        
-//                        // Taken
-//                        titleView(title: String(format: "%.2f", leaveRequest.LeaveTaken), foregroundColor: .black, fontWeight: .regular)
-//                        
-//                        // Available
-//                        titleView(title: String(format: "%.2f", leaveRequest.LeaveAvailability - leaveRequest.LeaveTaken), foregroundColor: .black, fontWeight: .regular)
-//                    }
-//                    .padding(.vertical, 5)
-//                    .background(Color.white)
-//                    .cornerRadius(8)
-//                    .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
-//                }
-//                .padding(.top, 10)
-//            }
-//        }
-//    }
-//}
 
 struct CustomCard: View {
     let title: String
@@ -454,7 +405,7 @@ struct DateCard: View {
     let placeholder: String
     @Binding var selectedDate: Date?
     @State private var showDatePicker = false
-    @State private var tempDate = Date() // ✅ Temporary date for picker
+    @State private var tempDate = Date()
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -511,12 +462,6 @@ struct DateCard: View {
         return formatter.string(from: date)
     }
 }
-
-//struct LeaveView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        LeaveView(LeaveModel: LeaveRequestModel()) // Pass an instance of LeaveRequestModel
-//    }
-//}
 
 #Preview {
     LeaveView()

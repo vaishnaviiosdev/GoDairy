@@ -279,7 +279,7 @@ struct CustomBtn: View {
     var body: some View {
         Button(action: action) {   // 👈 executes your action
             Text(title)
-                .font(.system(size: fontsize, weight: .medium))
+                .font(.system(size: fontsize, weight: .heavy))
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity, minHeight: height) 
                 .background(backgroundColor)
