@@ -17,3 +17,15 @@ struct advanceRequestModelData: Codable {
     }
 }
 
+struct advanceRequestSaveData: Codable {
+    let success: Bool
+    let Qry: String
+    let Msg: String
+    
+    enum CodingKeys: String, CodingKey {
+        case success = "success"
+        case Qry = "Qry"
+        case Msg = "Msg"
+    }
+}
+

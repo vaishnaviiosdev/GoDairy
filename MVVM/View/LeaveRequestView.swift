@@ -230,26 +230,25 @@ struct DaysView: View {
                     .keyboardType(.decimalPad)
                     .font(.system(size: 20, weight: .medium))
                     .foregroundColor(.green)
-                    //.frame(maxWidth: .infinity)
-                    .frame(height: 30)
+                    .frame(maxWidth: .infinity, minHeight: 30) 
+                    .multilineTextAlignment(.center)
                     .padding(.vertical, 8)
                     .padding(.horizontal, 10)
                     .background(Color.white)
                     .cornerRadius(8)
-            } else {
-                // Read-only Text
+            }
+            else {
                 Text(formatNumber(numberOfValue))
                     .font(.system(size: 20, weight: .medium))
                     .foregroundColor(.green)
-                    //.frame(maxWidth: .infinity)
-                    .frame(height: 30)
+                    .frame(maxWidth: .infinity, minHeight: 30)
+                    .multilineTextAlignment(.center)
                     .padding(.vertical, 8)
                     .padding(.horizontal, 10)
                     .background(Color.white)
                     .cornerRadius(8)
             }
         }
-        //.frame(maxWidth: .infinity)
         .background(Color.white)
         .cornerRadius(8)
         .padding(.horizontal, 8)
@@ -259,11 +258,70 @@ struct DaysView: View {
     private func formatNumber(_ value: Double) -> String {
         if value == 0.5 {
             return "0.5"
-        } else {
+        }
+        else {
             return "\(Int(value))"
         }
     }
 }
+
+//struct DaysView<Value: LosslessStringConvertible>: View {
+//    var title: String
+//    @Binding var value: Value
+//    var isEditable: Bool = false
+//    
+//    var body: some View {
+//        VStack(alignment: .center, spacing: 0) {
+//            // Title
+//            titleCard(title: title, frameHeight: 30, fontSize: 13)
+//            
+//            if isEditable {
+//                TextField("Enter Amount", text: Binding(
+//                    get: { value.description },
+//                    set: {
+//                        if let converted = Value($0), !$0.isEmpty {
+//                            value = converted
+//                        } else if $0.isEmpty {
+//                            // If user clears text, store "0"
+//                            if let zeroValue = Value("0") {
+//                                value = zeroValue
+//                            }
+//                        }
+//                    }
+//                ))
+//                .keyboardType(.decimalPad)
+//                .font(.system(size: 20, weight: .medium))
+//                .foregroundColor(.green)
+//                .frame(maxWidth: .infinity, minHeight: 30)
+//                .multilineTextAlignment(.center)
+//                .padding(.vertical, 8)
+//                .padding(.horizontal, 10)
+//                .background(Color.white)
+//                .cornerRadius(8)
+//                .onTapGesture {
+//                    // Clear "0" when tapping
+//                    if value.description == "0" {
+//                        value = Value("") ?? value
+//                    }
+//                }
+//            } else {
+//                Text(value.description.isEmpty ? "0" : value.description)
+//                    .font(.system(size: 20, weight: .medium))
+//                    .foregroundColor(.green)
+//                    .frame(maxWidth: .infinity, minHeight: 30)
+//                    .multilineTextAlignment(.center)
+//                    .padding(.vertical, 8)
+//                    .padding(.horizontal, 10)
+//                    .background(Color.white)
+//                    .cornerRadius(8)
+//            }
+//        }
+//        .background(Color.white)
+//        .cornerRadius(8)
+//        .padding(.horizontal, 8)
+//        .shadow(color: Color.black.opacity(0.1), radius: 3, x: 0, y: 2)
+//    }
+//}
 
 struct halfdayView: View {
     @Binding var isHalfDaySelected: Bool
@@ -462,7 +520,7 @@ struct DateCard: View {
             VStack {
                 DatePicker(
                     title,
-                    selection: $tempDate, // ✅ Bind to temp date
+                    selection: $tempDate,
                     displayedComponents: .date
                 )
                 .datePickerStyle(.wheel)
@@ -470,7 +528,7 @@ struct DateCard: View {
                 .padding()
                 
                 Button("Done") {
-                    selectedDate = tempDate // ✅ Save selected date
+                    selectedDate = tempDate
                     showDatePicker = false
                 }
                 .padding()

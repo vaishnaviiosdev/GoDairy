@@ -11,7 +11,10 @@ struct AdvanceRequestView: View {
     @State private var selectedAdvanceType: String? = nil
     @State private var enteredLocationStr: String = ""
     @State private var enteredPurposeStr: String = ""
-    @State private var numberOfAmount: Double = 0.00
+    @State private var FromDate: Date? = nil
+    @State private var ToDate: Date? = nil
+    @State private var selectedDate: Date? = nil
+    @State private var amount = 0.0
     @State private var activeSelection: AdvanceSelectionType? = nil
     @StateObject var AdvanceModel = AdvanceRequestViewModel()
     
@@ -25,16 +28,32 @@ struct AdvanceRequestView: View {
                 homeBar(frameSize: 40)
                 ScrollView {
                     AdvanceRequestCard(title: "ADVANCE REQUEST",
+                    FromDate: $FromDate,
+                    ToDate: $ToDate,
+                    selectedDate: $selectedDate,
                     selectedAdvanceType: $selectedAdvanceType,
                     enteredLocationStr: $enteredLocationStr,
                     enteredPurposeStr: $enteredPurposeStr,
-                    numberOfAmount: $numberOfAmount,
+                                       amount: $amount,
                     onAdvanceTypeTap: {
                         activeSelection = .advanceType
                     })
                 }
                 CustomBtn(title: "SUBMIT", height: 40, backgroundColor: .appPrimary) {
-                    
+                    Task {
+                        await AdvanceModel.PostAdvanceRequestData(
+                            Ukey: Ukey,
+                            SF: sf_code,
+                            eDate: formatDate(Date()),
+                            advFrom: formatDate(FromDate ?? Date()),
+                            advTo: formatDate(ToDate ?? Date()),
+                            advTyp: selectedAdvanceType ?? "",
+                            advLoc: enteredLocationStr,
+                            advPurp: enteredPurposeStr,
+                            advAmt: String(amount),
+                            advSettle: formatDate(selectedDate ?? Date())
+                        )
+                    }
                 }
                 .padding()
             }
@@ -60,6 +79,9 @@ struct AdvanceRequestView: View {
             .task {
                 await AdvanceModel.fetchAdvanceTypeData()
             }
+            .alert(AdvanceModel.saveSuccessMessage, isPresented: $AdvanceModel.showSaveSuccessAlert) {
+                Button("OK", role: .cancel) {}
+            }
         }
         .navigationBarBackButtonHidden(true)
         .navigationTitle("")
@@ -69,13 +91,13 @@ struct AdvanceRequestView: View {
 struct AdvanceRequestCard: View {
     let title: String
     
-    @State private var FromDate: Date? = nil
-    @State private var ToDate: Date? = nil
-    @State private var selectedDate: Date? = nil
+    @Binding var FromDate: Date?
+    @Binding var ToDate: Date?
+    @Binding var selectedDate: Date?
     @Binding var selectedAdvanceType: String?
     @Binding var enteredLocationStr: String
     @Binding var enteredPurposeStr: String
-    @Binding var numberOfAmount: Double
+    @Binding var amount: Double
     var onAdvanceTypeTap: () -> Void
     
     var body: some View {
@@ -100,7 +122,7 @@ struct AdvanceRequestCard: View {
             
             CustomTxtfield(title: "Purpose", placeholderString: "Enter the Purpose", textValue: $enteredPurposeStr)
             
-            DaysView(title: "Enter the Amount", numberOfValue: $numberOfAmount,isEditable: true)
+            DaysView(title: "Enter the Amount", numberOfValue: $amount,isEditable: true)
                 .padding(.top)
             
             DateCard(title: "Settlement Date", fontWeight: .semibold, placeholder: "Select settlement date", selectedDate: $selectedDate)
@@ -122,7 +144,7 @@ struct CustomTxtfield: View {
             titleView(title: title, fontWeight: .semibold)
             
             ZStack(alignment: .leading) {
-                // Custom bold placeholder
+                
                 if textValue.isEmpty {
                     Text(placeholderString)
                         .font(.system(size: 14, weight: .regular))
