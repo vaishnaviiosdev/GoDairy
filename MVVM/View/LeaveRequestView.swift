@@ -12,11 +12,11 @@ struct LeaveRequestView: View {
     @State private var selectedShiftTiming: String? = nil
     @State private var selectedTypeOfHalfDay: String? = nil
     @State private var activeSelection: SelectionType? = nil
-    @StateObject var LeaveModel = LeaveRequestModel()
+    @State private var selectedLeaveCode: String? = nil
+    @StateObject var LeaveModel = LeaveRequestViewModel()
     
     let halfDayTYpe = ["First Half", "Second Half"]
     let leaveTypes = ["Casual Leave", "Paid Leave", "Loss of Pay", "Sick Leave"]
-    let shiftTime = ["Shift 5", "Test Shift", "mid Shift", "Shift 1", "Shift 3", "SHIFT TEST A"]
     
     enum SelectionType {
         case leaveType
@@ -34,6 +34,7 @@ struct LeaveRequestView: View {
                         selectedLeaveType: $selectedLeaveType,
                         selectedShiftTiming: $selectedShiftTiming,
                         selectedTypeOfHalfDay: $selectedTypeOfHalfDay,
+                        selectedLeaveCode: $selectedLeaveCode,
                         LeaveModel: LeaveModel,
                         onLeaveTypeTap: {
                             activeSelection = .leaveType
@@ -47,7 +48,6 @@ struct LeaveRequestView: View {
                     )
                 }
                 CustomBtn(title: "SUBMIT", height: 40, backgroundColor: .appPrimary1) {
-                    
                 }
                 .padding()
             }
@@ -66,7 +66,6 @@ struct LeaveRequestView: View {
                             ) { selected in
                                 selectedLeaveType = selected
                             }
-                            
                         case .shiftTiming:
                             SelectionView (
                                 isPresented: Binding(
@@ -78,7 +77,6 @@ struct LeaveRequestView: View {
                             ) { selected in
                                 selectedShiftTiming = selected
                             }
-                            
                         case .halfDay:
                             SelectionView (
                                 isPresented: Binding(
@@ -95,8 +93,10 @@ struct LeaveRequestView: View {
                 }
             )
             .task {
+                await LeaveModel.fetchLeaveTypeData()
                 await LeaveModel.fetchLeaveAvailabilityData()
                 await LeaveModel.fetchShiftTimeData()
+                
             }
         }
         .navigationBarBackButtonHidden(true)
@@ -134,7 +134,8 @@ struct LeaveSectionCard: View {
     @Binding var selectedLeaveType: String?
     @Binding var selectedShiftTiming: String?
     @Binding var selectedTypeOfHalfDay: String?
-    @ObservedObject var LeaveModel: LeaveRequestModel
+    @Binding var selectedLeaveCode: String? 
+    @ObservedObject var LeaveModel: LeaveRequestViewModel
 
     var onLeaveTypeTap: () -> Void
     var onShiftTimingTap: () -> Void
@@ -174,15 +175,13 @@ struct LeaveSectionCard: View {
             }
             
             HStack {
-                DaysView(numberOfDays: numberOfDays)
+                DaysView(title: "No of days", numberOfValue: $numberOfDays, isEditable: false)
                 if areDatesSameDay(FromDate, ToDate) {
                     halfdayView(isHalfDaySelected: $isHalfDaySelected)
                 }
             }
             .padding(.vertical, 10)
             .padding(.top, 5)
-            
-            
             
             if isHalfDaySelected && areDatesSameDay(FromDate, ToDate) {
                 CustomCard(title: "Shift Timing", placeholderString: "Shift Timing",selectedValue: selectedShiftTiming, action: onShiftTimingTap)
@@ -194,8 +193,7 @@ struct LeaveSectionCard: View {
                 .padding(.horizontal, 8)
                 .padding(.bottom, 10)
             
-            
-            LeaveAvailabilityList(LeaveModel: LeaveModel)
+            LeaveAvailabilityList(LeaveModel: LeaveModel, selectedLeaveCode: $selectedLeaveCode)
         }
         .background(Color.white)
         .cornerRadius(12)
@@ -219,21 +217,39 @@ struct LeaveSectionCard: View {
 }
 
 struct DaysView: View {
-    var numberOfDays: Double
+    var title: String
+    @Binding var numberOfValue: Double
+    var isEditable: Bool = false
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            titleCard(title: "No of days", frameHeight: 30, fontSize: 13)
+        VStack(alignment: .center, spacing: 0) {
+            titleCard(title: title, frameHeight: 30, fontSize: 13)
             
-            Text(formatNumber(numberOfDays))
-                .font(.system(size: 20, weight: .medium))
-                .foregroundColor(.green)
-                .frame(maxWidth: .infinity)
-                .frame(height: 30)
-                .padding(.vertical, 8)
-                .background(Color.white)
+            if isEditable {
+                TextField("Enter Amount", value: $numberOfValue, format: .number)
+                    .keyboardType(.decimalPad)
+                    .font(.system(size: 20, weight: .medium))
+                    .foregroundColor(.green)
+                    //.frame(maxWidth: .infinity)
+                    .frame(height: 30)
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 10)
+                    .background(Color.white)
+                    .cornerRadius(8)
+            } else {
+                // Read-only Text
+                Text(formatNumber(numberOfValue))
+                    .font(.system(size: 20, weight: .medium))
+                    .foregroundColor(.green)
+                    //.frame(maxWidth: .infinity)
+                    .frame(height: 30)
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 10)
+                    .background(Color.white)
+                    .cornerRadius(8)
+            }
         }
-        .frame(maxWidth: .infinity)
+        //.frame(maxWidth: .infinity)
         .background(Color.white)
         .cornerRadius(8)
         .padding(.horizontal, 8)
@@ -243,8 +259,7 @@ struct DaysView: View {
     private func formatNumber(_ value: Double) -> String {
         if value == 0.5 {
             return "0.5"
-        }
-        else {
+        } else {
             return "\(Int(value))"
         }
     }
@@ -326,7 +341,8 @@ struct CustomTextView: View {
 }
 
 struct LeaveAvailabilityList: View {
-    @ObservedObject var LeaveModel: LeaveRequestModel
+    @ObservedObject var LeaveModel: LeaveRequestViewModel
+    @Binding var selectedLeaveCode: String?
     
     var body: some View {
         VStack {
@@ -360,6 +376,10 @@ struct LeaveAvailabilityList: View {
                             .background(Color.white)
                             .cornerRadius(8)
                             .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
+                            .onTapGesture {
+                                selectedLeaveCode = leaveRequest.LeaveCode
+                                print("Tapped LeaveCode: \(leaveRequest.LeaveCode)")
+                            }
                         }
                     }
                 }

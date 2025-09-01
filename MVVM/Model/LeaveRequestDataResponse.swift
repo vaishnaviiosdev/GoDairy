@@ -47,3 +47,19 @@ struct leaveSavedResponse: Codable {
         case success = "success"
     }
 }
+
+struct leaveTypeDataResponse: Codable {
+    let id: Int
+    let name: String
+    let Leave_SName: String
+    let COffType: Int
+    let MaxDays: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case Leave_SName = "Leave_SName"
+        case COffType = "COffType"
+        case MaxDays = "MaxDays"
+    }
+}
