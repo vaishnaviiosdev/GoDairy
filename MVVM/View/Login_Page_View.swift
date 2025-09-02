@@ -274,12 +274,13 @@ struct CustomBtn: View {
     var cornerRadius: CGFloat = 9
     var fontsize: CGFloat = 17
     var backgroundColor: Color = Color.backgroundColour
+    var fontWeight: Font.Weight = .medium
     var action: () -> Void   // 👈 action passed from outside
     
     var body: some View {
         Button(action: action) {   // 👈 executes your action
             Text(title)
-                .font(.system(size: fontsize, weight: .heavy))
+                .font(.system(size: fontsize, weight: fontWeight))
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity, minHeight: height) 
                 .background(backgroundColor)

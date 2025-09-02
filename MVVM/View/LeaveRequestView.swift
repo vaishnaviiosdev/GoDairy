@@ -143,6 +143,7 @@ struct LeaveSectionCard: View {
     
     @State private var FromDate: Date? = nil
     @State private var ToDate: Date? = nil
+    @State private var selectedTime: String? = nil
     @State private var isFromDatePickerPresented = false
     @State private var isToDatePickerPresented = false
     @State private var textValue = ""
@@ -161,8 +162,14 @@ struct LeaveSectionCard: View {
             )
             
             HStack {
-                DateCard(title: "From Date", placeholder: "Select from Date", selectedDate: $FromDate)
-                DateCard(title: "To Date", placeholder: "Select To Date", selectedDate: $ToDate)
+                DateCard(title: "From Date",
+                         placeholder: "Select from Date",
+                         selectedDate: $FromDate,
+                         selectedTime: $selectedTime)
+                DateCard(title: "To Date",
+                         placeholder: "Select To Date",
+                         selectedDate: $ToDate,
+                         selectedTime: $selectedTime)
             }
             .onChange(of: FromDate) { _ in
                 calculateNumberOfDays()
@@ -220,17 +227,19 @@ struct DaysView: View {
     var title: String
     @Binding var numberOfValue: Double
     var isEditable: Bool = false
+    var foregroundColour = Color.green
+    var fontSize: CGFloat = 13
     
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
-            titleCard(title: title, frameHeight: 30, fontSize: 13)
+            titleCard(title: title, frameHeight: 30, fontSize: fontSize)
             
             if isEditable {
                 TextField("Enter Amount", value: $numberOfValue, format: .number)
                     .keyboardType(.decimalPad)
                     .font(.system(size: 20, weight: .medium))
-                    .foregroundColor(.green)
-                    .frame(maxWidth: .infinity, minHeight: 30) 
+                    .foregroundColor(foregroundColour)
+                    .frame(maxWidth: .infinity, minHeight: 30)
                     .multilineTextAlignment(.center)
                     .padding(.vertical, 8)
                     .padding(.horizontal, 10)
@@ -240,7 +249,7 @@ struct DaysView: View {
             else {
                 Text(formatNumber(numberOfValue))
                     .font(.system(size: 20, weight: .medium))
-                    .foregroundColor(.green)
+                    .foregroundColor(foregroundColour)
                     .frame(maxWidth: .infinity, minHeight: 30)
                     .multilineTextAlignment(.center)
                     .padding(.vertical, 8)
@@ -264,64 +273,6 @@ struct DaysView: View {
         }
     }
 }
-
-//struct DaysView<Value: LosslessStringConvertible>: View {
-//    var title: String
-//    @Binding var value: Value
-//    var isEditable: Bool = false
-//    
-//    var body: some View {
-//        VStack(alignment: .center, spacing: 0) {
-//            // Title
-//            titleCard(title: title, frameHeight: 30, fontSize: 13)
-//            
-//            if isEditable {
-//                TextField("Enter Amount", text: Binding(
-//                    get: { value.description },
-//                    set: {
-//                        if let converted = Value($0), !$0.isEmpty {
-//                            value = converted
-//                        } else if $0.isEmpty {
-//                            // If user clears text, store "0"
-//                            if let zeroValue = Value("0") {
-//                                value = zeroValue
-//                            }
-//                        }
-//                    }
-//                ))
-//                .keyboardType(.decimalPad)
-//                .font(.system(size: 20, weight: .medium))
-//                .foregroundColor(.green)
-//                .frame(maxWidth: .infinity, minHeight: 30)
-//                .multilineTextAlignment(.center)
-//                .padding(.vertical, 8)
-//                .padding(.horizontal, 10)
-//                .background(Color.white)
-//                .cornerRadius(8)
-//                .onTapGesture {
-//                    // Clear "0" when tapping
-//                    if value.description == "0" {
-//                        value = Value("") ?? value
-//                    }
-//                }
-//            } else {
-//                Text(value.description.isEmpty ? "0" : value.description)
-//                    .font(.system(size: 20, weight: .medium))
-//                    .foregroundColor(.green)
-//                    .frame(maxWidth: .infinity, minHeight: 30)
-//                    .multilineTextAlignment(.center)
-//                    .padding(.vertical, 8)
-//                    .padding(.horizontal, 10)
-//                    .background(Color.white)
-//                    .cornerRadius(8)
-//            }
-//        }
-//        .background(Color.white)
-//        .cornerRadius(8)
-//        .padding(.horizontal, 8)
-//        .shadow(color: Color.black.opacity(0.1), radius: 3, x: 0, y: 2)
-//    }
-//}
 
 struct halfdayView: View {
     @Binding var isHalfDaySelected: Bool
@@ -355,11 +306,12 @@ struct halfdayView: View {
 struct titleView: View {
     let title: String
     var foregroundColor: Color = .black
+    var fontSize: CGFloat = 13
     var fontWeight: Font.Weight = .light
     var body: some View {
         Text(title)
             .foregroundColor(foregroundColor)
-            .font(.system(size: 13))
+            .font(.system(size: fontSize))
             .fontWeight(fontWeight)
             .padding(.leading, 5)
             .padding(.top, 8)
@@ -452,11 +404,12 @@ struct CustomCard: View {
     let placeholderString: String
     var selectedValue: String? = nil
     var fontWeight: Font.Weight = .light
+    var titleFontWeight: Font.Weight = .light
     let action: () -> Void
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            titleView(title: title, fontWeight: .semibold)
+            titleView(title: title, fontWeight: titleFontWeight)
             Button(action: action) {
                 Text(selectedValue ?? placeholderString)
                     .foregroundColor(selectedValue == nil ? .gray : .black)
@@ -480,11 +433,78 @@ struct CustomCard: View {
     }
 }
 
+//struct DateCard: View {
+//    let title: String
+//    var fontWeight: Font.Weight = .light
+//    let placeholder: String
+//    @Binding var selectedDate: Date?
+//    @State private var showDatePicker = false
+//    @State private var tempDate = Date()
+//
+//    var body: some View {
+//        VStack(alignment: .leading, spacing: 0) {
+//            titleView(title: title, fontWeight: fontWeight)
+//            
+//            Button(action: {
+//                tempDate = selectedDate ?? Date()
+//                showDatePicker.toggle()
+//            }) {
+//                HStack {
+//                    Text(selectedDate == nil ? placeholder : formatDate(selectedDate!))
+//                        .foregroundColor(selectedDate == nil ? .gray : .gray)
+//                        .font(.system(size: 14))
+//                        .frame(maxWidth: .infinity, alignment: .leading)
+//                }
+//                .padding(.vertical, 8)
+//                .padding(.horizontal, 10)
+//                .background(
+//                    RoundedRectangle(cornerRadius: 8).fill(Color.white)
+//                )
+//                .overlay(
+//                    RoundedRectangle(cornerRadius: 8)
+//                        .stroke(Color.gray.opacity(0.5), lineWidth: 0.3)
+//                )
+//                .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
+//            }
+//            .padding(.horizontal, 5)
+//        }
+//        .padding(5)
+//        .sheet(isPresented: $showDatePicker) {
+//            VStack {
+//                DatePicker(
+//                    title,
+//                    selection: $tempDate,
+//                    displayedComponents: .date
+//                )
+//                .datePickerStyle(.wheel)
+//                .labelsHidden()
+//                .padding()
+//                
+//                Button("Done") {
+//                    selectedDate = tempDate
+//                    showDatePicker = false
+//                }
+//                .padding()
+//            }
+//            .padding()
+//        }
+//    }
+//    
+//    private func formatDate(_ date: Date) -> String {
+//        let formatter = DateFormatter()
+//        formatter.dateStyle = .medium
+//        return formatter.string(from: date)
+//    }
+//}
+
 struct DateCard: View {
     let title: String
     var fontWeight: Font.Weight = .light
     let placeholder: String
     @Binding var selectedDate: Date?
+    @Binding var selectedTime: String?
+    var pickerMode: PickerMode = .date  // ✅ NEW
+
     @State private var showDatePicker = false
     @State private var tempDate = Date()
 
@@ -504,6 +524,7 @@ struct DateCard: View {
                 }
                 .padding(.vertical, 8)
                 .padding(.horizontal, 10)
+                //.background(.black)
                 .background(
                     RoundedRectangle(cornerRadius: 8).fill(Color.white)
                 )
@@ -521,7 +542,7 @@ struct DateCard: View {
                 DatePicker(
                     title,
                     selection: $tempDate,
-                    displayedComponents: .date
+                    displayedComponents: displayedComponents() // ✅ Dynamic
                 )
                 .datePickerStyle(.wheel)
                 .labelsHidden()
@@ -529,6 +550,7 @@ struct DateCard: View {
                 
                 Button("Done") {
                     selectedDate = tempDate
+                    selectedTime = formatDate(tempDate)
                     showDatePicker = false
                 }
                 .padding()
@@ -537,11 +559,40 @@ struct DateCard: View {
         }
     }
     
+    // 🔥 Dynamic displayedComponents based on pickerMode
+    private func displayedComponents() -> DatePicker.Components {
+        switch pickerMode {
+        case .date:
+            return .date
+        case .time:
+            return .hourAndMinute
+        case .dateAndTime:
+            return [.date, .hourAndMinute]
+        }
+    }
+    
+    // 🔥 Format date/time properly
     private func formatDate(_ date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateStyle = .medium
+        switch pickerMode {
+        case .date:
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .none
+        case .time:
+            formatter.dateStyle = .none
+            formatter.timeStyle = .short
+        case .dateAndTime:
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .short
+        }
         return formatter.string(from: date)
     }
+}
+
+enum PickerMode {
+    case date
+    case time
+    case dateAndTime
 }
 
 #Preview {

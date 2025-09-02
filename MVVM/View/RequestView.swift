@@ -10,7 +10,7 @@ struct RequestView: View {
     private let requestItems: [(title: String, destination: AnyView)] = [
         ("Advance Request", AnyView(AdvanceRequestView())),
         ("Leave Request", AnyView(LeaveRequestView())),
-        ("Permission Request", AnyView(PermissionView())),
+        ("Permission Request", AnyView(PermissionRequestView())),
         ("Missed Punch", AnyView(MIssedPunchview())),
         ("Weekly-Off", AnyView(WeeklyOffView())),
         ("Deviation Entry", AnyView(DeviationEntryView()))

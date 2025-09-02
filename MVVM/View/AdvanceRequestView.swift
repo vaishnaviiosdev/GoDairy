@@ -105,9 +105,13 @@ struct AdvanceRequestCard: View {
             titleCard(title: title, frameHeight: 40, fontSize: 14)
             
             HStack {
-                DateCard(title: "From Date", fontWeight: .semibold, placeholder: "Select from Date", selectedDate: $FromDate)
+                DateCard(title: "From Date", fontWeight: .semibold, placeholder: "Select from Date", selectedDate: $FromDate,
+                         selectedTime: .constant(nil))
                     
-                DateCard(title: "To Date",fontWeight: .semibold, placeholder: "Select To Date", selectedDate: $ToDate)
+                DateCard(title: "To Date",fontWeight: .semibold, placeholder: "Select To Date", selectedDate: $ToDate,
+                         selectedTime: .constant(nil))
+               .disabled(FromDate == nil)
+               .opacity(FromDate == nil ? 0.5 : 1.0) 
             }
             
             CustomCard(
@@ -125,7 +129,11 @@ struct AdvanceRequestCard: View {
             DaysView(title: "Enter the Amount", numberOfValue: $amount,isEditable: true)
                 .padding(.top)
             
-            DateCard(title: "Settlement Date", fontWeight: .semibold, placeholder: "Select settlement date", selectedDate: $selectedDate)
+            DateCard(title: "Settlement Date",
+                     fontWeight: .semibold,
+                     placeholder: "Select settlement date",
+                     selectedDate: $selectedDate,
+                     selectedTime: .constant(nil))
         }
         .background(Color.white)
         .cornerRadius(12)

@@ -52,15 +52,13 @@ class LeaveRequestViewModel: ObservableObject {
     
     func fetchLeaveTypeData() async {
         
-       // guard let url = URL(string: leaveTypes_url) else { return }
-        
         let parameters: [String: Any] = [
             "data": ["tableName":"vwLeaveType",
                      "coloumns":"[\"id\",\"name\",\"Leave_Name\"]",
                      "orderBy":"[\"name asc\"]",
                      "desig":"mgr"]
             ]
-        
+        print("The parameters is \(parameters)")
         
         do {
             let response: [leaveTypeDataResponse] = try await NetworkManager.shared.postData(to: leaveTypes_url, parameters: parameters, as: [leaveTypeDataResponse].self)

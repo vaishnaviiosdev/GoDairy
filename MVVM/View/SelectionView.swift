@@ -149,7 +149,6 @@ struct SelectionView: View {
     
     var body: some View {
         ZStack {
-            // Dim background
             Color.black.opacity(0.4)
                 .ignoresSafeArea()
                 .onTapGesture {
