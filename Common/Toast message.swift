@@ -43,3 +43,20 @@ struct Toast: View {
     }
 }
 
+struct ToastView: View {
+    let message: String
+    
+    var body: some View {
+        Text(message)
+            .foregroundColor(.white)
+            .padding(.horizontal, 20)
+            .padding(.vertical, 10)
+            .background(Color.black.opacity(0.8))
+            .cornerRadius(8)
+            .shadow(radius: 5)
+            .transition(.opacity.combined(with: .move(edge: .bottom)))
+            .animation(.easeInOut(duration: 0.3), value: message)
+    }
+}
+
+

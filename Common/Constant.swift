@@ -21,6 +21,9 @@ let advanceType_url = APIClient.shared.New_DBUrl + APIClient.shared.DBURL2 + "ge
 let leaveTypes_url = APIClient.shared.New_DBUrl + "/server/Db_v300.php?&State_Code=1&divisionCode=1&rSF=MGR80&axn=table%2Flist&sfCode=MGR80"
 let save_AdvanceRequestUrl = APIClient.shared.New_DBUrl + "/server/Db_v310.php?&axn=save%2Fadvance"
 let permission_shiftTimeUrl = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl2 + "get%2FShift_timing&divisionCode=1&Sf_code=MGR80"
+let permission_takenHrsUrl = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl2 + "get/tknPerm&PDt=06-01-2025&divisionCode=1&sfCode=MGR80&rSF=MGR80&State_Code=1"
+let permission_saveUrl = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl2 + "dcr/save&sf_name=G%20RAMESH&divisionCode=1&sfCode=MGR80&State_Code=MGR80&desig=MGR"
+
 
 
 

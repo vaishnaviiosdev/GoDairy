@@ -21,4 +21,24 @@ struct PermissionRequestModel: Codable {
     }
 }
 
+struct permissionTakenHrsModel: Codable {
+    let tknHrS: String
+    
+    enum CodingKeys: String, CodingKey {
+        case tknHrS = "tknHrS"
+    }
+}
+
+struct permissionSaveModel: Codable {
+    let Msg: String
+    let success: Bool
+    let Query: String
+    
+    enum CodingKeys: String, CodingKey {
+        case Msg = "Msg"
+        case success = "success"
+        case Query = "Query"
+    }
+}
+
 

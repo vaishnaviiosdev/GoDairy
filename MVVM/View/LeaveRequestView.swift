@@ -497,13 +497,119 @@ struct CustomCard: View {
 //    }
 //}
 
+//struct DateCard: View {
+//    let title: String
+//    var fontWeight: Font.Weight = .light
+//    let placeholder: String
+//    @Binding var selectedDate: Date?
+//    @Binding var selectedTime: String?
+//    var pickerMode: PickerMode = .date  // ✅ NEW
+//
+//    @State private var showDatePicker = false
+//    @State private var tempDate = Date()
+//
+//    var body: some View {
+//        VStack(alignment: .leading, spacing: 0) {
+//            titleView(title: title, fontWeight: fontWeight)
+//            
+//            Button(action: {
+//                tempDate = selectedDate ?? Date()
+//                showDatePicker.toggle()
+//            }) {
+//                HStack {
+//                    Text(selectedDate == nil ? placeholder : formatDate(selectedDate!))
+//                        .foregroundColor(selectedDate == nil ? .gray : .gray)
+//                        .font(.system(size: 14))
+//                        .frame(maxWidth: .infinity, alignment: .leading)
+//                }
+//                .padding(.vertical, 8)
+//                .padding(.horizontal, 10)
+//                .background(
+//                    RoundedRectangle(cornerRadius: 8).fill(Color.white)
+//                )
+//                .overlay(
+//                    RoundedRectangle(cornerRadius: 8)
+//                        .stroke(Color.gray.opacity(0.5), lineWidth: 0.3)
+//                )
+//                .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
+//            }
+//            .padding(.horizontal, 5)
+//        }
+//        .padding(5)
+//        .sheet(isPresented: $showDatePicker) {
+//            VStack {
+//                DatePicker(
+//                    title,
+//                    selection: $tempDate,
+//                    displayedComponents: displayedComponents()
+//                )
+//                .datePickerStyle(.wheel)
+//                .labelsHidden()
+//                .padding()
+//                
+//                Button("Done") {
+//                    selectedDate = tempDate
+//                    if pickerMode == .time {
+//                        selectedTime = formatDate(tempDate)
+//                    }
+//                    showDatePicker = false
+//                }
+////                Button("Done") {
+////                    if pickerMode == .time {
+////                        selectedTime = formatDate(tempDate)   // ✅ Always update
+////                    }
+////                    else if pickerMode == .date {
+////                        selectedDate = tempDate
+////                    }
+////                    else {
+////                        selectedDate = tempDate
+////                        selectedTime = formatDate(tempDate)
+////                    }
+////                    showDatePicker = false
+////                }
+//                .padding()
+//            }
+//            .padding()
+//        }
+//    }
+//    
+//    private func displayedComponents() -> DatePicker.Components {
+//        switch pickerMode {
+//        case .date:
+//            return .date
+//        case .time:
+//            return .hourAndMinute
+//        case .dateAndTime:
+//            return [.date, .hourAndMinute]
+//        }
+//    }
+//    
+//    // 🔥 Format date/time properly
+//    private func formatDate(_ date: Date) -> String {
+//        let formatter = DateFormatter()
+//        switch pickerMode {
+//        case .date:
+//            formatter.dateStyle = .medium
+//            formatter.timeStyle = .none
+//        case .time:
+//            formatter.dateStyle = .none
+//            formatter.timeStyle = .short
+//        case .dateAndTime:
+//            formatter.dateStyle = .medium
+//            formatter.timeStyle = .short
+//        }
+//        return formatter.string(from: date)
+//    }
+//}
+
 struct DateCard: View {
     let title: String
     var fontWeight: Font.Weight = .light
     let placeholder: String
     @Binding var selectedDate: Date?
     @Binding var selectedTime: String?
-    var pickerMode: PickerMode = .date  // ✅ NEW
+    var pickerMode: PickerMode = .date
+    var onTimeSelected: ((Date) -> Void)? = nil  // ✅ NEW callback
 
     @State private var showDatePicker = false
     @State private var tempDate = Date()
@@ -524,7 +630,6 @@ struct DateCard: View {
                 }
                 .padding(.vertical, 8)
                 .padding(.horizontal, 10)
-                //.background(.black)
                 .background(
                     RoundedRectangle(cornerRadius: 8).fill(Color.white)
                 )
@@ -542,7 +647,7 @@ struct DateCard: View {
                 DatePicker(
                     title,
                     selection: $tempDate,
-                    displayedComponents: displayedComponents() // ✅ Dynamic
+                    displayedComponents: displayedComponents()
                 )
                 .datePickerStyle(.wheel)
                 .labelsHidden()
@@ -550,7 +655,10 @@ struct DateCard: View {
                 
                 Button("Done") {
                     selectedDate = tempDate
-                    selectedTime = formatDate(tempDate)
+                    if pickerMode == .time {
+                        selectedTime = formatDate(tempDate)
+                        onTimeSelected?(tempDate)  // ✅ Trigger callback
+                    }
                     showDatePicker = false
                 }
                 .padding()
@@ -559,7 +667,6 @@ struct DateCard: View {
         }
     }
     
-    // 🔥 Dynamic displayedComponents based on pickerMode
     private func displayedComponents() -> DatePicker.Components {
         switch pickerMode {
         case .date:
@@ -571,7 +678,6 @@ struct DateCard: View {
         }
     }
     
-    // 🔥 Format date/time properly
     private func formatDate(_ date: Date) -> String {
         let formatter = DateFormatter()
         switch pickerMode {
