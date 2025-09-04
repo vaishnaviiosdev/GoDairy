@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PermissionRequestView: View {
+    @Environment(\.dismiss) private var dismiss
     
     @State private var PermissionDate: Date? = nil
     @State private var selectedPermissionHours: String? = nil
@@ -99,7 +100,8 @@ struct PermissionRequestView: View {
                             if PermissionDate == nil {
                                 saveSuccessMessage = "Please select Date first"
                                 showToast = true
-                            } else {
+                            }
+                            else {
                                 activeSelection = .permissionShiftTime
                             }
                         }
@@ -112,7 +114,6 @@ struct PermissionRequestView: View {
                             showToast = true
                         }
                         else {
-                        
                             await permissionModel.postPermissionSaveData(
                                 pdate: PermissionDate ?? Date(),
                                    startAt: selectedFromTime ?? "",
@@ -174,6 +175,11 @@ struct PermissionRequestView: View {
             .task {
                 await permissionModel.fetchPermissionShiftTimeData()
                 await permissionModel.fetchTakenHrsData()
+            }
+            .alert(permissionModel.savePermissionSuccessMsg, isPresented: $permissionModel.showPermissionSaveAlert) {
+                Button("OK", role: .cancel) {
+                    dismiss()
+                }
             }
         }
         .navigationBarBackButtonHidden(true)

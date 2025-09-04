@@ -34,6 +34,9 @@
 		38CA96C12E6573C0000532A5 /* AdvanceRequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA96C02E6573B3000532A5 /* AdvanceRequestViewModel.swift */; };
 		38CCC3E62CB648AD0096B309 /* MonthlyPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CCC3E52CB648AD0096B309 /* MonthlyPlan.swift */; };
 		38CCC3E82CB6865D0096B309 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CCC3E72CB6865D0096B309 /* CalendarView.swift */; };
+		38D19F072E66AD7C00399314 /* PermissionRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D19F062E66AD7B00399314 /* PermissionRequestView.swift */; };
+		38D19F092E66E5A500399314 /* PermissionRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D19F082E66E59A00399314 /* PermissionRequestModel.swift */; };
+		38D19F0B2E66E85D00399314 /* PermissionRequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D19F0A2E66E84700399314 /* PermissionRequestViewModel.swift */; };
 		38D2DE682D226E9F008C3239 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D2DE672D226E9F008C3239 /* CameraController.swift */; };
 		38D51F7B2CF98A5A004292B4 /* Cameraview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D51F7A2CF98A5A004292B4 /* Cameraview.swift */; };
 		38D735AA2E53383A00197EA1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38D735A92E53383A00197EA1 /* Launch Screen.storyboard */; };
@@ -42,6 +45,9 @@
 		38D735B02E533F2B00197EA1 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D735AF2E533F2500197EA1 /* Model.swift */; };
 		38D735B22E5342B800197EA1 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D735B12E5342B200197EA1 /* Constant.swift */; };
 		38D7DB9D2CEDFCFF003A2149 /* checkInDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D7DB9C2CEDFCFF003A2149 /* checkInDashboard.swift */; };
+		38D997032E696E65005DD972 /* MissedPunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D997022E696E65005DD972 /* MissedPunchView.swift */; };
+		38D997052E6974D5005DD972 /* MissedPunchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D997042E6974C8005DD972 /* MissedPunchModel.swift */; };
+		38D997072E69777E005DD972 /* MissedPunchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D997062E69776E005DD972 /* MissedPunchViewModel.swift */; };
 		38DDDDB02CFD88DD003D1647 /* CheckInbutton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DDDDAF2CFD88DD003D1647 /* CheckInbutton.swift */; };
 		38EA2C012E5C686000428C3C /* AdvanceRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EA2C002E5C686000428C3C /* AdvanceRequestView.swift */; };
 		38EA2C032E5C712900428C3C /* LeaveRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EA2C022E5C712900428C3C /* LeaveRequestView.swift */; };
@@ -54,7 +60,6 @@
 		38F1BA522CB138C300D4DFF2 /* Todayview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1BA512CB138C300D4DFF2 /* Todayview.swift */; };
 		38F1BA542CB138DC00D4DFF2 /* Monthlyview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1BA532CB138DC00D4DFF2 /* Monthlyview.swift */; };
 		38F1BA572CB1392B00D4DFF2 /* Gate in:out.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1BA562CB1392B00D4DFF2 /* Gate in:out.swift */; };
-		38FBA5422D1D1E5600C3B02F /* MIssedPunchview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FBA5412D1D1E5600C3B02F /* MIssedPunchview.swift */; };
 		3F67B5B62CA7D12400A1BCB7 /* Login_Page_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F67B5B52CA7D12400A1BCB7 /* Login_Page_View.swift */; };
 		3F67B5B92CA7D30F00A1BCB7 /* Toast message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F67B5B82CA7D30F00A1BCB7 /* Toast message.swift */; };
 		3F67B5BE2CA7DA5000A1BCB7 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F67B5BD2CA7DA5000A1BCB7 /* APIClient.swift */; };
@@ -89,6 +94,9 @@
 		38CA96C02E6573B3000532A5 /* AdvanceRequestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvanceRequestViewModel.swift; sourceTree = "<group>"; };
 		38CCC3E52CB648AD0096B309 /* MonthlyPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyPlan.swift; sourceTree = "<group>"; };
 		38CCC3E72CB6865D0096B309 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		38D19F062E66AD7B00399314 /* PermissionRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionRequestView.swift; sourceTree = "<group>"; };
+		38D19F082E66E59A00399314 /* PermissionRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionRequestModel.swift; sourceTree = "<group>"; };
+		38D19F0A2E66E84700399314 /* PermissionRequestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionRequestViewModel.swift; sourceTree = "<group>"; };
 		38D2DE672D226E9F008C3239 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		38D51F7A2CF98A5A004292B4 /* Cameraview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cameraview.swift; sourceTree = "<group>"; };
 		38D735A92E53383A00197EA1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -97,6 +105,9 @@
 		38D735AF2E533F2500197EA1 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		38D735B12E5342B200197EA1 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		38D7DB9C2CEDFCFF003A2149 /* checkInDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkInDashboard.swift; sourceTree = "<group>"; };
+		38D997022E696E65005DD972 /* MissedPunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissedPunchView.swift; sourceTree = "<group>"; };
+		38D997042E6974C8005DD972 /* MissedPunchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissedPunchModel.swift; sourceTree = "<group>"; };
+		38D997062E69776E005DD972 /* MissedPunchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissedPunchViewModel.swift; sourceTree = "<group>"; };
 		38DDDDAF2CFD88DD003D1647 /* CheckInbutton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInbutton.swift; sourceTree = "<group>"; };
 		38EA2C002E5C686000428C3C /* AdvanceRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvanceRequestView.swift; sourceTree = "<group>"; };
 		38EA2C022E5C712900428C3C /* LeaveRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveRequestView.swift; sourceTree = "<group>"; };
@@ -109,7 +120,6 @@
 		38F1BA512CB138C300D4DFF2 /* Todayview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todayview.swift; sourceTree = "<group>"; };
 		38F1BA532CB138DC00D4DFF2 /* Monthlyview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monthlyview.swift; sourceTree = "<group>"; };
 		38F1BA562CB1392B00D4DFF2 /* Gate in:out.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gate in:out.swift"; sourceTree = "<group>"; };
-		38FBA5412D1D1E5600C3B02F /* MIssedPunchview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIssedPunchview.swift; sourceTree = "<group>"; };
 		3F67B5B52CA7D12400A1BCB7 /* Login_Page_View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login_Page_View.swift; sourceTree = "<group>"; };
 		3F67B5B82CA7D30F00A1BCB7 /* Toast message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Toast message.swift"; sourceTree = "<group>"; };
 		3F67B5BD2CA7DA5000A1BCB7 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
@@ -229,6 +239,8 @@
 		38D735A22E53275700197EA1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				38D997042E6974C8005DD972 /* MissedPunchModel.swift */,
+				38D19F082E66E59A00399314 /* PermissionRequestModel.swift */,
 				38EB916E2E60710100077669 /* LeaveRequestDataResponse.swift */,
 				38AB43222E598CDC00D33B3A /* MyDayPlanModel.swift */,
 				38C26F302D2BF75900595798 /* JsonModel.swift */,
@@ -244,7 +256,6 @@
 			children = (
 				38F1BA532CB138DC00D4DFF2 /* Monthlyview.swift */,
 				38C26F322D2BF97E00595798 /* RequestView.swift */,
-				38FBA5412D1D1E5600C3B02F /* MIssedPunchview.swift */,
 				38D51F7A2CF98A5A004292B4 /* Cameraview.swift */,
 				38F1BA562CB1392B00D4DFF2 /* Gate in:out.swift */,
 				38F1BA512CB138C300D4DFF2 /* Todayview.swift */,
@@ -269,6 +280,8 @@
 				38EA2C002E5C686000428C3C /* AdvanceRequestView.swift */,
 				38EA2C022E5C712900428C3C /* LeaveRequestView.swift */,
 				38EEA3B22E5DC83200CAC7FD /* SelectionView.swift */,
+				38D19F062E66AD7B00399314 /* PermissionRequestView.swift */,
+				38D997022E696E65005DD972 /* MissedPunchView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -276,6 +289,8 @@
 		38D735A42E53276900197EA1 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				38D997062E69776E005DD972 /* MissedPunchViewModel.swift */,
+				38D19F0A2E66E84700399314 /* PermissionRequestViewModel.swift */,
 				38CA96C02E6573B3000532A5 /* AdvanceRequestViewModel.swift */,
 				38EB916C2E606F0700077669 /* LeaveRequestViewModel.swift */,
 				38D735AB2E533DEA00197EA1 /* DataViewModel.swift */,
@@ -413,6 +428,7 @@
 				38C26F332D2BF97E00595798 /* RequestView.swift in Sources */,
 				38B550212CF5E40A006C07E4 /* DynamicHeight.swift in Sources */,
 				38EA2C012E5C686000428C3C /* AdvanceRequestView.swift in Sources */,
+				38D19F072E66AD7C00399314 /* PermissionRequestView.swift in Sources */,
 				38EA2C032E5C712900428C3C /* LeaveRequestView.swift in Sources */,
 				38C576582CDC8A3E005CF1B6 /* forgetpass.swift in Sources */,
 				3F67B5B62CA7D12400A1BCB7 /* Login_Page_View.swift in Sources */,
@@ -423,10 +439,13 @@
 				385EDAF02E54521E003F7AD0 /* PrivacyPolicyView.swift in Sources */,
 				38CA96C12E6573C0000532A5 /* AdvanceRequestViewModel.swift in Sources */,
 				38D735B22E5342B800197EA1 /* Constant.swift in Sources */,
+				38D997032E696E65005DD972 /* MissedPunchView.swift in Sources */,
 				38F1BA572CB1392B00D4DFF2 /* Gate in:out.swift in Sources */,
 				38AB43232E598CE700D33B3A /* MyDayPlanModel.swift in Sources */,
 				38A7A1382E56E56D006240D1 /* SplashScreenView.swift in Sources */,
 				38AAD9D12CF6DEB0005ABC2D /* MapLocation.swift in Sources */,
+				38D19F092E66E5A500399314 /* PermissionRequestModel.swift in Sources */,
+				38D997052E6974D5005DD972 /* MissedPunchModel.swift in Sources */,
 				38EEA3B32E5DC83200CAC7FD /* SelectionView.swift in Sources */,
 				38D735AC2E533E0D00197EA1 /* DataViewModel.swift in Sources */,
 				38D7DB9D2CEDFCFF003A2149 /* checkInDashboard.swift in Sources */,
@@ -435,7 +454,6 @@
 				38D51F7B2CF98A5A004292B4 /* Cameraview.swift in Sources */,
 				38C26F312D2BF75900595798 /* JsonModel.swift in Sources */,
 				38CCC3E62CB648AD0096B309 /* MonthlyPlan.swift in Sources */,
-				38FBA5422D1D1E5600C3B02F /* MIssedPunchview.swift in Sources */,
 				3F67B5B92CA7D30F00A1BCB7 /* Toast message.swift in Sources */,
 				38CA96BF2E6572CF000532A5 /* AdvanceRequestModel.swift in Sources */,
 				38D735AE2E533E8C00197EA1 /* NetworkManager.swift in Sources */,
@@ -451,9 +469,11 @@
 				38F1BA4D2CB1155B00D4DFF2 /* Dashboard.swift in Sources */,
 				38F1BA522CB138C300D4DFF2 /* Todayview.swift in Sources */,
 				38F1BA542CB138DC00D4DFF2 /* Monthlyview.swift in Sources */,
+				38D997072E69777E005DD972 /* MissedPunchViewModel.swift in Sources */,
 				38AB79F92E55939D003F4214 /* PermissionManager.swift in Sources */,
 				38BB2EC92CE711650002BAC6 /* popup.swift in Sources */,
 				3810CE752CA67F980049206C /* GetView.swift in Sources */,
+				38D19F0B2E66E85D00399314 /* PermissionRequestViewModel.swift in Sources */,
 				38D2DE682D226E9F008C3239 /* CameraController.swift in Sources */,
 				38C83D552E5852A600354AFD /* DashboardView.swift in Sources */,
 				38DDDDB02CFD88DD003D1647 /* CheckInbutton.swift in Sources */,

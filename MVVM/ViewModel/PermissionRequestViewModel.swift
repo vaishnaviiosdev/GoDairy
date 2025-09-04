@@ -15,6 +15,8 @@ class PermissionRequestViewModel: ObservableObject {
     @Published var permissionTypes: [String] = []
     @Published var permissionHrsModel : [permissionTakenHrsModel] = []
     @Published var permissionSaveResponse : permissionSaveModel?
+    @Published var showPermissionSaveAlert = false
+    @Published var savePermissionSuccessMsg: String = ""
     
     func fetchPermissionShiftTimeData() async {
         do {
@@ -52,77 +54,109 @@ class PermissionRequestViewModel: ObservableObject {
         }
     }
     
-//    func postPermissionSaveData(pdate: Date,
-//                                startAt: String,
-//                                endAt: String,
-//                                reason: String,
-//                                noOfHrs: String) async {
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "yyyy-MM-dd"
-//        let pdateString = formatter.string(from: pdate)
-//
-//        let parameters: [String: Any] = [
-//            "data": [
-//                "PermissionEntry": [
-//                    "pdate": pdateString,
-//                    "start_at": startAt,
-//                    "end_at": endAt,
-//                    "Reason": reason,
-//                    "No_of_Hrs": noOfHrs
-//                ],
-//                "Ekey": Ukey
-//            ]
-//        ]
-//        
-//        print("The parameters of the post permission save data is \(parameters)")
-//
-//        do {
-//            let response: permissionSaveModel = try await NetworkManager.shared.postData(to: permission_saveUrl, parameters: parameters, as: permissionSaveModel.self)
-//            self.permissionSaveResponse = response
-//            print("The permission save response is \(response)")
-//        }
-//        catch {
-//            print("Error fetching data is \(error.localizedDescription)")
-//        }
-//    }
-    
     func postPermissionSaveData(
-        pdate: Date,
-        startAt: String,
-        endAt: String,
-        reason: String,
-        noOfHrs: String
-    ) async {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        let pdateString = formatter.string(from: pdate)
+            pdate: Date,
+            startAt: String,
+            endAt: String,
+            reason: String,
+            noOfHrs: String
+        ) async {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            let pdateString = formatter.string(from: pdate)
 
-        let parameters: [String: Any] = [
-            "data": [
+            // Build PermissionEntry object
+            let permissionEntry: [String: Any] = [
+                "pdate": pdateString,
+                "start_at": startAt,
+                "end_at": endAt,
+                "Reason": reason,
+                "No_of_Hrs": noOfHrs
+            ]
+
+            // Ensure key order: PermissionEntry first, then Ekey
+            let orderedPayload: [[String: Any]] = [
                 [
-                    "PermissionEntry": [
-                        "pdate": pdateString,
-                        "start_at": startAt,
-                        "end_at": endAt,
-                        "Reason": reason,
-                        "No_of_Hrs": noOfHrs
-                    ],
+                    "PermissionEntry": permissionEntry,
                     "Ekey": Ukey
                 ]
             ]
-        ]
-        
-        do {
-            let response: permissionSaveModel = try await NetworkManager.shared.postData(
-                to: permission_saveUrl,
-                parameters: parameters,
-                as: permissionSaveModel.self
-            )
-            self.permissionSaveResponse = response
-            print("Permission save response: \(response)")
+
+            let parameters: [String: Any] = [
+                "data": orderedPayload
+            ]
+
+            do {
+                let response: permissionSaveModel = try await NetworkManager.shared.postFormData(
+                    urlString: permission_saveUrl,
+                    parameters: parameters,
+                    responseType: permissionSaveModel.self
+                )
+
+                self.permissionSaveResponse = response
+                self.savePermissionSuccessMsg = response.Msg
+                self.showPermissionSaveAlert = true
+                print("✅ Permission Saved Response: \(response)")
+            }
+            catch {
+                self.savePermissionSuccessMsg = "Please try again later"
+                self.showPermissionSaveAlert = true
+                print("❌ Error: \(error.localizedDescription)")
+            }
         }
-        catch {
-            print("Error: \(error.localizedDescription)")
-        }
-    }
+            
+    
+//        func postPermissionSaveData(
+//            pdate: Date,
+//            startAt: String,
+//            endAt: String,
+//            reason: String,
+//            noOfHrs: String
+//        ) async {
+//            let formatter = DateFormatter()
+//            formatter.dateFormat = "yyyy-MM-dd"
+//            let pdateString = formatter.string(from: pdate)
+//    
+//            let payloadArray: [[String: Any]] = [
+//                [
+//                    "PermissionEntry": [
+//                        "pdate": pdateString,
+//                        "start_at": startAt,
+//                        "end_at": endAt,
+//                        "Reason": reason,
+//                        "No_of_Hrs": noOfHrs
+//                    ],
+//                    "Ekey": Ukey
+//                ]
+//            ]
+//    
+//            guard let jsonData = try? JSONSerialization.data(withJSONObject: payloadArray, options: []),
+//                  let jsonString = String(data: jsonData, encoding: .utf8) else {
+//                print("Failed to encode JSON")
+//                return
+//            }
+//    
+//            // Create form-data body
+//            let bodyString = "data=\(jsonString)"
+//            guard let bodyData = bodyString.data(using: .utf8) else { return }
+//    
+//            // Build request
+//            guard let url = URL(string: permission_saveUrl) else { return }
+//            var request = URLRequest(url: url)
+//            request.httpMethod = "POST"
+//            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+//            request.httpBody = bodyData
+//    
+//            print("Form-Data Body: \(bodyString)")
+//    
+//            do {
+//                let (data, response) = try await URLSession.shared.data(for: request)
+//                if let json = String(data: data, encoding: .utf8) {
+//                    print("Response: \(json)")
+//                }
+//            }
+//            catch {
+//                print("Error: \(error.localizedDescription)")
+//            }
+//        }
 }

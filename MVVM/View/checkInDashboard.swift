@@ -193,7 +193,7 @@ struct check_in_button1:View {
                 }
             )
             .background(
-                NavigationLink(destination: MIssedPunchview(),
+                NavigationLink(destination: MissedPunchView(),
                                isActive: $navigateToNextPages){
                     EmptyView()
                 }

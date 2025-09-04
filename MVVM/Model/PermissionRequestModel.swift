@@ -41,4 +41,14 @@ struct permissionSaveModel: Codable {
     }
 }
 
+//struct permissionSaveModel: Codable {
+//    let success: Bool
+//    let SPSQL: String?
+//    
+//    enum CodingKeys: String, CodingKey {
+//        case success = "success"
+//        case SPSQL = "SPSQL"
+//    }
+//}
+
 

@@ -11,7 +11,7 @@ struct RequestView: View {
         ("Advance Request", AnyView(AdvanceRequestView())),
         ("Leave Request", AnyView(LeaveRequestView())),
         ("Permission Request", AnyView(PermissionRequestView())),
-        ("Missed Punch", AnyView(MIssedPunchview())),
+        ("Missed Punch", AnyView(MissedPunchView())),
         ("Weekly-Off", AnyView(WeeklyOffView())),
         ("Deviation Entry", AnyView(DeviationEntryView()))
     ]
