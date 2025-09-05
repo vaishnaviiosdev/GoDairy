@@ -7,25 +7,6 @@
 
 import Foundation
 
-//struct missedPunchdataResponse: Codable, Identifiable {
-//    var id: String { name }
-//    let name: String
-//    let Aflag: String
-//    let name1: String
-//    let End_Time: String?
-//    let Checkin_Time: String
-//    let COutTime: String
-//    
-//    enum CodingKeys: String, CodingKey {
-//        case name = "name"
-//        case Aflag = "Aflag"
-//        case name1 = "name1"
-//        case End_Time = "End_Time"
-//        case Checkin_Time = "Checkin_Time"
-//        case COutTime = "COutTime"
-//    }
-//}
-
 struct MissedPunchDataResponse: Codable, Identifiable {
     var id: String { name }  // Stable ID
     

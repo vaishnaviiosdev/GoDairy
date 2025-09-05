@@ -223,9 +223,8 @@ struct Todayview: View {
             }
             do {
                 let jsonResponse = try JSONSerialization.jsonObject(with: data, options: [])
-                
-              
-            }catch let parseError as NSError {
+            }
+            catch let parseError as NSError {
                 
                 print("JSON parsing error: \(parseError.localizedDescription)")
                 print("Raw Data: \(String(data: data, encoding: .utf8) ?? "No data")")
@@ -233,8 +232,6 @@ struct Todayview: View {
         }
         task.resume()
     }
-    
-    
 }
 
 #Preview {

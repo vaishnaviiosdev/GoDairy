@@ -31,7 +31,7 @@ struct DayPlanView: View {
                             .font(.subheadline)
                             .foregroundColor(.gray)
                         
-                        VStack(alignment: .leading, spacing: 6) { // Work Type Picker
+                        VStack(alignment: .leading, spacing: 6) {
                             Text("WORK TYPE")
                                 .font(.caption)
                                 .foregroundColor(.gray)
@@ -70,13 +70,11 @@ struct DayPlanView: View {
                                         .stroke(Color.gray.opacity(0.4), lineWidth: 1)
                                 )
                         }
-                        
                         Spacer()
                         CustomBtn(title: "SUBMIT", height: 50, backgroundColor: Color.appPrimary) {
                             print("Submitted with: \(selectedWorkType), \(remarks)")
                             showSheet = false
                         }
-                        
                     }
                     .padding()
                     .frame(maxWidth: .infinity)
@@ -101,7 +99,6 @@ struct DayPlanView: View {
     DayPlanView()
 }
 
-// Helper for corner radius on specific corners
 extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
         clipShape(RoundedCorner(radius: radius, corners: corners))

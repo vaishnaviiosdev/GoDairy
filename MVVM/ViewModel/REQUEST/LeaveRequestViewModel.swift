@@ -75,25 +75,23 @@ class LeaveRequestViewModel: ObservableObject {
 
         let parameters: [String: Any] = [
             "LeaveFormValidate": [
-                "Leave_Type": leave_Type,//
-                "From_Date": from_Date,//
-                "To_Date": to_Date,//
+                "Leave_Type": leave_Type,
+                "From_Date": from_Date,
+                "To_Date": to_Date,
                 "Shift": "",
                 "PChk": 0,
-                "HalfDay_Type": halfDay_Type,//
-                "HalfDay": "0",//
-                "Shift_Id": "",//
+                "HalfDay_Type": halfDay_Type,
+                "HalfDay": "0",
+                "Shift_Id": "",
                 "value": "",
                 "Intime": "",
                 "Outime": "",
                 "NoofHrs": "",
-                "EligDys": "",//
-                "Ukey": "EKMGR80994092445"//
+                "EligDys": "",
+                "Ukey": Ukey
             ]
         ]
         
-        //String(format: "EK%@-%i", SFCode,Int(Date().timeIntervalSince1970))
-
         do {
             let response: leaveSavedResponse = try await NetworkManager.shared.postData(to: url.absoluteString, parameters: parameters, as: leaveSavedResponse.self)
             print(response)

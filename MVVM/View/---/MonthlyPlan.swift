@@ -16,22 +16,18 @@ struct MonthlyPlan: View {
             CalendarView()
             Spacer()
             Divider()
-            
-            VStack{
-                HStack{
-                    //Spacer()
+            VStack {
+                HStack {
                     Rectangle()
                         .frame(width: 5,height: 82)
                         .cornerRadius(3.0)
                         .foregroundColor(colorData.shared.check_out_color)
-                    
-                    HStack{
+                    HStack {
                         Text("Leave")
                             .padding()
                         Spacer()
                         Image(systemName: "pen")
                         Text("Edit")
-                        // .foreground(Color.orange.opacity(0.1))
                             .padding()
                     }
                     
@@ -42,7 +38,6 @@ struct MonthlyPlan: View {
                         Text("01/08/2023")
                             .padding()
                     }
-                    
                 }
             }
             .frame(width: 380,height: 100)
@@ -52,9 +47,7 @@ struct MonthlyPlan: View {
             .padding(150)
             .frame(maxWidth: .infinity)
             .padding(30)
-           // .background(Color.gray.opacity(0.1))
             .cornerRadius(8)
-        
         }
     }
 }

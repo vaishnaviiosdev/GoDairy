@@ -13,6 +13,12 @@ struct DataItem: Codable, Identifiable {
     let base_url: String
 }
 
+struct fetchResponse: Codable, Identifiable {
+    var id = UUID()
+    let title: String
+    let base_url: String
+}
+
 struct LoginResponse: Codable {
     let success: Bool
     let data: [UserData]?

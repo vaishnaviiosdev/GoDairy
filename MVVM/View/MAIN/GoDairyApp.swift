@@ -5,25 +5,6 @@
 ////  Created by San eforce on 07/08/24.
 ////
 //
-//import SwiftUI
-//
-//@main
-//struct GoDairyApp: App {
-//    
-//    @AppStorage("User_Login") var isLoggedIn: Bool = false
-//    
-//    var body: some Scene {
-//        WindowGroup {
-//            let isUserLogin = UserDefaults.standard.value(forKey: "User_Login")
-//            if isUserLogin as? Bool ?? false {
-//                DashboardView()
-//            }
-//            else {
-//                SplashScreenView()//qad-801090
-//            }
-//        }
-//    }
-//}
 
 import SwiftUI
 
@@ -111,7 +92,6 @@ struct RootView: View {
             Login_Page_View()
         case .dashboard:
             DashboardView()
-            //DemoView()
         }
     }
 }

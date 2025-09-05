@@ -199,11 +199,9 @@ struct TabbarView2: View {
                 TabbarItems(currentTab: self.$currentTab, namespace: namespace, TabbarItemName: name, Tab: index).padding(.vertical,1)
                 
             }
-            }
+        }
         }
     }
-
-
 
 #Preview {
     Dashboard2()

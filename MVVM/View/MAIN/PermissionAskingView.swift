@@ -39,8 +39,7 @@ struct PermissionAskingView: View {
                         UIApplication.shared.open(settingsURL)
                     }
                 }
-                .padding(.horizontal, 8)//qad-801090
-           // }
+                .padding(.horizontal, 8)
         }
         .onAppear {
             permissionManager.requestAllPermissionsSequentially()
@@ -49,12 +48,8 @@ struct PermissionAskingView: View {
             print("The locationGranted granted is \(granted)")
             if granted {
                 router.completePermissionFlow()
-               // navigateToHome = true
             }
         }
-//        .navigationDestination(isPresented: $navigateToHome) {
-//            ContentView()
-//        }
         .padding(5)
     }
 }
@@ -62,21 +57,4 @@ struct PermissionAskingView: View {
 #Preview {
     PermissionAskingView()
 }
-
-//struct PermissionAskingView: View {
-//    @EnvironmentObject var router: AppRouter
-//    
-//    var body: some View {
-//        VStack {
-//            Text("Ask permissions here")
-//            Button("Allow & Continue") {
-//                router.completePermissionFlow()
-//            }
-//            .padding()
-//            .background(Color.blue)
-//            .foregroundColor(.white)
-//            .cornerRadius(8)
-//        }
-//    }
-//}
 

@@ -12,7 +12,7 @@ struct RequestView: View {
         ("Leave Request", AnyView(LeaveRequestView())),
         ("Permission Request", AnyView(PermissionRequestView())),
         ("Missed Punch", AnyView(MissedPunchView())),
-        ("Weekly-Off", AnyView(WeeklyOffView())),
+        ("Weekly-Off", AnyView(WeekOffEntryView())),
         ("Deviation Entry", AnyView(DeviationEntryView()))
     ]
     
@@ -127,13 +127,6 @@ struct homeBar: View {
         .background(Color.appPrimary)
     }
 }
-
-// MARK: - Example Destination Views
-//struct LeaveRequestView: View { var body: some View { Text("LeaveRequest") } }
-struct PermissionView: View { var body: some View { Text("PermissionRequest") } }
-//struct MIssedPunchview: View { var body: some View { Text("Missed Punch") } }
-struct WeeklyOffView: View { var body: some View { Text("Weekly-Off") } }
-struct DeviationEntryView: View { var body: some View { Text("Deviation Entry") } }
 
 #Preview {
     RequestView()

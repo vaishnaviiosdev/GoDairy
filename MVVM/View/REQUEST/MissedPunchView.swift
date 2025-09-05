@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MissedPunchView: View {
-    
+    @Environment(\.dismiss) private var dismiss
     @State private var SelectedmissedPunchDate: String? = nil
     @State private var shiftTime: String = ""
     @State private var checkInTime: String = ""
@@ -35,7 +35,7 @@ struct MissedPunchView: View {
         if SelectedmissedPunchDate == nil || SelectedmissedPunchDate == "" {
             return "Select Date"
         }
-        else if reason == "" {
+        else if reason.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             return "Enter Remarks"
         }
         return nil
@@ -93,7 +93,6 @@ struct MissedPunchView: View {
                                     checkOutTime = selectedData.checkoutTime
                                 }
                             }
-
                         }
                     }
                 }
@@ -101,8 +100,27 @@ struct MissedPunchView: View {
             .task {
                 await missedModel.fetchMissedPunchData()
             }
+            .alert(missedModel.saveMissedPunchSuccessMsg, isPresented: $missedModel.showMissedPunchSaveAlert) {
+                Button("OK", role: .cancel) {
+                    dismiss()
+                }
+            }
         }
         .navigationBarBackButtonHidden(true)
+        .overlay(
+            VStack {
+                if showToast {
+                    ToastView(message: saveSuccessMessage)
+                        .padding(.bottom, 60)
+                        .onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                withAnimation { showToast = false }
+                            }
+                        }
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+        )
     }
 }
 
@@ -113,7 +131,6 @@ struct MissedPunchCard: View {
     @Binding var checkInTime: String
     @Binding var checkOutTime: String
     @Binding var reason: String
-    //@Binding var selectedPermissionHours: String?
     
     var onPunchDateTap: () -> Void
     
