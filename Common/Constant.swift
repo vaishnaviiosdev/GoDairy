@@ -27,8 +27,9 @@ let permission_saveUrl = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl
 let missedPunchUrl = APIClient.shared.New_DBUrl + APIClient.shared.DBURL + "GetMissed_Punch&divisionCode=1&sfCode=MGR80&rSF=MGR80&State_Code=1"
 let missedPunch_SaveUrl = APIClient.shared.New_DBUrl + APIClient.shared.DBURL + "dcr/save&sf_name=G%20RAMESH&Ekey=EKMGR80995194743&divisionCode=1&sfCode=MGR80&State_Code=1&desig=MGR"
 let weekoffEntry_saveUrl = APIClient.shared.New_DBUrl + APIClient.shared.DBURL + "dcr/save&id=wk&divisionCode=1&sfCode=MGR80&rSF=MGR80&State_Code=1"
+let DeviationEntry_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl3 + "&State_Code=1&divisionCode=1&rSF=MGR80&axn=table%2Flist&sfCode=MGR80"
 
-//http://qa.godairy.in/server/Db_v300.php?axn=dcr/save&id=wk&divisionCode=1&sfCode=MGR80&rSF=MGR80&State_Code=1
+let DeviationEntry_SaveUrl = APIClient.shared.New_DBUrl + APIClient.shared.DBURL2 + "save/exception&sf_name=G%20RAMESH&divisionCode=1&sfCode=MGR80&State_Code=1&desig=MGR"
 
 
 

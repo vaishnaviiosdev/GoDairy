@@ -17,6 +17,7 @@ class APIClient {
     
     var New_DBUrl = "http://qa.godairy.in"//Current
     var New_DBUrl2 = "/server/Db_v300.php?&axn="
+    var New_DBUrl3 = "/server/Db_V13.php?"
     //https://godairy.in/server/Db_v310.php?axn=get/worktypes
 }
 

@@ -16,6 +16,7 @@ class LeaveRequestViewModel: ObservableObject {
     @Published var LeaveTypeData: [leaveTypeDataResponse] = []
     @Published var selectedLeaveCode: String? = nil
     @Published var shiftTimes: [String] = []
+    @Published var LeaveTypeName: [String] = []
     
     func fetchLeaveAvailabilityData() async {
         do {
@@ -36,7 +37,6 @@ class LeaveRequestViewModel: ObservableObject {
         do {
             let response: [LeaveShiftTimeDataResponse] = try await NetworkManager.shared.fetchData(from: shiftTime_url, as: [LeaveShiftTimeDataResponse].self
             )
-            
             self.LeaveShiftTimeData = response
             
             await MainActor.run {
@@ -61,9 +61,17 @@ class LeaveRequestViewModel: ObservableObject {
         print("The parameters is \(parameters)")
         
         do {
-            let response: [leaveTypeDataResponse] = try await NetworkManager.shared.postData(to: leaveTypes_url, parameters: parameters, as: [leaveTypeDataResponse].self)
+            let response: [leaveTypeDataResponse] = try await NetworkManager.shared.postFormData(
+                urlString: leaveTypes_url,
+                parameters: parameters,
+                responseType: [leaveTypeDataResponse].self
+            )
             self.LeaveTypeData = response
+            await MainActor.run {
+                self.LeaveTypeName = response.map { $0.name }
+            }
             print("The leaveType Data is \(response)")
+            print("The LeaveName type data is \(self.LeaveTypeName)")
         }
         catch {
             print("Error fetching data is \(error.localizedDescription)")
@@ -73,32 +81,42 @@ class LeaveRequestViewModel: ObservableObject {
     func saveProducts(leave_Type: String, from_Date: String, to_Date: String, halfDay_Type: String) async {
         guard let url = URL(string: save_LeaveRequestUrl) else { return }
 
+        let leaveEntry: [String: Any] = [
+            "Leave_Type": leave_Type,
+            "From_Date": from_Date,
+            "To_Date": to_Date,
+            "Shift": "",
+            "PChk": 0,
+            "HalfDay_Type": halfDay_Type,
+            "HalfDay": "0",
+            "Shift_Id": "",
+            "value": "",
+            "Intime": "",
+            "Outime": "",
+            "NoofHrs": "",
+            "EligDys": "",
+            "Ukey": Ukey
+        ]
+
+        // ✅ Wrap in array inside "data"
         let parameters: [String: Any] = [
-            "LeaveFormValidate": [
-                "Leave_Type": leave_Type,
-                "From_Date": from_Date,
-                "To_Date": to_Date,
-                "Shift": "",
-                "PChk": 0,
-                "HalfDay_Type": halfDay_Type,
-                "HalfDay": "0",
-                "Shift_Id": "",
-                "value": "",
-                "Intime": "",
-                "Outime": "",
-                "NoofHrs": "",
-                "EligDys": "",
-                "Ukey": Ukey
+            "data": [
+                ["LeaveFormValidate": leaveEntry]
             ]
         ]
         
         do {
-            let response: leaveSavedResponse = try await NetworkManager.shared.postData(to: url.absoluteString, parameters: parameters, as: leaveSavedResponse.self)
-            print(response)
+            let response: leaveSavedResponse = try await NetworkManager.shared.postFormData(
+                urlString: url.absoluteString,
+                parameters: parameters,
+                responseType: leaveSavedResponse.self
+            )
+            print("✅ Leave Save Response: \(response)")
         }
         catch {
-            print("Failed to post data: \(error)")
+            print("❌ Failed to post data: \(error)")
         }
     }
+
 }
 

@@ -18,13 +18,14 @@ struct DeviationEntryView: View {
     @State private var showPermissionAlert = false
     @State private var selectedFromTime: String? = nil
     
+    @StateObject var DeviationEntryModel = DeviationEntryViewModel()
+    
     @StateObject private var permissionManager = PermissionManager()
     
     //@StateObject var weekOffModel = WeeklyOffViewModel()
     
     enum DeviationEntryType {
         case DeviationType
-        case DeviationDate
     }
     
     private func validateForm() -> String? {
@@ -49,9 +50,6 @@ struct DeviationEntryView: View {
                     DeviationEntryCard(title: "DEVIATION ENTRY", selectedDeviationType: $selectedDeviationType, SelectedDeviationDate: $SelectedDeviationDate,
                         selectedFromTime: $selectedFromTime,
                         reason: $reason,
-                        onPunchDateTap: {
-                        activeSelection = .DeviationDate
-                        },
                         onPunchDeviationTypeTap: {
                         activeSelection = .DeviationType
                     })
@@ -72,8 +70,27 @@ struct DeviationEntryView: View {
                 }
                 .padding()
             }
+            .overlay (
+                Group {
+                    if let selection = activeSelection {
+                        switch selection {
+                        case .DeviationType:
+                            SelectionView(
+                                isPresented: Binding(
+                                    get: { activeSelection == .DeviationType },
+                                    set: { if !$0 { activeSelection = nil } }
+                                ),
+                                items: DeviationEntryModel.DeviationEntryName,
+                                title: "Select Hours"
+                            ) { selected in
+                                selectedDeviationType = selected
+                            }
+                        }
+                    }
+                }
+            )
             .task {
-                
+                await DeviationEntryModel.postDeviationTypeRequest()
             }
 //            .alert(weekOffModel.saveWeeklyOffSuccessMsg, isPresented: $weekOffModel.showWeeklyOffSaveAlert) {
 //                Button("OK", role: .cancel) {
@@ -110,7 +127,7 @@ struct DeviationEntryCard: View {
     @Binding var selectedFromTime: String?
     @Binding var reason: String
     
-    var onPunchDateTap: () -> Void
+    //var onPunchDateTap: () -> Void
     var onPunchDeviationTypeTap: () -> Void
     
     var body: some View {

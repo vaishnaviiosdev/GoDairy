@@ -13,6 +13,8 @@
 		385ACE1D2E6AC86C0046FE7D /* WeekOffModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385ACE1C2E6AC8550046FE7D /* WeekOffModel.swift */; };
 		385ACE1F2E6AC98A0046FE7D /* WeeklyOffViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385ACE1E2E6AC9750046FE7D /* WeeklyOffViewModel.swift */; };
 		385ACE212E6ADA740046FE7D /* DeviationEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385ACE202E6ADA740046FE7D /* DeviationEntryView.swift */; };
+		385ACE232E6AFEC70046FE7D /* DeviationEntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385ACE222E6AFEBC0046FE7D /* DeviationEntryModel.swift */; };
+		385ACE252E6B028F0046FE7D /* DeviationEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385ACE242E6B02860046FE7D /* DeviationEntryViewModel.swift */; };
 		385EDAEA2E544DD6003F7AD0 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385EDAE92E544DCF003F7AD0 /* LoginModel.swift */; };
 		385EDAF02E54521E003F7AD0 /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385EDAEF2E54521E003F7AD0 /* PrivacyPolicyView.swift */; };
 		385EDAF62E5480B6003F7AD0 /* PermissionAskingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385EDAF52E5480B6003F7AD0 /* PermissionAskingView.swift */; };
@@ -71,6 +73,8 @@
 		385ACE1C2E6AC8550046FE7D /* WeekOffModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekOffModel.swift; sourceTree = "<group>"; };
 		385ACE1E2E6AC9750046FE7D /* WeeklyOffViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyOffViewModel.swift; sourceTree = "<group>"; };
 		385ACE202E6ADA740046FE7D /* DeviationEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviationEntryView.swift; sourceTree = "<group>"; };
+		385ACE222E6AFEBC0046FE7D /* DeviationEntryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviationEntryModel.swift; sourceTree = "<group>"; };
+		385ACE242E6B02860046FE7D /* DeviationEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviationEntryViewModel.swift; sourceTree = "<group>"; };
 		385EDAE92E544DCF003F7AD0 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		385EDAEF2E54521E003F7AD0 /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
 		385EDAF52E5480B6003F7AD0 /* PermissionAskingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionAskingView.swift; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 		385ACE112E6ABD890046FE7D /* REQUEST */ = {
 			isa = PBXGroup;
 			children = (
+				385ACE222E6AFEBC0046FE7D /* DeviationEntryModel.swift */,
 				385ACE1C2E6AC8550046FE7D /* WeekOffModel.swift */,
 				38D997042E6974C8005DD972 /* MissedPunchModel.swift */,
 				38D19F082E66E59A00399314 /* PermissionRequestModel.swift */,
@@ -243,6 +248,7 @@
 		385ACE1A2E6AC7AB0046FE7D /* REQUEST */ = {
 			isa = PBXGroup;
 			children = (
+				385ACE242E6B02860046FE7D /* DeviationEntryViewModel.swift */,
 				385ACE1E2E6AC9750046FE7D /* WeeklyOffViewModel.swift */,
 				38EB916C2E606F0700077669 /* LeaveRequestViewModel.swift */,
 				38CA96C02E6573B3000532A5 /* AdvanceRequestViewModel.swift */,
@@ -496,6 +502,7 @@
 				38AAD9D32CF6FC8E005ABC2D /* shiftview.swift in Sources */,
 				38AFDB5F2CB3AC03001E59EC /* Dashboard2.swift in Sources */,
 				38F1BA502CB1213200D4DFF2 /* ColorFile.swift in Sources */,
+				385ACE232E6AFEC70046FE7D /* DeviationEntryModel.swift in Sources */,
 				3F67B5BE2CA7DA5000A1BCB7 /* APIClient.swift in Sources */,
 				385EDAF02E54521E003F7AD0 /* PrivacyPolicyView.swift in Sources */,
 				38CA96C12E6573C0000532A5 /* AdvanceRequestViewModel.swift in Sources */,
@@ -520,6 +527,7 @@
 				3F67B5B92CA7D30F00A1BCB7 /* Toast message.swift in Sources */,
 				38CA96BF2E6572CF000532A5 /* AdvanceRequestModel.swift in Sources */,
 				38D735AE2E533E8C00197EA1 /* NetworkManager.swift in Sources */,
+				385ACE252E6B028F0046FE7D /* DeviationEntryViewModel.swift in Sources */,
 				381CCF842CE5C41900159560 /* MyDayPlan.swift in Sources */,
 				38B5501F2CF5E2F3006C07E4 /* planview.swift in Sources */,
 				38CCC3E82CB6865D0096B309 /* CalendarView.swift in Sources */,

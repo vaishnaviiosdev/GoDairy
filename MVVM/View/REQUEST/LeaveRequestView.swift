@@ -16,7 +16,7 @@ struct LeaveRequestView: View {
     @StateObject var LeaveModel = LeaveRequestViewModel()
     
     let halfDayTYpe = ["First Half", "Second Half"]
-    let leaveTypes = ["Casual Leave", "Paid Leave", "Loss of Pay", "Sick Leave"]
+    //let leaveTypes = ["Casual Leave", "Paid Leave", "Loss of Pay", "Sick Leave"]
     
     enum SelectionType {
         case leaveType
@@ -61,7 +61,7 @@ struct LeaveRequestView: View {
                                     get: { activeSelection == .leaveType },
                                     set: { if !$0 { activeSelection = nil } }
                                 ),
-                                items: leaveTypes,
+                                items: LeaveModel.LeaveTypeName,
                                 title: "Select Leave Type"
                             ) { selected in
                                 selectedLeaveType = selected
@@ -96,7 +96,6 @@ struct LeaveRequestView: View {
                 await LeaveModel.fetchLeaveTypeData()
                 await LeaveModel.fetchLeaveAvailabilityData()
                 await LeaveModel.fetchShiftTimeData()
-                
             }
         }
         .navigationBarBackButtonHidden(true)

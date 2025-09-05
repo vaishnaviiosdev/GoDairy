@@ -62,8 +62,4 @@ class WeeklyOffViewModel: ObservableObject {
             print("❌ Error: \(error.localizedDescription)")
         }
     }
-
-    
-
-    
 }
