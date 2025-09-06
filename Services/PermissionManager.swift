@@ -9,7 +9,7 @@ import AVFoundation
 import Photos
 import CoreLocation
 
-class PermissionManager: NSObject, ObservableObject, CLLocationManagerDelegate {//qad-801090
+class PermissionManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var cameraGranted = false
     @Published var microphoneGranted = false
     @Published var locationGranted = false
@@ -98,7 +98,5 @@ class PermissionManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
 }
 
-
-///////
 
 

@@ -12,10 +12,8 @@ struct CalendarView: UIViewRepresentable {
         let view = UICalendarView()
         return view
     }
+    
     func updateUIView(_ uiView: UIViewType, context: Context) {
         
     }
 }
-
-
-////////////

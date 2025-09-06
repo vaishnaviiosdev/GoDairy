@@ -21,6 +21,8 @@
 		38A7A1382E56E56D006240D1 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A7A1372E56E56D006240D1 /* SplashScreenView.swift */; };
 		38AAD9D12CF6DEB0005ABC2D /* MapLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AAD9D02CF6DEB0005ABC2D /* MapLocation.swift */; };
 		38AAD9D32CF6FC8E005ABC2D /* shiftview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AAD9D22CF6FC8E005ABC2D /* shiftview.swift */; };
+		38AB2F002E6C515A007F3501 /* LeaveStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB2EFF2E6C515A007F3501 /* LeaveStatusView.swift */; };
+		38AB2F032E6C52C9007F3501 /* leaveStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB2F022E6C52BB007F3501 /* leaveStatusModel.swift */; };
 		38AB43232E598CE700D33B3A /* MyDayPlanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB43222E598CDC00D33B3A /* MyDayPlanModel.swift */; };
 		38AB79F92E55939D003F4214 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB79F82E559385003F4214 /* PermissionManager.swift */; };
 		38AFDB5F2CB3AC03001E59EC /* Dashboard2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AFDB5E2CB3AC03001E59EC /* Dashboard2.swift */; };
@@ -81,6 +83,8 @@
 		38A7A1372E56E56D006240D1 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		38AAD9D02CF6DEB0005ABC2D /* MapLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocation.swift; sourceTree = "<group>"; };
 		38AAD9D22CF6FC8E005ABC2D /* shiftview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shiftview.swift; sourceTree = "<group>"; };
+		38AB2EFF2E6C515A007F3501 /* LeaveStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveStatusView.swift; sourceTree = "<group>"; };
+		38AB2F022E6C52BB007F3501 /* leaveStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = leaveStatusModel.swift; sourceTree = "<group>"; };
 		38AB43222E598CDC00D33B3A /* MyDayPlanModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDayPlanModel.swift; sourceTree = "<group>"; };
 		38AB79F82E559385003F4214 /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
 		38AFDB5E2CB3AC03001E59EC /* Dashboard2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard2.swift; sourceTree = "<group>"; };
@@ -294,6 +298,22 @@
 			path = "---";
 			sourceTree = "<group>";
 		};
+		38AB2EFE2E6C513B007F3501 /* STATUS */ = {
+			isa = PBXGroup;
+			children = (
+				38AB2EFF2E6C515A007F3501 /* LeaveStatusView.swift */,
+			);
+			path = STATUS;
+			sourceTree = "<group>";
+		};
+		38AB2F012E6C52A9007F3501 /* STATUS */ = {
+			isa = PBXGroup;
+			children = (
+				38AB2F022E6C52BB007F3501 /* leaveStatusModel.swift */,
+			);
+			path = STATUS;
+			sourceTree = "<group>";
+		};
 		38C563F12C637D5200153761 = {
 			isa = PBXGroup;
 			children = (
@@ -337,6 +357,7 @@
 		38D735A22E53275700197EA1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				38AB2F012E6C52A9007F3501 /* STATUS */,
 				385ACE122E6ABDDD0046FE7D /* DASHBOARD */,
 				385ACE112E6ABD890046FE7D /* REQUEST */,
 				385ACE102E6ABCF10046FE7D /* LOGIN */,
@@ -347,6 +368,7 @@
 		38D735A32E53276100197EA1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				38AB2EFE2E6C513B007F3501 /* STATUS */,
 				385ACE192E6AC5750046FE7D /* MAIN */,
 				385ACE182E6AC35A0046FE7D /* DASHBOARD */,
 				385ACE142E6AC0450046FE7D /* SPLASH */,
@@ -494,6 +516,7 @@
 			files = (
 				38C26F332D2BF97E00595798 /* RequestView.swift in Sources */,
 				38B550212CF5E40A006C07E4 /* DynamicHeight.swift in Sources */,
+				38AB2F032E6C52C9007F3501 /* leaveStatusModel.swift in Sources */,
 				38EA2C012E5C686000428C3C /* AdvanceRequestView.swift in Sources */,
 				38D19F072E66AD7C00399314 /* PermissionRequestView.swift in Sources */,
 				38EA2C032E5C712900428C3C /* LeaveRequestView.swift in Sources */,
@@ -516,6 +539,7 @@
 				38A7A1382E56E56D006240D1 /* SplashScreenView.swift in Sources */,
 				38AAD9D12CF6DEB0005ABC2D /* MapLocation.swift in Sources */,
 				38D19F092E66E5A500399314 /* PermissionRequestModel.swift in Sources */,
+				38AB2F002E6C515A007F3501 /* LeaveStatusView.swift in Sources */,
 				38D997052E6974D5005DD972 /* MissedPunchModel.swift in Sources */,
 				38EEA3B32E5DC83200CAC7FD /* SelectionView.swift in Sources */,
 				38D735AC2E533E0D00197EA1 /* DataViewModel.swift in Sources */,
