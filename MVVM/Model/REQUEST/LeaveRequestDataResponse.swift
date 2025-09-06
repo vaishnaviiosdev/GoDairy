@@ -39,7 +39,7 @@ struct LeaveShiftTimeDataResponse: Codable {
 }
 
 struct leaveSavedResponse: Codable {
-    let Msg: String
+    let Msg: String?
     let success: Bool
     
     enum CodingKeys: String, CodingKey {

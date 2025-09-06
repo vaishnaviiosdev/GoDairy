@@ -336,7 +336,7 @@ struct ExploreMore: View {
     
     var body: some View {
         let items: [(name: String, image: String, action: () -> Void)] = [
-            ("Request & Status", "request", { showRequestStatus = true }),
+            ("Request & Status", "chart-user 1", { showRequestStatus = true }),
             ("TA & claim", "ta&claim", { showTAClaim = true }),
             ("Activity", "activity", { showActivity = true }),
             ("GateIN", "Group 5", { showGateIn = true }),
@@ -376,8 +376,9 @@ struct GridItemView: View {
         VStack {
             Image(image)
                 .resizable()
-                .scaledToFill()
+                .scaledToFit()
                 .frame(width: 30, height: 30)
+                .clipped() 
                 .padding(.bottom, 5)
             
             Text(name)

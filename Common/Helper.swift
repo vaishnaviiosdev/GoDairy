@@ -18,5 +18,16 @@ func areDatesSameDay(_ date1: Date?, _ date2: Date?) -> Bool {
     return Calendar.current.isDate(d1, inSameDayAs: d2)
 }
 
+extension DateFormatter {
+    static let leaveDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-M-d"
+        return formatter
+    }()
+}
+
+
+
+
 
 

@@ -17,12 +17,8 @@ struct DeviationEntryView: View {
     @State private var showToast = false
     @State private var showPermissionAlert = false
     @State private var selectedFromTime: String? = nil
-    
     @StateObject var DeviationEntryModel = DeviationEntryViewModel()
-    
     @StateObject private var permissionManager = PermissionManager()
-    
-    //@StateObject var weekOffModel = WeeklyOffViewModel()
     
     enum DeviationEntryType {
         case DeviationType
@@ -92,11 +88,6 @@ struct DeviationEntryView: View {
             .task {
                 await DeviationEntryModel.postDeviationTypeRequest()
             }
-//            .alert(weekOffModel.saveWeeklyOffSuccessMsg, isPresented: $weekOffModel.showWeeklyOffSaveAlert) {
-//                Button("OK", role: .cancel) {
-//                    dismiss()
-//                }
-//            }
             .onAppear {
                 permissionManager.requestLocationPermission()
             }
@@ -127,7 +118,6 @@ struct DeviationEntryCard: View {
     @Binding var selectedFromTime: String?
     @Binding var reason: String
     
-    //var onPunchDateTap: () -> Void
     var onPunchDeviationTypeTap: () -> Void
     
     var body: some View {
@@ -157,7 +147,6 @@ struct DeviationEntryCard: View {
         .background(Color.white)
         .cornerRadius(12)
         .padding(.horizontal, 8)
-
     }
 }
 

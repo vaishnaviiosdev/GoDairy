@@ -35,22 +35,6 @@ struct PermissionRequestView: View {
         case permissionShiftTime
     }
     
-    // ✅ Time string to Date with same date as selectedDate
-    private func timeStringToDate(_ time: String, baseDate: Date) -> Date? {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "hh:mm a"
-        guard let parsed = formatter.date(from: time) else { return nil }
-        let calendar = Calendar.current
-        let comps = calendar.dateComponents([.hour, .minute], from: parsed)
-        return calendar.date(bySettingHour: comps.hour ?? 0, minute: comps.minute ?? 0, second: 0, of: baseDate)
-    }
-    
-    private func formatDate(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "hh:mm a"
-        return formatter.string(from: date)
-    }
-    
     private func validateForm() -> String? {
         if PermissionDate == nil {
             return "Select Date"
@@ -96,7 +80,6 @@ struct PermissionRequestView: View {
                             activeSelection = .permissionHours
                         },
                         onPermissionShiftTimeTap: {
-                            // 🔒 Block if no date selected
                             if PermissionDate == nil {
                                 saveSuccessMessage = "Please select Date first"
                                 showToast = true
@@ -140,12 +123,10 @@ struct PermissionRequestView: View {
                                 title: "Select Hours"
                             ) { selected in
                                 selectedPermissionHours = selected
-                                
                                 // ✅ Clear times when hours change
                                 selectedFromTime = nil
                                 selectedToTime = nil
                             }
-                            
                         case .permissionShiftTime:
                             SelectionView(
                                 isPresented: Binding(
@@ -156,11 +137,8 @@ struct PermissionRequestView: View {
                                 title: "Shift Timing"
                             ) { selected in
                                 selectedShiftTime = selected
-                                
-                                // ✅ Clear times when shift changes
                                 selectedFromTime = nil
                                 selectedToTime = nil
-                                
                                 // ✅ Load shift start/end times
                                 if let shift = permissionModel.permissionRequestData.first(where: { $0.name == selected }) {
                                     Sft_STime = shift.Sft_STime

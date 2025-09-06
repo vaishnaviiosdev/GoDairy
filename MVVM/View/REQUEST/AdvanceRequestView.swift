@@ -90,7 +90,6 @@ struct AdvanceRequestView: View {
 
 struct AdvanceRequestCard: View {
     let title: String
-    
     @Binding var FromDate: Date?
     @Binding var ToDate: Date?
     @Binding var selectedDate: Date?

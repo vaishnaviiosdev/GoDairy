@@ -11,12 +11,11 @@ struct WeekOffEntryView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var SelectedWeekOffEntryDate: Date? = nil
     @State private var selectedFromTime: String? = nil
-    @State private var activeSelection: WeekOffSelectionType? = nil
     @State private var saveSuccessMessage: String = ""
-    @State private var showToast = false
     @State private var reason: String = ""
-    
+    @State private var showToast = false
     @StateObject var weekOffModel = WeeklyOffViewModel()
+    @State private var activeSelection: WeekOffSelectionType? = nil
     
     enum WeekOffSelectionType {
         case WeekOffDate

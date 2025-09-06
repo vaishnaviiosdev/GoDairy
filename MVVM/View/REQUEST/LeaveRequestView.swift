@@ -8,20 +8,48 @@
 import SwiftUI
 
 struct LeaveRequestView: View {
+    @Environment(\.dismiss) private var dismiss
     @State private var selectedLeaveType: String? = nil
+    @State private var FromDate: Date? = nil
+    @State private var ToDate: Date? = nil
     @State private var selectedShiftTiming: String? = nil
     @State private var selectedTypeOfHalfDay: String? = nil
     @State private var activeSelection: SelectionType? = nil
     @State private var selectedLeaveCode: String? = nil
+    @State private var textValue = ""
+    @State private var selectedLeaveList: LeaveTypeSelection? = nil
+    @State private var saveSuccessMessage: String = ""
+    @State private var showToast = false
     @StateObject var LeaveModel = LeaveRequestViewModel()
     
     let halfDayTYpe = ["First Half", "Second Half"]
-    //let leaveTypes = ["Casual Leave", "Paid Leave", "Loss of Pay", "Sick Leave"]
     
     enum SelectionType {
         case leaveType
         case shiftTiming
         case halfDay
+    }
+    
+    struct LeaveTypeSelection {
+        let id: Int
+        let name: String
+        let shortName: String
+    }
+    
+    private func validateForm() -> String? {
+        if selectedLeaveType == nil {
+            return "Enter Leave Type"
+        }
+        else if FromDate == nil {
+            return "Enter From Date"
+        }
+        else if ToDate == nil {
+            return "Enter To Date"
+        }
+        else if textValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            return "Enter Remarks"
+        }
+        return nil
     }
         
     var body: some View {
@@ -32,6 +60,9 @@ struct LeaveRequestView: View {
                     LeaveSectionCard(
                         title: "LEAVE REQUEST",
                         selectedLeaveType: $selectedLeaveType,
+                        FromDate: $FromDate,
+                        ToDate: $ToDate,
+                        textValue: $textValue,
                         selectedShiftTiming: $selectedShiftTiming,
                         selectedTypeOfHalfDay: $selectedTypeOfHalfDay,
                         selectedLeaveCode: $selectedLeaveCode,
@@ -48,6 +79,15 @@ struct LeaveRequestView: View {
                     )
                 }
                 CustomBtn(title: "SUBMIT", height: 40, backgroundColor: .appPrimary1) {
+                    Task {
+                        if let errorMessage = validateForm() {
+                            saveSuccessMessage = errorMessage
+                            showToast = true
+                        }
+                        else {
+                            await LeaveModel.saveProducts(leave_Type: selectedLeaveList?.shortName ?? "", from_Date: FromDate ?? Date(), to_Date: ToDate ?? Date(), halfDay: selectedTypeOfHalfDay ?? "", selectedHalfDayType: selectedTypeOfHalfDay ?? "", selectedShiftTime: selectedShiftTiming ?? "")
+                        }
+                    }
                 }
                 .padding()
             }
@@ -65,6 +105,13 @@ struct LeaveRequestView: View {
                                 title: "Select Leave Type"
                             ) { selected in
                                 selectedLeaveType = selected
+                                if let found = LeaveModel.LeaveTypeData.first(where: { $0.name == selected }) {
+                                    selectedLeaveList = LeaveTypeSelection(
+                                        id: found.id,
+                                        name: found.name,
+                                        shortName: found.Leave_SName
+                                    )
+                                }
                             }
                         case .shiftTiming:
                             SelectionView (
@@ -97,9 +144,28 @@ struct LeaveRequestView: View {
                 await LeaveModel.fetchLeaveAvailabilityData()
                 await LeaveModel.fetchShiftTimeData()
             }
+            .alert(LeaveModel.LeaveRequestSuccessMsg, isPresented: $LeaveModel.LeaveRequestSaveAlert) {
+                Button("OK", role: .cancel) {
+                    dismiss()
+                }
+            }
         }
         .navigationBarBackButtonHidden(true)
         .navigationTitle("")
+        .overlay(
+            VStack {
+                if showToast {
+                    ToastView(message: saveSuccessMessage)
+                        .padding(.bottom, 60)
+                        .onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                withAnimation { showToast = false }
+                            }
+                        }
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+        )
     }
 }
 
@@ -131,6 +197,9 @@ struct DatePickerSheet: View {
 struct LeaveSectionCard: View {
     let title: String
     @Binding var selectedLeaveType: String?
+    @Binding var FromDate: Date?
+    @Binding var ToDate: Date?
+    @Binding var textValue: String
     @Binding var selectedShiftTiming: String?
     @Binding var selectedTypeOfHalfDay: String?
     @Binding var selectedLeaveCode: String? 
@@ -140,12 +209,9 @@ struct LeaveSectionCard: View {
     var onShiftTimingTap: () -> Void
     var onHalfDayTap: () -> Void
     
-    @State private var FromDate: Date? = nil
-    @State private var ToDate: Date? = nil
     @State private var selectedTime: String? = nil
     @State private var isFromDatePickerPresented = false
     @State private var isToDatePickerPresented = false
-    @State private var textValue = ""
     @State private var isHalfDaySelected = false
     @State private var numberOfDays: Double = 0.0
 
@@ -431,175 +497,6 @@ struct CustomCard: View {
         .padding(5)
     }
 }
-
-//struct DateCard: View {
-//    let title: String
-//    var fontWeight: Font.Weight = .light
-//    let placeholder: String
-//    @Binding var selectedDate: Date?
-//    @State private var showDatePicker = false
-//    @State private var tempDate = Date()
-//
-//    var body: some View {
-//        VStack(alignment: .leading, spacing: 0) {
-//            titleView(title: title, fontWeight: fontWeight)
-//            
-//            Button(action: {
-//                tempDate = selectedDate ?? Date()
-//                showDatePicker.toggle()
-//            }) {
-//                HStack {
-//                    Text(selectedDate == nil ? placeholder : formatDate(selectedDate!))
-//                        .foregroundColor(selectedDate == nil ? .gray : .gray)
-//                        .font(.system(size: 14))
-//                        .frame(maxWidth: .infinity, alignment: .leading)
-//                }
-//                .padding(.vertical, 8)
-//                .padding(.horizontal, 10)
-//                .background(
-//                    RoundedRectangle(cornerRadius: 8).fill(Color.white)
-//                )
-//                .overlay(
-//                    RoundedRectangle(cornerRadius: 8)
-//                        .stroke(Color.gray.opacity(0.5), lineWidth: 0.3)
-//                )
-//                .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
-//            }
-//            .padding(.horizontal, 5)
-//        }
-//        .padding(5)
-//        .sheet(isPresented: $showDatePicker) {
-//            VStack {
-//                DatePicker(
-//                    title,
-//                    selection: $tempDate,
-//                    displayedComponents: .date
-//                )
-//                .datePickerStyle(.wheel)
-//                .labelsHidden()
-//                .padding()
-//                
-//                Button("Done") {
-//                    selectedDate = tempDate
-//                    showDatePicker = false
-//                }
-//                .padding()
-//            }
-//            .padding()
-//        }
-//    }
-//    
-//    private func formatDate(_ date: Date) -> String {
-//        let formatter = DateFormatter()
-//        formatter.dateStyle = .medium
-//        return formatter.string(from: date)
-//    }
-//}
-
-//struct DateCard: View {
-//    let title: String
-//    var fontWeight: Font.Weight = .light
-//    let placeholder: String
-//    @Binding var selectedDate: Date?
-//    @Binding var selectedTime: String?
-//    var pickerMode: PickerMode = .date  // ✅ NEW
-//
-//    @State private var showDatePicker = false
-//    @State private var tempDate = Date()
-//
-//    var body: some View {
-//        VStack(alignment: .leading, spacing: 0) {
-//            titleView(title: title, fontWeight: fontWeight)
-//            
-//            Button(action: {
-//                tempDate = selectedDate ?? Date()
-//                showDatePicker.toggle()
-//            }) {
-//                HStack {
-//                    Text(selectedDate == nil ? placeholder : formatDate(selectedDate!))
-//                        .foregroundColor(selectedDate == nil ? .gray : .gray)
-//                        .font(.system(size: 14))
-//                        .frame(maxWidth: .infinity, alignment: .leading)
-//                }
-//                .padding(.vertical, 8)
-//                .padding(.horizontal, 10)
-//                .background(
-//                    RoundedRectangle(cornerRadius: 8).fill(Color.white)
-//                )
-//                .overlay(
-//                    RoundedRectangle(cornerRadius: 8)
-//                        .stroke(Color.gray.opacity(0.5), lineWidth: 0.3)
-//                )
-//                .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
-//            }
-//            .padding(.horizontal, 5)
-//        }
-//        .padding(5)
-//        .sheet(isPresented: $showDatePicker) {
-//            VStack {
-//                DatePicker(
-//                    title,
-//                    selection: $tempDate,
-//                    displayedComponents: displayedComponents()
-//                )
-//                .datePickerStyle(.wheel)
-//                .labelsHidden()
-//                .padding()
-//                
-//                Button("Done") {
-//                    selectedDate = tempDate
-//                    if pickerMode == .time {
-//                        selectedTime = formatDate(tempDate)
-//                    }
-//                    showDatePicker = false
-//                }
-////                Button("Done") {
-////                    if pickerMode == .time {
-////                        selectedTime = formatDate(tempDate)   // ✅ Always update
-////                    }
-////                    else if pickerMode == .date {
-////                        selectedDate = tempDate
-////                    }
-////                    else {
-////                        selectedDate = tempDate
-////                        selectedTime = formatDate(tempDate)
-////                    }
-////                    showDatePicker = false
-////                }
-//                .padding()
-//            }
-//            .padding()
-//        }
-//    }
-//    
-//    private func displayedComponents() -> DatePicker.Components {
-//        switch pickerMode {
-//        case .date:
-//            return .date
-//        case .time:
-//            return .hourAndMinute
-//        case .dateAndTime:
-//            return [.date, .hourAndMinute]
-//        }
-//    }
-//    
-//    // 🔥 Format date/time properly
-//    private func formatDate(_ date: Date) -> String {
-//        let formatter = DateFormatter()
-//        switch pickerMode {
-//        case .date:
-//            formatter.dateStyle = .medium
-//            formatter.timeStyle = .none
-//        case .time:
-//            formatter.dateStyle = .none
-//            formatter.timeStyle = .short
-//        case .dateAndTime:
-//            formatter.dateStyle = .medium
-//            formatter.timeStyle = .short
-//        }
-//        return formatter.string(from: date)
-//    }
-//}
 
 struct DateCard: View {
     let title: String

@@ -65,7 +65,6 @@ class PermissionRequestViewModel: ObservableObject {
             formatter.dateFormat = "yyyy-MM-dd"
             let pdateString = formatter.string(from: pdate)
 
-            // Build PermissionEntry object
             let permissionEntry: [String: Any] = [
                 "pdate": pdateString,
                 "start_at": startAt,
@@ -74,7 +73,6 @@ class PermissionRequestViewModel: ObservableObject {
                 "No_of_Hrs": noOfHrs
             ]
 
-            // Ensure key order: PermissionEntry first, then Ekey
             let orderedPayload: [[String: Any]] = [
                 [
                     "PermissionEntry": permissionEntry,
@@ -104,59 +102,4 @@ class PermissionRequestViewModel: ObservableObject {
                 print("❌ Error: \(error.localizedDescription)")
             }
         }
-            
-    
-//        func postPermissionSaveData(
-//            pdate: Date,
-//            startAt: String,
-//            endAt: String,
-//            reason: String,
-//            noOfHrs: String
-//        ) async {
-//            let formatter = DateFormatter()
-//            formatter.dateFormat = "yyyy-MM-dd"
-//            let pdateString = formatter.string(from: pdate)
-//    
-//            let payloadArray: [[String: Any]] = [
-//                [
-//                    "PermissionEntry": [
-//                        "pdate": pdateString,
-//                        "start_at": startAt,
-//                        "end_at": endAt,
-//                        "Reason": reason,
-//                        "No_of_Hrs": noOfHrs
-//                    ],
-//                    "Ekey": Ukey
-//                ]
-//            ]
-//    
-//            guard let jsonData = try? JSONSerialization.data(withJSONObject: payloadArray, options: []),
-//                  let jsonString = String(data: jsonData, encoding: .utf8) else {
-//                print("Failed to encode JSON")
-//                return
-//            }
-//    
-//            // Create form-data body
-//            let bodyString = "data=\(jsonString)"
-//            guard let bodyData = bodyString.data(using: .utf8) else { return }
-//    
-//            // Build request
-//            guard let url = URL(string: permission_saveUrl) else { return }
-//            var request = URLRequest(url: url)
-//            request.httpMethod = "POST"
-//            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-//            request.httpBody = bodyData
-//    
-//            print("Form-Data Body: \(bodyString)")
-//    
-//            do {
-//                let (data, response) = try await URLSession.shared.data(for: request)
-//                if let json = String(data: data, encoding: .utf8) {
-//                    print("Response: \(json)")
-//                }
-//            }
-//            catch {
-//                print("Error: \(error.localizedDescription)")
-//            }
-//        }
 }

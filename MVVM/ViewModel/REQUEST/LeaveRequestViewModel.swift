@@ -17,6 +17,8 @@ class LeaveRequestViewModel: ObservableObject {
     @Published var selectedLeaveCode: String? = nil
     @Published var shiftTimes: [String] = []
     @Published var LeaveTypeName: [String] = []
+    @Published var LeaveRequestSaveAlert = false
+    @Published var LeaveRequestSuccessMsg: String = ""
     
     func fetchLeaveAvailabilityData() async {
         do {
@@ -78,17 +80,20 @@ class LeaveRequestViewModel: ObservableObject {
         }
     }
     
-    func saveProducts(leave_Type: String, from_Date: String, to_Date: String, halfDay_Type: String) async {
+    func saveProducts(leave_Type: String, from_Date: Date, to_Date: Date, halfDay: String, selectedHalfDayType: String, selectedShiftTime: String) async {
         guard let url = URL(string: save_LeaveRequestUrl) else { return }
+        
+        let formattedFromDate = DateFormatter.leaveDateFormatter.string(from: from_Date)
+        let formattedToDate = DateFormatter.leaveDateFormatter.string(from: to_Date)
 
         let leaveEntry: [String: Any] = [
             "Leave_Type": leave_Type,
-            "From_Date": from_Date,
-            "To_Date": to_Date,
-            "Shift": "",
+            "From_Date": formattedFromDate,
+            "To_Date": formattedToDate,
+            "Shift": selectedShiftTime,
             "PChk": 0,
-            "HalfDay_Type": halfDay_Type,
-            "HalfDay": "0",
+            "HalfDay_Type": selectedHalfDayType,
+            "HalfDay": halfDay,
             "Shift_Id": "",
             "value": "",
             "Intime": "",
@@ -98,7 +103,6 @@ class LeaveRequestViewModel: ObservableObject {
             "Ukey": Ukey
         ]
 
-        // ✅ Wrap in array inside "data"
         let parameters: [String: Any] = [
             "data": [
                 ["LeaveFormValidate": leaveEntry]
@@ -111,9 +115,13 @@ class LeaveRequestViewModel: ObservableObject {
                 parameters: parameters,
                 responseType: leaveSavedResponse.self
             )
+            self.LeaveRequestSuccessMsg = "Leave Request Submitted Successfully"
+            self.LeaveRequestSaveAlert = true
             print("✅ Leave Save Response: \(response)")
         }
         catch {
+            self.LeaveRequestSuccessMsg = "Please try again later"
+            self.LeaveRequestSaveAlert = true
             print("❌ Failed to post data: \(error)")
         }
     }
