@@ -16,6 +16,16 @@ struct RequestView: View {
         ("Deviation Entry", AnyView(DeviationEntryView()))
     ]
     
+    private let StatusItems: [(title: String, destination: AnyView)] = [
+        ("Advance Status",AnyView(LeaveStatusView())),
+        ("Leave Status",AnyView(LeaveStatusView())),
+        ("Permission Status",AnyView(LeaveStatusView())),
+        ("Missed Punch Status",AnyView(missedPunchView())),
+        ("Weekly-Off Status",AnyView(LeaveStatusView())),
+        ("Deviation Entry Status",AnyView(LeaveStatusView())),
+        ("Leave Cancel Status",AnyView(LeaveCancelView()))
+    ]
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -25,7 +35,7 @@ struct RequestView: View {
                 VStack(spacing: 16) {
                     SectionCard(title: "REQUEST", items: requestItems)
                    
-                    SectionCard(title: "STATUS", items: requestItems)
+                    SectionCard(title: "STATUS", items: StatusItems)
                 }
                 .padding(.vertical, 8)
             }

@@ -5,22 +5,24 @@
 //  Created by San eforce on 06/09/25.
 //
 
-struct leaveStatusDataResponse: Codable {
-    let sf_code: String
-    let Leave_Id: Int
-    let showflag: Int
-    let Created_Date: String
-    let cancelreason: Int
-    let Reason: String
-    let Leave_Type: String
-    let From_Date: String
-    let LastUpdt_Date: String
-    let To_Date: String
-    let No_of_Days: Double
-    let LStatus: String
-    let StusClr: String
+import Foundation
+
+struct leaveStatusModel: Codable {
+    let sf_code: String?
+    let Leave_Id: String?
+    let showflag: String?
+    let Created_Date: String?
+    let cancelreason: String?
+    let Reason: String?
+    let Leave_Type: String?
+    let From_Date: String?
+    let LastUpdt_Date: String?
+    let To_Date: String?
+    let No_of_Days: Double?
+    let LStatus: String?
+    let StusClr: String?
     let Rejected_Reason: String?
-    let Leave_Active_Flag: Int
+    let Leave_Active_Flag: String?
     
     enum CodingKeys: String, CodingKey {
         case sf_code = "sf_code"

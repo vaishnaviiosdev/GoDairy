@@ -15,6 +15,8 @@ let division_code = UserDefaults.standard.string(forKey: "Division_Code") ?? ""
 let milk_url = "https://admin.godairy.in/server/milk_url_config.json"
 let privacy_url = "https://admin.godairy.in/Privacy.html"
 let worktype_url = "http://qa.godairy.in/server/Db_v310.php?axn=get/worktypes"
+
+//Request
 let leaveAvailability_url = "http://qa.godairy.in/server/Db_v300.php?axn=get/LeaveAvailabilityCheck&Year=2025&divisionCode=1&sfCode=MGR80&rSF=MGR80&State_Code=1"
 let shiftTime_url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl2 + "get%2FShift_timing&divisionCode=1&Sf_code=MGR80"
 let save_LeaveRequestUrl = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl2 + "dcr/save&sf_name=G%20RAMESH&divisionCode=1&sfCode=MGR80&State_Code=1&desig=MGR"
@@ -30,6 +32,14 @@ let weekoffEntry_saveUrl = APIClient.shared.New_DBUrl + APIClient.shared.DBURL +
 let DeviationEntry_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl3 + "&State_Code=1&divisionCode=1&rSF=MGR80&axn=table%2Flist&sfCode=MGR80"
 
 let DeviationEntry_SaveUrl = APIClient.shared.New_DBUrl + APIClient.shared.DBURL2 + "save/exception&sf_name=G%20RAMESH&divisionCode=1&sfCode=MGR80&State_Code=1&desig=MGR"
+
+//Status
+let leaveStatus_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "AMod=null&divisionCode=1&sfCode=MGR80&rSF=MGR80&State_Code=1&axn=GetLeave_Status"
+let missedPunch_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "AMod=0&divisionCode=1&sfCode=MGR80&rSF=MGR80&State_Code=1&axn=GetMissedPunch_Status"
+let leaveCancelStatus_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "AMod=0&divisionCode=1&sfCode=MGR80&rSF=MGR80&State_Code=1&axn=GetLeaveCancel_Status"
+
+
+
 
 
 
