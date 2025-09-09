@@ -41,6 +41,4 @@ class DeviationEntryViewModel: ObservableObject {
             print("❌ Error: \(error.localizedDescription)")
         }
     }
-
-    
 }

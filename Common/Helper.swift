@@ -26,6 +26,14 @@ extension DateFormatter {
     }()
 }
 
+extension Date {
+    func formattedAsYYYYMMDD() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: self)
+    }
+}
+
 
 
 

@@ -12,7 +12,7 @@ struct RequestView: View {
         ("Leave Request", AnyView(LeaveRequestView())),
         ("Permission Request", AnyView(PermissionRequestView())),
         ("Missed Punch", AnyView(MissedPunchView())),
-        ("Weekly-Off", AnyView(WeekOffEntryView())),
+        ("Weekly-Off", AnyView(weeklyOffView())),
         ("Deviation Entry", AnyView(DeviationEntryView()))
     ]
     
@@ -21,7 +21,7 @@ struct RequestView: View {
         ("Leave Status",AnyView(LeaveStatusView())),
         ("Permission Status",AnyView(LeaveStatusView())),
         ("Missed Punch Status",AnyView(missedPunchView())),
-        ("Weekly-Off Status",AnyView(LeaveStatusView())),
+        ("Weekly-Off Status",AnyView(weeklyOffView())),
         ("Deviation Entry Status",AnyView(LeaveStatusView())),
         ("Leave Cancel Status",AnyView(LeaveCancelView()))
     ]

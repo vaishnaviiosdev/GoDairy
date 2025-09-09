@@ -13,6 +13,7 @@ class APIClient {
     var DBURL="/server/Db_v300.php?axn="
     
     var DBURL2 = "/server/Db_v310.php?axn="
+    var DBURL3 = "/server/Db_v310.php?&axn="
     var db_new_activity = "/server/db_new_activity.php?axn="
     
     var New_DBUrl = "http://qa.godairy.in"//Current

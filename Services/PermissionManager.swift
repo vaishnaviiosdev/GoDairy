@@ -52,17 +52,48 @@ class PermissionManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
     
+//    func requestLocationPermission() {
+//        let status = CLLocationManager().authorizationStatus
+//        switch status {
+//        case .notDetermined:
+//            locationManager.requestWhenInUseAuthorization()
+//        case .authorizedWhenInUse, .authorizedAlways:
+//            locationManager.startUpdatingLocation() // ✅ start updates
+//        case .denied, .restricted:
+//            DispatchQueue.main.async {
+//                self.locationGranted = false
+//            }
+//        @unknown default:
+//            break
+//        }
+//    }
+    
     func requestLocationPermission() {
         let status = CLLocationManager().authorizationStatus
         switch status {
         case .notDetermined:
+            // Ask for "When In Use" first
             locationManager.requestWhenInUseAuthorization()
-        case .authorizedWhenInUse, .authorizedAlways:
-            locationManager.startUpdatingLocation() // ✅ start updates
-        case .denied, .restricted:
+            
+        case .authorizedWhenInUse:
+            // User gave only foreground permission (not enough for your app)
             DispatchQueue.main.async {
                 self.locationGranted = false
             }
+            
+        case .authorizedAlways:
+            // ✅ Full permission granted (foreground + background)
+            DispatchQueue.main.async {
+                self.locationGranted = true
+            }
+            locationManager.startUpdatingLocation()
+            
+        case .denied, .restricted:
+            // User denied permission
+            DispatchQueue.main.async {
+                self.locationGranted = false
+            }
+            
         @unknown default:
             break
         }
@@ -77,16 +108,41 @@ class PermissionManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
         
+//    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+//        if status == .authorizedWhenInUse || status == .authorizedAlways {
+//            locationManager.startUpdatingLocation() // ✅ resume updates
+//        } else {
+//            DispatchQueue.main.async {
+//                self.locationGranted = false
+//                self.currentLocation = nil
+//            }
+//        }
+//    }
+    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedWhenInUse || status == .authorizedAlways {
-            locationManager.startUpdatingLocation() // ✅ resume updates
-        } else {
+        switch status {
+        case .authorizedAlways:
+            locationManager.startUpdatingLocation()
+            DispatchQueue.main.async {
+                self.locationGranted = true
+            }
+        case .authorizedWhenInUse:
             DispatchQueue.main.async {
                 self.locationGranted = false
                 self.currentLocation = nil
             }
+        case .denied, .restricted:
+            DispatchQueue.main.async {
+                self.locationGranted = false
+                self.currentLocation = nil
+            }
+        case .notDetermined:
+            break
+        @unknown default:
+            break
         }
     }
+
     
     // MARK: - Public flow (sequential)
     func requestAllPermissionsSequentially() {
