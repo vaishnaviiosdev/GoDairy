@@ -223,12 +223,21 @@ struct PermissionRequestCard: View {
         VStack(alignment: .leading, spacing: 0) {
             titleCard(title: title, frameHeight: 40, fontSize: 14)
             
-            DateCard(
-                title: "Date of Permission",
-                placeholder: "Select from Date",
-                selectedDate: $PermissionDate,
-                selectedTime: $selectedFromTime
-            )
+//            DateCard(
+//                title: "Date of Permission",
+//                placeholder: "Select from Date",
+//                selectedDate: $PermissionDate,
+//                selectedTime: $selectedFromTime
+//            )
+            
+            VStack(spacing: 0) {
+                titleView(title: "From Date")
+                CustommDatePicker(
+                    selectedDate: $PermissionDate,
+                    placeholder: "Select from Date"
+                )
+            }
+            .padding(.horizontal, 8)
             
             CustomCard(
                 title: "Select the Hours",

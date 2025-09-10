@@ -22,3 +22,30 @@ struct mydayplanDataResponse: Codable {
         case place_involved = "Place_Involved"
     }
 }
+
+struct mydayPlanCheckResponse: Codable {
+    let CheckEndKM: Int
+    let CheckEndDT: String
+    let CheckOnduty: Int
+    let checkMOT: Int
+    let Todaycheckin_Flag: Int
+    let Checkdayplan: [CheckDayPlanData]?
+}
+
+struct CheckDayPlanData: Codable {
+    let sf_code: String
+    let Cnt: Int
+    let wtype: String
+    
+    enum CodingKeys: String, CodingKey {
+        case sf_code = "sf_code"
+        case Cnt = "Cnt"
+        case wtype = "wtype"
+    }
+}
+
+struct mydayPlanSaveResponse: Codable {
+    
+}
+
+

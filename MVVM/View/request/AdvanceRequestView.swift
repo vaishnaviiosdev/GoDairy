@@ -103,35 +103,33 @@ struct AdvanceRequestCard: View {
         VStack(alignment: .leading, spacing: 0) {
             titleCard(title: title, frameHeight: 40, fontSize: 14)
             
-//            HStack {
-//                DateCard(title: "From Date", fontWeight: .semibold, placeholder: "Select from Date", selectedDate: $FromDate,
-//                         selectedTime: .constant(nil))
-//                    
-//                DateCard(title: "To Date",fontWeight: .semibold, placeholder: "Select To Date", selectedDate: $ToDate,
-//                         selectedTime: .constant(nil))
-//               .disabled(FromDate == nil)
-//               .opacity(FromDate == nil ? 0.5 : 1.0) 
-//            }
             HStack(spacing: 20) {
                 VStack(spacing: 0) {
-                    titleView(title: "From Date")
-                    CustommDatePicker(selectedDate: $FromDate, placeholder: "Select from Date")
+                    titleView(title: "From Date", fontWeight: .semibold)
+                    CustommDatePicker(
+                        selectedDate: $FromDate,
+                        placeholder: "Select from Date"
+                    )
                 }
                 
                 VStack(spacing: 0) {
-                    titleView(title: "To Date")
-                    CustommDatePicker(selectedDate: $ToDate, placeholder: "Select to Date")
+                    titleView(title: "To Date", fontWeight: .semibold)
+                    CustommDatePicker(
+                        selectedDate: $ToDate,
+                        placeholder: "Select to Date",
+                        dateRange: (FromDate != nil ? FromDate!...Date.distantFuture : nil) // 👈 Restrict range
+                    )
+                    .disabled(FromDate == nil) //Disable until FromDate is selected
+                    .opacity(FromDate == nil ? 0.5 : 1.0) // 👈 Dim UI when disabled
                 }
-               
-                
             }
             .padding(.horizontal, 8)
-            
-            
+
             CustomCard(
                 title: "Type of Advance",
                 placeholderString: "Select the leave type",
                 selectedValue: selectedAdvanceType,
+                titleFontWeight: .semibold,
                 action: onAdvanceTypeTap
             )
             .padding(.top, 5)
@@ -142,12 +140,14 @@ struct AdvanceRequestCard: View {
             
             DaysView(title: "Enter the Amount", numberOfValue: $amount,isEditable: true)
                 .padding(.top)
-            
-            DateCard(title: "Settlement Date",
-                     fontWeight: .semibold,
-                     placeholder: "Select settlement date",
-                     selectedDate: $selectedDate,
-                     selectedTime: .constant(nil))
+                        
+            VStack(spacing: 0) {
+                titleView(title: "Settlement Date",fontWeight: .semibold)
+                CustommDatePicker(selectedDate: $selectedDate, placeholder: "Select settlement Date",
+                    dateRange: Date()...Date.distantFuture)
+            }
+            .padding(.horizontal, 8)
+            .padding(.bottom, 8)
         }
         .background(Color.white)
         .cornerRadius(12)
@@ -158,30 +158,30 @@ struct AdvanceRequestCard: View {
 struct CustommDatePicker: View {
     @Binding var selectedDate: Date?
     @State private var showPicker = false
+    
     var placeholder: String = "Select Date"
+    var dateRange: ClosedRange<Date>? = nil
     
     var body: some View {
-        Button(action: { showPicker.toggle() }) {
+        Button(action: {
+            if selectedDate == nil {
+                selectedDate = Date() // Ensure it's not nil
+            }
+            showPicker.toggle()
+        }) {
             HStack {
                 if let date = selectedDate {
                     Text(date.formattedAsYYYYMMDD())
-                        .foregroundColor(.black)
-                        .fontWeight(.bold)
+                        .foregroundColor(.gray)
+                        .fontWeight(.regular)
                         .font(.system(size: 14))
-                }
-                else {
+                } else {
                     Text(placeholder)
                         .foregroundColor(.gray)
                         .font(.system(size: 14))
                 }
                 
                 Spacer(minLength: 8)
-                
-//                Image("calendar 1")
-//                    .resizable()
-//                    .renderingMode(.template)
-//                    .foregroundColor(.appPrimary)
-//                    .frame(width: 20, height: 20)
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
@@ -197,25 +197,92 @@ struct CustommDatePicker: View {
                         get: { selectedDate ?? Date() },
                         set: { selectedDate = $0 }
                     ),
+                    in: dateRange ?? Date.distantPast...Date.distantFuture,
                     displayedComponents: .date
                 )
                 .datePickerStyle(.graphical)
                 .padding()
                 
-                Button("Done") { showPicker = false }
+                HStack {
+                    Button("Done") {
+                        showPicker = false
+                    }
                     .font(.system(size: 16, weight: .bold))
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
                     .padding()
                     .background(Color.appPrimary)
                     .cornerRadius(12)
-                    .padding(.horizontal, 16)
+                }
+                .padding(.horizontal, 16)
             }
             .presentationDetents([.medium, .large]) // iOS 16+
         }
     }
 }
 
+//struct CustommDatePicker: View {
+//    @Binding var selectedDate: Date?
+//    @State private var showPicker = false
+//    
+//    var placeholder: String = "Select Date"
+//    var dateRange: ClosedRange<Date>? = nil
+//    
+//    var body: some View {
+//        Button(action: {
+//            showPicker.toggle()
+//        }) {
+//            HStack {
+//                if let date = selectedDate {
+//                    Text(date.formattedAsYYYYMMDD())
+//                        .foregroundColor(.gray)
+//                        .fontWeight(.regular)
+//                        .font(.system(size: 14))
+//                } else {
+//                    Text(placeholder)
+//                        .foregroundColor(.gray)
+//                        .font(.system(size: 14))
+//                }
+//                
+//                Spacer(minLength: 8)
+//            }
+//            .padding(.horizontal, 12)
+//            .padding(.vertical, 8)
+//            .background(Color.white)
+//            .cornerRadius(10)
+//            .shadow(color: Color.black.opacity(0.15), radius: 4, x: 0, y: 2)
+//        }
+//        .sheet(isPresented: $showPicker) {
+//            VStack {
+//                DatePicker(
+//                    "Select Date",
+//                    selection: Binding(
+//                        get: { selectedDate ?? Date() },
+//                        set: { selectedDate = $0 }
+//                    ),
+//                    in: dateRange ?? Date.distantPast...Date.distantFuture,
+//                    displayedComponents: .date
+//                )
+//                .datePickerStyle(.graphical)
+//                .padding()
+//                
+//                HStack {
+//                    Button("Done") {
+//                        showPicker = false
+//                    }
+//                    .font(.system(size: 16, weight: .bold))
+//                    .foregroundColor(.white)
+//                    .frame(maxWidth: .infinity)
+//                    .padding()
+//                    .background(Color.appPrimary)
+//                    .cornerRadius(12)
+//                }
+//                .padding(.horizontal, 16)
+//            }
+//            .presentationDetents([.medium, .large]) // iOS 16+
+//        }
+//    }
+//}
 
 struct CustomTxtfield: View {
     let title: String

@@ -53,9 +53,14 @@ let missedPunch_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 +
 
 let leaveCancelStatus_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "AMod=0&divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=GetLeaveCancel_Status"
 
+//Dashboard
+let myDayPlanCheck_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "desig=MGR&divisionCode=\(division_code)&Sf_code=\(sf_code)&axn=check%2Fmydayplan&Date=\(Date())%2014%3A46%3A13"
+ 
+let myDayPlanSave_Url = APIClient.shared.New_DBUrl + APIClient.shared.db_new_activity1 + "State_Code=1&desig=MGR&divisionCode=\(division_code)&axn=save/dayplandynamic&sfCode=\(sf_code)"
 
 
-//http://qa.godairy.in/server/MyPHP.php?&div=1&sf=MGR80&tvStartDate=2025-02-10&axn=get_week_off_status&tvEndDate=2025-02-10&sfCode=MGR80&stk=
+//http://qa.godairy.in/server/db_new_activity.php?
+//http://qa.godairy.in/server/db_new_activity.php?State_Code=1&desig=MGR&divisionCode=1&axn=save/dayplandynamic&sfCode=MGR80
 
 
 

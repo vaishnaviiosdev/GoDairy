@@ -18,7 +18,7 @@ struct DayPlanView: View {
     
     var body: some View {
         ZStack {
-            Color.black.opacity(0.4)
+            //Color.black.opacity(0.4)
             VStack {
                 Spacer()
                 if showSheet {

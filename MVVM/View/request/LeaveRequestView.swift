@@ -19,6 +19,7 @@ struct LeaveRequestView: View {
     @State private var textValue = ""
     @State private var selectedLeaveList: LeaveTypeSelection? = nil
     @State private var saveSuccessMessage: String = ""
+    @State private var numberOfDays: Double = 0.0
     @State private var showToast = false
     @StateObject var LeaveModel = LeaveRequestViewModel()
     
@@ -35,23 +36,38 @@ struct LeaveRequestView: View {
         let name: String
         let shortName: String
     }
-    
+        
     private func validateForm() -> String? {
-        if selectedLeaveType == nil {
-            return "Enter Leave Type"
-        }
-        else if FromDate == nil {
-            return "Enter From Date"
-        }
-        else if ToDate == nil {
-            return "Enter To Date"
-        }
-        else if textValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            return "Enter Remarks"
+        if selectedLeaveType == nil { return "Enter Leave Type" }
+        if FromDate == nil { return "Enter From Date" }
+        if ToDate == nil { return "Enter To Date" }
+        if textValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty { return "Enter Remarks" }
+        
+        calculateNumberOfDays()
+        
+        if let code = selectedLeaveCode,
+           let leave = LeaveModel.LeaveRequestData.first(where: { $0.LeaveCode == code }) {
+            if numberOfDays > leave.LeaveAvailability {
+                return "Leave days exceed available days (\(Int(leave.LeaveAvailability)))"
+            }
         }
         return nil
     }
+    
+    private func calculateNumberOfDays() {
+        guard let start = FromDate, let end = ToDate else {
+            numberOfDays = 0
+            return
+        }
         
+        if selectedTypeOfHalfDay != nil && areDatesSameDay(start, end) {
+            numberOfDays = 0.5
+        } else {
+            let days = Calendar.current.dateComponents([.day], from: start, to: end).day ?? 0
+            numberOfDays = Double(max(days + 1, 0))
+        }
+    }
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -66,6 +82,7 @@ struct LeaveRequestView: View {
                         selectedShiftTiming: $selectedShiftTiming,
                         selectedTypeOfHalfDay: $selectedTypeOfHalfDay,
                         selectedLeaveCode: $selectedLeaveCode,
+                        numberOfDays: $numberOfDays,
                         LeaveModel: LeaveModel,
                         onLeaveTypeTap: {
                             activeSelection = .leaveType
@@ -75,7 +92,9 @@ struct LeaveRequestView: View {
                         },
                         onHalfDayTap: {
                             activeSelection = .halfDay
-                        }
+                        },
+                        showToast: $showToast,
+                        toastMessage: $saveSuccessMessage
                     )
                 }
                 CustomBtn(title: "SUBMIT", height: 40, backgroundColor: .appPrimary1) {
@@ -83,9 +102,15 @@ struct LeaveRequestView: View {
                         if let errorMessage = validateForm() {
                             saveSuccessMessage = errorMessage
                             showToast = true
-                        }
-                        else {
-                            await LeaveModel.saveProducts(leave_Type: selectedLeaveList?.shortName ?? "", from_Date: FromDate ?? Date(), to_Date: ToDate ?? Date(), halfDay: selectedTypeOfHalfDay ?? "", selectedHalfDayType: selectedTypeOfHalfDay ?? "", selectedShiftTime: selectedShiftTiming ?? "")
+                        } else {
+                            await LeaveModel.saveProducts(
+                                leave_Type: selectedLeaveList?.shortName ?? "",
+                                from_Date: FromDate ?? Date(),
+                                to_Date: ToDate ?? Date(),
+                                halfDay: selectedTypeOfHalfDay ?? "",
+                                selectedHalfDayType: selectedTypeOfHalfDay ?? "",
+                                selectedShiftTime: selectedShiftTiming ?? ""
+                            )
                         }
                     }
                 }
@@ -143,6 +168,10 @@ struct LeaveRequestView: View {
                 await LeaveModel.fetchLeaveTypeData()
                 await LeaveModel.fetchLeaveAvailabilityData()
                 await LeaveModel.fetchShiftTimeData()
+                
+                if let firstLeave = LeaveModel.LeaveRequestData.first {
+                        selectedLeaveCode = firstLeave.LeaveCode
+                }
             }
             .alert(LeaveModel.LeaveRequestSuccessMsg, isPresented: $LeaveModel.LeaveRequestSaveAlert) {
                 Button("OK", role: .cancel) {
@@ -202,7 +231,8 @@ struct LeaveSectionCard: View {
     @Binding var textValue: String
     @Binding var selectedShiftTiming: String?
     @Binding var selectedTypeOfHalfDay: String?
-    @Binding var selectedLeaveCode: String? 
+    @Binding var selectedLeaveCode: String?
+    @Binding var numberOfDays: Double
     @ObservedObject var LeaveModel: LeaveRequestViewModel
 
     var onLeaveTypeTap: () -> Void
@@ -213,7 +243,8 @@ struct LeaveSectionCard: View {
     @State private var isFromDatePickerPresented = false
     @State private var isToDatePickerPresented = false
     @State private var isHalfDaySelected = false
-    @State private var numberOfDays: Double = 0.0
+    @Binding var showToast: Bool
+    @Binding var toastMessage: String
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -225,17 +256,27 @@ struct LeaveSectionCard: View {
                 selectedValue: selectedLeaveType,
                 action: onLeaveTypeTap
             )
-            
-            HStack {
-                DateCard(title: "From Date",
-                         placeholder: "Select from Date",
-                         selectedDate: $FromDate,
-                         selectedTime: $selectedTime)
-                DateCard(title: "To Date",
-                         placeholder: "Select To Date",
-                         selectedDate: $ToDate,
-                         selectedTime: $selectedTime)
+                        
+            HStack(spacing: 20) {
+                VStack(spacing: 0) {
+                    titleView(title: "From Date")
+                    CustommDatePicker(
+                        selectedDate: $FromDate,
+                        placeholder: "Select from Date"
+                    )
+                }
+                
+                VStack(spacing: 0) {
+                    titleView(title: "To Date")
+                    CustommDatePicker(
+                        selectedDate: $ToDate,
+                        placeholder: "Select to Date",
+                        dateRange: (FromDate != nil ? FromDate!...Date.distantFuture : nil) // 👈 Restrict range
+                    )
+                    .disabled(FromDate == nil)
+                }
             }
+            .padding(.horizontal, 8)
             .onChange(of: FromDate) { _ in
                 calculateNumberOfDays()
             }
@@ -271,19 +312,45 @@ struct LeaveSectionCard: View {
         .cornerRadius(12)
         .padding(.horizontal, 8)
     }
-        
+    
     func calculateNumberOfDays() {
         guard let start = FromDate, let end = ToDate else {
             numberOfDays = 0
             return
         }
-        
+
         if isHalfDaySelected && areDatesSameDay(start, end) {
             numberOfDays = 0.5
         }
         else {
             let days = Calendar.current.dateComponents([.day], from: start, to: end).day ?? 0
             numberOfDays = Double(max(days + 1, 0)) // include start date
+        }
+
+        print("selectedLeaveCode:", selectedLeaveCode ?? "nil")
+        print("LeaveRequestData codes:", LeaveModel.LeaveRequestData.map { $0.LeaveCode })
+
+        // Check leave availability
+        if let code = selectedLeaveCode,
+           let leave = LeaveModel.LeaveRequestData.first(where: { $0.LeaveCode == code }) {
+
+            if numberOfDays > leave.LeaveAvailability {
+                toastMessage = "Leave days exceed available days"
+                showToast = true
+
+                // Optional: reset after 2 seconds (after toast disappears)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                    FromDate = nil
+                    ToDate = nil
+                    numberOfDays = 0
+                }
+            }
+            else {
+                print("Leave within available limit")
+            }
+        }
+        else {
+            print("Something went wrong: leave code not found")
         }
     }
 }
@@ -445,7 +512,7 @@ struct LeaveAvailabilityList: View {
                                 
                                 titleView(title: String(format: "%.1f", leaveRequest.LeaveTaken), foregroundColor: .black, fontWeight: .regular)
                                 
-                                titleView(title: String(format: "%.1f", leaveRequest.LeaveAvailability - leaveRequest.LeaveTaken), foregroundColor: .black, fontWeight: .regular)
+                                titleView(title: String(format: "%.1f", leaveRequest.LeaveAvailability), foregroundColor: .black, fontWeight: .regular)
                             }
                             .padding(.vertical, 5)
                             .background(Color.white)
@@ -600,5 +667,6 @@ enum PickerMode {
 #Preview {
     LeaveRequestView()
 }
+
 
 

@@ -8,35 +8,103 @@
 import SwiftUI
 import Alamofire
 
+//struct DashboardView: View {
+//    @State private var currentTab:Int = 0
+//    @State private var sfName:String = ""
+//    @State private var showLogoutAlert = false
+//    @State private var goToDashboard = false
+//    
+//    var body: some View {
+//        ZStack {
+//            Color.backgroundColour
+//                .edgesIgnoringSafeArea(.all)
+//            ScrollView {
+//                VStack {
+//                    DashboardHeader(sfName: sfName)
+//                    CheckInSection()
+//                    ZStack(alignment:.center) { Rectangle() .foregroundColor(colorData.shared.Background_color)
+//                        TabbarView(currentTab: $currentTab) }
+//                        .frame(height: 50)
+//                    TabBar(currentTab: $currentTab)
+//                        .frame(height: 300)
+//                    Divider()
+//                    ExploreMore()
+//                }
+//            }
+//        }
+//        .padding(.bottom, 20.0)
+//        .navigationBarBackButtonHidden(true) .onAppear { sfName = UserDefaults.standard.string(forKey: "Sf_Name") ?? ""
+//        }
+//    }
+//}
+
 struct DashboardView: View {
     @State private var currentTab:Int = 0
     @State private var sfName:String = ""
     @State private var showLogoutAlert = false
     @State private var goToDashboard = false
     
+    @State private var showDayPlan = false  // overlay state
+    
     var body: some View {
         ZStack {
             Color.backgroundColour
                 .edgesIgnoringSafeArea(.all)
+            
             ScrollView {
                 VStack {
                     DashboardHeader(sfName: sfName)
-                    CheckInSection()
-                    ZStack(alignment:.center) { Rectangle() .foregroundColor(colorData.shared.Background_color)
-                        TabbarView(currentTab: $currentTab) }
-                        .frame(height: 50)
+                    
+                    // Pass binding
+                    CheckInSection(showDayPlan: $showDayPlan)
+                    
+                    ZStack(alignment:.center) {
+                        Rectangle().foregroundColor(colorData.shared.Background_color)
+                        TabbarView(currentTab: $currentTab)
+                    }
+                    .frame(height: 50)
+                    
                     TabBar(currentTab: $currentTab)
                         .frame(height: 300)
+                    
                     Divider()
                     ExploreMore()
                 }
             }
+            
+            // 🔹 Bottom Sheet Overlay
+            if showDayPlan {
+                ZStack(alignment: .bottom) {
+                    // dim background
+                    Color.black.opacity(0.4)
+                        .ignoresSafeArea()
+                        .onTapGesture {
+                            withAnimation {
+                                showDayPlan = false
+                            }
+                        }
+                    
+                    VStack {
+                        Spacer()
+                        DayPlanView()
+                            .frame(maxWidth: .infinity, maxHeight: 400) // height adjust
+                            .background(Color.white)
+                            .cornerRadius(20, corners: [.topLeft, .topRight])
+                            .shadow(radius: 10)
+                            .transition(.move(edge: .bottom))
+                    }
+                }
+                .animation(.spring(), value: showDayPlan)
+            }
         }
         .padding(.bottom, 20.0)
-        .navigationBarBackButtonHidden(true) .onAppear { sfName = UserDefaults.standard.string(forKey: "Sf_Name") ?? ""
+        .navigationBarBackButtonHidden(true)
+        .onAppear {
+            sfName = UserDefaults.standard.string(forKey: "Sf_Name") ?? ""
         }
     }
 }
+
 
 //MARK: - HEADER VIEW
 struct DashboardHeader: View {
@@ -83,9 +151,8 @@ struct DashboardHeader: View {
     }
 }
 
-// MARK: - CHECK IN SECTION
 struct CheckInSection: View {
-    @State private var showDayPlan = false
+    @Binding var showDayPlan: Bool
     @State private var btnTitle = "My Day Plan"
     
     var body: some View {
@@ -96,23 +163,59 @@ struct CheckInSection: View {
                 Image("write")
                 Spacer()
             }
-            CustomBtn (
+            CustomBtn(
                 title: btnTitle,
                 height: 50,
                 backgroundColor: Color.appPrimary
             ) {
-                showDayPlan = true
+                withAnimation(.spring()) {
+                    showDayPlan = true
+                }
             }
         }
         .padding(.horizontal)
-//        .fullScreenCover(isPresented: $showDayPlan) {
-//            DayPlanView()
-//        }
-        .sheet(isPresented: $showDayPlan) {
-            DayPlanView()
-        }
     }
 }
+
+// MARK: - CHECK IN SECTION
+//struct CheckInSection: View {
+//    @State private var showDayPlan = false
+//    @State private var btnTitle = "My Day Plan"
+//    
+//    var body: some View {
+//        ZStack {
+//            VStack(alignment: .leading, spacing: 12) {
+//                HStack {
+//                    Text("Let’s get to work")
+//                        .font(.system(size: 12, weight: .semibold))
+//                    Image("write")
+//                    Spacer()
+//                }
+//                CustomBtn (
+//                    title: btnTitle,
+//                    height: 50,
+//                    backgroundColor: Color.appPrimary
+//                ) {
+//                    withAnimation(.spring()) {
+//                        showDayPlan = true
+//                    }
+//                }
+//            }
+//            .padding(.horizontal)
+//        }
+//        .overlay(
+//            Group {
+//                if showDayPlan {
+//                    DayPlanView()
+//                        .frame(maxHeight: 450)
+//                        .background(Color.white)
+//                        .cornerRadius(20, corners: [.topLeft, .topRight])
+//                        .transition(.move(edge: .bottom))
+//                }
+//            }, alignment: .bottom
+//        )
+//    }
+//}
 
 // MARK: - CHECK IN BUTTON
 struct CheckInButton: View {
