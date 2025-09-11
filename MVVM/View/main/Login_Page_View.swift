@@ -187,6 +187,7 @@ struct SignINbutton: View {
                 UserDefaults.standard.set(user.sfCode, forKey: "Sf_code")
                 UserDefaults.standard.set(user.divisionCode, forKey: "Division_Code")
                 UserDefaults.standard.set(user.sfName, forKey: "Sf_Name")
+                UserDefaults.standard.set(user.sfDesignation, forKey: "sf_Designation_Short_Name")
                 isLoggedIn = true
                 
                 await MainActor.run {

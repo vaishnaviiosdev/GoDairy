@@ -12,10 +12,11 @@ let sf_code = UserDefaults.standard.string(forKey: "Sf_code") ?? ""
 let Ukey = String(format: "EK%@-%i", sf_code,Int(Date().timeIntervalSince1970))
 let division_code = UserDefaults.standard.string(forKey: "Division_Code") ?? ""
 let sf_name = UserDefaults.standard.string(forKey: "Sf_Name") ?? ""
+let sf_Designation = UserDefaults.standard.string(forKey: "sf_Designation_Short_Name") ?? ""
 
 let milk_url = "https://admin.godairy.in/server/milk_url_config.json"
 let privacy_url = "https://admin.godairy.in/Privacy.html"
-let worktype_url = "http://qa.godairy.in/server/Db_v310.php?axn=get/worktypes"
+let worktype_url = APIClient.shared.New_DBUrl + APIClient.shared.DBURL2 + "get/worktypes"
 
 //Request
 let leaveAvailability_url = APIClient.shared.New_DBUrl + APIClient.shared.DBURL + "get/LeaveAvailabilityCheck&Year=2025&divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1"

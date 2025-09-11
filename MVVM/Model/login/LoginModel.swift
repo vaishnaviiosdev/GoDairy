@@ -33,10 +33,12 @@ struct UserData: Codable {
     let sfCode: String?
     let divisionCode: String?
     let sfName: String?
+    let sfDesignation: String?
     
     enum CodingKeys: String, CodingKey {
         case sfCode = "Sf_code"
         case divisionCode = "Division_Code"
         case sfName = "Sf_Name"
+        case sfDesignation = "sf_Designation_Short_Name"
     }
 }

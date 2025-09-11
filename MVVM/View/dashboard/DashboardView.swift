@@ -8,42 +8,10 @@
 import SwiftUI
 import Alamofire
 
-//struct DashboardView: View {
-//    @State private var currentTab:Int = 0
-//    @State private var sfName:String = ""
-//    @State private var showLogoutAlert = false
-//    @State private var goToDashboard = false
-//    
-//    var body: some View {
-//        ZStack {
-//            Color.backgroundColour
-//                .edgesIgnoringSafeArea(.all)
-//            ScrollView {
-//                VStack {
-//                    DashboardHeader(sfName: sfName)
-//                    CheckInSection()
-//                    ZStack(alignment:.center) { Rectangle() .foregroundColor(colorData.shared.Background_color)
-//                        TabbarView(currentTab: $currentTab) }
-//                        .frame(height: 50)
-//                    TabBar(currentTab: $currentTab)
-//                        .frame(height: 300)
-//                    Divider()
-//                    ExploreMore()
-//                }
-//            }
-//        }
-//        .padding(.bottom, 20.0)
-//        .navigationBarBackButtonHidden(true) .onAppear { sfName = UserDefaults.standard.string(forKey: "Sf_Name") ?? ""
-//        }
-//    }
-//}
-
 struct DashboardView: View {
     @State private var currentTab:Int = 0
-    @State private var sfName:String = ""
     @State private var showLogoutAlert = false
     @State private var goToDashboard = false
-    
     @State private var showDayPlan = false  // overlay state
     
     var body: some View {
@@ -53,9 +21,8 @@ struct DashboardView: View {
             
             ScrollView {
                 VStack {
-                    DashboardHeader(sfName: sfName)
+                    DashboardHeader(sfName: sf_name)
                     
-                    // Pass binding
                     CheckInSection(showDayPlan: $showDayPlan)
                     
                     ZStack(alignment:.center) {
@@ -99,9 +66,6 @@ struct DashboardView: View {
         }
         .padding(.bottom, 20.0)
         .navigationBarBackButtonHidden(true)
-        .onAppear {
-            sfName = UserDefaults.standard.string(forKey: "Sf_Name") ?? ""
-        }
     }
 }
 
@@ -121,10 +85,10 @@ struct DashboardHeader: View {
                 .clipShape(Circle())
                 .padding(5)
             VStack(alignment: .leading, spacing: 4) {
-                Text("Hi! \(sfName.isEmpty ? "Guest User" : sfName)") .font(.headline)
+                Text("Hi! \(sf_name.isEmpty ? "Guest User" : sf_name)") .font(.headline)
                     .bold()
-                Text("Sales Manager")
-                    .font(.subheadline)
+                Text(sf_Designation.isEmpty ? "---" : sf_Designation)
+                    .font(.system(size: 13))
             }
             Spacer()
             Button(action: {
@@ -142,7 +106,6 @@ struct DashboardHeader: View {
             Button("Yes", role: .destructive) {
                 isLoggedIn = false
                 router.root = .login
-                //UserDefaults.standard.set(false, forKey: "User_Login")
             }
             Button("No", role: .cancel) {
             
@@ -440,13 +403,13 @@ struct ExploreMore: View {
     var body: some View {
         let items: [(name: String, image: String, action: () -> Void)] = [
             ("Request & Status", "chart-user 1", { showRequestStatus = true }),
-            ("TA & claim", "ta&claim", { showTAClaim = true }),
-            ("Activity", "activity", { showActivity = true }),
+            ("TA & claim", "TA&Claim", { showTAClaim = true }),
+            ("Activity", "users-gear 1", { showActivity = true }),
             ("GateIN", "Group 5", { showGateIn = true }),
-            ("Gate OUT", "Group", { showGateOut = true }),
-            ("TP", "calendar", { showTP = true }),
+            ("Gate OUT", "Group 6", { showGateOut = true }),
+            ("TP", "calendar_1", { showTP = true }),
             ("Extended Shift", "Group 5", { showExtendedShift = true }),
-            ("Approvals", "CS", { showApprovals = true })
+            ("Approvals", "approval", { showApprovals = true })
         ]
         
         LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3)) {
@@ -460,12 +423,12 @@ struct ExploreMore: View {
         // MARK: - FullScreen Modals
         .fullScreenCover(isPresented: $showRequestStatus) { RequestView() }
 //        .fullScreenCover(isPresented: $showTAClaim) { TAClaimView() }
-//        .fullScreenCover(isPresented: $showActivity) { ActivityView() }
+        .fullScreenCover(isPresented: $showActivity) { ActivityDashboardView() }
 //        .fullScreenCover(isPresented: $showGateIn) { GateInView() }
 //        .fullScreenCover(isPresented: $showGateOut) { GateOutView() }
 //        .fullScreenCover(isPresented: $showTP) { TPView() }
 //        .fullScreenCover(isPresented: $showExtendedShift) { ExtendedShiftView() }
-//        .fullScreenCover(isPresented: $showApprovals) { ApprovalsView() }
+        .fullScreenCover(isPresented: $showApprovals) { ApprovalMainView() }
     }
 }
 
