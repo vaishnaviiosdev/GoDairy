@@ -69,6 +69,12 @@ class AppRouter: ObservableObject {
     }
     
     func logout() {
+        
+        UserDefaults.standard.removeObject(forKey: "Sf_code")
+        UserDefaults.standard.removeObject(forKey: "Division_Code")
+        UserDefaults.standard.removeObject(forKey: "Sf_Name")
+        UserDefaults.standard.removeObject(forKey: "sf_Designation_Short_Name")
+        
         isLoggedIn = false
         root = .login
     }
@@ -91,7 +97,7 @@ struct RootView: View {
         case .loginView:
             Login_Page_View()
         case .dashboard:
-            DashboardView()
+            DashboardView()//qad-802320
         }
     }
 }

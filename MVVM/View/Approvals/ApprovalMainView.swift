@@ -14,7 +14,7 @@ struct ApprovalMainView: View {
         ("Leave", AnyView(LeaveRequestView())),
         ("Leave Cancel", AnyView(LeaveRequestView())),
         ("Permission", AnyView(PermissionRequestView())),
-        ("Missed Punch", AnyView(MissedPunchApproval())),
+        ("Missed Punch", AnyView(MissedPunchApprovalView())),
         ("Travel Allowance", AnyView(weeklyOffView())),
         ("Work Plan-PJP", AnyView(weeklyOffView())),
         ("Deviation Entry", AnyView(DeviationEntryView()))

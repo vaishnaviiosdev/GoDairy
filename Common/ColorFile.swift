@@ -15,8 +15,13 @@ class colorData {
     var check_out_color:Color = Color(red:211/255, green: 84/255, blue: 0/255)
     
     var line_color:Color = Color(red:211/255, green:211/255, blue: 211/255)
-    var app_primary = Color.appPrimary
-    var app_primary1 = Color.appPrimary1
+    var app_primary = Color(red:43/255,green: 136/255,blue: 190/255)
+    var app_primary1 = Color(red:54/255,green: 152/255,blue: 231/255)
+    var app_primary3 = Color(red:47/255,green: 149/255,blue: 204/255)
+    var app_backgroundPink = Color(red:242/255,green: 233/255,blue: 234/255)
+    var appPrimary_Button = Color(red:54/255,green: 112/255,blue: 236/255)
+    var acceptBtn = Color(red:18/255,green: 94/255,blue: 95/255)
+    var rejectBtn = Color(red:172/255,green: 32/255,blue: 53/255)
 }
 
 extension Color {

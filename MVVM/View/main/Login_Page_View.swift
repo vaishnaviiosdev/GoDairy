@@ -120,7 +120,8 @@ struct SignINbutton: View {
                 ProgressView()
                     .scaleEffect(2)
                     .padding()
-            } else {
+            }
+            else {
                 Button(action: {
                     Task {
                         isLoading = true
@@ -185,13 +186,14 @@ struct SignINbutton: View {
             print("Login Response: \(response)")
             if response.success == true, let user = response.data?.first {
                 UserDefaults.standard.set(user.sfCode, forKey: "Sf_code")
+                print("The SF Code is \(UserDefaults.standard.string(forKey: "Sf_code") ?? "")")
                 UserDefaults.standard.set(user.divisionCode, forKey: "Division_Code")
                 UserDefaults.standard.set(user.sfName, forKey: "Sf_Name")
                 UserDefaults.standard.set(user.sfDesignation, forKey: "sf_Designation_Short_Name")
                 isLoggedIn = true
                 
                 await MainActor.run {
-                    router.root = .dashboard   // 👈 Navigate using router
+                    router.root = .dashboard   // 👈 Navigate using router//qad-802320
                 }
             } else {
                 await MainActor.run {

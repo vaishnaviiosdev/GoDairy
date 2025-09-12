@@ -24,6 +24,10 @@ class NetworkManager {
               200..<300 ~= httpResponse.statusCode else {
             throw URLError(.badServerResponse)
         }
+        
+        if let responseString = String(data: data, encoding: .utf8) {
+            print("🔹 The Fetch Data Response is: \(responseString)")
+        }
 
         let decoder = JSONDecoder()
         return try decoder.decode(T.self, from: data)
