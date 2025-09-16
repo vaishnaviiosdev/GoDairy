@@ -223,8 +223,8 @@ struct MenuItem {
 }
 
 let menuItems: [MenuItem] = [
-    MenuItem(title: "Primary Order", icon: "PrimaryOrder", isSystemIcon: false, destination: AnyView(LeaveRequestView())), // asset
-    MenuItem(title: "Secondary Order", icon: "SecondaryOrder", isSystemIcon: false, destination: AnyView(LeaveRequestView())), // SF symbol
+    MenuItem(title: "Primary Order", icon: "PrimaryOrder", isSystemIcon: false, destination: AnyView(LeaveRequestView())), 
+    MenuItem(title: "Secondary Order", icon: "SecondaryOrder", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
     MenuItem(title: "Van Sales", icon: "delivery-van", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
     MenuItem(title: "OverDue List", icon: "SecondaryOrder", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
     MenuItem(title: "Outlets", icon: "shop", isSystemIcon: false, destination: AnyView(LeaveRequestView())),

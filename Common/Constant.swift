@@ -64,6 +64,7 @@ let missedPunchApproval_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_
 
 //Approval History
 let permissionHistoryApproval_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "AMod=1&divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=GetPermission_Status"
+let missedPunchHistoryApproval_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "AMod=1&divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=GetMissedPunch_Status"
 
 
 

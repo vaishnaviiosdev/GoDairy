@@ -16,83 +16,189 @@ struct DayPlanView: View {
         return formatter.string(from: currentDate)
     }
     
+//    var body: some View {
+//        ZStack {
+//            Color.black.opacity(0.4)
+//            VStack {
+//                Spacer()
+//                if showSheet {
+//                    VStack(spacing: 5) {
+//                        Spacer(minLength: 10)
+//                        Text("My Day Plan")
+//                            .font(.system(size: 16,weight: .medium))
+//                        
+//                        Text(formattedDate)
+//                            .font(.subheadline)
+//                            .foregroundColor(.gray)
+//                        
+//                        VStack(alignment: .leading, spacing: 6) {
+//                            Text("WORK TYPE")
+//                                .font(.caption)
+//                                .foregroundColor(.gray)
+//                            Menu {
+//                                ForEach(workTypes, id: \.self) { type in
+//                                    Button(type) {
+//                                        selectedWorkType = type
+//                                    }
+//                                }
+//                            } label: {
+//                                HStack {
+//                                    Text(selectedWorkType.isEmpty ? "Select" : selectedWorkType)
+//                                        .foregroundColor(.black)
+//                                        .fontWeight(.light)
+//                                    Spacer()
+//                                    Image(systemName: "chevron.down")
+//                                        .foregroundColor(.gray)
+//                                }
+//                                .padding()
+//                                .background(
+//                                    RoundedRectangle(cornerRadius: 6)
+//                                        .stroke(Color.gray.opacity(0.4), lineWidth: 1)
+//                                )
+//                            }
+//                        }
+//                        
+//                        VStack(alignment: .leading, spacing: 6) { // Remarks TextField
+//                            Text("REMARKS")
+//                                .font(.caption)
+//                                .foregroundColor(.gray)
+//                            
+//                            TextField("Type.....", text: $remarks)
+//                                .padding()
+//                                .background(
+//                                    RoundedRectangle(cornerRadius: 6)
+//                                        .stroke(Color.gray.opacity(0.4), lineWidth: 1)
+//                                )
+//                        }
+//                        Spacer()
+//                        CustomBtn(title: "SUBMIT", height: 50, backgroundColor: Color.appPrimary) {
+//                            print("Submitted with: \(selectedWorkType), \(remarks)")
+//                            showSheet = false
+//                        }
+//                    }
+//                    .padding()
+//                    .frame(maxWidth: .infinity)
+//                    .frame(height: 400)
+//                    .background(Color.white)
+//                    .cornerRadius(40, corners: [.topLeft, .topRight])
+//                    .transition(.move(edge: .bottom))
+//                    .animation(.spring(), value: showSheet)
+//                    .ignoresSafeArea(edges: .bottom)
+//                }
+//            }
+//            Circle()
+//                .fill(Color.clear)
+//                .frame(width: 80, height: 80)
+//                .overlay(
+//                    Image("Group 17")
+//                        .resizable()
+//                        .scaledToFill()
+//                        .frame(width: 140, height: 140)
+//                )
+//        }
+//        .onAppear {
+//            Task {
+//                await viewModel.getWorkTypesData(sf: sf_code, div: division_code)
+//            }
+//        }
+//    }
+    
     var body: some View {
         ZStack {
-            //Color.black.opacity(0.4)
+            Color.black.opacity(0.4)
+                .ignoresSafeArea()
+
             VStack {
                 Spacer()
                 if showSheet {
-                    VStack(spacing: 20) {
-                        Text("My Day Plan")
-                            .font(.title2)
-                            .font(.system(size: 18,weight: .medium))
-                        
-                        Text(formattedDate)
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                        
-                        VStack(alignment: .leading, spacing: 6) {
-                            Text("WORK TYPE")
-                                .font(.caption)
+                    ZStack(alignment: .top) {
+                        VStack(spacing: 5) {
+                            Spacer(minLength: 50)
+                            Text("My Day Plan")
+                                .font(.system(size: 16, weight: .medium))
+
+                            Text(formattedDate)
+                                .font(.subheadline)
                                 .foregroundColor(.gray)
-                            Menu {
-                                ForEach(workTypes, id: \.self) { type in
-                                    Button(type) {
-                                        selectedWorkType = type
+
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text("WORK TYPE")
+                                    .font(.caption)
+                                    .foregroundColor(.gray)
+
+                                Menu {
+                                    ForEach(workTypes, id: \.self) { type in
+                                        Button(type) {
+                                            selectedWorkType = type
+                                        }
                                     }
+                                } label: {
+                                    HStack {
+                                        Text(selectedWorkType.isEmpty ? "Select" : selectedWorkType)
+                                            .foregroundColor(.black)
+                                            .fontWeight(.light)
+                                        Spacer()
+                                        Image(systemName: "chevron.down")
+                                            .foregroundColor(.gray)
+                                    }
+                                    .padding()
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 6)
+                                            .stroke(Color.gray.opacity(0.4), lineWidth: 1)
+                                    )
                                 }
-                            } label: {
-                                HStack {
-                                    Text(selectedWorkType.isEmpty ? "Select" : selectedWorkType)
-                                        .foregroundColor(.black)
-                                        .fontWeight(.light)
-                                    Spacer()
-                                    Image(systemName: "chevron.down")
-                                        .foregroundColor(.gray)
-                                }
-                                .padding()
-                                .background(
-                                    RoundedRectangle(cornerRadius: 6)
-                                        .stroke(Color.gray.opacity(0.4), lineWidth: 1)
-                                )
+                            }
+
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text("REMARKS")
+                                    .font(.caption)
+                                    .foregroundColor(.gray)
+
+                                TextField("Type.....", text: $remarks)
+                                    .padding()
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 6)
+                                            .stroke(Color.gray.opacity(0.4), lineWidth: 1)
+                                    )
+                            }
+
+                            Spacer()
+
+                            CustomBtn(title: "SUBMIT", height: 50, backgroundColor: Color.appPrimary) {
+                                print("Submitted with: \(selectedWorkType), \(remarks)")
+                                showSheet = false
                             }
                         }
-                        
-                        VStack(alignment: .leading, spacing: 6) { // Remarks TextField
-                            Text("REMARKS")
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                            
-                            TextField("Type.....", text: $remarks)
-                                .padding()
-                                .background(
-                                    RoundedRectangle(cornerRadius: 6)
-                                        .stroke(Color.gray.opacity(0.4), lineWidth: 1)
-                                )
-                        }
-                        Spacer()
-                        CustomBtn(title: "SUBMIT", height: 50, backgroundColor: Color.appPrimary) {
-                            print("Submitted with: \(selectedWorkType), \(remarks)")
-                            showSheet = false
-                        }
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 400)
+                        .background(Color.white)
+                        .cornerRadius(40, corners: [.topLeft, .topRight])
+                        .transition(.move(edge: .bottom))
+                        .animation(.spring(), value: showSheet)
+                        .ignoresSafeArea(edges: .bottom)
+
+                        Circle()
+                            .fill(Color.appPrimary) // Blue background instead of white (optional)
+                            .frame(width: 80, height: 80)
+                            .overlay(
+                                Image("Group 17")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 40, height: 40)
+                                    .foregroundColor(.white) // if you want the icon white
+                            )
+                            .shadow(radius: 4)
+                            .offset(y: -40)
                     }
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 400)
-                    .background(Color.white)
-                    .cornerRadius(40, corners: [.topLeft, .topRight])
-                    .transition(.move(edge: .bottom))
-                    .animation(.spring(), value: showSheet)
-                    .ignoresSafeArea(edges: .bottom)
+                    .background(Color.black)
                 }
-            }
-        }
-        .onAppear {
-            Task {
-                await viewModel.getWorkTypesData(sf: sf_code, div: division_code)
+                //.background(.blue)
             }
         }
     }
+
+
 }
 
 #Preview {

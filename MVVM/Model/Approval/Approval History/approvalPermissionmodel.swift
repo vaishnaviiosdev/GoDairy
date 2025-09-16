@@ -7,7 +7,9 @@
 
 import Foundation
 
-struct approvalPermissionDataResponse: Codable {
+struct approvalPermissionDataResponse: Codable, Identifiable {
+    let id = UUID().uuidString
+    
     let Sf_Code: String
     let SFNm: String
     let Permissiondate: String

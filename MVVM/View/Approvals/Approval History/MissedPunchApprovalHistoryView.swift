@@ -1,42 +1,41 @@
 //
-//  PermissionApprovalView.swift
+//  MissedPunchApprovalView.swift
 //  GoDairy
 //
-//  Created by San eforce on 12/09/25.
+//  Created by San eforce on 16/09/25.
 //
 
 import SwiftUI
 
-struct PermissionApprovalView: View {
+struct MissedPunchApprovalHistoryView: View {
     
-    @StateObject var PermissionApprovalModel = permissionApprovalViewModel()
-    
+    @StateObject var missedPunchApprovalHistoryVM = missedPunchApprovalHistoryViewModel()
     var body: some View {
         NavigationStack {
             VStack {
                 homeBar(frameSize: 40)
                 ScrollView {
-                    PermissionApprovalStatusCard(title: "PERMISSION STATUS", Model: PermissionApprovalModel)
+                    missedPunchApprovalStatusCard(title: "MISSED PUNCH", Model: missedPunchApprovalHistoryVM)
                 }
                 .padding(5)
             }
             .task {
-                await PermissionApprovalModel.fetchapprovalPermissionData()
+                await missedPunchApprovalHistoryVM.fetchMissedPunchHistorydata()
             }
         }
         .navigationBarBackButtonHidden(true)
     }
 }
 
-struct PermissionApprovalStatusCard: View {
+struct missedPunchApprovalStatusCard: View {
     let title: String
-    @ObservedObject var Model: permissionApprovalViewModel
+    @ObservedObject var Model: missedPunchApprovalHistoryViewModel
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             titleCard(title: title, frameHeight: 40, fontSize: 14)
             
-            PermissionApprovalStatusList(Model: Model)
+            missedPunchApprovalStatusList(Model: Model)
         }
         .background(Color.backgroundColour)
         .cornerRadius(12)
@@ -44,14 +43,14 @@ struct PermissionApprovalStatusCard: View {
     }
 }
 
-struct PermissionApprovalStatusList: View {
-    @ObservedObject var Model: permissionApprovalViewModel
+struct missedPunchApprovalStatusList: View {
+    @ObservedObject var Model: missedPunchApprovalHistoryViewModel
         
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             LazyVStack(spacing: 20) {
-                ForEach(Model.permissionApprovalData) { item in
-                    PermissionApprovalCardDataList(item: item)
+                ForEach(Model.MP_ApprovalHistoryData) { item in
+                    missedPunchApprovalCardDataList(item: item)
                 }
             }
         }
@@ -59,8 +58,8 @@ struct PermissionApprovalStatusList: View {
     }
 }
 
-struct PermissionApprovalCardDataList: View {
-    let item: approvalPermissionDataResponse
+struct missedPunchApprovalCardDataList: View {
+    let item: approvalMissedPunchModel
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -83,13 +82,13 @@ struct PermissionApprovalCardDataList: View {
                 .foregroundColor(Color(cssRGB: item.StusClr) ?? .gray)
             
             HStack {
-                Text(item.Permissiondate)
+                Text(item.Missed_punch_date)
                     .font(.system(size: 12, weight: .medium))
                     .foregroundColor(.black)
                 
                 Spacer()
                 
-                Text(item.PStatus)
+                Text(item.MPStatus)
                     .font(.system(size: 12, weight: .bold))
                     .padding(.horizontal, 10)
                     .padding(.vertical, 5)
@@ -103,20 +102,28 @@ struct PermissionApprovalCardDataList: View {
     private var shiftAndReason: some View {
         VStack(alignment: .leading, spacing: 12) {
             
+            VStack(alignment: .leading, spacing: 2) {
+                Text("SHIFT / ONDUTY")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+                Text(item.Shift_Name)
+                    .font(.system(size: 14, weight: .semibold))
+            }
+            
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("TYPE")
+                    Text("IN TIME")
                         .font(.caption)
                         .foregroundColor(.gray)
-                    Text("\(item.FromTime) to \(item.ToTime)")
+                    Text(item.Checkin_Time)
                         .font(.system(size: 14, weight: .semibold))
                 }
                 Spacer()
                 VStack(alignment: .trailing, spacing: 2) {
-                    Text("HOURS")
+                    Text("OUT TIME")
                         .font(.caption)
                         .foregroundColor(.gray)
-                    Text(item.Noof_hours)
+                    Text(item.Checkout_Tme)
                         .font(.system(size: 14, weight: .semibold))
                 }
             }
@@ -133,16 +140,16 @@ struct PermissionApprovalCardDataList: View {
     
     private var appliedAndStatus: some View {
         HStack {
-            Text("Applied: \(item.Created_Date)")
+            Text("Applied: \(item.Submission_date)")
             Spacer()
             
-            switch item.Approval_Flag {
-            case 0:
-                Text("Approved: \(item.Approveddate)")
-            case 1:
-                Text("Rejected: \(item.Approveddate)")
+            switch item.Missed_punch_Flag {
+            case 2:
+                Text("Approved: \(item.Rejectdate)")
+            case 3:
+                Text("Rejected: \(item.Rejectdate)")
             default:
-                Text("Updated: \(item.Approveddate)")
+                Text("Updated: \(item.Rejectdate)")
             }
         }
         .font(.system(size: 14, weight: .bold))
@@ -151,5 +158,5 @@ struct PermissionApprovalCardDataList: View {
 }
 
 #Preview {
-    PermissionApprovalView()
+    MissedPunchApprovalHistoryView()
 }

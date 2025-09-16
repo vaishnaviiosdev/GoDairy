@@ -8,7 +8,6 @@
 import Foundation
 
 struct missedApprovalDataResponse: Codable {
-    //var id: Int { Sl_No }
     let Sf_Code: String
     let Sl_No: Int
     let mobilenumber: String

@@ -85,19 +85,6 @@ struct MissedApprovalRow: View {
                     .cornerRadius(6)
                 }
             .frame(maxWidth: .infinity, alignment: .trailing)
-
-//            Button(action: {
-//                print("View tapped for \(item.Sf_name)")
-//            }) {
-//                Text("View")
-//                    .font(.system(size: 13, weight: .bold))
-//                    .foregroundColor(.white)
-//                    .frame(height: 30)
-//                    .frame(maxWidth: .infinity)
-//                    .background(colorData.shared.appPrimary_Button)
-//                    .cornerRadius(6)
-//            }
-//            .frame(maxWidth: .infinity, alignment: .trailing)
         }
         .padding(.horizontal, 10)
         .padding(.vertical, 8)
