@@ -56,11 +56,19 @@ let leaveCancelStatus_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DB
 
 //Dashboard
 let myDayPlanCheck_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "desig=MGR&divisionCode=\(division_code)&Sf_code=\(sf_code)&axn=check%2Fmydayplan&Date=\(Date())%2014%3A46%3A13"
- 
+
+
+
 let myDayPlanSave_Url = APIClient.shared.New_DBUrl + APIClient.shared.db_new_activity1 + "State_Code=1&desig=MGR&divisionCode=\(division_code)&axn=save/dayplandynamic&sfCode=\(sf_code)"
 
 //My Approval
 let missedPunchApproval_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=vwmissedpunch"
+let leaveApproval_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=vwLeave"
+//let leaveApproval_ApprovalUrl = 
+
+
+//
+
 
 //Approval History
 let permissionHistoryApproval_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "AMod=1&divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=GetPermission_Status"

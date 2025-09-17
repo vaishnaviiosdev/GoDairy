@@ -12,6 +12,7 @@ struct DashboardView: View {
     @State private var currentTab:Int = 0
     @State private var showLogoutAlert = false
     @State private var goToDashboard = false
+    @State private var showSheet: Bool = true
     @State private var showDayPlan = false  // overlay state
     
     var body: some View {
@@ -53,7 +54,7 @@ struct DashboardView: View {
                     
                     VStack {
                         Spacer()
-                        DayPlanView()
+                        DayPlanView(showSheet: $showDayPlan)
                             .frame(maxWidth: .infinity, maxHeight: 400) // height adjust
                             .background(Color.white)
                             .cornerRadius(20, corners: [.topLeft, .topRight])
@@ -104,6 +105,11 @@ struct DashboardHeader: View {
         .padding()
         .alert("Are you sure you want to logout?", isPresented: $showLogoutAlert) {
             Button("Yes", role: .destructive) {
+                UserDefaults.standard.removeObject(forKey: "Sf_code")
+                UserDefaults.standard.removeObject(forKey: "Division_Code")
+                UserDefaults.standard.removeObject(forKey: "Sf_Name")
+                UserDefaults.standard.removeObject(forKey: "sf_Designation_Short_Name")
+                
                 isLoggedIn = false
                 router.root = .login
             }

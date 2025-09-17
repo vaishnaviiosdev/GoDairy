@@ -1,13 +1,14 @@
-
-//  MissedPunchApproval.swift
+//
+//  LeaveApprovalView.swift
 //  GoDairy
 //
-//  Created by San eforce on 11/09/25.
+//  Created by San eforce on 17/09/25.
+//
 
 import SwiftUI
 
-struct MissedPunchApprovalView: View {
-    @StateObject var MissedPunchModel = MissedApprovalViewModel()
+struct LeaveApprovalView: View {
+    @StateObject var LeaveApprovalModel = LeaveApprovalViewModel()
     
     var body: some View {
         NavigationStack {
@@ -16,34 +17,35 @@ struct MissedPunchApprovalView: View {
                     .padding(.bottom, 5)
                 
                 VStack(alignment: .leading, spacing: 0) {
-                    titleCard(title: "MISSED PUNCH APPROVAL", frameHeight: 40, fontSize: 14)
+                    titleCard(title: "LEAVE APPROVAL", frameHeight: 40, fontSize: 14)
                 }
                 .background(Color.white)
                 .cornerRadius(12)
                 .padding(.horizontal, 8)
                 
-                MissedApprovalHeader()
+                LeaveApprovalHeader()
                 
                 ScrollView {
                     LazyVStack(spacing: 10) {
-                        ForEach(MissedPunchModel.MissedApprovaldata, id: \.Sl_No) { item in
-                            MissedApprovalRow(item: item)
+                        ForEach(LeaveApprovalModel.leaveApprovalData) { item in
+                            LeaveApprovalRow(item: item)
                         }
                     }
                 }
             }
             .task {
-                await MissedPunchModel.fetchMissedApprovalData()
+                await LeaveApprovalModel.fetchLeaveApprovalData()
             }
         }
         .navigationBarBackButtonHidden(true)
     }
 }
 
-struct MissedApprovalHeader: View {
+struct LeaveApprovalHeader: View {
     let headers = [
         ("Name", Alignment.leading),
         ("Applied date", Alignment.leading),
+        ("Leave Days", Alignment.trailing),
         ("Click here", Alignment.trailing)
     ]
     var body: some View {
@@ -60,23 +62,16 @@ struct MissedApprovalHeader: View {
     }
 }
 
-// MARK: - Row View
-struct MissedApprovalRow: View {
-    let item: missedApprovalDataResponse
+struct LeaveApprovalRow: View {
+    let item: leaveApprovalDataResponse
 
     var body: some View {
         HStack {
-            TextColumn(text: item.Sf_name, alignment: .leading)
-//            Text(item.Sf_name)
-//                .font(.system(size: 13))
-//                .frame(maxWidth: .infinity, alignment: .leading)
-            TextColumn(text: item.AppliedDate, alignment: .center)
+            TextColumn(text: item.FieldForceName, alignment: .leading)
+            TextColumn(text: item.Applieddate, alignment: .leading)
+            TextColumn(text: "\(item.LeaveDays)", alignment: .center)
             
-//            Text(item.AppliedDate)
-//                .font(.system(size: 13))
-//                .frame(maxWidth: .infinity, alignment: .center)
-            
-            NavigationLink(destination: MissedPunchApprovalDetailsView(item: item)) {
+            NavigationLink(destination: LeaveApprovalDetailsView(item: item)) {
                 Text("View")
                     .font(.system(size: 13, weight: .bold))
                     .foregroundColor(.white)
@@ -92,6 +87,20 @@ struct MissedApprovalRow: View {
     }
 }
 
+struct TextColumn: View {
+    let text: String
+    let alignment: Alignment
+
+    var body: some View {
+        Text(text)
+            .font(.system(size: 13))
+            .foregroundColor(.gray)
+            .fontWeight(.medium)
+            .frame(maxWidth: .infinity, alignment: alignment)
+    }
+}
+
+
 #Preview {
-    MissedPunchApprovalView()
+    LeaveApprovalView()
 }

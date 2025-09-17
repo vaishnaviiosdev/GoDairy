@@ -8,14 +8,32 @@
 import SwiftUI
 
 struct forgetpass: View {
-    
+    @State private var showingSheet = false
     @State private var login: String = ""
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-        TextField("",text: $login)
-            .font(.system(size: 13,weight: .thin))
-            .foregroundColor(.secondary)
-            .frame(height: 15,alignment: .leading)
+        Button("Show Sheet") {
+            showingSheet.toggle()
+        }
+        .sheet(isPresented: $showingSheet) {
+            CenteredImageView()
+        }
+    }
+}
+
+struct CenteredImageView: View {
+    var body: some View {
+        VStack {
+            Spacer()
+            HStack {
+                Spacer()
+                Image("Group 17")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 200, height: 200) // Adjust size as needed
+                Spacer()
+            }
+            Spacer()
+        }
     }
 }
 

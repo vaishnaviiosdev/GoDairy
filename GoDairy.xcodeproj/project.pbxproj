@@ -55,6 +55,10 @@
 		38C564022C637D5300153761 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38C564012C637D5300153761 /* Assets.xcassets */; };
 		38C564052C637D5300153761 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38C564042C637D5300153761 /* Preview Assets.xcassets */; };
 		38C576582CDC8A3E005CF1B6 /* forgetpass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C576572CDC8A3E005CF1B6 /* forgetpass.swift */; };
+		38C7FB042E7ACA3A001CA81D /* leaveApprovalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C7FB032E7ACA2E001CA81D /* leaveApprovalModel.swift */; };
+		38C7FB062E7AD2BB001CA81D /* LeaveApprovalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C7FB052E7AD2A7001CA81D /* LeaveApprovalViewModel.swift */; };
+		38C7FB082E7ADD71001CA81D /* LeaveApprovalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C7FB072E7ADD71001CA81D /* LeaveApprovalView.swift */; };
+		38C7FB0A2E7AE3CC001CA81D /* LeaveApprovalDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C7FB092E7AE3CC001CA81D /* LeaveApprovalDetailsView.swift */; };
 		38C83D552E5852A600354AFD /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C83D542E5852A600354AFD /* DashboardView.swift */; };
 		38CA96BF2E6572CF000532A5 /* AdvanceRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA96BE2E6572CF000532A5 /* AdvanceRequestModel.swift */; };
 		38CA96C12E6573C0000532A5 /* AdvanceRequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CA96C02E6573B3000532A5 /* AdvanceRequestViewModel.swift */; };
@@ -141,6 +145,10 @@
 		38C564012C637D5300153761 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38C564042C637D5300153761 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		38C576572CDC8A3E005CF1B6 /* forgetpass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = forgetpass.swift; sourceTree = "<group>"; };
+		38C7FB032E7ACA2E001CA81D /* leaveApprovalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = leaveApprovalModel.swift; sourceTree = "<group>"; };
+		38C7FB052E7AD2A7001CA81D /* LeaveApprovalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveApprovalViewModel.swift; sourceTree = "<group>"; };
+		38C7FB072E7ADD71001CA81D /* LeaveApprovalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveApprovalView.swift; sourceTree = "<group>"; };
+		38C7FB092E7AE3CC001CA81D /* LeaveApprovalDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveApprovalDetailsView.swift; sourceTree = "<group>"; };
 		38C83D542E5852A600354AFD /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		38CA96BE2E6572CF000532A5 /* AdvanceRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvanceRequestModel.swift; sourceTree = "<group>"; };
 		38CA96C02E6573B3000532A5 /* AdvanceRequestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvanceRequestViewModel.swift; sourceTree = "<group>"; };
@@ -416,6 +424,7 @@
 		38AF3EDC2E74342700F76C5D /* My Approvals */ = {
 			isa = PBXGroup;
 			children = (
+				38C7FB032E7ACA2E001CA81D /* leaveApprovalModel.swift */,
 				38AF3ECE2E73ECE300F76C5D /* missedApprovalModel.swift */,
 			);
 			path = "My Approvals";
@@ -424,6 +433,7 @@
 		38AF3EDD2E74371700F76C5D /* My Approvals */ = {
 			isa = PBXGroup;
 			children = (
+				38C7FB052E7AD2A7001CA81D /* LeaveApprovalViewModel.swift */,
 				38AF3ED12E73EF7A00F76C5D /* MissedApprovalViewModel.swift */,
 			);
 			path = "My Approvals";
@@ -487,6 +497,8 @@
 			children = (
 				38BD70942E72E72600AFDA7C /* MissedPunchApprovalView.swift */,
 				38AF3ED32E74139800F76C5D /* MissedPunchApprovalDetailsView.swift */,
+				38C7FB072E7ADD71001CA81D /* LeaveApprovalView.swift */,
+				38C7FB092E7AE3CC001CA81D /* LeaveApprovalDetailsView.swift */,
 			);
 			path = "My Approvals";
 			sourceTree = "<group>";
@@ -704,6 +716,7 @@
 				38D19F072E66AD7C00399314 /* PermissionRequestView.swift in Sources */,
 				38CDF9DB2E79711E00085DF6 /* MissedPunchApprovalHistoryView.swift in Sources */,
 				38BD70922E72DFAB00AFDA7C /* ApprovalMainView.swift in Sources */,
+				38C7FB042E7ACA3A001CA81D /* leaveApprovalModel.swift in Sources */,
 				38AF3ED22E73EF8E00F76C5D /* MissedApprovalViewModel.swift in Sources */,
 				38EA2C032E5C712900428C3C /* LeaveRequestView.swift in Sources */,
 				38C576582CDC8A3E005CF1B6 /* forgetpass.swift in Sources */,
@@ -715,6 +728,7 @@
 				38BD708F2E72902F00AFDA7C /* ActivityDashboardView.swift in Sources */,
 				3F67B5BE2CA7DA5000A1BCB7 /* APIClient.swift in Sources */,
 				38CDF9D72E7967B500085DF6 /* approvalMissedPunchModel.swift in Sources */,
+				38C7FB062E7AD2BB001CA81D /* LeaveApprovalViewModel.swift in Sources */,
 				385EDAF02E54521E003F7AD0 /* PrivacyPolicyView.swift in Sources */,
 				38CA96C12E6573C0000532A5 /* AdvanceRequestViewModel.swift in Sources */,
 				38D735B22E5342B800197EA1 /* Constant.swift in Sources */,
@@ -724,12 +738,14 @@
 				38BC790B2E702F6B000A784A /* weekOffModel.swift in Sources */,
 				385ACE1D2E6AC86C0046FE7D /* WeekOffModel.swift in Sources */,
 				38A9D4CF2E6EE20C009C70D2 /* leaveCancelModel.swift in Sources */,
+				38C7FB082E7ADD71001CA81D /* LeaveApprovalView.swift in Sources */,
 				38AF3ECF2E73ED0300F76C5D /* missedApprovalModel.swift in Sources */,
 				385ACE0F2E6AAA370046FE7D /* WeekOffEntryView.swift in Sources */,
 				38A9D4D52E6EE84B009C70D2 /* LeaveCancelView.swift in Sources */,
 				38AF3EE02E74375A00F76C5D /* permissionApprovalViewModel.swift in Sources */,
 				38AF3ED72E742DDA00F76C5D /* PermissionApprovalView.swift in Sources */,
 				385ACE1F2E6AC98A0046FE7D /* WeeklyOffViewModel.swift in Sources */,
+				38C7FB0A2E7AE3CC001CA81D /* LeaveApprovalDetailsView.swift in Sources */,
 				38A7A1382E56E56D006240D1 /* SplashScreenView.swift in Sources */,
 				38AAD9D12CF6DEB0005ABC2D /* MapLocation.swift in Sources */,
 				38D19F092E66E5A500399314 /* PermissionRequestModel.swift in Sources */,

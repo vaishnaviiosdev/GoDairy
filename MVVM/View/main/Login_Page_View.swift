@@ -187,6 +187,7 @@ struct SignINbutton: View {
             if response.success == true, let user = response.data?.first {
                 UserDefaults.standard.set(user.sfCode, forKey: "Sf_code")
                 print("The SF Code is \(UserDefaults.standard.string(forKey: "Sf_code") ?? "")")
+                print("The Ukey is \(Ukey)")
                 UserDefaults.standard.set(user.divisionCode, forKey: "Division_Code")
                 UserDefaults.standard.set(user.sfName, forKey: "Sf_Name")
                 UserDefaults.standard.set(user.sfDesignation, forKey: "sf_Designation_Short_Name")
