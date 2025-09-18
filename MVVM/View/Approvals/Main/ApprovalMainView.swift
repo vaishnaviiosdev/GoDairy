@@ -21,8 +21,10 @@ struct ApprovalMainView: View {
     ]
     
     private let approvalHistoryItems: [(title: String, destination: AnyView)] = [
-        ("Advance Request",AnyView(forgetpass())),
-        ("Leave",AnyView(forgetpass())),
+
+        ("Advance Request",AnyView(LeaveStatusView())),
+        ("Leave",AnyView(LeaveApprovalHistoryView())),
+
         ("Permission",AnyView(PermissionApprovalView())),
         ("Missed Punch",AnyView(MissedPunchApprovalHistoryView())),
         ("Travel Allowance",AnyView(forgetpass())),
