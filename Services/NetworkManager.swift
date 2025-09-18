@@ -16,6 +16,8 @@ class NetworkManager {
         guard let url = URL(string: urlString) else {
             throw URLError(.badURL)
         }
+        
+        print(url)
 
         let (data, response) = try await URLSession.shared.data(from: url)
         print("The response of the fetchData is \(response)")//qad-801090

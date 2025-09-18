@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		07E32C68A0641E6220EA5C56 /* Pods_GoDairy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17F6C07366FD3E932DB09DFA /* Pods_GoDairy.framework */; };
+		1505FEEB2E7A8B4300A4E033 /* LeaveApprovalHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1505FEEA2E7A8B4300A4E033 /* LeaveApprovalHistoryView.swift */; };
+		1505FEED2E7A8CAF00A4E033 /* LeaveApprovalHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1505FEEC2E7A8CAF00A4E033 /* LeaveApprovalHistoryViewModel.swift */; };
+		1505FEEF2E7A8E6F00A4E033 /* LeaveApprovalHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1505FEEE2E7A8E6F00A4E033 /* LeaveApprovalHistoryModel.swift */; };
+		1505FEF12E7AEAB900A4E033 /* AdvanceApprovalHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1505FEF02E7AEAB900A4E033 /* AdvanceApprovalHistoryView.swift */; };
 		381CCF842CE5C41900159560 /* MyDayPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381CCF832CE5C41900159560 /* MyDayPlan.swift */; };
 		385ACE0F2E6AAA370046FE7D /* WeekOffEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385ACE0E2E6AAA370046FE7D /* WeekOffEntryView.swift */; };
 		385ACE1D2E6AC86C0046FE7D /* WeekOffModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385ACE1C2E6AC8550046FE7D /* WeekOffModel.swift */; };
@@ -92,6 +96,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1505FEEA2E7A8B4300A4E033 /* LeaveApprovalHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveApprovalHistoryView.swift; sourceTree = "<group>"; };
+		1505FEEC2E7A8CAF00A4E033 /* LeaveApprovalHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveApprovalHistoryViewModel.swift; sourceTree = "<group>"; };
+		1505FEEE2E7A8E6F00A4E033 /* LeaveApprovalHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveApprovalHistoryModel.swift; sourceTree = "<group>"; };
+		1505FEF02E7AEAB900A4E033 /* AdvanceApprovalHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvanceApprovalHistoryView.swift; sourceTree = "<group>"; };
 		17F6C07366FD3E932DB09DFA /* Pods_GoDairy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoDairy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		381CCF832CE5C41900159560 /* MyDayPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDayPlan.swift; sourceTree = "<group>"; };
 		385ACE0E2E6AAA370046FE7D /* WeekOffEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekOffEntryView.swift; sourceTree = "<group>"; };
@@ -400,6 +408,8 @@
 			children = (
 				38AF3ED62E742DDA00F76C5D /* PermissionApprovalView.swift */,
 				38CDF9DA2E79711E00085DF6 /* MissedPunchApprovalHistoryView.swift */,
+				1505FEEA2E7A8B4300A4E033 /* LeaveApprovalHistoryView.swift */,
+				1505FEF02E7AEAB900A4E033 /* AdvanceApprovalHistoryView.swift */,
 			);
 			path = "Approval History";
 			sourceTree = "<group>";
@@ -409,6 +419,7 @@
 			children = (
 				38CDF9D62E7967A800085DF6 /* approvalMissedPunchModel.swift */,
 				38AF3ED92E74340800F76C5D /* approvalPermissionmodel.swift */,
+				1505FEEE2E7A8E6F00A4E033 /* LeaveApprovalHistoryModel.swift */,
 			);
 			path = "Approval History";
 			sourceTree = "<group>";
@@ -434,6 +445,7 @@
 			children = (
 				38CDF9D82E796B5B00085DF6 /* missedPunchApprovalHistoryViewModel.swift */,
 				38AF3EDF2E74374200F76C5D /* permissionApprovalViewModel.swift */,
+				1505FEEC2E7A8CAF00A4E033 /* LeaveApprovalHistoryViewModel.swift */,
 			);
 			path = "Approval History";
 			sourceTree = "<group>";
@@ -679,9 +691,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-GoDairy/Pods-GoDairy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-GoDairy/Pods-GoDairy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -720,6 +736,7 @@
 				38D735B22E5342B800197EA1 /* Constant.swift in Sources */,
 				38D997032E696E65005DD972 /* MissedPunchView.swift in Sources */,
 				38F1BA572CB1392B00D4DFF2 /* Gate in:out.swift in Sources */,
+				1505FEED2E7A8CAF00A4E033 /* LeaveApprovalHistoryViewModel.swift in Sources */,
 				38AB43232E598CE700D33B3A /* MyDayPlanModel.swift in Sources */,
 				38BC790B2E702F6B000A784A /* weekOffModel.swift in Sources */,
 				385ACE1D2E6AC86C0046FE7D /* WeekOffModel.swift in Sources */,
@@ -734,6 +751,7 @@
 				38AAD9D12CF6DEB0005ABC2D /* MapLocation.swift in Sources */,
 				38D19F092E66E5A500399314 /* PermissionRequestModel.swift in Sources */,
 				38AB2F002E6C515A007F3501 /* LeaveStatusView.swift in Sources */,
+				1505FEEF2E7A8E6F00A4E033 /* LeaveApprovalHistoryModel.swift in Sources */,
 				38A9D4CB2E6ED702009C70D2 /* missedPunchModel.swift in Sources */,
 				38A9D4D12E6EE52B009C70D2 /* leaveCancelViewmodel.swift in Sources */,
 				38D997052E6974D5005DD972 /* MissedPunchModel.swift in Sources */,
@@ -741,6 +759,7 @@
 				38BD70952E72E72600AFDA7C /* MissedPunchApprovalView.swift in Sources */,
 				38BC79072E6FF03D000A784A /* weeklyOffView.swift in Sources */,
 				38D735AC2E533E0D00197EA1 /* DataViewModel.swift in Sources */,
+				1505FEF12E7AEAB900A4E033 /* AdvanceApprovalHistoryView.swift in Sources */,
 				38D7DB9D2CEDFCFF003A2149 /* checkInDashboard.swift in Sources */,
 				38EB916F2E60710800077669 /* LeaveRequestDataResponse.swift in Sources */,
 				38C564002C637D5200153761 /* ContentView.swift in Sources */,
@@ -767,6 +786,7 @@
 				38F1BA522CB138C300D4DFF2 /* Todayview.swift in Sources */,
 				38F1BA542CB138DC00D4DFF2 /* Monthlyview.swift in Sources */,
 				38D997072E69777E005DD972 /* MissedPunchViewModel.swift in Sources */,
+				1505FEEB2E7A8B4300A4E033 /* LeaveApprovalHistoryView.swift in Sources */,
 				38AB79F92E55939D003F4214 /* PermissionManager.swift in Sources */,
 				38BB2EC92CE711650002BAC6 /* popup.swift in Sources */,
 				38D19F0B2E66E85D00399314 /* PermissionRequestViewModel.swift in Sources */,
