@@ -64,10 +64,12 @@ let myDayPlanSave_Url = APIClient.shared.New_DBUrl + APIClient.shared.db_new_act
 //My Approval
 let missedPunchApproval_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=vwmissedpunch"
 let leaveApproval_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=vwLeave"
-//let leaveApproval_ApprovalUrl = 
+let leaveApproval_ApprovalUrl = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "State_Code=1&desig=MGR&divisionCode=\(division_code)&Ukey=\(Ukey)&To_Date=:\("")&axn=dcr/save&Sf_Code=\(sf_code)&From_Date=:\("")&No_of_Days=:\("")&sfCode=\(sf_code)&leaveid=522"
+let leaveApproval_RejectUrl = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "State_Code=1&desig=MGR&divisionCode=\(division_code)&Ukey=\(Ukey)&To_Date=:\("")&axn=dcr/save&Sf_Code=\(sf_code)&From_Date=:\("")&No_of_Days=:\("")&sfCode=\(sf_code)&leaveid=524"
 
 
-//
+
+//http://qa.godairy.in/server/Db_v300.php?State_Code=1&desig=MGR&divisionCode=1&Ukey=EKMGR80946553665&To_Date=:22/09/2025&axn=dcr/save&Sf_Code=MGR9366&From_Date=:22/09/2025&No_of_Days=:1.0&sfCode=MGR80&leaveid=524
 
 
 //Approval History
