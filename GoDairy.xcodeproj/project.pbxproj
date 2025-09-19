@@ -74,6 +74,7 @@
 		38D19F072E66AD7C00399314 /* PermissionRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D19F062E66AD7B00399314 /* PermissionRequestView.swift */; };
 		38D19F092E66E5A500399314 /* PermissionRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D19F082E66E59A00399314 /* PermissionRequestModel.swift */; };
 		38D19F0B2E66E85D00399314 /* PermissionRequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D19F0A2E66E84700399314 /* PermissionRequestViewModel.swift */; };
+		38D365482E7D71040068CA01 /* dashboardViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D365472E7D70F70068CA01 /* dashboardViewmodel.swift */; };
 		38D51F7B2CF98A5A004292B4 /* Cameraview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D51F7A2CF98A5A004292B4 /* Cameraview.swift */; };
 		38D735AA2E53383A00197EA1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38D735A92E53383A00197EA1 /* Launch Screen.storyboard */; };
 		38D735AC2E533E0D00197EA1 /* DataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D735AB2E533DEA00197EA1 /* DataViewModel.swift */; };
@@ -168,6 +169,7 @@
 		38D19F062E66AD7B00399314 /* PermissionRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionRequestView.swift; sourceTree = "<group>"; };
 		38D19F082E66E59A00399314 /* PermissionRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionRequestModel.swift; sourceTree = "<group>"; };
 		38D19F0A2E66E84700399314 /* PermissionRequestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionRequestViewModel.swift; sourceTree = "<group>"; };
+		38D365472E7D70F70068CA01 /* dashboardViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dashboardViewmodel.swift; sourceTree = "<group>"; };
 		38D51F7A2CF98A5A004292B4 /* Cameraview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cameraview.swift; sourceTree = "<group>"; };
 		38D735A92E53383A00197EA1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		38D735AB2E533DEA00197EA1 /* DataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewModel.swift; sourceTree = "<group>"; };
@@ -555,6 +557,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		38D365462E7D70EE0068CA01 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				38D365472E7D70F70068CA01 /* dashboardViewmodel.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
 		38D735A22E53275700197EA1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -584,6 +594,7 @@
 		38D735A42E53276900197EA1 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				38D365462E7D70EE0068CA01 /* Dashboard */,
 				38AF3ED02E73EF7200F76C5D /* Approval */,
 				38A9D4C72E6E9B6A009C70D2 /* status */,
 				385ACE1B2E6AC7ED0046FE7D /* main */,
@@ -729,6 +740,7 @@
 				38AB2F032E6C52C9007F3501 /* leaveStatusModel.swift in Sources */,
 				38EA2C012E5C686000428C3C /* AdvanceRequestView.swift in Sources */,
 				38BC79092E701F2C000A784A /* DaysSelectionView.swift in Sources */,
+				38D365482E7D71040068CA01 /* dashboardViewmodel.swift in Sources */,
 				38D19F072E66AD7C00399314 /* PermissionRequestView.swift in Sources */,
 				38CDF9DB2E79711E00085DF6 /* MissedPunchApprovalHistoryView.swift in Sources */,
 				38BD70922E72DFAB00AFDA7C /* ApprovalMainView.swift in Sources */,

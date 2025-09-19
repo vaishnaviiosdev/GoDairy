@@ -36,7 +36,8 @@ class LeaveApprovalViewModel: ObservableObject {
         print("The LeaveId is \(leave_Id)")
         
         let leaveApprovalEntry: [String: Any] = [
-            "Sf_Code": sf_code        ]
+            "Sf_Code": sf_code
+        ]
 
         // ✅ Wrap into array and `data`
         let orderedPayload: [[String: Any]] = [

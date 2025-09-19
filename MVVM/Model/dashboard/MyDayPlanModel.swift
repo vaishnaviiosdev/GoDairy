@@ -7,20 +7,12 @@
 
 import Foundation
 
-struct mydayplanDataResponse: Codable {
-    let id: Int?
-    let name: String?
-    let etabs: String?
-    let fwflg: String?
-    let place_involved: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case id = "id"
-        case name = "name"
-        case etabs = "ETabs"
-        case fwflg = "FWFlg"
-        case place_involved = "Place_Involved"
-    }
+struct mydayplanworkTypeResponse: Codable {
+    let id: Int
+    let name: String
+    let ETabs: String
+    let FWFlg: String
+    let Place_Involved: String
 }
 
 struct mydayPlanCheckResponse: Codable {
@@ -36,16 +28,8 @@ struct CheckDayPlanData: Codable {
     let sf_code: String
     let Cnt: Int
     let wtype: String
-    
-    enum CodingKeys: String, CodingKey {
-        case sf_code = "sf_code"
-        case Cnt = "Cnt"
-        case wtype = "wtype"
-    }
 }
 
-struct mydayPlanSaveResponse: Codable {
-    
-}
+
 
 

@@ -29,14 +29,31 @@ struct MissedPunchApprovalDetailsView: View {
                 ("Checkout time", item.Checkout_Tme)
             ],
             onApprove: {
-                await MissedPunchModel.PostmissedApprovedData(missedID: item.Sl_No)
+                await MissedPunchModel.PostmissedApprovedData(
+                    missedID: item.Sl_No
+                )
                 print("Missed Punch Model approved Successfully")
             },
             onReject: { reason in
-                await MissedPunchModel.PostmissedRejectData(missedID: item.Sl_No, reason: reason)
+                await MissedPunchModel.PostmissedRejectData(
+                    missedID: item.Sl_No,
+                    reason: reason
+                )
                 print("The reason is \(reason)")
             }
         )
+        .alert(MissedPunchModel.missedApprovedSuccessMsg,
+               isPresented: $MissedPunchModel.showmissedApprovedSaveAlert) {
+            Button("OK", role: .cancel) {
+                dismiss()
+            }
+        }
+        .alert(MissedPunchModel.missedRejectSuccessMsg,
+                isPresented: $MissedPunchModel.showmissedRejectSaveAlert) {
+            Button("OK", role: .cancel) {
+                dismiss()
+            }
+        }
     }
 }
 

@@ -22,8 +22,8 @@ struct ApprovalMainView: View {
     
     private let approvalHistoryItems: [(title: String, destination: AnyView)] = [
 //<<<<<<< HEAD
-        ("Advance Request",AnyView(forgetpass())),
-        ("Leave",AnyView(forgetpass())),
+//        ("Advance Request",AnyView(forgetpass())),
+//        ("Leave",AnyView(forgetpass())),
 //=======
         ("Advance Request",AnyView(LeaveStatusView())),
         ("Leave",AnyView(LeaveApprovalHistoryView())),
@@ -160,6 +160,28 @@ struct ApprovalButtons: View {
             return "Enter the Reason"
         }
         return nil
+    }
+}
+
+// MARK: - Save Button
+struct SaveButton: View {
+    var title: String = "SAVE"
+    var action: () -> Void
+    
+    var body: some View {
+        HStack {
+            Spacer()
+            Button(action: action) {
+                Text(title)
+                    .font(.system(size: 14, weight: .bold))
+                    .padding(.horizontal, 30)
+                    .padding(.vertical, 10)
+                    .background(colorData.shared.appPrimary_Button)
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
+            }
+            Spacer()
+        }
     }
 }
 

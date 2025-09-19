@@ -57,6 +57,10 @@ let leaveCancelStatus_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DB
 //Dashboard
 let myDayPlanCheck_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "desig=MGR&divisionCode=\(division_code)&Sf_code=\(sf_code)&axn=check%2Fmydayplan&Date=\(Date())%2014%3A46%3A13"
 
+//http://qa.godairy.in/server/Db_v300.php?desig=MGR&divisionCode=1&Sf_code=MGR93&axn=check%252Fmydayplan&Date=2025-09-19%2011:30:32%20+0000%252014%253A46%253A13
+
+//http://qa.godairy.in/server/Db_v300.php?desig=MGR&divisionCode=1&Sf_code=MGR80&axn=check%2Fmydayplan&Date=2024-12-27%2014%3A46%3A13
+
 
 
 let myDayPlanSave_Url = APIClient.shared.New_DBUrl + APIClient.shared.db_new_activity1 + "State_Code=1&desig=MGR&divisionCode=\(division_code)&axn=save/dayplandynamic&sfCode=\(sf_code)"

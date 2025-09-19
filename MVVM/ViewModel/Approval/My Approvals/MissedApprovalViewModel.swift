@@ -32,8 +32,6 @@ class MissedApprovalViewModel: ObservableObject {
     func PostmissedApprovedData(missedID: Int) async {
         let missedApproval_ApprovalUrl = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "State_Code=1&desig=MGR&divisionCode=\(division_code)&Ukey=\(Ukey)&axn=dcr/save&Missed_Id=\(missedID)&Sf_Code=\(sf_code)&sfCode=\(sf_code)"
         
-        //http://qa.godairy.in/server/Db_v300.php?State_Code=1&desig=MGR&divisionCode=1&Ukey=EKMGR80-628275897&axn=dcr/save&Missed_Id=693&Sf_Code=MGR9366&sfCode=MGR80
-        
         print("The missedId is \(missedID)")
         
         let missedApprovalEntry: [String: Any] = [
@@ -54,7 +52,7 @@ class MissedApprovalViewModel: ObservableObject {
             
             DispatchQueue.main.async {
                 self.missedApproveSubmit = response
-                self.missedApprovedSuccessMsg = "Leave Approved Successfully"
+                self.missedApprovedSuccessMsg = "Missed Punch Approved Successfully"
                 self.showmissedApprovedSaveAlert = true
             }
             print("✅ WeekOff Response: \(response)")
@@ -69,7 +67,7 @@ class MissedApprovalViewModel: ObservableObject {
     func PostmissedRejectData(missedID: Int, reason: String) async {
         let missedApproval_RejectUrl = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "State_Code=1&desig=MGR&divisionCode=\(division_code)&Ukey=\(Ukey)&axn=dcr/save&Missed_Id=\(missedID)&Sf_Code=\(sf_code)&sfCode=\(sf_code)"
         
-        print("The LeaveId is \(missedID)")
+        //http://qa.godairy.in/server/Db_v300.php?State_Code=1&desig=MGR&divisionCode=1&Ukey=EKMGR93-1758261564&axn=dcr/save&Missed_Id=
         
         let missedRejectedEntry: [String: Any] = [
             "Sf_Code": sf_code,
@@ -85,13 +83,17 @@ class MissedApprovalViewModel: ObservableObject {
             "data": orderedPayload
         ]
         
+        print("The Missed_Id is \(missedID)")
+        print("The missedApprovalReject_Url Url is \(missedApproval_RejectUrl)")
+        print("The missedReject Parameters is \(parameters)")
+        
         do {
             let response: missedApprovalRejectData = try await NetworkManager.shared.postFormData(urlString: missedApproval_RejectUrl, parameters: parameters, responseType: missedApprovalRejectData.self
             )
             
             DispatchQueue.main.async {
                 self.missedRejectSubmit = response
-                self.missedRejectSuccessMsg = "Leave Rejected Successfully"
+                self.missedRejectSuccessMsg = "Missed Punch Rejected Successfully"
                 self.showmissedRejectSaveAlert = true
             }
             print("✅ WeekOff Response: \(response)")

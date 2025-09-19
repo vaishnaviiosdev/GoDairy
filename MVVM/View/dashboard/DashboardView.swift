@@ -14,6 +14,7 @@ struct DashboardView: View {
     @State private var goToDashboard = false
     @State private var showSheet: Bool = true
     @State private var showDayPlan = false  // overlay state
+    @StateObject var dashboardVM = dashboardViewModel()
     
     var body: some View {
         ZStack {
@@ -43,7 +44,6 @@ struct DashboardView: View {
             // 🔹 Bottom Sheet Overlay
             if showDayPlan {
                 ZStack(alignment: .bottom) {
-                    // dim background
                     Color.black.opacity(0.4)
                         .ignoresSafeArea()
                         .onTapGesture {
@@ -67,6 +67,9 @@ struct DashboardView: View {
         }
         .padding(.bottom, 20.0)
         .navigationBarBackButtonHidden(true)
+        .task {
+            await dashboardVM.fetchDashboardData()
+        }
     }
 }
 
@@ -93,7 +96,6 @@ struct DashboardHeader: View {
             }
             Spacer()
             Button(action: {
-                //router.root = .login
                 showLogoutAlert = true
             }) {
                 Image("power")
@@ -109,7 +111,6 @@ struct DashboardHeader: View {
                 UserDefaults.standard.removeObject(forKey: "Division_Code")
                 UserDefaults.standard.removeObject(forKey: "Sf_Name")
                 UserDefaults.standard.removeObject(forKey: "sf_Designation_Short_Name")
-                
                 isLoggedIn = false
                 router.root = .login
             }
@@ -145,46 +146,6 @@ struct CheckInSection: View {
         .padding(.horizontal)
     }
 }
-
-// MARK: - CHECK IN SECTION
-//struct CheckInSection: View {
-//    @State private var showDayPlan = false
-//    @State private var btnTitle = "My Day Plan"
-//    
-//    var body: some View {
-//        ZStack {
-//            VStack(alignment: .leading, spacing: 12) {
-//                HStack {
-//                    Text("Let’s get to work")
-//                        .font(.system(size: 12, weight: .semibold))
-//                    Image("write")
-//                    Spacer()
-//                }
-//                CustomBtn (
-//                    title: btnTitle,
-//                    height: 50,
-//                    backgroundColor: Color.appPrimary
-//                ) {
-//                    withAnimation(.spring()) {
-//                        showDayPlan = true
-//                    }
-//                }
-//            }
-//            .padding(.horizontal)
-//        }
-//        .overlay(
-//            Group {
-//                if showDayPlan {
-//                    DayPlanView()
-//                        .frame(maxHeight: 450)
-//                        .background(Color.white)
-//                        .cornerRadius(20, corners: [.topLeft, .topRight])
-//                        .transition(.move(edge: .bottom))
-//                }
-//            }, alignment: .bottom
-//        )
-//    }
-//}
 
 // MARK: - CHECK IN BUTTON
 struct CheckInButton: View {
@@ -359,43 +320,6 @@ struct TabBar: View {
     }
 }
 
-// MARK: - EXPLORE MORE
-//struct ExploreMore: View {
-//    @State private var showRequestStatus = false
-//    
-//    let items: [(name: String, image: String, action: (() -> Void)?)] = [
-//        ("Request & Status", "request", { }),
-//        ("TA & claim", "ta&claim", nil),
-//        ("Activity", "activity", nil),
-//        ("GateIN", "Group 5", nil),
-//        ("Gate OUT", "Group", nil),
-//        ("TP", "calendar", nil),
-//        ("Extended Shift", "Group 5", nil),
-//        ("Approvals", "CS", nil)
-//    ]
-//    
-//    let columns = Array(repeating: GridItem(.flexible()), count: 3)
-//    
-//    var body: some View {
-//        LazyVGrid(columns: columns) {
-//            ForEach(items, id: \.name) { item in
-//                Button {
-//                    if item.name == "Request & Status" {
-//                        showRequestStatus = true
-//                    }
-//                    item.action?()
-//                } label: {
-//                    GridItemView(name: item.name, image: item.image)
-//                }
-//                .buttonStyle(.plain)
-//            }
-//        }
-//        .fullScreenCover(isPresented: $showRequestStatus) {
-//            RequestView()
-//        }
-//    }
-//}
-
 struct ExploreMore: View {
     @State private var showRequestStatus = false
     @State private var showTAClaim = false
@@ -455,7 +379,6 @@ struct GridItemView: View {
             
             Text(name)
                 .font(.system(size: 12))
-                // .lineLimit(1)
         }
         .frame(maxWidth: .infinity)
         .padding()

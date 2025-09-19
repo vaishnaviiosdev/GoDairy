@@ -22,6 +22,7 @@ class colorData {
     var appPrimary_Button = Color(red:54/255,green: 112/255,blue: 236/255)
     var acceptBtn = Color(red:18/255,green: 94/255,blue: 95/255)
     var rejectBtn = Color(red:172/255,green: 32/255,blue: 53/255)
+    var Cancel_Background = Color(red:172/255,green: 32/255,blue: 53/255)
 }
 
 extension Color {
