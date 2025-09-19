@@ -40,3 +40,20 @@ struct missedApprovalDataResponse: Codable {
         case EmpCode = "EmpCode"
     }
 }
+
+struct missedApprovalApprovalData: Codable {
+    let success: Bool
+    
+    enum CodingKeys: String, CodingKey {
+        case success = "success"
+    }
+}
+
+struct missedApprovalRejectData: Codable {
+    let success: Bool
+    
+    enum CodingKeys: String, CodingKey {
+        case success = "success"
+    }
+}
+

@@ -100,7 +100,6 @@ struct TextColumn: View {
     }
 }
 
-
 #Preview {
     LeaveApprovalView()
 }
