@@ -74,7 +74,7 @@ struct LeaveApprovalCardDataList: View {
             topRow
             Divider().background(.black)
             shiftAndReason
-          //  appliedAndStatus
+            appliedAndStatus
         }
         .padding(10)
         .background(RoundedRectangle(cornerRadius: 12).fill(Color.white))
@@ -115,7 +115,7 @@ struct LeaveApprovalCardDataList: View {
                     Text("TYPE")
                         .font(.caption)
                         .foregroundColor(.gray)
-                    Text(item.Reason)
+                    Text(item.Leave_Type)
                         .font(.system(size: 14, weight: .semibold))
                 }
                 Spacer()
@@ -137,24 +137,6 @@ struct LeaveApprovalCardDataList: View {
                     .font(.system(size: 14, weight: .semibold))
             }
             
-
-            HStack {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("TYPE")
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                    Text(item.Reason)
-                        .font(.system(size: 14, weight: .semibold))
-                }
-                Spacer()
-                VStack(alignment: .trailing, spacing: 2) {
-                    Text("DAYS")
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                    Text("\(item.No_of_Days)")
-                        .font(.system(size: 14, weight: .semibold))
-                }
-            }
         }
     }
     
@@ -163,13 +145,13 @@ struct LeaveApprovalCardDataList: View {
             Text("Applied: \(item.Created_Date)")
             Spacer()
             
-            switch item.showflag {
-            case "2":
-                Text("Approved: \(item.Created_Date)")
-            case "3":
-                Text("Rejected: \(item.Created_Date)")
+            switch item.Leave_Active_Flag {
+            case "0":
+                Text("Approved: \(item.LastUpdt_Date)")
+            case "1":
+                Text("Rejected: \(item.LastUpdt_Date)")
             default:
-                Text("Updated: \(item.Created_Date)")
+                Text("Updated: \(item.LastUpdt_Date)")
             }
         }
         .font(.system(size: 14, weight: .bold))

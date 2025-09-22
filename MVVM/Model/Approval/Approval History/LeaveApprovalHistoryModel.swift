@@ -46,5 +46,3 @@ class LeaveApprovalHistoryModel: Codable , Identifiable {
     }
 }
 
-
-//{"sf_code":"MGR9366","Leave_Id":"518","SFNm":"RAGU M","showflag":"1","Created_Date":"16-09-2025","cancelreason":"0","Reason":"shsh","Leave_Type":"Loss of Pay","From_Date":"17-09-2025","LastUpdt_Date":"17-09-2025","To_Date":"17-09-2025","No_of_Days":1,"LStatus":"Reject","StusClr":"rgb(255,0,0)  !important","Rejected_Reason":null,"Leave_Active_Flag":"1"}

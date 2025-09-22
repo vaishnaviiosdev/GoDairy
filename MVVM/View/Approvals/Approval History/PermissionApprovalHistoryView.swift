@@ -1,5 +1,5 @@
 //
-//  PermissionApprovalView.swift
+//  PermissionApprovalHistoryView.swift
 //  GoDairy
 //
 //  Created by San eforce on 12/09/25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PermissionApprovalView: View {
+struct PermissionApprovalHistoryView: View {
     
     @StateObject var PermissionApprovalModel = permissionApprovalViewModel()
     
