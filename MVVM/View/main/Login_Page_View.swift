@@ -118,6 +118,7 @@ struct SignINbutton: View {
         VStack {
             if isLoading {
                 ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle())
                     .scaleEffect(2)
                     .padding()
             }
@@ -202,7 +203,8 @@ struct SignINbutton: View {
                     toastManager.showToast(message: "Enter correct Password")
                 }
             }
-        } catch {
+        }
+        catch {
             print("Login error:", error.localizedDescription)
             await MainActor.run {
                 toastManager.showToast(message: "Something went wrong. Please try again.")

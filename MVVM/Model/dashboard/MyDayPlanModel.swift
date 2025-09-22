@@ -30,6 +30,11 @@ struct CheckDayPlanData: Codable {
     let wtype: String
 }
 
+struct SubmitDayPlanData: Codable {
+    let success: Bool?
+    let msg: String?
+}
+
 
 
 

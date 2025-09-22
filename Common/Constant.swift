@@ -57,12 +57,6 @@ let leaveCancelStatus_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DB
 //Dashboard
 let myDayPlanCheck_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "desig=MGR&divisionCode=\(division_code)&Sf_code=\(sf_code)&axn=check%2Fmydayplan&Date=\(Date())%2014%3A46%3A13"
 
-//http://qa.godairy.in/server/Db_v300.php?desig=MGR&divisionCode=1&Sf_code=MGR93&axn=check%252Fmydayplan&Date=2025-09-19%2011:30:32%20+0000%252014%253A46%253A13
-
-//http://qa.godairy.in/server/Db_v300.php?desig=MGR&divisionCode=1&Sf_code=MGR80&axn=check%2Fmydayplan&Date=2024-12-27%2014%3A46%3A13
-
-
-
 let myDayPlanSave_Url = APIClient.shared.New_DBUrl + APIClient.shared.db_new_activity1 + "State_Code=1&desig=MGR&divisionCode=\(division_code)&axn=save/dayplandynamic&sfCode=\(sf_code)"
 
 //My Approval
@@ -70,11 +64,6 @@ let missedPunchApproval_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_
 let leaveApproval_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=vwLeave"
 let leaveApproval_ApprovalUrl = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "State_Code=1&desig=MGR&divisionCode=\(division_code)&Ukey=\(Ukey)&To_Date=:\("")&axn=dcr/save&Sf_Code=\(sf_code)&From_Date=:\("")&No_of_Days=:\("")&sfCode=\(sf_code)&leaveid=522"
 let leaveApproval_RejectUrl = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "State_Code=1&desig=MGR&divisionCode=\(division_code)&Ukey=\(Ukey)&To_Date=:\("")&axn=dcr/save&Sf_Code=\(sf_code)&From_Date=:\("")&No_of_Days=:\("")&sfCode=\(sf_code)&leaveid=524"
-
-
-
-//http://qa.godairy.in/server/Db_v300.php?State_Code=1&desig=MGR&divisionCode=1&Ukey=EKMGR80946553665&To_Date=:22/09/2025&axn=dcr/save&Sf_Code=MGR9366&From_Date=:22/09/2025&No_of_Days=:1.0&sfCode=MGR80&leaveid=524
-
 
 //Approval History
 let permissionHistoryApproval_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "AMod=1&divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=GetPermission_Status"

@@ -5,6 +5,7 @@ struct DayPlanView: View {
     @Binding var showSheet: Bool
     @State private var selectedWorkType: String = ""
     @State private var remarks: String = ""
+    @State private var isLoading = false
     @StateObject var dashboardModel = dashboardViewModel()
     @Environment(\.dismiss) var dismiss
     let currentDate = Date()
@@ -103,11 +104,63 @@ struct DayPlanView: View {
                     Divider()
                         .background(Color.black)
                     Spacer(minLength: 12)
-
-                    CustomBtn(title: "SUBMIT", height: 50, backgroundColor: Color.appPrimary) {
-                        print("Submitted with: \(selectedWorkType), \(remarks)")
-                        withAnimation { showSheet = false }
+                    
+                    if isLoading {
+                        ProgressView("Submitting...")
+                            .progressViewStyle(CircularProgressViewStyle(tint: .appPrimary))
+                            .scaleEffect(1.5)
+                            .padding()
                     }
+                    else {
+                        CustomBtn(title: "SUBMIT", height: 50, backgroundColor: Color.appPrimary) {
+                            let details = dashboardModel.getWorkTypeDetails(for: selectedWorkType)
+                            if let id = details.id, let flag = details.flag {
+                                isLoading = true
+                                Task {
+                                    await dashboardModel.SubmitMyDayPlanPost(
+                                        workTypeCode: id,
+                                        workType_Name: selectedWorkType,
+                                        remarks: remarks,
+                                        fwFlag: flag
+                                    )
+                                    // ✅ hide loader when API finishes
+                                    isLoading = false
+                                    withAnimation {
+                                        showSheet = false
+                                    }
+                                }
+                            }
+                            else {
+                                print("Invalid Work Type Selected")
+                            }
+                        }
+                    }
+
+
+//                    CustomBtn(title: "SUBMIT", height: 50, backgroundColor: Color.appPrimary) {
+//                        
+//                        let details = dashboardModel.getWorkTypeDetails(for: selectedWorkType)
+//                        if let id = details.id, let flag = details.flag {
+//                            print("Submitted with: \(selectedWorkType), \(remarks)")
+//                            print("Current Date & Time \(Date())")
+//                            
+//                            Task {
+//                                await dashboardModel.SubmitMyDayPlanPost(
+//                                    workTypeCode: id,
+//                                    workType_Name: selectedWorkType,
+//                                    remarks: remarks,
+//                                    fwFlag: flag
+//                                )
+//                            }
+//                        }
+//                        else {
+//                            print("Invalid Work Type Selected")
+//                        }
+//                        
+//                        withAnimation {
+//                            showSheet = false
+//                        }
+//                    }
                 }
                 .padding()
                 .frame(maxWidth: .infinity)

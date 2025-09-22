@@ -15,6 +15,7 @@ struct DashboardView: View {
     @State private var showSheet: Bool = true
     @State private var showDayPlan = false  // overlay state
     @StateObject var dashboardVM = dashboardViewModel()
+    @State private var myDayPlanCount = 0
     
     var body: some View {
         ZStack {
@@ -25,7 +26,7 @@ struct DashboardView: View {
                 VStack {
                     DashboardHeader(sfName: sf_name)
                     
-                    CheckInSection(showDayPlan: $showDayPlan)
+                    CheckInSection(showDayPlan: $showDayPlan, myDayPlanCount: dashboardVM.checkDayPlanData.count)
                     
                     ZStack(alignment:.center) {
                         Rectangle().foregroundColor(colorData.shared.Background_color)
@@ -72,7 +73,6 @@ struct DashboardView: View {
         }
     }
 }
-
 
 //MARK: - HEADER VIEW
 struct DashboardHeader: View {
@@ -123,7 +123,13 @@ struct DashboardHeader: View {
 
 struct CheckInSection: View {
     @Binding var showDayPlan: Bool
-    @State private var btnTitle = "My Day Plan"
+    //@State private var btnTitle = "My Day Plan"
+    var myDayPlanCount: Int
+    //var btnTitle: String = "My Day Plan"
+    
+    var btnTitle: String {
+        myDayPlanCount > 0 ? "Check In" : "My Day Plan"
+    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -133,13 +139,20 @@ struct CheckInSection: View {
                 Image("write")
                 Spacer()
             }
+            
             CustomBtn(
                 title: btnTitle,
                 height: 50,
                 backgroundColor: Color.appPrimary
             ) {
                 withAnimation(.spring()) {
-                    showDayPlan = true
+                    if myDayPlanCount > 0 {
+                        print("Redirect to Check In Page")
+                    }
+                    else {
+                        showDayPlan = true
+                        print("Opening My DayPlan Bottom Sheet")
+                    }
                 }
             }
         }

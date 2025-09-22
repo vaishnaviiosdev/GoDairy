@@ -64,7 +64,7 @@ class NetworkManager {
     
     func postFormData<T: Decodable>(
             urlString: String,
-            parameters: [String: Any],
+            parameters: [String:Any],
             responseType: T.Type
         ) async throws -> T {
             guard let url = URL(string: urlString) else {
