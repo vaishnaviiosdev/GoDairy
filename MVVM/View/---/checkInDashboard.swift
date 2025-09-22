@@ -533,7 +533,6 @@ struct check_in_button1:View {
         }
     }
     
-    
     // MARK: - TABBARItems VIEW
     struct TabbarItems1:View {
         @Binding var currentTab:Int
@@ -578,7 +577,6 @@ struct check_in_button1:View {
     
     
     // MARK: - TABBAR
-    
     struct TabBar1:View {
         @Binding var currentTab:Int
         var body: some View {

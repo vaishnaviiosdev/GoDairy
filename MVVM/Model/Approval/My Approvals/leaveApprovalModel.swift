@@ -50,3 +50,19 @@ struct leaveApprovalDataResponse: Codable, Identifiable {
         case Leave_Name = "Leave_Name"
     }
 }
+
+struct leaveApprovalApprovalData: Codable {
+    let success: Bool
+    
+    enum CodingKeys: String, CodingKey {
+        case success = "success"
+    }
+}
+
+struct leaveApprovalRejectData: Codable {
+    let success: Bool
+    
+    enum CodingKeys: String, CodingKey {
+        case success = "success"
+    }
+}

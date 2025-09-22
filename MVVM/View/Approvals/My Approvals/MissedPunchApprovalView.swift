@@ -67,15 +67,8 @@ struct MissedApprovalRow: View {
     var body: some View {
         HStack {
             TextColumn(text: item.Sf_name, alignment: .leading)
-//            Text(item.Sf_name)
-//                .font(.system(size: 13))
-//                .frame(maxWidth: .infinity, alignment: .leading)
             TextColumn(text: item.AppliedDate, alignment: .center)
-            
-//            Text(item.AppliedDate)
-//                .font(.system(size: 13))
-//                .frame(maxWidth: .infinity, alignment: .center)
-            
+                        
             NavigationLink(destination: MissedPunchApprovalDetailsView(item: item)) {
                 Text("View")
                     .font(.system(size: 13, weight: .bold))
