@@ -12,6 +12,12 @@
 		1505FEED2E7A8CAF00A4E033 /* LeaveApprovalHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1505FEEC2E7A8CAF00A4E033 /* LeaveApprovalHistoryViewModel.swift */; };
 		1505FEEF2E7A8E6F00A4E033 /* LeaveApprovalHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1505FEEE2E7A8E6F00A4E033 /* LeaveApprovalHistoryModel.swift */; };
 		1505FEF12E7AEAB900A4E033 /* AdvanceApprovalHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1505FEF02E7AEAB900A4E033 /* AdvanceApprovalHistoryView.swift */; };
+		1505FF012E7C0B4B00A4E033 /* PermissionApprovalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1505FF002E7C0B4B00A4E033 /* PermissionApprovalView.swift */; };
+		1505FF032E7C1A7400A4E033 /* AdvanceApprovalHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1505FF022E7C1A7400A4E033 /* AdvanceApprovalHistoryModel.swift */; };
+		1505FF052E7C25B700A4E033 /* AdvanceApprovalHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1505FF042E7C25B700A4E033 /* AdvanceApprovalHistoryViewModel.swift */; };
+		1505FF072E7D603500A4E033 /* PermissionApprovalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1505FF062E7D603500A4E033 /* PermissionApprovalViewModel.swift */; };
+		1505FF092E7D622E00A4E033 /* PermissionApprovalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1505FF082E7D622E00A4E033 /* PermissionApprovalModel.swift */; };
+		1505FF0B2E7D7FD600A4E033 /* PermissionApprovalDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1505FF0A2E7D7FD600A4E033 /* PermissionApprovalDetailsView.swift */; };
 		381CCF842CE5C41900159560 /* MyDayPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381CCF832CE5C41900159560 /* MyDayPlan.swift */; };
 		385ACE0F2E6AAA370046FE7D /* WeekOffEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385ACE0E2E6AAA370046FE7D /* WeekOffEntryView.swift */; };
 		385ACE1D2E6AC86C0046FE7D /* WeekOffModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385ACE1C2E6AC8550046FE7D /* WeekOffModel.swift */; };
@@ -39,7 +45,7 @@
 		38AF3ECF2E73ED0300F76C5D /* missedApprovalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AF3ECE2E73ECE300F76C5D /* missedApprovalModel.swift */; };
 		38AF3ED22E73EF8E00F76C5D /* MissedApprovalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AF3ED12E73EF7A00F76C5D /* MissedApprovalViewModel.swift */; };
 		38AF3ED42E74139800F76C5D /* MissedPunchApprovalDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AF3ED32E74139800F76C5D /* MissedPunchApprovalDetailsView.swift */; };
-		38AF3ED72E742DDA00F76C5D /* PermissionApprovalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AF3ED62E742DDA00F76C5D /* PermissionApprovalView.swift */; };
+		38AF3ED72E742DDA00F76C5D /* PermissionApprovalHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AF3ED62E742DDA00F76C5D /* PermissionApprovalHistoryView.swift */; };
 		38AF3EDA2E74341700F76C5D /* approvalPermissionmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AF3ED92E74340800F76C5D /* approvalPermissionmodel.swift */; };
 		38AF3EE02E74375A00F76C5D /* permissionApprovalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AF3EDF2E74374200F76C5D /* permissionApprovalViewModel.swift */; };
 		38AFDB5F2CB3AC03001E59EC /* Dashboard2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AFDB5E2CB3AC03001E59EC /* Dashboard2.swift */; };
@@ -104,6 +110,12 @@
 		1505FEEC2E7A8CAF00A4E033 /* LeaveApprovalHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveApprovalHistoryViewModel.swift; sourceTree = "<group>"; };
 		1505FEEE2E7A8E6F00A4E033 /* LeaveApprovalHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveApprovalHistoryModel.swift; sourceTree = "<group>"; };
 		1505FEF02E7AEAB900A4E033 /* AdvanceApprovalHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvanceApprovalHistoryView.swift; sourceTree = "<group>"; };
+		1505FF002E7C0B4B00A4E033 /* PermissionApprovalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionApprovalView.swift; sourceTree = "<group>"; };
+		1505FF022E7C1A7400A4E033 /* AdvanceApprovalHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvanceApprovalHistoryModel.swift; sourceTree = "<group>"; };
+		1505FF042E7C25B700A4E033 /* AdvanceApprovalHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvanceApprovalHistoryViewModel.swift; sourceTree = "<group>"; };
+		1505FF062E7D603500A4E033 /* PermissionApprovalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionApprovalViewModel.swift; sourceTree = "<group>"; };
+		1505FF082E7D622E00A4E033 /* PermissionApprovalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionApprovalModel.swift; sourceTree = "<group>"; };
+		1505FF0A2E7D7FD600A4E033 /* PermissionApprovalDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionApprovalDetailsView.swift; sourceTree = "<group>"; };
 		17F6C07366FD3E932DB09DFA /* Pods_GoDairy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoDairy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		381CCF832CE5C41900159560 /* MyDayPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDayPlan.swift; sourceTree = "<group>"; };
 		385ACE0E2E6AAA370046FE7D /* WeekOffEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekOffEntryView.swift; sourceTree = "<group>"; };
@@ -132,7 +144,7 @@
 		38AF3ECE2E73ECE300F76C5D /* missedApprovalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = missedApprovalModel.swift; sourceTree = "<group>"; };
 		38AF3ED12E73EF7A00F76C5D /* MissedApprovalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissedApprovalViewModel.swift; sourceTree = "<group>"; };
 		38AF3ED32E74139800F76C5D /* MissedPunchApprovalDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissedPunchApprovalDetailsView.swift; sourceTree = "<group>"; };
-		38AF3ED62E742DDA00F76C5D /* PermissionApprovalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionApprovalView.swift; sourceTree = "<group>"; };
+		38AF3ED62E742DDA00F76C5D /* PermissionApprovalHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionApprovalHistoryView.swift; sourceTree = "<group>"; };
 		38AF3ED92E74340800F76C5D /* approvalPermissionmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = approvalPermissionmodel.swift; sourceTree = "<group>"; };
 		38AF3EDF2E74374200F76C5D /* permissionApprovalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = permissionApprovalViewModel.swift; sourceTree = "<group>"; };
 		38AFDB5E2CB3AC03001E59EC /* Dashboard2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard2.swift; sourceTree = "<group>"; };
@@ -414,7 +426,7 @@
 		38AF3ED52E742DA500F76C5D /* Approval History */ = {
 			isa = PBXGroup;
 			children = (
-				38AF3ED62E742DDA00F76C5D /* PermissionApprovalView.swift */,
+				38AF3ED62E742DDA00F76C5D /* PermissionApprovalHistoryView.swift */,
 				38CDF9DA2E79711E00085DF6 /* MissedPunchApprovalHistoryView.swift */,
 				1505FEEA2E7A8B4300A4E033 /* LeaveApprovalHistoryView.swift */,
 				1505FEF02E7AEAB900A4E033 /* AdvanceApprovalHistoryView.swift */,
@@ -428,6 +440,7 @@
 				38CDF9D62E7967A800085DF6 /* approvalMissedPunchModel.swift */,
 				38AF3ED92E74340800F76C5D /* approvalPermissionmodel.swift */,
 				1505FEEE2E7A8E6F00A4E033 /* LeaveApprovalHistoryModel.swift */,
+				1505FF022E7C1A7400A4E033 /* AdvanceApprovalHistoryModel.swift */,
 			);
 			path = "Approval History";
 			sourceTree = "<group>";
@@ -437,6 +450,7 @@
 			children = (
 				38C7FB032E7ACA2E001CA81D /* leaveApprovalModel.swift */,
 				38AF3ECE2E73ECE300F76C5D /* missedApprovalModel.swift */,
+				1505FF082E7D622E00A4E033 /* PermissionApprovalModel.swift */,
 			);
 			path = "My Approvals";
 			sourceTree = "<group>";
@@ -446,6 +460,7 @@
 			children = (
 				38C7FB052E7AD2A7001CA81D /* LeaveApprovalViewModel.swift */,
 				38AF3ED12E73EF7A00F76C5D /* MissedApprovalViewModel.swift */,
+				1505FF062E7D603500A4E033 /* PermissionApprovalViewModel.swift */,
 			);
 			path = "My Approvals";
 			sourceTree = "<group>";
@@ -456,6 +471,7 @@
 				38CDF9D82E796B5B00085DF6 /* missedPunchApprovalHistoryViewModel.swift */,
 				38AF3EDF2E74374200F76C5D /* permissionApprovalViewModel.swift */,
 				1505FEEC2E7A8CAF00A4E033 /* LeaveApprovalHistoryViewModel.swift */,
+				1505FF042E7C25B700A4E033 /* AdvanceApprovalHistoryViewModel.swift */,
 			);
 			path = "Approval History";
 			sourceTree = "<group>";
@@ -511,6 +527,8 @@
 				38AF3ED32E74139800F76C5D /* MissedPunchApprovalDetailsView.swift */,
 				38C7FB072E7ADD71001CA81D /* LeaveApprovalView.swift */,
 				38C7FB092E7AE3CC001CA81D /* LeaveApprovalDetailsView.swift */,
+				1505FF002E7C0B4B00A4E033 /* PermissionApprovalView.swift */,
+				1505FF0A2E7D7FD600A4E033 /* PermissionApprovalDetailsView.swift */,
 			);
 			path = "My Approvals";
 			sourceTree = "<group>";
@@ -724,7 +742,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				38C26F332D2BF97E00595798 /* RequestView.swift in Sources */,
+				1505FF0B2E7D7FD600A4E033 /* PermissionApprovalDetailsView.swift in Sources */,
 				38AF3EDA2E74341700F76C5D /* approvalPermissionmodel.swift in Sources */,
+				1505FF032E7C1A7400A4E033 /* AdvanceApprovalHistoryModel.swift in Sources */,
 				38B550212CF5E40A006C07E4 /* DynamicHeight.swift in Sources */,
 				38AB2F032E6C52C9007F3501 /* leaveStatusModel.swift in Sources */,
 				38EA2C012E5C686000428C3C /* AdvanceRequestView.swift in Sources */,
@@ -738,6 +758,7 @@
 				38C576582CDC8A3E005CF1B6 /* forgetpass.swift in Sources */,
 				3F67B5B62CA7D12400A1BCB7 /* Login_Page_View.swift in Sources */,
 				38AAD9D32CF6FC8E005ABC2D /* shiftview.swift in Sources */,
+				1505FF012E7C0B4B00A4E033 /* PermissionApprovalView.swift in Sources */,
 				38AFDB5F2CB3AC03001E59EC /* Dashboard2.swift in Sources */,
 				38F1BA502CB1213200D4DFF2 /* ColorFile.swift in Sources */,
 				385ACE232E6AFEC70046FE7D /* DeviationEntryModel.swift in Sources */,
@@ -760,7 +781,7 @@
 				385ACE0F2E6AAA370046FE7D /* WeekOffEntryView.swift in Sources */,
 				38A9D4D52E6EE84B009C70D2 /* LeaveCancelView.swift in Sources */,
 				38AF3EE02E74375A00F76C5D /* permissionApprovalViewModel.swift in Sources */,
-				38AF3ED72E742DDA00F76C5D /* PermissionApprovalView.swift in Sources */,
+				38AF3ED72E742DDA00F76C5D /* PermissionApprovalHistoryView.swift in Sources */,
 				385ACE1F2E6AC98A0046FE7D /* WeeklyOffViewModel.swift in Sources */,
 				38C7FB0A2E7AE3CC001CA81D /* LeaveApprovalDetailsView.swift in Sources */,
 				38A7A1382E56E56D006240D1 /* SplashScreenView.swift in Sources */,
@@ -770,11 +791,13 @@
 				1505FEEF2E7A8E6F00A4E033 /* LeaveApprovalHistoryModel.swift in Sources */,
 				38A9D4CB2E6ED702009C70D2 /* missedPunchModel.swift in Sources */,
 				38A9D4D12E6EE52B009C70D2 /* leaveCancelViewmodel.swift in Sources */,
+				1505FF092E7D622E00A4E033 /* PermissionApprovalModel.swift in Sources */,
 				38D997052E6974D5005DD972 /* MissedPunchModel.swift in Sources */,
 				38EEA3B32E5DC83200CAC7FD /* SelectionView.swift in Sources */,
 				38BD70952E72E72600AFDA7C /* MissedPunchApprovalView.swift in Sources */,
 				38BC79072E6FF03D000A784A /* weeklyOffView.swift in Sources */,
 				38D735AC2E533E0D00197EA1 /* DataViewModel.swift in Sources */,
+				1505FF072E7D603500A4E033 /* PermissionApprovalViewModel.swift in Sources */,
 				1505FEF12E7AEAB900A4E033 /* AdvanceApprovalHistoryView.swift in Sources */,
 				38D7DB9D2CEDFCFF003A2149 /* checkInDashboard.swift in Sources */,
 				38EB916F2E60710800077669 /* LeaveRequestDataResponse.swift in Sources */,
@@ -790,6 +813,7 @@
 				385ACE252E6B028F0046FE7D /* DeviationEntryViewModel.swift in Sources */,
 				381CCF842CE5C41900159560 /* MyDayPlan.swift in Sources */,
 				38B5501F2CF5E2F3006C07E4 /* planview.swift in Sources */,
+				1505FF052E7C25B700A4E033 /* AdvanceApprovalHistoryViewModel.swift in Sources */,
 				38CCC3E82CB6865D0096B309 /* CalendarView.swift in Sources */,
 				38C563FE2C637D5200153761 /* GoDairyApp.swift in Sources */,
 				38EB916D2E606F1300077669 /* LeaveRequestViewModel.swift in Sources */,

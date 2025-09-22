@@ -10,10 +10,10 @@ import SwiftUI
 struct ApprovalMainView: View {
     
     private let myApprovalItems: [(title: String, destination: AnyView)] = [
-        ("Advance Request", AnyView(forgetpass())),
+        ("Advance Request", AnyView(PermissionApprovalView())),
         ("Leave", AnyView(LeaveApprovalView())),
         ("Leave Cancel", AnyView(forgetpass())),
-        ("Permission", AnyView(forgetpass())),
+        ("Permission", AnyView(PermissionApprovalView())),
         ("Missed Punch", AnyView(MissedPunchApprovalView())),
         ("Travel Allowance", AnyView(forgetpass())),
         ("Work Plan-PJP", AnyView(forgetpass())),
@@ -22,10 +22,10 @@ struct ApprovalMainView: View {
     
     private let approvalHistoryItems: [(title: String, destination: AnyView)] = [
 
-        ("Advance Request",AnyView(LeaveStatusView())),
+        ("Advance Request",AnyView(AdvanceApprovalHistoryView())),
         ("Leave",AnyView(LeaveApprovalHistoryView())),
 
-        ("Permission",AnyView(PermissionApprovalView())),
+        ("Permission",AnyView(PermissionApprovalHistoryView())),
         ("Missed Punch",AnyView(MissedPunchApprovalHistoryView())),
         ("Travel Allowance",AnyView(forgetpass())),
         ("Leave Cancel",AnyView(forgetpass()))
