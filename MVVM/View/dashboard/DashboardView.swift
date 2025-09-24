@@ -16,60 +16,68 @@ struct DashboardView: View {
     @State private var showDayPlan = false  // overlay state
     @StateObject var dashboardVM = dashboardViewModel()
     @State private var myDayPlanCount = 0
+    @State private var goToCheckIn = false
     
     var body: some View {
-        ZStack {
-            Color.backgroundColour
-                .edgesIgnoringSafeArea(.all)
-            
-            ScrollView {
-                VStack {
-                    DashboardHeader(sfName: sf_name)
-                    
-                    CheckInSection(showDayPlan: $showDayPlan, myDayPlanCount: dashboardVM.checkDayPlanData.count)
-                    
-                    ZStack(alignment:.center) {
-                        Rectangle().foregroundColor(colorData.shared.Background_color)
-                        TabbarView(currentTab: $currentTab)
-                    }
-                    .frame(height: 50)
-                    
-                    TabBar(currentTab: $currentTab)
-                        .frame(height: 300)
-                    
-                    Divider()
-                    ExploreMore()
-                }
-            }
-            
-            // 🔹 Bottom Sheet Overlay
-            if showDayPlan {
-                ZStack(alignment: .bottom) {
-                    Color.black.opacity(0.4)
-                        .ignoresSafeArea()
-                        .onTapGesture {
-                            withAnimation {
-                                showDayPlan = false
-                            }
-                        }
-                    
+        NavigationStack {
+            ZStack {
+                Color.backgroundColour
+                    .edgesIgnoringSafeArea(.all)
+                
+                ScrollView {
                     VStack {
-                        Spacer()
-                        DayPlanView(showSheet: $showDayPlan)
-                            .frame(maxWidth: .infinity, maxHeight: 400) // height adjust
-                            .background(Color.white)
-                            .cornerRadius(20, corners: [.topLeft, .topRight])
-                            .shadow(radius: 10)
-                            .transition(.move(edge: .bottom))
+                        DashboardHeader(sfName: sf_name)
+                        
+                        CheckInSection(goToCheckIn: $goToCheckIn, showDayPlan: $showDayPlan, myDayPlanCount: dashboardVM.checkDayPlanData.count)
+                        
+                        ZStack(alignment:.center) {
+                            Rectangle().foregroundColor(colorData.shared.Background_color)
+                            TabbarView(currentTab: $currentTab)
+                        }
+                        .frame(height: 50)
+                        
+                        TabBar(currentTab: $currentTab)
+                            .frame(height: 300)
+                        
+                        Divider()
+                        ExploreMore()
                     }
                 }
-                .animation(.spring(), value: showDayPlan)
+                
+                // 🔹 Bottom Sheet Overlay
+                if showDayPlan {
+                    ZStack(alignment: .bottom) {
+                        Color.black.opacity(0.4)
+                            .ignoresSafeArea()
+                            .onTapGesture {
+                                withAnimation {
+                                    showDayPlan = false
+                                }
+                            }
+                        
+                        VStack {
+                            Spacer()
+                            DayPlanView(showSheet: $showDayPlan)
+                                .frame(maxWidth: .infinity, maxHeight: 400) // height adjust
+                                .background(Color.white)
+                                .cornerRadius(20, corners: [.topLeft, .topRight])
+                                .shadow(radius: 10)
+                                .transition(.move(edge: .bottom))
+                        }
+                    }
+                    .animation(.spring(), value: showDayPlan)
+                }
             }
-        }
-        .padding(.bottom, 20.0)
-        .navigationBarBackButtonHidden(true)
-        .task {
-            await dashboardVM.fetchDashboardData()
+            .padding(.bottom, 20.0)
+            .navigationBarBackButtonHidden(true)
+            .onAppear {
+                Task {
+                    await dashboardVM.fetchDashboardData()
+                }
+            }
+            .navigationDestination(isPresented: $goToCheckIn) {
+                CheckInFlowView()   // ✅ your target screen
+            }
         }
     }
 }
@@ -122,6 +130,7 @@ struct DashboardHeader: View {
 }
 
 struct CheckInSection: View {
+    @Binding var goToCheckIn: Bool
     @Binding var showDayPlan: Bool
     //@State private var btnTitle = "My Day Plan"
     var myDayPlanCount: Int
@@ -147,10 +156,12 @@ struct CheckInSection: View {
             ) {
                 withAnimation(.spring()) {
                     if myDayPlanCount > 0 {
-                        print("Redirect to Check In Page")
+                        print("The MYDayPlanCount in MYDayPlanCount is \(myDayPlanCount)")
+                        goToCheckIn = true
                     }
                     else {
                         showDayPlan = true
+                        print("The MYDayPlanCount in showDayPlan is \(myDayPlanCount)")
                         print("Opening My DayPlan Bottom Sheet")
                     }
                 }
@@ -195,51 +206,6 @@ struct CheckInButton: View {
             .padding(.horizontal, 10)
         }
         .padding(15)
-    }
-    
-    // MARK: - API CALL
-    func checkDayPlan() {
-        var sfCode: String = ""
-        var divisionCode: String = ""
-        
-        if let code = UserDefaults.standard.string(forKey: "Sf_code") {
-            sfCode = code
-            print("Sf_code: \(code)")
-        }
-        
-        if let divCode = UserDefaults.standard.string(forKey: "Division_Code") {
-            divisionCode = divCode
-            print("Division_Code: \(divCode)")
-        }
-        
-        let requestBody: [[String: Any]] = []
-        let jsonData = try? JSONSerialization.data(withJSONObject: requestBody, options: [])
-        let jsonString = String(data: jsonData!, encoding: .utf8)!
-        
-        let params: Parameters = ["data": jsonString]
-        print(params)
-        
-        // Example API key (update as needed)
-        let apiKey = "check/mydayplan&Date=2024-12-27%2014%3A46%3A13&divisionCode=\(divisionCode)&Sf_code=\(sfCode)&State_Code=&desig="
-        
-        AF.request(
-            APIClient.shared.BaseURL + APIClient.shared.DBURL + apiKey,
-            method: .post,
-            parameters: params
-        )
-        .validate(statusCode: 200..<300)
-        .responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                print(response)
-                DispatchQueue.main.async {
-                    isSubmitting = false
-                    navigatetoDashboard = true
-                }
-            case .failure(let error):
-                print("Request failed with error: \(error)")
-            }
-        }
     }
 }
 

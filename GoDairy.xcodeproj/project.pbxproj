@@ -60,6 +60,7 @@
 		38BD70922E72DFAB00AFDA7C /* ApprovalMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BD70912E72DFAB00AFDA7C /* ApprovalMainView.swift */; };
 		38BD70952E72E72600AFDA7C /* MissedPunchApprovalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BD70942E72E72600AFDA7C /* MissedPunchApprovalView.swift */; };
 		38C26F332D2BF97E00595798 /* RequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C26F322D2BF97E00595798 /* RequestView.swift */; };
+		38C3C10A2E83FB100014DCA2 /* MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C3C1092E83FB0B0014DCA2 /* MapKit.swift */; };
 		38C563FE2C637D5200153761 /* GoDairyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C563FD2C637D5200153761 /* GoDairyApp.swift */; };
 		38C564002C637D5200153761 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C563FF2C637D5200153761 /* ContentView.swift */; };
 		38C564022C637D5300153761 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38C564012C637D5300153761 /* Assets.xcassets */; };
@@ -161,6 +162,7 @@
 		38BD70912E72DFAB00AFDA7C /* ApprovalMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovalMainView.swift; sourceTree = "<group>"; };
 		38BD70942E72E72600AFDA7C /* MissedPunchApprovalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissedPunchApprovalView.swift; sourceTree = "<group>"; };
 		38C26F322D2BF97E00595798 /* RequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestView.swift; sourceTree = "<group>"; };
+		38C3C1092E83FB0B0014DCA2 /* MapKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKit.swift; sourceTree = "<group>"; };
 		38C563FA2C637D5200153761 /* GoDairy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoDairy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38C563FD2C637D5200153761 /* GoDairyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoDairyApp.swift; sourceTree = "<group>"; };
 		38C563FF2C637D5200153761 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 		3800816E2E55CE670053B360 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				38C3C1092E83FB0B0014DCA2 /* MapKit.swift */,
 				38D735AD2E533E8000197EA1 /* NetworkManager.swift */,
 				38AB79F82E559385003F4214 /* PermissionManager.swift */,
 				3F67B5BD2CA7DA5000A1BCB7 /* APIClient.swift */,
@@ -764,6 +767,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				38C26F332D2BF97E00595798 /* RequestView.swift in Sources */,
+				38C3C10A2E83FB100014DCA2 /* MapKit.swift in Sources */,
 				1505FF0B2E7D7FD600A4E033 /* PermissionApprovalDetailsView.swift in Sources */,
 				38AF3EDA2E74341700F76C5D /* approvalPermissionmodel.swift in Sources */,
 				1505FF032E7C1A7400A4E033 /* AdvanceApprovalHistoryModel.swift in Sources */,

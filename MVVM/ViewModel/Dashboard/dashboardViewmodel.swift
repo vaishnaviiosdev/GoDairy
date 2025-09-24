@@ -33,6 +33,7 @@ class dashboardViewModel: ObservableObject {
             self.Todaycheckin_Flag = self.dashboardData?.Todaycheckin_Flag ?? 0
             self.checkDayPlanData = response.Checkdayplan ?? []
             print("the Todaycheckin_Flag is \(Todaycheckin_Flag)")
+            print("the CheckDayPlanData is \(self.checkDayPlanData)")
         }
         catch {
             print("Error Fetching Data is \(error)")

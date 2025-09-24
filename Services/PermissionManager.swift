@@ -8,12 +8,14 @@
 import AVFoundation
 import Photos
 import CoreLocation
+import UIKit
 
 class PermissionManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var cameraGranted = false
     @Published var microphoneGranted = false
     @Published var locationGranted = false
     @Published var photoLibraryGranted = false
+    @Published var showPermissionAlert = false
     @Published var currentLocation: CLLocation? = nil
     private let locationManager = CLLocationManager()
     
@@ -52,21 +54,21 @@ class PermissionManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
     
-//    func requestLocationPermission() {
-//        let status = CLLocationManager().authorizationStatus
-//        switch status {
-//        case .notDetermined:
-//            locationManager.requestWhenInUseAuthorization()
-//        case .authorizedWhenInUse, .authorizedAlways:
-//            locationManager.startUpdatingLocation() // ✅ start updates
-//        case .denied, .restricted:
-//            DispatchQueue.main.async {
-//                self.locationGranted = false
-//            }
-//        @unknown default:
-//            break
-//        }
-//    }
+    func requestLocation() {
+        let status = CLLocationManager().authorizationStatus
+        switch status {
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .authorizedWhenInUse, .authorizedAlways:
+            locationManager.startUpdatingLocation() // ✅ start updates
+        case .denied, .restricted:
+            DispatchQueue.main.async {
+                self.showPermissionAlert = true   // 🔹 trigger SwiftUI alert
+            }
+        @unknown default:
+            break
+        }
+    }
     
     func requestLocationPermission() {
         let status = CLLocationManager().authorizationStatus
@@ -106,6 +108,8 @@ class PermissionManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             self.currentLocation = location
             self.locationGranted = true
         }
+        print("The latitude is \(location.coordinate.latitude)")
+        print("The longitude is \(location.coordinate.longitude)")
     }
         
 //    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

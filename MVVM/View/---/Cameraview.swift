@@ -38,7 +38,7 @@ class CameraManager: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
         
         session.commitConfiguration()
         
-        DispatchQueue.global(qos: .background).async { [weak self] in
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             self?.session.startRunning()
             DispatchQueue.main.async {
                 self?.isCameraReady = true
