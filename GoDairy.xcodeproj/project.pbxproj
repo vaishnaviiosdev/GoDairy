@@ -66,6 +66,7 @@
 		38C564022C637D5300153761 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38C564012C637D5300153761 /* Assets.xcassets */; };
 		38C564052C637D5300153761 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38C564042C637D5300153761 /* Preview Assets.xcassets */; };
 		38C576582CDC8A3E005CF1B6 /* forgetpass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C576572CDC8A3E005CF1B6 /* forgetpass.swift */; };
+		38C5A3B82E853D6800BF8958 /* cameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C5A3B72E853D5F00BF8958 /* cameraPreview.swift */; };
 		38C7FB042E7ACA3A001CA81D /* leaveApprovalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C7FB032E7ACA2E001CA81D /* leaveApprovalModel.swift */; };
 		38C7FB062E7AD2BB001CA81D /* LeaveApprovalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C7FB052E7AD2A7001CA81D /* LeaveApprovalViewModel.swift */; };
 		38C7FB082E7ADD71001CA81D /* LeaveApprovalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C7FB072E7ADD71001CA81D /* LeaveApprovalView.swift */; };
@@ -169,6 +170,7 @@
 		38C564012C637D5300153761 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38C564042C637D5300153761 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		38C576572CDC8A3E005CF1B6 /* forgetpass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = forgetpass.swift; sourceTree = "<group>"; };
+		38C5A3B72E853D5F00BF8958 /* cameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cameraPreview.swift; sourceTree = "<group>"; };
 		38C7FB032E7ACA2E001CA81D /* leaveApprovalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = leaveApprovalModel.swift; sourceTree = "<group>"; };
 		38C7FB052E7AD2A7001CA81D /* LeaveApprovalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveApprovalViewModel.swift; sourceTree = "<group>"; };
 		38C7FB072E7ADD71001CA81D /* LeaveApprovalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveApprovalView.swift; sourceTree = "<group>"; };
@@ -638,6 +640,7 @@
 		3F67B5BC2CA7DA1000A1BCB7 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				38C5A3B72E853D5F00BF8958 /* cameraPreview.swift */,
 				38EB916A2E603CFB00077669 /* Helper.swift */,
 				38B550202CF5E40A006C07E4 /* DynamicHeight.swift */,
 				38D735B12E5342B200197EA1 /* Constant.swift */,
@@ -855,6 +858,7 @@
 				38F1BA542CB138DC00D4DFF2 /* Monthlyview.swift in Sources */,
 				38D997072E69777E005DD972 /* MissedPunchViewModel.swift in Sources */,
 				1505FEEB2E7A8B4300A4E033 /* LeaveApprovalHistoryView.swift in Sources */,
+				38C5A3B82E853D6800BF8958 /* cameraPreview.swift in Sources */,
 				38AB79F92E55939D003F4214 /* PermissionManager.swift in Sources */,
 				38BB2EC92CE711650002BAC6 /* popup.swift in Sources */,
 				38D19F0B2E66E85D00399314 /* PermissionRequestViewModel.swift in Sources */,

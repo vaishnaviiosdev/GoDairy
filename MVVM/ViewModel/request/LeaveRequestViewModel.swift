@@ -55,10 +55,12 @@ class LeaveRequestViewModel: ObservableObject {
     func fetchLeaveTypeData() async {
         
         let parameters: [String: Any] = [
-            "data": ["tableName":"vwLeaveType",
+            "data": [
+                    "tableName":"vwLeaveType",
                      "coloumns":"[\"id\",\"name\",\"Leave_Name\"]",
                      "orderBy":"[\"name asc\"]",
-                     "desig":"mgr"]
+                     "desig":"mgr"
+                ]
             ]
         print("The parameters is \(parameters)")
         

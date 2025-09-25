@@ -31,10 +31,14 @@ struct LeaveRequestDataResponse: Codable, Identifiable {
 struct LeaveShiftTimeDataResponse: Codable {
     let id: String
     let name: String
+    let Sft_STime: String
+    let sft_ETime: String
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case name = "name"
+        case Sft_STime = "Sft_STime"
+        case sft_ETime = "sft_ETime"
     }
 }
 
