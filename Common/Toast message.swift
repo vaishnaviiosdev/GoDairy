@@ -36,9 +36,6 @@ struct Toast: View {
                 .shadow(radius: 10)
                 .transition(.opacity)
                 .animation(.easeInOut(duration: 0.5), value: toastManager.isShowing)
-//                .onAppear {
-//                    // Automatically hide the toast after the specified time (handled in the ToastManager)
-//                }
         }
     }
 }

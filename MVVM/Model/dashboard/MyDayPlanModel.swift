@@ -35,6 +35,43 @@ struct SubmitDayPlanData: Codable {
     let msg: String?
 }
 
+struct todayDashboardData: Codable {
+    let TodayData: todayData?
+}
+
+struct todayData: Codable {
+    let SF_Code: String
+    let SF_Name: String
+    let login_date: loginDateData?
+    let Shft: ShftData?
+    let ShftE: ShftEData?
+    let STm: STmData?
+}
+
+struct loginDateData: Codable {
+    let WrkDate: String
+    let SFT_Name: String
+}
+
+struct ShftData: Codable {
+    let date: String
+    let timezone_type: Int
+    let timezone: String
+}
+
+struct ShftEData: Codable {
+    let date: String
+    let timezone_type: Int
+    let timezone: String
+}
+
+struct STmData: Codable {
+    let AttTm: String
+    let ET: String
+    let DayStatus: String
+    let Status: String
+}
+
 
 
 

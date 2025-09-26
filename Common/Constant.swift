@@ -59,6 +59,8 @@ let myDayPlanCheck_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl
 
 let myDayPlanSave_Url = APIClient.shared.New_DBUrl + APIClient.shared.db_new_activity1 + "State_Code=1&desig=MGR&divisionCode=\(division_code)&axn=save/dayplandynamic&sfCode=\(sf_code)"
 
+let todayDashboard_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "&axn=get%2FAttnDySty&divisionCode=\(division_code)&sfCode=\(sf_code)&State_Code=&desig="
+
 //My Approval
 let missedPunchApproval_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=vwmissedpunch"
 let leaveApproval_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=vwLeave"

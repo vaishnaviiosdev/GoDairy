@@ -13,6 +13,7 @@ class dashboardViewModel: ObservableObject {
     @Published var dashboardData: mydayPlanCheckResponse?
     @Published var workTypesData: [mydayplanworkTypeResponse] = []
     @Published var checkDayPlanData: [CheckDayPlanData] = []
+    @Published var todayPlanData: [todayDashboardData] = []
     @Published var submitData: SubmitDayPlanData?
     @Published var showDayPlanSaveAlert = false
     @Published var showDayPlanSuccessMsg: String = ""
@@ -71,9 +72,7 @@ class dashboardViewModel: ObservableObject {
     }
     
     func SubmitMyDayPlanPost(workTypeCode: Int, workType_Name: String,remarks: String, fwFlag: String) async {
-        
         let now = Date()
-
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss" 
         formatter.timeZone = .current  // optional, ensures local timezone
@@ -120,6 +119,18 @@ class dashboardViewModel: ObservableObject {
             self.showDayPlanSuccessMsg = "\(error)"
             self.showDayPlanSaveAlert = true
             print("Error Fetching Data is \(error)")
+        }
+    }
+    
+    func getTodayData() async {
+        do {
+            let response: [todayDashboardData] = try await NetworkManager.shared.fetchData(from: todayDashboard_Url, as: [todayDashboardData].self
+            )
+            self.todayPlanData = response
+            print("The TodayPlanData is \(response)")
+        }
+        catch {
+            print("Error fetching data is \(error)")
         }
     }
 }
