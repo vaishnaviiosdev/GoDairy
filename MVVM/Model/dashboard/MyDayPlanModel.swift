@@ -35,42 +35,83 @@ struct SubmitDayPlanData: Codable {
     let msg: String?
 }
 
-struct todayDashboardData: Codable {
-    let TodayData: todayData?
-}
+//struct todayDashboardData: Codable {
+//    let TodayData: todayData?
+//}
+//
+//struct todayData: Codable {
+//    let SF_Code: String
+//    let SF_Name: String
+//    let login_date: loginDateData?
+//    let Shft: ShftData?
+//    let ShftE: ShftEData?
+//    let STm: STmData?
+//}
+//
+//struct loginDateData: Codable {
+//    let WrkDate: String
+//    let SFT_Name: String
+//}
+//
+//struct ShftData: Codable {
+//    let date: String
+//    let timezone_type: Int
+//    let timezone: String
+//}
+//
+//struct ShftEData: Codable {
+//    let date: String
+//    let timezone_type: Int
+//    let timezone: String
+//}
+//
+//struct STmData: Codable {
+//    let AttTm: String
+//    let ET: String
+//    let DayStatus: String
+//    let Status: String
+//}
 
-struct todayData: Codable {
+struct TodayData: Codable {
     let SF_Code: String
     let SF_Name: String
-    let login_date: loginDateData?
-    let Shft: ShftData?
-    let ShftE: ShftEData?
-    let STm: STmData?
-}
-
-struct loginDateData: Codable {
+    let login_date: DateData?
     let WrkDate: String
     let SFT_Name: String
-}
-
-struct ShftData: Codable {
-    let date: String
-    let timezone_type: Int
-    let timezone: String
-}
-
-struct ShftEData: Codable {
-    let date: String
-    let timezone_type: Int
-    let timezone: String
-}
-
-struct STmData: Codable {
+    let Shft: DateData?
+    let ShftE: DateData?
+    let STm: DateData?
     let AttTm: String
     let ET: String
-    let DayStatus: String
+    let dv: Int
+    let Rw: String
     let Status: String
+    let ACtOffHrs: Int
+    let AttDate: String
+    let ImgName: String
+    let EImgName: String
+    let SImgName: String
+    let AttDtNm: String
+    let DayStatus: String
+    let StaColor: String
+    let GeoIn: String?
+    let Extin: String?
+    let ExtStartTtime: String
+    let ExtEndtime: String
+    let GeoOut: String
+    let Extout: String?
+    let lat_long: String
+    let HQNm: String
 }
+
+struct DateData: Codable {
+    let date: String
+    let timezone_type: Int
+    let timezone: String
+}
+
+
+
 
 
 

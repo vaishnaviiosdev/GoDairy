@@ -294,8 +294,10 @@ struct TabBar: View {
                 // Login().tag(3)
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
-            .edgesIgnoringSafeArea(.all)
+            //.edgesIgnoringSafeArea(.all)
+            .ignoresSafeArea()
         }
+        .background(Color.red)
     }
 }
 

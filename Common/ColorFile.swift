@@ -12,6 +12,7 @@ class colorData {
     static var shared = colorData()
     var Appcolor: Color =  Color(red:25/255,green: 151/255,blue: 206/255)
     var Background_color:Color = Color(red: 0.97, green: 0.97, blue: 0.97, opacity: 1.00)
+    var Background_color2:Color = Color(red: 203/255, green: 203/255, blue: 203/255)
     var check_out_color:Color = Color(red:211/255, green: 84/255, blue: 0/255)
     
     var line_color:Color = Color(red:211/255, green:211/255, blue: 211/255)
@@ -23,6 +24,7 @@ class colorData {
     var acceptBtn = Color(red:18/255,green: 94/255,blue: 95/255)
     var rejectBtn = Color(red:172/255,green: 32/255,blue: 53/255)
     var Cancel_Background = Color(red:172/255,green: 32/255,blue: 53/255)
+    var app_primary2 = Color(red:218/255,green: 96/255,blue: 11/255)
 }
 
 extension Color {

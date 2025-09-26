@@ -32,6 +32,20 @@ extension Date {
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter.string(from: self)
     }
+    
+    func formattedAsDDMMYYYY() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy"
+        return formatter.string(from: self)
+    }
+}
+
+extension String {
+    func toDate(format: String = "dd/MM/yyyy") -> Date? { // match input format
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        return formatter.date(from: self)
+    }
 }
 
 func formatShiftTime(start: String, end: String) -> String {

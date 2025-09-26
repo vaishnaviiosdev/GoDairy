@@ -13,7 +13,11 @@ class dashboardViewModel: ObservableObject {
     @Published var dashboardData: mydayPlanCheckResponse?
     @Published var workTypesData: [mydayplanworkTypeResponse] = []
     @Published var checkDayPlanData: [CheckDayPlanData] = []
-    @Published var todayPlanData: [todayDashboardData] = []
+    @Published var todayPlanData: [TodayData] = []
+    @Published var shiftTimeRange: String = ""
+    @Published var checkInDate: String = ""
+    @Published var AttTm: String = "10:38:36"
+    @Published var ET: String = ""
     @Published var submitData: SubmitDayPlanData?
     @Published var showDayPlanSaveAlert = false
     @Published var showDayPlanSuccessMsg: String = ""
@@ -124,10 +128,26 @@ class dashboardViewModel: ObservableObject {
     
     func getTodayData() async {
         do {
-            let response: [todayDashboardData] = try await NetworkManager.shared.fetchData(from: todayDashboard_Url, as: [todayDashboardData].self
+            let response: [TodayData] = try await NetworkManager.shared.fetchData(from: todayDashboard_Url, as: [TodayData].self
             )
-            self.todayPlanData = response
-            print("The TodayPlanData is \(response)")
+            DispatchQueue.main.async {
+                self.todayPlanData = response
+                
+                if let first = self.todayPlanData.first,
+                   let start = first.Shft?.date,
+                   let end = first.ShftE?.date {
+                    
+                    self.shiftTimeRange = formatShiftTime(start: start, end: end)
+                    self.checkInDate = first.AttDate
+                    self.AttTm = first.AttTm
+                    self.ET = first.ET
+                    print("The shiftTimeRange is \(self.shiftTimeRange)")
+                }
+                else {
+                    self.shiftTimeRange = "No shift data"
+                    print("todayPlanData is empty or missing values")
+                }
+            }
         }
         catch {
             print("Error fetching data is \(error)")
