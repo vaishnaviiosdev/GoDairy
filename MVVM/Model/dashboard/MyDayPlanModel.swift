@@ -110,6 +110,23 @@ struct DateData: Codable {
     let timezone: String
 }
 
+struct monthlyDashboardData: Codable {
+    let leave: Int
+    let Newjoin: Int
+    let Permission: Int
+    let Advance: Int
+    let vwOnduty: Int
+    let vwmissedpunch: Int
+    let vwExtended: Int
+    let TountPlanCount: Int
+    let FlightAppr: Int
+    let HolidayCount: Int
+    let ClaimCount: Int
+    let DeviationC: Int
+    let CancelLeave: Int
+    let ExpList: Int
+}
+
 
 
 

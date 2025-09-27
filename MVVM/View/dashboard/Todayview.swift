@@ -27,7 +27,8 @@ struct Todayview: View {
                             .font(.subheadline)
                             .foregroundColor(.black)
                             .fontWeight(.semibold)
-                    } else {
+                    }
+                    else {
                         Text(dashboardModel.checkInDate)
                     }
                     Spacer()
@@ -134,7 +135,16 @@ struct Todayview: View {
                                     .frame(width: 10, height: 10)
                                     .padding(.top, 3)
                                 Button(action: {
-                                    print("In Time Button is called")
+                                    let latAndLong = dashboardModel.GeoOut
+                                    let components = latAndLong.split(separator: ",")
+                                    
+                                    if components.count == 2,
+                                       let lat = Double(components[0]),
+                                       let long = Double(components[1]) {
+                                        
+                                        selectedCoordinate = Coordinate(latitude: lat, longitude: long)
+                                        showMap = true
+                                    }
                                 }) {
                                     Text("View")
                                         .foregroundColor(Color.appPrimary3)

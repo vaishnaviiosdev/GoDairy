@@ -11,6 +11,7 @@ import SwiftUI
 @MainActor
 class dashboardViewModel: ObservableObject {
     @Published var dashboardData: mydayPlanCheckResponse?
+    @Published var monthlyData: monthlyDashboardData?
     @Published var workTypesData: [mydayplanworkTypeResponse] = []
     @Published var checkDayPlanData: [CheckDayPlanData] = []
     @Published var todayPlanData: [TodayData] = []
@@ -157,6 +158,17 @@ class dashboardViewModel: ObservableObject {
                     print("todayPlanData is empty or missing values")
                 }
             }
+        }
+        catch {
+            print("Error fetching data is \(error)")
+        }
+    }
+    
+    func getMonthlyDashboardData() async {
+        do {
+            let response: monthlyDashboardData = try await NetworkManager.shared.fetchData(from: monthlyDashboard_Url, as: monthlyDashboardData.self
+            )
+            self.monthlyData = response
         }
         catch {
             print("Error fetching data is \(error)")
