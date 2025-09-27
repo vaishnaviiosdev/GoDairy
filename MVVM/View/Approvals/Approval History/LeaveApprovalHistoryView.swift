@@ -136,7 +136,6 @@ struct LeaveApprovalCardDataList: View {
                 Text(item.Reason)
                     .font(.system(size: 14, weight: .semibold))
             }
-            
         }
     }
     

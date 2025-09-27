@@ -29,17 +29,22 @@ struct DashboardView: View {
                         DashboardHeader(sfName: sf_name)
                         
                         CheckInSection(goToCheckIn: $goToCheckIn, showDayPlan: $showDayPlan, myDayPlanCount: dashboardVM.checkDayPlanData.count)
-                        
-                        ZStack(alignment:.center) {
-                            Rectangle().foregroundColor(colorData.shared.Background_color)
+                            .padding(.bottom, 10)
+                                                
+                        ZStack(alignment: .center) {
                             TabbarView(currentTab: $currentTab)
                         }
                         .frame(height: 50)
-                        
+                        .frame(maxWidth: .infinity)
+                        .background(Color.white)
+                        .shadow(color: .black.opacity(0.15), radius: 4, x: 0, y: 2) // bottom shadow only
+
                         TabBar(currentTab: $currentTab)
-                            .frame(height: 300)
+                            .frame(height: 250)
                         
                         Divider()
+                            .frame(height: 0.3)
+                            .background(Color.gray)
                         ExploreMore()
                     }
                 }
@@ -213,11 +218,10 @@ struct CheckInButton: View {
 struct TabbarView: View {
     @Binding var currentTab: Int
     @Namespace var namespace
-    
     var tapbaroption: [String] = ["TODAY", "MONTHLY", "GATEIN/OUT"]
     
     var body: some View {
-        HStack(spacing: 1) {
+        HStack(spacing: 0) {
             ForEach(Array(zip(tapbaroption.indices, tapbaroption)), id: \.0) { index, name in
                 TabbarItems(
                     currentTab: self.$currentTab,
@@ -225,9 +229,9 @@ struct TabbarView: View {
                     TabbarItemName: name,
                     Tab: index
                 )
-                .padding(.vertical, 1)
             }
         }
+        //.background(Color.white)
     }
 }
 
@@ -270,7 +274,8 @@ struct TabbarItems: View {
                                 in: namespace,
                                 properties: .frame
                             )
-                    } else {
+                    }
+                    else {
                         Color.clear.frame(height: 2)
                     }
                 }
@@ -297,7 +302,7 @@ struct TabBar: View {
             //.edgesIgnoringSafeArea(.all)
             .ignoresSafeArea()
         }
-        .background(Color.red)
+        //.background(Color.red)
     }
 }
 

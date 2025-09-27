@@ -221,69 +221,6 @@ struct CustommDatePicker: View {
     }
 }
 
-//struct CustommDatePicker: View {
-//    @Binding var selectedDate: Date?
-//    @State private var showPicker = false
-//    
-//    var placeholder: String = "Select Date"
-//    var dateRange: ClosedRange<Date>? = nil
-//    
-//    var body: some View {
-//        Button(action: {
-//            showPicker.toggle()
-//        }) {
-//            HStack {
-//                if let date = selectedDate {
-//                    Text(date.formattedAsYYYYMMDD())
-//                        .foregroundColor(.gray)
-//                        .fontWeight(.regular)
-//                        .font(.system(size: 14))
-//                } else {
-//                    Text(placeholder)
-//                        .foregroundColor(.gray)
-//                        .font(.system(size: 14))
-//                }
-//                
-//                Spacer(minLength: 8)
-//            }
-//            .padding(.horizontal, 12)
-//            .padding(.vertical, 8)
-//            .background(Color.white)
-//            .cornerRadius(10)
-//            .shadow(color: Color.black.opacity(0.15), radius: 4, x: 0, y: 2)
-//        }
-//        .sheet(isPresented: $showPicker) {
-//            VStack {
-//                DatePicker(
-//                    "Select Date",
-//                    selection: Binding(
-//                        get: { selectedDate ?? Date() },
-//                        set: { selectedDate = $0 }
-//                    ),
-//                    in: dateRange ?? Date.distantPast...Date.distantFuture,
-//                    displayedComponents: .date
-//                )
-//                .datePickerStyle(.graphical)
-//                .padding()
-//                
-//                HStack {
-//                    Button("Done") {
-//                        showPicker = false
-//                    }
-//                    .font(.system(size: 16, weight: .bold))
-//                    .foregroundColor(.white)
-//                    .frame(maxWidth: .infinity)
-//                    .padding()
-//                    .background(Color.appPrimary)
-//                    .cornerRadius(12)
-//                }
-//                .padding(.horizontal, 16)
-//            }
-//            .presentationDetents([.medium, .large]) // iOS 16+
-//        }
-//    }
-//}
-
 struct CustomTxtfield: View {
     let title: String
     let placeholderString: String

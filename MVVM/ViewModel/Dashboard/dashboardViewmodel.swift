@@ -16,8 +16,12 @@ class dashboardViewModel: ObservableObject {
     @Published var todayPlanData: [TodayData] = []
     @Published var shiftTimeRange: String = ""
     @Published var checkInDate: String = ""
-    @Published var AttTm: String = "10:38:36"
+    @Published var AttTm: String = ""
     @Published var ET: String = ""
+    @Published var InTimeImageStr: String = ""
+    @Published var OutTimeImageStr: String = ""
+    @Published var GeoIn: String = ""
+    @Published var GeoOut: String = ""
     @Published var submitData: SubmitDayPlanData?
     @Published var showDayPlanSaveAlert = false
     @Published var showDayPlanSuccessMsg: String = ""
@@ -141,7 +145,12 @@ class dashboardViewModel: ObservableObject {
                     self.checkInDate = first.AttDate
                     self.AttTm = first.AttTm
                     self.ET = first.ET
+                    self.InTimeImageStr = first.EImgName
+                    self.OutTimeImageStr = first.SImgName
+                    self.GeoIn = first.GeoIn ?? ""
+                    self.GeoOut = first.GeoOut ?? ""
                     print("The shiftTimeRange is \(self.shiftTimeRange)")
+                    //print("The UIImage in InTime is \(self.InTimeImageStr)")
                 }
                 else {
                     self.shiftTimeRange = "No shift data"

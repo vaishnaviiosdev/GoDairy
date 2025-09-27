@@ -105,7 +105,6 @@ struct CheckInFlowView: View {
     }
 }
 
-
 struct StepIndicator: View {
     @Binding var currentStep: Int
     let steps = ["Location", "Shift", "Selfie"]

@@ -146,7 +146,6 @@ class PermissionManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             break
         }
     }
-
     
     // MARK: - Public flow (sequential)
     func requestAllPermissionsSequentially() {

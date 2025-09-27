@@ -98,7 +98,7 @@ struct TodayData: Codable {
     let Extin: String?
     let ExtStartTtime: String
     let ExtEndtime: String
-    let GeoOut: String
+    let GeoOut: String?
     let Extout: String?
     let lat_long: String
     let HQNm: String
