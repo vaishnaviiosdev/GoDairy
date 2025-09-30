@@ -13,6 +13,8 @@ let Ukey = String(format: "EK%@-%i", sf_code,Int(Date().timeIntervalSince1970))
 let division_code = UserDefaults.standard.string(forKey: "Division_Code") ?? ""
 let sf_name = UserDefaults.standard.string(forKey: "Sf_Name") ?? ""
 let sf_Designation = UserDefaults.standard.string(forKey: "sf_Designation_Short_Name") ?? ""
+let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+
 
 let milk_url = "https://admin.godairy.in/server/milk_url_config.json"
 let privacy_url = "https://admin.godairy.in/Privacy.html"
@@ -77,12 +79,13 @@ let permissionApproval_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_D
 let permissionHistoryApproval_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "AMod=1&divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=GetPermission_Status"
 let missedPunchHistoryApproval_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "AMod=1&divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=GetMissedPunch_Status"
 
-
 let leaveApprovalHistory_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "AMod=1&divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=GetLeave_Status"
-
 
 let advanceApprovalHistory_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "&desig=MGR&divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=GetAdvance_Status_AMOD"
 
+//Check-In
+let checkIn_SaveUrl = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl2 +
+"dcr%2Fsave&Ekey=\(Ukey)&divisionCode=\(division_code)&Sf_code=\(sf_code)&State_Code=&desig="
 
 
 

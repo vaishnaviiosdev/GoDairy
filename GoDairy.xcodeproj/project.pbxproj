@@ -19,6 +19,8 @@
 		1505FF092E7D622E00A4E033 /* PermissionApprovalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1505FF082E7D622E00A4E033 /* PermissionApprovalModel.swift */; };
 		1505FF0B2E7D7FD600A4E033 /* PermissionApprovalDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1505FF0A2E7D7FD600A4E033 /* PermissionApprovalDetailsView.swift */; };
 		381CCF842CE5C41900159560 /* MyDayPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381CCF832CE5C41900159560 /* MyDayPlan.swift */; };
+		382455152E8BDC3D00561BB0 /* checkinmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382455142E8BDC3500561BB0 /* checkinmodel.swift */; };
+		382455182E8BDD8C00561BB0 /* checkinviewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382455172E8BDD8300561BB0 /* checkinviewmodel.swift */; };
 		385ACE0F2E6AAA370046FE7D /* WeekOffEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385ACE0E2E6AAA370046FE7D /* WeekOffEntryView.swift */; };
 		385ACE1D2E6AC86C0046FE7D /* WeekOffModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385ACE1C2E6AC8550046FE7D /* WeekOffModel.swift */; };
 		385ACE1F2E6AC98A0046FE7D /* WeeklyOffViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385ACE1E2E6AC9750046FE7D /* WeeklyOffViewModel.swift */; };
@@ -120,6 +122,8 @@
 		1505FF0A2E7D7FD600A4E033 /* PermissionApprovalDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionApprovalDetailsView.swift; sourceTree = "<group>"; };
 		17F6C07366FD3E932DB09DFA /* Pods_GoDairy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoDairy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		381CCF832CE5C41900159560 /* MyDayPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDayPlan.swift; sourceTree = "<group>"; };
+		382455142E8BDC3500561BB0 /* checkinmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkinmodel.swift; sourceTree = "<group>"; };
+		382455172E8BDD8300561BB0 /* checkinviewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkinviewmodel.swift; sourceTree = "<group>"; };
 		385ACE0E2E6AAA370046FE7D /* WeekOffEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekOffEntryView.swift; sourceTree = "<group>"; };
 		385ACE1C2E6AC8550046FE7D /* WeekOffModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekOffModel.swift; sourceTree = "<group>"; };
 		385ACE1E2E6AC9750046FE7D /* WeeklyOffViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyOffViewModel.swift; sourceTree = "<group>"; };
@@ -251,6 +255,22 @@
 				38CCC3E72CB6865D0096B309 /* CalendarView.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		382455132E8BDC2C00561BB0 /* Check-In */ = {
+			isa = PBXGroup;
+			children = (
+				382455142E8BDC3500561BB0 /* checkinmodel.swift */,
+			);
+			path = "Check-In";
+			sourceTree = "<group>";
+		};
+		382455162E8BDCFE00561BB0 /* Check-In */ = {
+			isa = PBXGroup;
+			children = (
+				382455172E8BDD8300561BB0 /* checkinviewmodel.swift */,
+			);
+			path = "Check-In";
 			sourceTree = "<group>";
 		};
 		385ACE102E6ABCF10046FE7D /* login */ = {
@@ -588,6 +608,7 @@
 		38D735A22E53275700197EA1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				382455132E8BDC2C00561BB0 /* Check-In */,
 				38AF3ECD2E73ECD500F76C5D /* Approval */,
 				38AB2F012E6C52A9007F3501 /* status */,
 				385ACE122E6ABDDD0046FE7D /* dashboard */,
@@ -615,6 +636,7 @@
 		38D735A42E53276900197EA1 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				382455162E8BDCFE00561BB0 /* Check-In */,
 				38D365462E7D70EE0068CA01 /* Dashboard */,
 				38AF3ED02E73EF7200F76C5D /* Approval */,
 				38A9D4C72E6E9B6A009C70D2 /* status */,
@@ -801,6 +823,7 @@
 				38A9D4CF2E6EE20C009C70D2 /* leaveCancelModel.swift in Sources */,
 				38C7FB082E7ADD71001CA81D /* LeaveApprovalView.swift in Sources */,
 				38AF3ECF2E73ED0300F76C5D /* missedApprovalModel.swift in Sources */,
+				382455152E8BDC3D00561BB0 /* checkinmodel.swift in Sources */,
 				385ACE0F2E6AAA370046FE7D /* WeekOffEntryView.swift in Sources */,
 				38A9D4D52E6EE84B009C70D2 /* LeaveCancelView.swift in Sources */,
 				38AF3EE02E74375A00F76C5D /* permissionApprovalViewModel.swift in Sources */,
@@ -812,6 +835,7 @@
 				38D19F092E66E5A500399314 /* PermissionRequestModel.swift in Sources */,
 				38D2FA632E8AA7F700D2CEC8 /* MonthlyViewAllView.swift in Sources */,
 				38AB2F002E6C515A007F3501 /* LeaveStatusView.swift in Sources */,
+				382455182E8BDD8C00561BB0 /* checkinviewmodel.swift in Sources */,
 				1505FEEF2E7A8E6F00A4E033 /* LeaveApprovalHistoryModel.swift in Sources */,
 				38A9D4CB2E6ED702009C70D2 /* missedPunchModel.swift in Sources */,
 				38A9D4D12E6EE52B009C70D2 /* leaveCancelViewmodel.swift in Sources */,

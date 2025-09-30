@@ -15,6 +15,12 @@ struct CheckInFlowView: View {
     @State private var currentStep = 0
     @State private var currentCoordinate = CLLocationCoordinate2D()
     
+    @State private var selectedShiftName = ""
+    @State private var selectedShiftStartTime = ""
+    @State private var selectedShiftEndTime = ""
+    @State private var selectedShiftId = ""
+    @State private var selectedCutOffDate = ""
+    
     var body: some View {
         VStack(spacing: 0) {
             
@@ -45,16 +51,41 @@ struct CheckInFlowView: View {
                     }
                 }
                 else if currentStep == 1 {
-                    ShiftStep {
-                        withAnimation {
-                            currentStep = 2
-                        }
-                    }
+                    ShiftStep(
+                        onNext: {
+                            withAnimation {
+                                currentStep = 2
+                            }
+                        },
+                        latitude: currentCoordinate.latitude,
+                        longitude: currentCoordinate.longitude,
+                        selectedShiftName: $selectedShiftName,
+                        selectedShiftStartTime: $selectedShiftStartTime,
+                        selectedShiftEndTime: $selectedShiftEndTime,
+                        selectedShiftId: $selectedShiftId,
+                        selectedCutOffDate: $selectedCutOffDate
+                    )
                 }
                 else if currentStep == 2 {
-                    SelfieStep {
-                        print("✅ Final submit")
-                    }
+                    SelfieStep(
+                        onNext: {
+                            print("✅ Final submit")
+                            print("Lat: \(currentCoordinate.latitude)")
+                            print("Long: \(currentCoordinate.longitude)")
+                            print("Shift ID: \(selectedShiftId)")
+                            print("Shift Name: \(selectedShiftName)")
+                            print("Shift Start: \(selectedShiftStartTime)")
+                            print("Shift End: \(selectedShiftEndTime)")
+                            print("Cutoff: \(selectedCutOffDate)")
+                        },
+                        latitude: currentCoordinate.latitude,
+                        longitude: currentCoordinate.longitude,
+                        shiftName: selectedShiftName,
+                        shiftStartTime: selectedShiftStartTime,
+                        shiftEndTime: selectedShiftEndTime,
+                        shiftId: selectedShiftId,
+                        shiftCutOff: selectedCutOffDate
+                    )
                 }
             }
             .frame(maxHeight: .infinity)
@@ -301,8 +332,15 @@ struct LocationStep: View {
 // 🔹 Step 2: Shift
 struct ShiftStep: View {
     var onNext: () -> Void
+    var latitude: Double
+    var longitude: Double
     @StateObject var LeaveModel = LeaveRequestViewModel()
-    @State private var selectedShiftId: String = ""
+    
+    @Binding var selectedShiftName: String
+    @Binding var selectedShiftStartTime: String
+    @Binding var selectedShiftEndTime: String
+    @Binding var selectedShiftId: String
+    @Binding var selectedCutOffDate: String
     let columns = Array(repeating: GridItem(.flexible(), spacing: 16), count: 2)
     
     var body: some View {
@@ -320,6 +358,10 @@ struct ShiftStep: View {
                         )
                         .onTapGesture {
                             selectedShiftId = item.id
+                            selectedShiftName = item.name
+                            selectedShiftStartTime = item.Sft_STime
+                            selectedShiftEndTime = item.sft_ETime
+                            selectedCutOffDate = item.ACutOff?.date ?? ""
                         }
                     }
                 }
@@ -386,9 +428,16 @@ struct ShiftGridItem: View {
     }
 }
 
-
 struct SelfieStep: View {
     var onNext: () -> Void
+    var latitude: Double
+    var longitude: Double
+    var shiftName: String
+    var shiftStartTime: String
+    var shiftEndTime: String
+    var shiftId: String
+    var shiftCutOff: String
+    
     @StateObject private var cameraVM = CameraViewModel()
     @State private var sliderValue: Double = 0.5
     @State private var capturedImage: UIImage? = nil
@@ -396,14 +445,53 @@ struct SelfieStep: View {
     
     var body: some View {
         ZStack {
-            // Camera Preview
-            CameraPreview(session: cameraVM.session)
-                .cornerRadius(12)
-                .clipped()
-                .padding(.bottom, 80)
-            
+            // 👇 Camera only when not captured
+            if !isCaptured {
+                CameraPreview(session: cameraVM.session)
+                    .cornerRadius(12)
+                    .clipped()
+                    .padding(.bottom, 80)
+                    .padding(.horizontal, 20)
+            }
+
+            // ✅ Show captured image when available
+            if let image = capturedImage, isCaptured {
+                VStack {
+                    ZStack(alignment: .topTrailing) {
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFit()
+                            .cornerRadius(12)
+                            .clipped()
+                            .padding(.bottom, 80)
+                            .padding(.horizontal, 20)
+
+                        Button(action: {
+                            isCaptured = false
+                            capturedImage = nil
+                        }) {
+                            Text("RETRY")
+                                .font(.system(size: 20, weight: .semibold))
+                                .foregroundColor(.white)
+                                .frame(height: 35)
+                                .padding(.vertical, 6)
+                                .padding(.horizontal, 10)
+                                .background(Color.black.opacity(0.7))
+                                .cornerRadius(10)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 6)
+                                        .stroke(Color.white, lineWidth: 1) // 👈 Border color and width
+                                )
+                                .padding([.top, .trailing], 15)
+                        }
+                        .padding(.trailing, 15)
+                    }
+                    Spacer()
+                }
+            }
+
             VStack {
-                // Top controls (Flash + Switch Camera) → Only show if not captured
+                // 🔦 Flash + Switch Camera → Only when camera is visible
                 if !isCaptured {
                     HStack {
                         HStack(spacing: 0) {
@@ -415,7 +503,7 @@ struct SelfieStep: View {
                                     .foregroundColor(.white)
                                     .padding()
                             }
-                            
+
                             // Switch camera button
                             Button(action: {
                                 cameraVM.switchCamera()
@@ -431,30 +519,44 @@ struct SelfieStep: View {
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(Color.white, lineWidth: 0.5)
                         )
-                        
+
                         Spacer()
                     }
                     .padding(.top, 20)
                     .padding(.leading, 20)
                 }
-                
+
                 Spacer()
                 
-                if !isCaptured {
-                    // Slider (brightness/zoom) → Only show before capture
+                if isCaptured {
+                    // ✅ Finish button full-width bottom
+                    Button(action: {
+                        onNext()
+                    }) {
+                        Text("FINISH")
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, 30)
+                }
+                else {
+                    // 👇 Show shutter + slider only if not captured
                     Slider(value: $sliderValue)
                         .padding(.horizontal, 40)
                         .onChange(of: sliderValue) { newValue in
                             cameraVM.setBrightness(newValue)
                         }
-                    
-                    // Shutter Button
+
                     Button(action: {
                         cameraVM.capturePhoto { image in
                             if let image = image {
-                                print("The CapturedImage is \(image)")
                                 capturedImage = image
-                                isCaptured = true   // ✅ Switch to preview mode
+                                isCaptured = true
                             }
                         }
                     }) {
@@ -465,47 +567,7 @@ struct SelfieStep: View {
                             .shadow(radius: 4)
                     }
                     .padding(.bottom, 100)
-                } else {
-                    // ✅ After capture → Show Retry + Finish
-                    HStack(spacing: 20) {
-                        Button(action: {
-                            // Retry → reset to camera mode
-                            capturedImage = nil
-                            isCaptured = false
-                        }) {
-                            Text("RETRY")
-                                .foregroundColor(.white)
-                                .fontWeight(.bold)
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(Color.gray)
-                                .cornerRadius(10)
-                        }
-                        
-                        Button(action: {
-                            // Finish → move to next step
-                            onNext()
-                        }) {
-                            Text("FINISH")
-                                .foregroundColor(.white)
-                                .fontWeight(.bold)
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(Color.blue)
-                                .cornerRadius(10)
-                        }
-                    }
-                    .padding(.horizontal, 40)
-                    .padding(.bottom, 30)
                 }
-            }
-            
-            // Full preview if captured
-            if let image = capturedImage, isCaptured {
-                Image(uiImage: image)
-                    .resizable()
-                    .scaledToFit()
-                    .edgesIgnoringSafeArea(.all)
             }
         }
     }

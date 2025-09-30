@@ -82,6 +82,9 @@ struct DashboardView: View {
                 }
             }
             .navigationDestination(isPresented: $goToCheckIn) {
+                let cnt = dashboardVM.dashboardData?.Checkdayplan?.first?.Cnt ?? 0
+                let wtype = dashboardVM.dashboardData?.Checkdayplan?.first?.wtype ?? "0"
+                let checkOnDuty = dashboardVM.dashboardData?.CheckOnduty
                 CheckInFlowView()   // ✅ your target screen
             }
         }
@@ -232,7 +235,6 @@ struct TabbarView: View {
                 )
             }
         }
-        //.background(Color.white)
     }
 }
 

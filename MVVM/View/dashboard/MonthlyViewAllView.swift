@@ -69,7 +69,7 @@ struct monthlyViewAllDataList: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            topRow
+            //topRow
             Divider().background(.black)
             //shiftAndReason
             //appliedAndStatus
@@ -81,30 +81,30 @@ struct monthlyViewAllDataList: View {
         .padding(.horizontal, 5)
     }
     
-    private var topRow: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Text(item.WrkDate)
-                    .font(.system(size: 14, weight: .medium))
-                    .foregroundColor(.black)
-                
-                Spacer()
-                
-                Text(item.DayStatus)
-                    .font(.system(size: 12, weight: .bold))
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 5)
-                    .background(
-                        (item.DayStatus.lowercased() == "leave" || item.DayStatus.lowercased() == "on-time")
-                        ? Color.approved
-                        : Color.reject
-                    )
-                    .foregroundColor(.white)
-                    .cornerRadius(12)
-            }
-        }
-    }
-    
+//    private var topRow: some View {
+//        VStack(alignment: .leading) {
+//            HStack {
+//                Text(item.WrkDate ?? <#default value#>)
+//                    .font(.system(size: 14, weight: .medium))
+//                    .foregroundColor(.black)
+//                
+//                Spacer()
+//                
+//                Text(item.DayStatus)
+//                    .font(.system(size: 12, weight: .bold))
+//                    .padding(.horizontal, 10)
+//                    .padding(.vertical, 5)
+//                    .background(
+//                        (item.DayStatus.lowercased() == "leave" || item.DayStatus.lowercased() == "on-time")
+//                        ? Color.approved
+//                        : Color.reject
+//                    )
+//                    .foregroundColor(.white)
+//                    .cornerRadius(12)
+//            }
+//        }
+//    }
+//    
     private var bottomRow: some View {
         VStack(alignment: .leading, spacing: 12) {
             
@@ -112,7 +112,7 @@ struct monthlyViewAllDataList: View {
                 Text("SHIFT TIME")
                     .font(.caption)
                     .foregroundColor(.gray)
-                Text(item.Shft)
+                Text(item.Shft ?? "")
                     .font(.system(size: 14, weight: .semibold))
             }
             

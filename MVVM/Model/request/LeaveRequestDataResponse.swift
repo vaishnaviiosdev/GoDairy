@@ -33,13 +33,16 @@ struct LeaveShiftTimeDataResponse: Codable {
     let name: String
     let Sft_STime: String
     let sft_ETime: String
-    
-    enum CodingKeys: String, CodingKey {
-        case id = "id"
-        case name = "name"
-        case Sft_STime = "Sft_STime"
-        case sft_ETime = "sft_ETime"
-    }
+    let ACutOff: ACutOffDataResponse?
+    let NtfyTm: NtfyTmDataResponse?
+}
+
+struct ACutOffDataResponse: Codable {
+    let date: String
+}
+
+struct NtfyTmDataResponse: Codable {
+    let date: String
 }
 
 struct leaveSavedResponse: Codable {
