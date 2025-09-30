@@ -39,7 +39,7 @@ struct DashboardView: View {
                         .background(Color.white)
                         .shadow(color: .black.opacity(0.15), radius: 4, x: 0, y: 2) // bottom shadow only
 
-                        TabBar(currentTab: $currentTab)
+                        TabBar(currentTab: $currentTab, myDayPlanCount: dashboardVM.checkDayPlanData.count)
                             .frame(height: 250)
                         
                         Divider()
@@ -78,6 +78,7 @@ struct DashboardView: View {
             .onAppear {
                 Task {
                     await dashboardVM.fetchDashboardData()
+                    await dashboardVM.getMonthlyDashboardData()
                 }
             }
             .navigationDestination(isPresented: $goToCheckIn) {
@@ -289,11 +290,12 @@ struct TabbarItems: View {
 // MARK: - TABBAR
 struct TabBar: View {
     @Binding var currentTab: Int
+    var myDayPlanCount: Int
     
     var body: some View {
         ZStack(alignment: .top) {
             TabView(selection: $currentTab) {
-                Todayview().tag(0)
+                Todayview(myDayPlanCount: myDayPlanCount).tag(0)
                 Monthlyview().tag(1)
                 Gate_in_out().tag(2)
                 // Login().tag(3)
@@ -338,7 +340,7 @@ struct ExploreMore: View {
         }
         // MARK: - FullScreen Modals
         .fullScreenCover(isPresented: $showRequestStatus) { RequestView() }
-//        .fullScreenCover(isPresented: $showTAClaim) { TAClaimView() }
+        .fullScreenCover(isPresented: $showTAClaim) { MonthlyViewAllView() }
         .fullScreenCover(isPresented: $showActivity) { ActivityDashboardView() }
 //        .fullScreenCover(isPresented: $showGateIn) { GateInView() }
 //        .fullScreenCover(isPresented: $showGateOut) { GateOutView() }

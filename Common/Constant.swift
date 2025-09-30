@@ -63,6 +63,8 @@ let todayDashboard_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl
 
 let monthlyDashboard_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "State_Code=1&desig=MGR&divisionCode=\(division_code)&rSF=\(sf_code)&axn=ViewAllCount&sfCode=\(sf_code)"
 
+let monthlyViewAll_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "Priod=0&sfCode=\(sf_code)&axn=get%2FAttnStatus&Status="
+
 //My Approval
 let missedPunchApproval_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=vwmissedpunch"
 let leaveApproval_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=vwLeave"

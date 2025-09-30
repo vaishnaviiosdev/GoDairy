@@ -35,43 +35,6 @@ struct SubmitDayPlanData: Codable {
     let msg: String?
 }
 
-//struct todayDashboardData: Codable {
-//    let TodayData: todayData?
-//}
-//
-//struct todayData: Codable {
-//    let SF_Code: String
-//    let SF_Name: String
-//    let login_date: loginDateData?
-//    let Shft: ShftData?
-//    let ShftE: ShftEData?
-//    let STm: STmData?
-//}
-//
-//struct loginDateData: Codable {
-//    let WrkDate: String
-//    let SFT_Name: String
-//}
-//
-//struct ShftData: Codable {
-//    let date: String
-//    let timezone_type: Int
-//    let timezone: String
-//}
-//
-//struct ShftEData: Codable {
-//    let date: String
-//    let timezone_type: Int
-//    let timezone: String
-//}
-//
-//struct STmData: Codable {
-//    let AttTm: String
-//    let ET: String
-//    let DayStatus: String
-//    let Status: String
-//}
-
 struct TodayData: Codable {
     let SF_Code: String
     let SF_Name: String
@@ -125,6 +88,39 @@ struct monthlyDashboardData: Codable {
     let DeviationC: Int
     let CancelLeave: Int
     let ExpList: Int
+}
+
+struct monthlyViewAllData: Codable, Identifiable {
+    var id = UUID().uuidString
+    let Attndt: String?
+    let login_date: String?
+    let WrkDate: String?
+    let SFT_Name: String?
+    let Shft: String?
+    let ShftE: String?
+    let AttTm: String?
+    let ET: String?
+    let Geoin: String?
+    let Geoout: String?
+    let Loc: String?
+    let DayStatus: String?
+    let StusClr: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case Attndt = "Attndt"
+        case login_date = "login_date"
+        case WrkDate = "WrkDate"
+        case SFT_Name = "SFT_Name"
+        case Shft = "Shft"
+        case ShftE = "ShftE"
+        case AttTm = "AttTm"
+        case ET = "ET"
+        case Geoin = "Geoin"
+        case Geoout = "Geoout"
+        case Loc = "Loc"
+        case DayStatus = "DayStatus"
+        case StusClr = "StusClr"
+    }
 }
 
 

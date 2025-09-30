@@ -20,6 +20,7 @@ class LeaveApprovalHistoryViewModel: ObservableObject {
             let response: [LeaveApprovalHistoryModel] = try await NetworkManager.shared.fetchData(from: leaveApprovalHistory_Url, as: [LeaveApprovalHistoryModel].self
             )
             self.leaveApprovalHistoryList = response
+            print("The Leave Approval History List is \(response)")
         }
         catch {
             print("Error Fetching data is \(error)")

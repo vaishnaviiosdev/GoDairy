@@ -15,6 +15,7 @@ class dashboardViewModel: ObservableObject {
     @Published var workTypesData: [mydayplanworkTypeResponse] = []
     @Published var checkDayPlanData: [CheckDayPlanData] = []
     @Published var todayPlanData: [TodayData] = []
+    @Published var monthlyViewallData: [monthlyViewAllData] = []
     @Published var shiftTimeRange: String = ""
     @Published var checkInDate: String = ""
     @Published var AttTm: String = ""
@@ -169,6 +170,18 @@ class dashboardViewModel: ObservableObject {
             let response: monthlyDashboardData = try await NetworkManager.shared.fetchData(from: monthlyDashboard_Url, as: monthlyDashboardData.self
             )
             self.monthlyData = response
+            print("The Monthly Data response is \(response)")
+        }
+        catch {
+            print("Error fetching data is \(error)")
+        }
+    }
+    
+    func getMonthlyDashboardViewAllData() async {
+        do {
+            let response: [monthlyViewAllData] = try await NetworkManager.shared.fetchData(from: monthlyViewAll_Url, as: [monthlyViewAllData].self
+            )
+            self.monthlyViewallData = response
         }
         catch {
             print("Error fetching data is \(error)")

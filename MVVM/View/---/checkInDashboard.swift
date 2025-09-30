@@ -2,8 +2,9 @@
 //  checkInDashboard.swift
 //  GoDairy
 //
-//  Created by San eforce on 20/11/24.
+//  Created by San eforce on 29/09/25.
 //
+
 import SwiftUI
 import Alamofire
 
@@ -41,7 +42,7 @@ struct checkInDashboard: View {
                             .foregroundColor(colorData.shared.Background_color)
                         TabbarView(currentTab: $currentTab)
                     }.frame(height: 50)
-                    TabBar(currentTab: $currentTab)
+                    //TabBar(currentTab: $currentTab)
                     Divider()
                     Exploremore1()
                 }
@@ -53,9 +54,7 @@ struct checkInDashboard: View {
 // MARK: - CHECK IN BUTTON
 var isCheckedIn: Bool = false
 struct check_in_button1:View {
-    
-   // @State private var isCheckedIn: Bool = false
-    
+    // @State private var isCheckedIn: Bool = false
     @State private var elapsedTime: TimeInterval = 0
     @State private var isButtonClicked: Bool = false
     @State var startDate = Date.now
@@ -139,7 +138,7 @@ struct check_in_button1:View {
                         //                    {
                         //                        //showDayPlan = true
                         //                        //   self.navigateToNextPages = true
-                        //                        
+                        //
                         //                    }
                         Text(isCheckedIn ? "CHECK OUT \(formatTime(elapsedTime))" : "CHECK IN")
                             .foregroundColor(.white)
@@ -424,7 +423,7 @@ struct check_in_button1:View {
     func MissedPunch() {
                
 //        isSubmitting = true
-//       
+//
 //        DispatchQueue.main.async {
 //            navigateToNextPages = true
 //              }
@@ -582,7 +581,7 @@ struct check_in_button1:View {
         var body: some View {
             ZStack(alignment: .top){
                 TabView(selection: $currentTab){
-                    Todayview().tag(0)
+                    //Todayview().tag(0)
                     Monthlyview().tag(1)
                     Gate_in_out().tag(2)
                     //Login().tag(2)
@@ -599,15 +598,15 @@ struct check_in_button1:View {
 //    let title: String
 //    let items: [GridItemModel]
 //    @Binding var requestStatus: Bool
-//    
+//
 //    private let columns = Array(repeating: GridItem(.flexible()), count: 3)
-//    
+//
 //    var body: some View {
 //        VStack(alignment: .leading) {
 //            Text(title)
 //                .font(.headline)
 //                .padding(.horizontal)
-//            
+//
 //            LazyVGrid(columns: columns) {
 //                ForEach(items) { item in
 //                    Button {
@@ -632,14 +631,14 @@ struct check_in_button1:View {
 //// MARK: - Reusable Grid Item View
 //struct GridItemView: View {
 //    let item: GridItemModel
-//    
+//
 //    var body: some View {
 //        VStack {
 //            Image(item.image)
 //                .resizable()
 //                .scaledToFit()
 //                .frame(width: 50, height: 50)
-//            
+//
 //            Text(item.name)
 //                .font(.subheadline)
 //                .lineLimit(1)
