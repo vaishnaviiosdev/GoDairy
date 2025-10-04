@@ -36,7 +36,7 @@ struct DashboardView: View {
                         }
                         .frame(height: 50)
                         .frame(maxWidth: .infinity)
-                        .background(Color.white)
+                        .background(Color.brown)
                         .shadow(color: .black.opacity(0.15), radius: 4, x: 0, y: 2) // bottom shadow only
 
                         TabBar(currentTab: $currentTab, myDayPlanCount: dashboardVM.checkDayPlanData.count)
@@ -85,7 +85,7 @@ struct DashboardView: View {
                 let cnt = dashboardVM.dashboardData?.Checkdayplan?.first?.Cnt ?? 0
                 let wtype = dashboardVM.dashboardData?.Checkdayplan?.first?.wtype ?? "0"
                 let checkOnDuty = dashboardVM.dashboardData?.CheckOnduty
-                CheckInFlowView()   // ✅ your target screen
+                CheckInFlowView(Cnt: cnt, wrkType: wtype, checkOnDuty: checkOnDuty)
             }
         }
     }
@@ -218,76 +218,161 @@ struct CheckInButton: View {
     }
 }
 
-// MARK: - TABBAR VIEW
 struct TabbarView: View {
     @Binding var currentTab: Int
     @Namespace var namespace
-    var tapbaroption: [String] = ["TODAY", "MONTHLY", "GATEIN/OUT"]
+    var tabbarOptions: [String] = ["TODAY", "MONTHLY", "GATE IN/OUT"]
     
     var body: some View {
-        HStack(spacing: 0) {
-            ForEach(Array(zip(tapbaroption.indices, tapbaroption)), id: \.0) { index, name in
-                TabbarItems(
-                    currentTab: self.$currentTab,
-                    namespace: namespace,
-                    TabbarItemName: name,
-                    Tab: index
-                )
+        VStack(spacing: 0) {
+            // Tab buttons
+            HStack(spacing: 0) {
+                ForEach(Array(zip(tabbarOptions.indices, tabbarOptions)), id: \.0) { index, name in
+                    Button(action: {
+                        withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+                            currentTab = index
+                        }
+                    }) {
+                        VStack(spacing: 8) {
+                            Text(name)
+                                .font(.system(size: 15, weight: currentTab == index ? .semibold : .regular))
+                                .foregroundColor(currentTab == index ? .black : .gray)
+                        }
+                        .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.plain)
+                }
             }
+            .frame(height: 48)
+            .background(Color.white)
+            
+            // Underline indicator at bottom
+            ZStack(alignment: .leading) {
+                Color.gray.opacity(0.2)
+                    .frame(height: 1)
+                GeometryReader { geometry in
+                    let tabWidth = geometry.size.width / CGFloat(tabbarOptions.count)
+                    
+                    Color(red: 0.01, green: 0.66, blue: 0.96)
+                        .frame(width: tabWidth, height: 2)
+                        .offset(x: tabWidth * CGFloat(currentTab))
+                        .matchedGeometryEffect(id: "underline", in: namespace)
+                        .animation(.spring(response: 0.4, dampingFraction: 0.8), value: currentTab)
+                }
+            }
+            .frame(height: 2)
         }
+        .background(Color.white)
     }
 }
 
-// MARK: - TABBAR ITEMS VIEW
-struct TabbarItems: View {
-    @Binding var currentTab: Int
-    let namespace: Namespace.ID
-    var TabbarItemName: String
-    var Tab: Int
-    
-    var body: some View {
-        Button(action: {
-            currentTab = Tab
-        }) {
-            ZStack {
-                Rectangle()
-                    .foregroundColor(.white)
-                
-                VStack {
-                    if currentTab == Tab {
-                        Text(TabbarItemName)
-                            .font(.system(size: 15))
-                            .fontWeight(.semibold)
-                            .foregroundColor(.black)
-                            .padding(.top, 8)
-                    }
-                    else {
-                        Text(TabbarItemName)
-                            .font(.system(size: 15))
-                            .fontWeight(.semibold)
-                            .foregroundColor(.gray)
-                            .padding(.top, 8)
-                    }
-                    
-                    if currentTab == Tab {
-                        Color.blue
-                            .frame(height: 2)
-                            .matchedGeometryEffect(
-                                id: "underline",
-                                in: namespace,
-                                properties: .frame
-                            )
-                    }
-                    else {
-                        Color.clear.frame(height: 2)
-                    }
-                }
-                .animation(.spring(), value: currentTab)
-            }
-        }
-        .buttonStyle(.plain)
-    }
-}
+//struct TabbarItem: View {
+//    @Binding var currentTab: Int
+//    let namespace: Namespace.ID
+//    var name: String
+//    var tab: Int
+//    
+//    var body: some View {
+//        Button(action: {
+//            withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+//                currentTab = tab
+//            }
+//        }) {
+//            VStack(spacing: 4) {
+//                Text(name)
+//                    .font(.system(size: 15))
+//                    .fontWeight(currentTab == tab ? .semibold : .regular)
+//                    .foregroundColor(currentTab == tab ? .black : Color.gray.opacity(0.7))
+//                
+//                ZStack {
+//                    if currentTab == tab {
+//                        // Light blue underline
+//                        Color(red: 0.01, green: 0.66, blue: 0.96)
+//                            .frame(height: 2)
+//                            .matchedGeometryEffect(id: "underline", in: namespace)
+//                    }
+//                    else {
+//                        Color.clear.frame(height: 2)
+//                    }
+//                }
+//            }
+//            .frame(maxWidth: .infinity)
+//            //.padding(.vertical, 8)
+//        }
+//        .buttonStyle(.plain)
+//    }
+//}
+
+// MARK: - TABBAR VIEW
+//struct TabbarView: View {
+//    @Binding var currentTab: Int
+//    @Namespace var namespace
+//    var tapbaroption: [String] = ["TODAY", "MONTHLY", "GATEIN/OUT"]
+//    
+//    var body: some View {
+//        HStack(spacing: 0) {
+//            ForEach(Array(zip(tapbaroption.indices, tapbaroption)), id: \.0) { index, name in
+//                TabbarItems(
+//                    currentTab: self.$currentTab,
+//                    namespace: namespace,
+//                    TabbarItemName: name,
+//                    Tab: index
+//                )
+//            }
+//        }
+//    }
+//}
+//
+//// MARK: - TABBAR ITEMS VIEW
+//struct TabbarItems: View {
+//    @Binding var currentTab: Int
+//    let namespace: Namespace.ID
+//    var TabbarItemName: String
+//    var Tab: Int
+//    
+//    var body: some View {
+//        Button(action: {
+//            currentTab = Tab
+//        }) {
+//            ZStack {
+//                Rectangle()
+//                    .foregroundColor(.white)
+//                
+//                VStack {
+//                    if currentTab == Tab {
+//                        Text(TabbarItemName)
+//                            .font(.system(size: 15))
+//                            .fontWeight(.regular)
+//                            .foregroundColor(.black)
+//                            .padding(.top, 8)
+//                    }
+//                    else {
+//                        Text(TabbarItemName)
+//                            .font(.system(size: 15))
+//                            .fontWeight(.semibold)
+//                            .foregroundColor(.gray)
+//                            .padding(.top, 8)
+//                    }
+//                    
+//                    if currentTab == Tab {
+//                        Color.blue
+//                            .frame(height: 2)
+//                            .matchedGeometryEffect(
+//                                id: "underline",
+//                                in: namespace,
+//                                properties: .frame
+//                            )
+//                    }
+//                    else {
+//                        Color.clear.frame(height: 2)
+//                    }
+//                }
+//                .animation(.spring(), value: currentTab)
+//            }
+//        }
+//        .buttonStyle(.plain)
+//    }
+//}
 
 // MARK: - TABBAR
 struct TabBar: View {

@@ -525,7 +525,7 @@ struct check_in_button1:View {
         var body: some View {
             HStack(spacing:1){
                 ForEach(Array(zip(tapbaroption.indices, tapbaroption)),id: \.0){ index, name in
-                    TabbarItems(currentTab: self.$currentTab, namespace: namespace, TabbarItemName: name, Tab: index).padding(.vertical,1)
+                    TabbarItems1(currentTab: self.$currentTab, namespace: namespace, TabbarItemName: name, Tab: index).padding(.vertical,1)
                     
                 }
             }
@@ -553,7 +553,8 @@ struct check_in_button1:View {
                                 .fontWeight(.semibold)
                                 .foregroundColor(.black)
                                 .padding(.top,8)
-                        }else{
+                        }
+                        else{
                             Text(TabbarItemName)
                                 .font(.system(size: 15))
                                 .fontWeight(.semibold)

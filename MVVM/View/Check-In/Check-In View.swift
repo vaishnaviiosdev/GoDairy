@@ -12,6 +12,7 @@ import Contacts
 struct CheckInFlowView: View {
     @Environment(\.dismiss) private var dismiss
     @StateObject private var permissionManager = PermissionManager()
+    @StateObject private var checkInModel = Checkinviewmodel()
     @State private var currentStep = 0
     @State private var currentCoordinate = CLLocationCoordinate2D()
     
@@ -20,11 +21,12 @@ struct CheckInFlowView: View {
     @State private var selectedShiftEndTime = ""
     @State private var selectedShiftId = ""
     @State private var selectedCutOffDate = ""
+    let Cnt : Int?
+    let wrkType : String
+    let checkOnDuty : Int?
     
     var body: some View {
         VStack(spacing: 0) {
-            
-            //Indicator Bar
             StepIndicator(currentStep: $currentStep)
                 .padding(.top, 30)
                 .padding(.bottom, 20)
@@ -68,15 +70,22 @@ struct CheckInFlowView: View {
                 }
                 else if currentStep == 2 {
                     SelfieStep(
-                        onNext: {
-                            print("✅ Final submit")
-                            print("Lat: \(currentCoordinate.latitude)")
-                            print("Long: \(currentCoordinate.longitude)")
-                            print("Shift ID: \(selectedShiftId)")
-                            print("Shift Name: \(selectedShiftName)")
-                            print("Shift Start: \(selectedShiftStartTime)")
-                            print("Shift End: \(selectedShiftEndTime)")
-                            print("Cutoff: \(selectedCutOffDate)")
+                        onNext: { lat, long, sName, sStart, sEnd, sId, sCutOff, cnt, wType, onDuty,selfieImage, imageData, fileName in
+                            await checkInModel.CheckInSavePost(
+                                shiftId: sId,
+                                shiftName: sName,
+                                shiftStart: sStart,
+                                shiftEnd: sEnd,
+                                shiftCutOff: sCutOff,
+                                latitude: lat,
+                                longitude: long,
+                                cnt: cnt,
+                                wType: wType,
+                                checkOnDuty: onDuty,
+                                selfieImage: selfieImage,
+                                selfieImageData: imageData,
+                                fileName: fileName
+                            )
                         },
                         latitude: currentCoordinate.latitude,
                         longitude: currentCoordinate.longitude,
@@ -84,7 +93,10 @@ struct CheckInFlowView: View {
                         shiftStartTime: selectedShiftStartTime,
                         shiftEndTime: selectedShiftEndTime,
                         shiftId: selectedShiftId,
-                        shiftCutOff: selectedCutOffDate
+                        shiftCutOff: selectedCutOffDate,
+                        cnt: Cnt ?? 0,
+                        wType: wrkType,
+                        checkOnDuty: checkOnDuty ?? 0
                     )
                 }
             }
@@ -367,7 +379,6 @@ struct ShiftStep: View {
                 }
                 .padding()
             }
-            
             if !selectedShiftId.isEmpty {
                 confirmButton
             }
@@ -429,7 +440,21 @@ struct ShiftGridItem: View {
 }
 
 struct SelfieStep: View {
-    var onNext: () -> Void
+    var onNext: @Sendable (
+        _ latitude: Double,
+        _ longitude: Double,
+        _ shiftName: String,
+        _ shiftStartTime: String,
+        _ shiftEndTime: String,
+        _ shiftId: String,
+        _ shiftCutOff: String,
+        _ cnt: Int,
+        _ wType: String,
+        _ checkOnDuty: Int,
+        _ selfieImage: UIImage,
+        _ imageData: Data,
+        _ fileName: String
+    ) async -> Void
     var latitude: Double
     var longitude: Double
     var shiftName: String
@@ -437,7 +462,11 @@ struct SelfieStep: View {
     var shiftEndTime: String
     var shiftId: String
     var shiftCutOff: String
-    
+    var cnt: Int
+    var wType: String
+    var checkOnDuty: Int
+    //@State private var captureImage: UIImage?
+
     @StateObject private var cameraVM = CameraViewModel()
     @State private var sliderValue: Double = 0.5
     @State private var capturedImage: UIImage? = nil
@@ -519,7 +548,6 @@ struct SelfieStep: View {
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(Color.white, lineWidth: 0.5)
                         )
-
                         Spacer()
                     }
                     .padding(.top, 20)
@@ -531,7 +559,27 @@ struct SelfieStep: View {
                 if isCaptured {
                     // ✅ Finish button full-width bottom
                     Button(action: {
-                        onNext()
+                        if let image = capturedImage,
+                           let imageData = image.jpegData(compressionQuality: 0.8) {
+                            let fileName = "MGR80_\(Int(Date().timeIntervalSince1970)).jpg"
+                            Task {
+                                await onNext(
+                                    latitude,
+                                    longitude,
+                                    shiftName,
+                                    shiftStartTime,
+                                    shiftEndTime,
+                                    shiftId,
+                                    shiftCutOff,
+                                    cnt,
+                                    wType,
+                                    checkOnDuty,
+                                    image,
+                                    imageData,
+                                    fileName
+                                )
+                            }
+                        }
                     }) {
                         Text("FINISH")
                             .font(.system(size: 16, weight: .bold))
@@ -573,104 +621,9 @@ struct SelfieStep: View {
     }
 }
 
-
-//struct SelfieStep: View {
-//    var onNext: () -> Void
-//    @StateObject private var cameraVM = CameraViewModel()
-//    @State private var sliderValue: Double = 0.5
-//    @State private var capturedImage: UIImage? = nil
-//    
-//    var body: some View {
-//        ZStack {
-//            // Camera Preview
-//            CameraPreview(session: cameraVM.session)
-//                .cornerRadius(12)
-//                .clipped()
-//                //.ignoresSafeArea()
-//            
-//            VStack {
-//                // Top controls (Flash + Switch Camera)
-//                HStack {
-//                    HStack (spacing: 0) {
-//                        // Flash button
-//                        Button(action: {
-//                            cameraVM.toggleFlash()
-//                        }) {
-//                            Image("bolt")
-//                                .foregroundColor(.white)
-//                                .padding()
-//                        }
-//                        
-//                        // Switch camera button
-//                        Button(action: {
-//                            cameraVM.switchCamera()
-//                        }) {
-//                            Image("refresh")
-//                                .foregroundColor(.white)
-//                                .padding()
-//                        }
-//                    }
-//                    .background(Color.gray.opacity(0.5))
-//                    .clipShape(RoundedRectangle(cornerRadius: 8))
-//                    .overlay( // White border
-//                        RoundedRectangle(cornerRadius: 8)
-//                            .stroke(Color.white, lineWidth: 0.5)
-//                    )
-//                    
-//                    Spacer()
-//                }
-//                .padding(.top, 20)
-//                .padding(.leading, 20)
-//                
-//                Spacer()
-//                
-//                // Slider (zoom / custom use)
-//                Slider(value: $sliderValue)
-//                    .padding(.horizontal, 40)
-//                
-//                // Shutter Button
-//                Button(action: {
-//                    cameraVM.capturePhoto { image in
-//                        if let image = image {
-//                            capturedImage = image
-//                        }
-//                    }
-//                }) {
-//                    Circle()
-//                        .strokeBorder(Color.white, lineWidth: 4)
-//                        .background(Circle().fill(Color.white))
-//                        .frame(width: 70, height: 70)
-//                        .shadow(radius: 4)
-//                }
-//                .padding(.bottom, 20)
-//            }
-//            
-//            // Small thumbnail preview (bottom-right)
-//            if let image = capturedImage {
-//                VStack {
-//                    Spacer()
-//                    HStack {
-//                        Spacer()
-//                        Image(uiImage: image)
-//                            .resizable()
-//                            .scaledToFill()
-//                            .frame(width: 60, height: 60)
-//                            .clipShape(RoundedRectangle(cornerRadius: 8))
-//                            .overlay(
-//                                RoundedRectangle(cornerRadius: 8)
-//                                    .stroke(Color.white, lineWidth: 1)
-//                            )
-//                            .padding(.bottom, 30)
-//                            .padding(.trailing, 20)
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
-
 #Preview {
     NavigationView {
-        CheckInFlowView()
+        CheckInFlowView(Cnt: nil, wrkType: "", checkOnDuty: nil)
     }
 }
+

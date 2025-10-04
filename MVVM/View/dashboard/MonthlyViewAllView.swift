@@ -41,7 +41,7 @@ struct monthlyViewAllCard: View {
             monthlyViewAllList(Model: Model)
             
         }
-        .background(Color.backgroundColour)
+        .background(Color.white)
         .cornerRadius(12)
         .padding(.horizontal, 8)
     }
@@ -69,10 +69,9 @@ struct monthlyViewAllDataList: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            //topRow
+            topRow
             Divider().background(.black)
-            //shiftAndReason
-            //appliedAndStatus
+            bottomRow
         }
         .padding(10)
         .background(RoundedRectangle(cornerRadius: 12).fill(Color.white))
@@ -81,39 +80,42 @@ struct monthlyViewAllDataList: View {
         .padding(.horizontal, 5)
     }
     
-//    private var topRow: some View {
-//        VStack(alignment: .leading) {
-//            HStack {
-//                Text(item.WrkDate ?? <#default value#>)
-//                    .font(.system(size: 14, weight: .medium))
-//                    .foregroundColor(.black)
-//                
-//                Spacer()
-//                
-//                Text(item.DayStatus)
-//                    .font(.system(size: 12, weight: .bold))
-//                    .padding(.horizontal, 10)
-//                    .padding(.vertical, 5)
-//                    .background(
-//                        (item.DayStatus.lowercased() == "leave" || item.DayStatus.lowercased() == "on-time")
-//                        ? Color.approved
-//                        : Color.reject
-//                    )
-//                    .foregroundColor(.white)
-//                    .cornerRadius(12)
-//            }
-//        }
-//    }
-//    
+    private var topRow: some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Text(item.WrkDate ?? "------")
+                    .font(.system(size: 13, weight: .medium))
+                    .foregroundColor(.black)
+                
+                Spacer()
+                
+                Text(item.DayStatus ?? "Not Mentioned")
+                    .font(.system(size: 12, weight: .bold))
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 5)
+                    .background(
+                        (item.DayStatus?.lowercased() == "leave" || item.DayStatus?.lowercased() == "on-time")
+                        ? Color.approved
+                        : Color.reject
+                    )
+                    .foregroundColor(.white)
+                    .cornerRadius(12)
+            }
+        }
+    }
+    
     private var bottomRow: some View {
         VStack(alignment: .leading, spacing: 12) {
             
-            VStack(alignment: .trailing, spacing: 2) {
-                Text("SHIFT TIME")
-                    .font(.caption)
-                    .foregroundColor(.gray)
-                Text(item.Shft ?? "")
-                    .font(.system(size: 14, weight: .semibold))
+            HStack {
+                Spacer()
+                VStack(alignment: .trailing, spacing: 2) {
+                    Text("SHIFT TIME")
+                        .font(.system(size: 11, weight: .bold))
+                        .foregroundColor(.gray)
+                    Text((item.Shft?.isEmpty == false) ? item.Shft! : "-")
+                        .font(.system(size: 13, weight: .semibold))
+                }
             }
             
             HStack {
@@ -121,16 +123,38 @@ struct monthlyViewAllDataList: View {
                     Text("IN TIME")
                         .font(.caption)
                         .foregroundColor(.gray)
+                        .fontWeight(.bold)
                     Text(item.AttTm ?? "")
-                        .font(.system(size: 14, weight: .semibold))
+                        .font(.system(size: 13, weight: .semibold))
                 }
                 Spacer()
                 VStack(alignment: .trailing, spacing: 2) {
                     Text("OUT TIME")
                         .font(.caption)
                         .foregroundColor(.gray)
+                        .fontWeight(.bold)
                     Text(item.ET ?? "")
-                        .font(.system(size: 14, weight: .semibold))
+                        .font(.system(size: 13, weight: .semibold))
+                }
+            }
+            
+            HStack {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("IN GEO")
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                        .fontWeight(.bold)
+                    Text(item.Geoin ?? "-")
+                        .font(.system(size: 13, weight: .semibold))
+                }
+                Spacer()
+                VStack(alignment: .trailing, spacing: 2) {
+                    Text("OUT GEO")
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                        .fontWeight(.bold)
+                    Text(item.Geoout ?? "-")
+                        .font(.system(size: 13, weight: .semibold))
                 }
             }
         }

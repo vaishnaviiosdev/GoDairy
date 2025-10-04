@@ -87,6 +87,8 @@ let advanceApprovalHistory_Url = APIClient.shared.New_DBUrl + APIClient.shared.N
 let checkIn_SaveUrl = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl2 +
 "dcr%2Fsave&Ekey=\(Ukey)&divisionCode=\(division_code)&Sf_code=\(sf_code)&State_Code=&desig="
 
+let image_BaseUrl = "http://qa.godairy.in/server/Db_v300.php?&axn=imgupload&Sf_code=\(sf_code)&="
+
 
 
 

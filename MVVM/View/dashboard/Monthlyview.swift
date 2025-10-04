@@ -7,42 +7,85 @@
 
 import SwiftUI
 
+//struct Monthlyview: View {
+//    @StateObject var dashboardVM = dashboardViewModel()
+//    var body: some View {
+//        VStack(alignment: .leading, spacing: 12) {
+//            
+//            // Top header with View All
+//            ViewAll()
+//                .padding(.horizontal, 16)
+//            
+//            // Scrollable grid
+//            ScrollView {
+//                LazyVGrid(
+//                    columns: Array(repeating: GridItem(.flexible(), spacing: 12), count: 3),
+//                    spacing: 12
+//                ) {
+//                    MonthlyStatCard(title: "Permission", value: "\(dashboardVM.monthlyData?.Permission ?? 0)")
+//                    MonthlyStatCard(title: "Leave", value: "\(dashboardVM.monthlyData?.leave ?? 0)")
+//                    MonthlyStatCard(title: "Late", value: "\(0)") //not there
+//                    MonthlyStatCard(title: "On-Time", value: "\(dashboardVM.monthlyData?.vwOnduty ?? 0)")
+//                    MonthlyStatCard(title: "Missed Punch", value: "\(dashboardVM.monthlyData?.vwmissedpunch ?? 0)")
+//                    MonthlyStatCard(title: "Weekly off", value: "\(0)") // Not there
+//                }
+//                .padding(.horizontal, 16)
+//                .padding(.top, 4)
+//            }
+//        }
+//        .onAppear {
+//            Task {
+//                await dashboardVM.getMonthlyDashboardData()
+//            }
+//        }
+//    }
+//}
+
 struct Monthlyview: View {
     @StateObject var dashboardVM = dashboardViewModel()
+    @State private var navigateToNextPages = false // State for navigation
+    
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            
-            // Top header with View All
-            ViewAll()
-                .padding(.horizontal, 16)
-            
-            // Scrollable grid
-            ScrollView {
-                LazyVGrid(
-                    columns: Array(repeating: GridItem(.flexible(), spacing: 12), count: 3),
-                    spacing: 12
-                ) {
-                    MonthlyStatCard(title: "Permission", value: "\(dashboardVM.monthlyData?.Permission ?? 0)")
-                    MonthlyStatCard(title: "Leave", value: "\(dashboardVM.monthlyData?.leave ?? 0)")
-                    MonthlyStatCard(title: "Late", value: "\(0)") //not there
-                    MonthlyStatCard(title: "On-Time", value: "\(dashboardVM.monthlyData?.vwOnduty ?? 0)")
-                    MonthlyStatCard(title: "Missed Punch", value: "\(dashboardVM.monthlyData?.vwmissedpunch ?? 0)")
-                    MonthlyStatCard(title: "Weekly off", value: "\(0)") // Not there
+        NavigationStack {
+            VStack(alignment: .leading, spacing: 12) {
+                
+                // Top header with View All
+                ViewAll(navigateToNextPages: $navigateToNextPages) // Pass binding to ViewAll
+                    
+                
+                // Scrollable grid
+                ScrollView {
+                    LazyVGrid(
+                        columns: Array(repeating: GridItem(.flexible(), spacing: 12), count: 3),
+                        spacing: 12
+                    ) {
+                        MonthlyStatCard(title: "Permission", value: "\(dashboardVM.monthlyData?.Permission ?? 0)")
+                        MonthlyStatCard(title: "Leave", value: "\(dashboardVM.monthlyData?.leave ?? 0)")
+                        MonthlyStatCard(title: "Late", value: "\(0)") //not there
+                        MonthlyStatCard(title: "On-Time", value: "\(dashboardVM.monthlyData?.vwOnduty ?? 0)")
+                        MonthlyStatCard(title: "Missed Punch", value: "\(dashboardVM.monthlyData?.vwmissedpunch ?? 0)")
+                        MonthlyStatCard(title: "Weekly off", value: "\(0)") // Not there
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.top, 4)
                 }
-                .padding(.horizontal, 16)
-                .padding(.top, 4)
             }
-        }
-        .onAppear {
-            Task {
-                await dashboardVM.getMonthlyDashboardData()
+            .onAppear {
+                Task {
+                    await dashboardVM.getMonthlyDashboardData()
+                }
+            }
+            
+            // NavigationDestination to navigate to MonthlyViewAllView
+            .navigationDestination(isPresented: $navigateToNextPages) {
+                MonthlyViewAllView() // Your destination view
             }
         }
     }
 }
 
 struct ViewAll: View {
-    @State private var navigateToNextPages = false
+    @Binding var navigateToNextPages: Bool
 
     var body: some View {
         HStack {
@@ -56,6 +99,7 @@ struct ViewAll: View {
                     .fontWeight(.semibold)
             }
         }
+        .padding(.horizontal, 20)
     }
 }
 
