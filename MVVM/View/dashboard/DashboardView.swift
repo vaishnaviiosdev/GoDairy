@@ -11,9 +11,10 @@ import Alamofire
 struct DashboardView: View {
     @State private var currentTab:Int = 0
     @State private var showLogoutAlert = false
+    @State private var showCheckOutAlert = false
     @State private var goToDashboard = false
     @State private var showSheet: Bool = true
-    @State private var showDayPlan = false  // overlay state
+    @State private var showDayPlan = false
     @StateObject var dashboardVM = dashboardViewModel()
     @State private var myDayPlanCount = 0
     @State private var goToCheckIn = false
@@ -27,8 +28,15 @@ struct DashboardView: View {
                 ScrollView {
                     VStack {
                         DashboardHeader(sfName: sf_name)
-                        
-                        CheckInSection(goToCheckIn: $goToCheckIn, showDayPlan: $showDayPlan, myDayPlanCount: dashboardVM.checkDayPlanData.count)
+                    
+                        CheckInSection(
+                            goToCheckIn: $goToCheckIn,
+                            showDayPlan: $showDayPlan,
+                            myDayPlanCount: dashboardVM.checkDayPlanData.count,
+                            btnTitle: dashboardVM.btnTitle,
+                            btnBackgroundColor: dashboardVM.btnBackgroundColor,
+                            dashboardVM: dashboardVM
+                        )
                             .padding(.bottom, 10)
                                                 
                         ZStack(alignment: .center) {
@@ -37,7 +45,7 @@ struct DashboardView: View {
                         .frame(height: 50)
                         .frame(maxWidth: .infinity)
                         .background(Color.brown)
-                        .shadow(color: .black.opacity(0.15), radius: 4, x: 0, y: 2) // bottom shadow only
+                        .shadow(color: .black.opacity(0.15), radius: 4, x: 0, y: 2)
 
                         TabBar(currentTab: $currentTab, myDayPlanCount: dashboardVM.checkDayPlanData.count)
                             .frame(height: 250)
@@ -85,7 +93,7 @@ struct DashboardView: View {
                 let cnt = dashboardVM.dashboardData?.Checkdayplan?.first?.Cnt ?? 0
                 let wtype = dashboardVM.dashboardData?.Checkdayplan?.first?.wtype ?? "0"
                 let checkOnDuty = dashboardVM.dashboardData?.CheckOnduty
-                CheckInFlowView(Cnt: cnt, wrkType: wtype, checkOnDuty: checkOnDuty)
+                CheckInFlowView(Cnt: cnt, wrkType: wtype, checkOnDuty: checkOnDuty, titleName: "Check In")
             }
         }
     }
@@ -139,16 +147,16 @@ struct DashboardHeader: View {
 }
 
 struct CheckInSection: View {
+    @State private var showCheckOutAlert = false
+    @State private var goToCheckout = false
+    @State private var checkoutTitle: String = ""
     @Binding var goToCheckIn: Bool
     @Binding var showDayPlan: Bool
-    //@State private var btnTitle = "My Day Plan"
     var myDayPlanCount: Int
-    //var btnTitle: String = "My Day Plan"
-    
-    var btnTitle: String {
-        myDayPlanCount > 0 ? "Check In" : "My Day Plan"
-    }
-    
+    var btnTitle: String
+    var btnBackgroundColor: Color
+    var dashboardVM: dashboardViewModel
+
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
@@ -157,26 +165,55 @@ struct CheckInSection: View {
                 Image("write")
                 Spacer()
             }
-            
+
             CustomBtn(
                 title: btnTitle,
                 height: 50,
-                backgroundColor: Color.appPrimary
+                backgroundColor: btnBackgroundColor
             ) {
                 withAnimation(.spring()) {
                     if myDayPlanCount > 0 {
-                        print("The MYDayPlanCount in MYDayPlanCount is \(myDayPlanCount)")
-                        goToCheckIn = true
-                    }
-                    else {
+                        if dashboardVM.btnTitle.uppercased().starts(with: "CHECK OUT") {
+                            showCheckOutAlert = true
+                            // ✅ Checkout flow
+                        }
+                        else if dashboardVM.isFirstTimeCheckIn {
+                            // ✅ First Check-In Flow
+                            goToCheckIn = true
+                            print("The FirstTime goToCheckIn is called")
+                        }
+                        else {
+                            // ✅ Second Check-In Flow
+                            dashboardVM.isFirstTimeCheckIn = false
+                            dashboardVM.btnTitle = "Check In"
+                            dashboardVM.btnBackgroundColor = Color.appPrimary
+                            print("The SecondTime goToCheckIn is called")
+                        }
+                    } else {
                         showDayPlan = true
-                        print("The MYDayPlanCount in showDayPlan is \(myDayPlanCount)")
-                        print("Opening My DayPlan Bottom Sheet")
                     }
                 }
             }
         }
         .padding(.horizontal)
+        .alert("Do you want to Checkout?", isPresented: $showCheckOutAlert) {
+            Button("Yes", role: .destructive) {
+                goToCheckout = true
+                checkoutTitle = "Check Out"
+            }
+            Button("No", role: .cancel) {
+            
+            }
+        }
+        .navigationDestination(isPresented: $goToCheckout) {
+            CheckInFlowView(
+                Cnt: dashboardVM.checkDayPlanData.first?.Cnt ?? 0,
+                wrkType: dashboardVM.checkDayPlanData.first?.wtype ?? "",
+                checkOnDuty: dashboardVM.dashboardData?.CheckOnduty,
+                titleName: "Check Out",
+                startFromStep: 2
+            )
+        }
     }
 }
 
@@ -198,7 +235,6 @@ struct CheckInButton: View {
                 Text("Let's get to work")
                     .font(.system(size: 12))
                     .fontWeight(.semibold)
-                
                 Image("write")
                 Spacer()
             }

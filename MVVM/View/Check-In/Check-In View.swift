@@ -21,90 +21,99 @@ struct CheckInFlowView: View {
     @State private var selectedShiftEndTime = ""
     @State private var selectedShiftId = ""
     @State private var selectedCutOffDate = ""
-    let Cnt : Int?
-    let wrkType : String
-    let checkOnDuty : Int?
+    @State private var isCheckingIn = false
+
+    let Cnt: Int?
+    let wrkType: String
+    let checkOnDuty: Int?
+    var titleName: String
+    var startFromStep: Int = 0
     
     var body: some View {
-        VStack(spacing: 0) {
-            StepIndicator(currentStep: $currentStep)
-                .padding(.top, 30)
-                .padding(.bottom, 20)
-                .padding(.horizontal, 50)
-            
-            // 🔹 Step Content
-            VStack {
-                if currentStep == 0 {
-                    if let location = permissionManager.currentLocation {
-                        LocationStep(
+        ZStack {
+            VStack(spacing: 0) {
+                StepIndicator(currentStep: $currentStep)
+                    .padding(.top, 30)
+                    .padding(.bottom, 20)
+                    .padding(.horizontal, 50)
+                
+                VStack {
+                    if currentStep == 0 {
+                        if let location = permissionManager.currentLocation {
+                            LocationStep(
+                                onNext: {
+                                    withAnimation {
+                                        currentStep = 1
+                                    }
+                                },
+                                latitude: location.coordinate.latitude,
+                                longitude: location.coordinate.longitude,
+                                coordinate: $currentCoordinate
+                            )
+                        }
+                        else {
+                            ProgressView("Fetching location...")
+                                .frame(maxHeight: .infinity)
+                        }
+                    }
+                    else if currentStep == 1 {
+                        ShiftStep(
                             onNext: {
                                 withAnimation {
-                                    currentStep = 1
+                                    currentStep = 2
                                 }
                             },
-                            latitude: location.coordinate.latitude,
-                            longitude: location.coordinate.longitude,
-                            coordinate: $currentCoordinate
+                            latitude: currentCoordinate.latitude,
+                            longitude: currentCoordinate.longitude,
+                            selectedShiftName: $selectedShiftName,
+                            selectedShiftStartTime: $selectedShiftStartTime,
+                            selectedShiftEndTime: $selectedShiftEndTime,
+                            selectedShiftId: $selectedShiftId,
+                            selectedCutOffDate: $selectedCutOffDate
+                        )
+                    } else if currentStep == 2 {
+                        SelfieStep(
+                            onNext: handleSelfieStep,
+                            latitude: currentCoordinate.latitude,
+                            longitude: currentCoordinate.longitude,
+                            shiftName: selectedShiftName,
+                            shiftStartTime: selectedShiftStartTime,
+                            shiftEndTime: selectedShiftEndTime,
+                            shiftId: selectedShiftId,
+                            shiftCutOff: selectedCutOffDate,
+                            cnt: Cnt ?? 0,
+                            wType: wrkType,
+                            checkOnDuty: checkOnDuty ?? 0,
+                            titleName: titleName
                         )
                     }
-                    else {
-                        ProgressView("Fetching location...")
-                            .frame(maxHeight: .infinity)
-                    }
                 }
-                else if currentStep == 1 {
-                    ShiftStep(
-                        onNext: {
-                            withAnimation {
-                                currentStep = 2
-                            }
-                        },
-                        latitude: currentCoordinate.latitude,
-                        longitude: currentCoordinate.longitude,
-                        selectedShiftName: $selectedShiftName,
-                        selectedShiftStartTime: $selectedShiftStartTime,
-                        selectedShiftEndTime: $selectedShiftEndTime,
-                        selectedShiftId: $selectedShiftId,
-                        selectedCutOffDate: $selectedCutOffDate
-                    )
-                }
-                else if currentStep == 2 {
-                    SelfieStep(
-                        onNext: { lat, long, sName, sStart, sEnd, sId, sCutOff, cnt, wType, onDuty,selfieImage, imageData, fileName in
-                            await checkInModel.CheckInSavePost(
-                                shiftId: sId,
-                                shiftName: sName,
-                                shiftStart: sStart,
-                                shiftEnd: sEnd,
-                                shiftCutOff: sCutOff,
-                                latitude: lat,
-                                longitude: long,
-                                cnt: cnt,
-                                wType: wType,
-                                checkOnDuty: onDuty,
-                                selfieImage: selfieImage,
-                                selfieImageData: imageData,
-                                fileName: fileName
-                            )
-                        },
-                        latitude: currentCoordinate.latitude,
-                        longitude: currentCoordinate.longitude,
-                        shiftName: selectedShiftName,
-                        shiftStartTime: selectedShiftStartTime,
-                        shiftEndTime: selectedShiftEndTime,
-                        shiftId: selectedShiftId,
-                        shiftCutOff: selectedCutOffDate,
-                        cnt: Cnt ?? 0,
-                        wType: wrkType,
-                        checkOnDuty: checkOnDuty ?? 0
-                    )
-                }
+                .frame(maxHeight: .infinity)
             }
-            .frame(maxHeight: .infinity)
+            
+            // Loader Overlay
+            if isCheckingIn {
+                Color.black.opacity(0.4)
+                    .edgesIgnoringSafeArea(.all)
+                
+                VStack(spacing: 16) {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                        .scaleEffect(1.5)
+                    
+                    Text("Checking in...")
+                        .foregroundColor(.white)
+                        .font(.headline)
+                }
+                .padding(20)
+                .background(Color.black.opacity(0.8))
+                .cornerRadius(12)
+            }
         }
         .navigationBarBackButtonHidden(true)
         .onAppear {
             permissionManager.requestLocation()
+            currentStep = startFromStep
         }
         .onChange(of: permissionManager.currentLocation) { newLocation in
             if let location = newLocation {
@@ -122,9 +131,9 @@ struct CheckInFlowView: View {
                         .fontWeight(.bold)
                 }
             }
-
+            
             ToolbarItem(placement: .principal) {
-                Text("Check IN")
+                Text(titleName)
                     .font(.system(size: 17, weight: .regular))
                     .foregroundColor(.black)
             }
@@ -141,11 +150,85 @@ struct CheckInFlowView: View {
         } message: {
             Text("To continue, please allow location access in Settings.")
         }
+        .alert(checkInModel.checkInSuccessMsg,
+               isPresented: $checkInModel.checkInSaveAlert) {
+            Button("OK", role: .cancel) {
+                dismiss()
+            }
+        }
     }
     
     private func handleDismiss() {
         dismiss()
     }
+    
+    private func handleSelfieStep(
+        lat: Double,
+        long: Double,
+        sName: String,
+        sStart: String,
+        sEnd: String,
+        sId: String,
+        sCutOff: String,
+        cnt: Int,
+        wType: String,
+        onDuty: Int,
+        selfieImage: UIImage,
+        imageData: Data,
+        fileName: String,
+        isCheckout: Bool
+    ) async @Sendable {
+        await MainActor.run {
+            isCheckingIn = true
+        }
+
+        if isCheckout {
+            await checkInModel.CheckOutPost(
+                data: [
+                    "Mode": "COUT",
+                    "Divcode": "1",
+                    "sfCode": "MGR80",
+                    "eDate": Date().formatted(date: .numeric, time: .standard),
+                    "eTime": Date().formatted(date: .omitted, time: .standard),
+                    "UKey": "\(sId)-\(Int(Date().timeIntervalSince1970))",
+                    "lat": lat,
+                    "long": long,
+                    "Lattitude": lat,
+                    "Langitude": long,
+                    "PlcNm": "",
+                    "PlcID": "",
+                    "On_Duty_Flag": "\(onDuty)",
+                    "slfy": fileName,
+                    "vstRmks": ""
+                ],
+                selfieImage: selfieImage,
+                selfieImageData: imageData,
+                fileName: fileName
+            )
+        } else {
+            await checkInModel.CheckInSavePost(
+                shiftId: sId,
+                shiftName: sName,
+                shiftStart: sStart,
+                shiftEnd: sEnd,
+                shiftCutOff: sCutOff,
+                latitude: lat,
+                longitude: long,
+                cnt: cnt,
+                wType: wType,
+                checkOnDuty: onDuty,
+                selfieImage: selfieImage,
+                selfieImageData: imageData,
+                fileName: fileName
+            )
+        }
+
+        await MainActor.run {
+            isCheckingIn = false
+        }
+    }
+
+
 }
 
 struct StepIndicator: View {
@@ -453,7 +536,8 @@ struct SelfieStep: View {
         _ checkOnDuty: Int,
         _ selfieImage: UIImage,
         _ imageData: Data,
-        _ fileName: String
+        _ fileName: String,
+        _ isCheckout: Bool
     ) async -> Void
     var latitude: Double
     var longitude: Double
@@ -465,6 +549,10 @@ struct SelfieStep: View {
     var cnt: Int
     var wType: String
     var checkOnDuty: Int
+    var titleName: String
+    private var isCheckout: Bool {
+        titleName.lowercased() == "checkout"
+    }
     //@State private var captureImage: UIImage?
 
     @StateObject private var cameraVM = CameraViewModel()
@@ -509,7 +597,7 @@ struct SelfieStep: View {
                                 .cornerRadius(10)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 6)
-                                        .stroke(Color.white, lineWidth: 1) // 👈 Border color and width
+                                        .stroke(Color.white, lineWidth: 1)
                                 )
                                 .padding([.top, .trailing], 15)
                         }
@@ -576,7 +664,8 @@ struct SelfieStep: View {
                                     checkOnDuty,
                                     image,
                                     imageData,
-                                    fileName
+                                    fileName,
+                                    isCheckout
                                 )
                             }
                         }
@@ -623,7 +712,7 @@ struct SelfieStep: View {
 
 #Preview {
     NavigationView {
-        CheckInFlowView(Cnt: nil, wrkType: "", checkOnDuty: nil)
+        CheckInFlowView(Cnt: nil, wrkType: "", checkOnDuty: nil, titleName: "")
     }
 }
 

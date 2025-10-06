@@ -14,6 +14,8 @@ class dashboardViewModel: ObservableObject {
     @Published var monthlyData: monthlyDashboardData?
     @Published var workTypesData: [mydayplanworkTypeResponse] = []
     @Published var checkDayPlanData: [CheckDayPlanData] = []
+    @Published var btnTitle: String = ""
+    @Published var btnBackgroundColor: Color = Color.appPrimary
     @Published var todayPlanData: [TodayData] = []
     @Published var monthlyViewallData: [monthlyViewAllData] = []
     @Published var shiftTimeRange: String = ""
@@ -31,6 +33,9 @@ class dashboardViewModel: ObservableObject {
     @Published var WorkTypeID: [Int] = []
     @Published var WorkTypeFlag: [String] = []
     @Published var Todaycheckin_Flag: Int = 0
+    @Published var isFirstTimeCheckIn : Bool = false
+    private var timer: Timer?
+    private var checkInTime: Date?
     
     func fetchDashboardData() async {
         do {
@@ -40,15 +45,105 @@ class dashboardViewModel: ObservableObject {
             
             let response: mydayPlanCheckResponse = try await NetworkManager.shared.fetchData(from: myDayPlan_Url, as: mydayPlanCheckResponse.self
             )
-            self.dashboardData = response
-            self.Todaycheckin_Flag = self.dashboardData?.Todaycheckin_Flag ?? 0
-            self.checkDayPlanData = response.Checkdayplan ?? []
+            
+            DispatchQueue.main.async {
+                self.dashboardData = response
+                self.Todaycheckin_Flag = self.dashboardData?.Todaycheckin_Flag ?? 0
+                self.checkDayPlanData = response.Checkdayplan ?? []
+                self.updateBtnAppearance() // ✅ update title/color
+            }
             print("the Todaycheckin_Flag is \(Todaycheckin_Flag)")
             print("the CheckDayPlanData is \(self.checkDayPlanData)")
         }
         catch {
             print("Error Fetching Data is \(error)")
         }
+    }
+    
+    private func saveCheckInTime(_ date: Date) {
+        UserDefaults.standard.set(date, forKey: "checkInTime")
+    }
+
+    private func loadCheckInTime() -> Date? {
+        return UserDefaults.standard.object(forKey: "checkInTime") as? Date
+    }
+    
+    func startCheckOutTimer() {
+        if let savedTime = loadCheckInTime() {
+            checkInTime = savedTime
+        }
+        else {
+            checkInTime = Date() // First time check-in
+            saveCheckInTime(checkInTime!)
+        }
+
+        timer?.invalidate()
+
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            Task { @MainActor in
+                self?.updateCheckOutButtonTitle()
+            }
+        }
+    }
+
+    func updateBtnAppearance() {
+        if dashboardData?.checkMOT ?? 0 >= 1 && dashboardData?.Todaycheckin_Flag == 1 {
+            // ✅ User has checked in already → start Check-Out timer
+            startCheckOutTimer()
+        }
+        else if dashboardData?.CheckEndDT != "" && dashboardData?.Todaycheckin_Flag == 0 {
+            // ✅ First-time check-in
+            btnTitle = "Check In"
+            btnBackgroundColor = .appPrimary
+            isFirstTimeCheckIn = true
+            stopCheckOutTimer()
+        }
+        else if dashboardData?.CheckEndDT == "" && dashboardData?.Todaycheckin_Flag == 1 {
+            // ✅ Second-time check-in (after break)
+            btnTitle = "Check In"
+            btnBackgroundColor = .appPrimary
+            isFirstTimeCheckIn = false
+            stopCheckOutTimer()
+        }
+        else {
+            // ✅ Default (no plan yet)
+            btnTitle = "My Day Plan"
+            btnBackgroundColor = .appPrimary
+            stopCheckOutTimer()
+        }
+    }
+
+    func submitCheckOut() async {
+        print("User Tabs the CheckOut Button")
+    }
+    
+    private func updateCheckOutButtonTitle() {
+        guard let checkInTime = checkInTime else { return }
+        let elapsed = Date().timeIntervalSince(checkInTime)
+        let timeString = secondsToHMS(Int(elapsed))
+
+        DispatchQueue.main.async {
+            self.btnTitle = "CHECK OUT (\(timeString))"
+            self.btnBackgroundColor = Color.appSecondary2
+        }
+    }
+    
+    func stopCheckOutTimer() {
+        timer?.invalidate()
+        timer = nil
+        clearCheckInTime()
+        btnTitle = "Check In"
+    }
+    
+    private func clearCheckInTime() {
+        UserDefaults.standard.removeObject(forKey: "checkInTime")
+    }
+
+    private func secondsToHMS(_ seconds: Int) -> String {
+        let h = seconds / 3600
+        let m = (seconds % 3600) / 60
+        let s = seconds % 60
+        return String(format: "%02d:%02d:%02d", h, m, s)
     }
     
     //worktype_url
@@ -152,7 +247,6 @@ class dashboardViewModel: ObservableObject {
                     self.GeoIn = first.GeoIn ?? ""
                     self.GeoOut = first.GeoOut ?? ""
                     print("The shiftTimeRange is \(self.shiftTimeRange)")
-                    //print("The UIImage in InTime is \(self.InTimeImageStr)")
                 }
                 else {
                     self.shiftTimeRange = "No shift data"

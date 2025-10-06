@@ -14,7 +14,8 @@ struct checkinSaveData: Codable {
 }
 
 struct ImageUploadResponse: Decodable {
-    let status: String?
-    let fileName: String?
+    let Qry: String?
+    let success: Bool?
     let message: String?
+    let url: String?
 }

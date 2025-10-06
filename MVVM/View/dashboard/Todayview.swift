@@ -88,7 +88,7 @@ struct Todayview: View {
                                 Image("p1")
                                 
                                 Text(dashboardModel.AttTm)
-                                    .font(.subheadline)
+                                    .font(.system(size: 15))
                                 Image("marker")
                                     .frame(width: 10, height: 10)
                                     .padding(.top, 3)
@@ -115,6 +115,7 @@ struct Todayview: View {
                         }
                         
                         Spacer()
+                            .frame(width: 0)
                         
                         // OUT Time (conditional)
                         if dashboardModel.ET != "00:00:00" {
@@ -141,7 +142,7 @@ struct Todayview: View {
         //                            }
                                     Image("p1")
                                     Text(dashboardModel.ET)
-                                        .font(.subheadline)
+                                        .font(.system(size: 15))
                                     Image("marker")
                                         .frame(width: 10, height: 10)
                                         .padding(.top, 3)

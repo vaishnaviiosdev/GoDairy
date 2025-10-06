@@ -108,69 +108,6 @@ class NetworkManager {
             }
             return try JSONDecoder().decode(T.self, from: data)
     }
-    
-    func uploadMultipart<T: Decodable>(
-        urlString: String,
-        parameters: [String: Any],
-        imageData: Data,
-        imageFieldName: String,
-        fileName: String,
-        mimeType: String,
-        responseType: T.Type
-    ) async throws -> T {
-        let boundary = "Boundary-\(UUID().uuidString)"
-        var request = URLRequest(url: URL(string: urlString)!)
-        request.httpMethod = "POST"
-        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-
-        var body = Data()
-
-        print("The UrlString is \(urlString)")
-        print("The Parameters in the multipartFormData is \(parameters)")
-
-        // JSON part
-        let jsonData = try JSONSerialization.data(withJSONObject: parameters)
-        print("The jsondata of the parameters is \(parameters)")
-        body.append("--\(boundary)\r\n".data(using: .utf8)!)
-        body.append("Content-Disposition: form-data; name=\"data\"\r\n".data(using: .utf8)!)
-        body.append("Content-Type: application/json\r\n\r\n".data(using: .utf8)!)
-        body.append(jsonData)
-        print("The Json part of the jsonData is \(jsonData)")
-        body.append("\r\n".data(using: .utf8)!)
-
-        // Image part
-        body.append("--\(boundary)\r\n".data(using: .utf8)!)
-        body.append("Content-Disposition: form-data; name=\"\(imageFieldName)\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
-        body.append("Content-Type: \(mimeType)\r\n\r\n".data(using: .utf8)!)
-        
-        
-        body.append(imageData)
-        body.append("\r\n".data(using: .utf8)!)
-
-        body.append("--\(boundary)--\r\n".data(using: .utf8)!)
-        request.httpBody = body
-
-        print(body)
-
-        // Make the request
-        let (data, response) = try await URLSession.shared.data(for: request)
-
-        // Print raw response body (as string, for debugging)
-        if let rawResponse = String(data: data, encoding: .utf8) {
-            print("🧾 Raw Response:")
-            print(rawResponse)
-        }
-        
-        // Optional: Print status code
-        if let httpResponse = response as? HTTPURLResponse {
-            print("📦 Status Code: \(httpResponse.statusCode)")
-        }
-
-        // Decode and return
-        let decoded = try JSONDecoder().decode(T.self, from: data)
-        print("✅ Decoded Response: \(decoded)")
-        return decoded
-    }
 }
 
 
