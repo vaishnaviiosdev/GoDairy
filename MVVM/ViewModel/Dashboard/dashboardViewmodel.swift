@@ -87,29 +87,48 @@ class dashboardViewModel: ObservableObject {
     }
 
     func updateBtnAppearance() {
-        if dashboardData?.checkMOT ?? 0 >= 1 && dashboardData?.Todaycheckin_Flag == 1 {
+        if dashboardData?.CheckEndKM ?? 0 == 1 && dashboardData?.Todaycheckin_Flag == 1 /*dashboardData?.CheckMOT ?? 0 == 1 */{
             // ✅ User has checked in already → start Check-Out timer
             startCheckOutTimer()
         }
         else if dashboardData?.CheckEndDT != "" && dashboardData?.Todaycheckin_Flag == 0 {
-            // ✅ First-time check-in
+            //Redirect to Expense Page
+            //Expense Page not worked now
+            //For Now only we redirect to the Check In Page
             btnTitle = "Check In"
             btnBackgroundColor = .appPrimary
             isFirstTimeCheckIn = true
             stopCheckOutTimer()
+            
         }
+        //This is Actual Check-In Redirection
+//        else if dashboardData?.CheckEndDT != "" && dashboardData?.Todaycheckin_Flag == 0 {
+//            print("This is First Time Check In Called")
+//            // ✅ First-time check-in
+//            btnTitle = "Check In"
+//            btnBackgroundColor = .appPrimary
+//            isFirstTimeCheckIn = true
+//            stopCheckOutTimer()
+//        }
         else if dashboardData?.CheckEndDT == "" && dashboardData?.Todaycheckin_Flag == 1 {
+            print("This is Second Time Check In Called")
             // ✅ Second-time check-in (after break)
             btnTitle = "Check In"
             btnBackgroundColor = .appPrimary
             isFirstTimeCheckIn = false
             stopCheckOutTimer()
         }
-        else {
-            // ✅ Default (no plan yet)
+        else if dashboardData?.Checkdayplan?.isEmpty ?? true {
             btnTitle = "My Day Plan"
             btnBackgroundColor = .appPrimary
-            stopCheckOutTimer()
+        }
+        else {
+            btnTitle = "-----"
+            btnBackgroundColor = .appPrimary
+            // ✅ Default (no plan yet)
+//            btnTitle = "My Day Plan"
+//            btnBackgroundColor = .appPrimary
+//            stopCheckOutTimer(resetTitle: false)
         }
     }
 
@@ -128,11 +147,13 @@ class dashboardViewModel: ObservableObject {
         }
     }
     
-    func stopCheckOutTimer() {
+    func stopCheckOutTimer(resetTitle: Bool = true) {
         timer?.invalidate()
         timer = nil
         clearCheckInTime()
-        btnTitle = "Check In"
+        if resetTitle {
+            btnTitle = "Check In"
+        }
     }
     
     private func clearCheckInTime() {
@@ -219,6 +240,7 @@ class dashboardViewModel: ObservableObject {
             self.submitData = response
             self.showDayPlanSuccessMsg = "Day Plan Submitted Successfully"
             self.showDayPlanSaveAlert = true
+            await self.fetchDashboardData()
         }
         catch {
             self.showDayPlanSuccessMsg = "\(error)"

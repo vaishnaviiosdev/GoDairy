@@ -115,7 +115,6 @@ struct Todayview: View {
                         }
                         
                         Spacer()
-                            .frame(width: 0)
                         
                         // OUT Time (conditional)
                         if dashboardModel.ET != "00:00:00" {

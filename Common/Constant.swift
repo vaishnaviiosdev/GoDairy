@@ -89,6 +89,9 @@ let checkIn_SaveUrl = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl2 +
 
 let image_BaseUrl = "http://qa.godairy.in/server/Db_v300.php?&axn=imgupload&Sf_code=\(sf_code)&="
 
+let checkOut_SaveUrl = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl2 + "get%2Flogouttime&Ekey=\(Ukey)&divisionCode=\(division_code)&Sf_code=\(sf_code)&State_Code=&desig="
+
+
 
 
 

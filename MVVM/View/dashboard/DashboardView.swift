@@ -18,6 +18,8 @@ struct DashboardView: View {
     @StateObject var dashboardVM = dashboardViewModel()
     @State private var myDayPlanCount = 0
     @State private var goToCheckIn = false
+    @State private var goToCheckOut = false
+    @State private var startFromStep = 0
     
     var body: some View {
         NavigationStack {
@@ -32,6 +34,8 @@ struct DashboardView: View {
                         CheckInSection(
                             goToCheckIn: $goToCheckIn,
                             showDayPlan: $showDayPlan,
+                            startFromStep: $startFromStep,
+                            goToCheckOut: $goToCheckOut,
                             myDayPlanCount: dashboardVM.checkDayPlanData.count,
                             btnTitle: dashboardVM.btnTitle,
                             btnBackgroundColor: dashboardVM.btnBackgroundColor,
@@ -53,6 +57,7 @@ struct DashboardView: View {
                         Divider()
                             .frame(height: 0.3)
                             .background(Color.gray)
+                        
                         ExploreMore()
                     }
                 }
@@ -148,10 +153,11 @@ struct DashboardHeader: View {
 
 struct CheckInSection: View {
     @State private var showCheckOutAlert = false
-    @State private var goToCheckout = false
     @State private var checkoutTitle: String = ""
     @Binding var goToCheckIn: Bool
     @Binding var showDayPlan: Bool
+    @Binding var startFromStep: Int
+    @Binding var goToCheckOut: Bool
     var myDayPlanCount: Int
     var btnTitle: String
     var btnBackgroundColor: Color
@@ -175,21 +181,14 @@ struct CheckInSection: View {
                     if myDayPlanCount > 0 {
                         if dashboardVM.btnTitle.uppercased().starts(with: "CHECK OUT") {
                             showCheckOutAlert = true
-                            // ✅ Checkout flow
-                        }
-                        else if dashboardVM.isFirstTimeCheckIn {
-                            // ✅ First Check-In Flow
-                            goToCheckIn = true
-                            print("The FirstTime goToCheckIn is called")
                         }
                         else {
-                            // ✅ Second Check-In Flow
+                            startFromStep = dashboardVM.isFirstTimeCheckIn ? 0 : 2
                             dashboardVM.isFirstTimeCheckIn = false
-                            dashboardVM.btnTitle = "Check In"
-                            dashboardVM.btnBackgroundColor = Color.appPrimary
-                            print("The SecondTime goToCheckIn is called")
+                            goToCheckIn = true
                         }
-                    } else {
+                    }
+                    else {
                         showDayPlan = true
                     }
                 }
@@ -198,20 +197,20 @@ struct CheckInSection: View {
         .padding(.horizontal)
         .alert("Do you want to Checkout?", isPresented: $showCheckOutAlert) {
             Button("Yes", role: .destructive) {
-                goToCheckout = true
+                goToCheckOut = true
                 checkoutTitle = "Check Out"
             }
             Button("No", role: .cancel) {
             
             }
         }
-        .navigationDestination(isPresented: $goToCheckout) {
+        .navigationDestination(isPresented: $goToCheckOut) {
             CheckInFlowView(
                 Cnt: dashboardVM.checkDayPlanData.first?.Cnt ?? 0,
                 wrkType: dashboardVM.checkDayPlanData.first?.wtype ?? "",
                 checkOnDuty: dashboardVM.dashboardData?.CheckOnduty,
                 titleName: "Check Out",
-                startFromStep: 2
+                startFromStep: startFromStep //2
             )
         }
     }
@@ -302,114 +301,6 @@ struct TabbarView: View {
     }
 }
 
-//struct TabbarItem: View {
-//    @Binding var currentTab: Int
-//    let namespace: Namespace.ID
-//    var name: String
-//    var tab: Int
-//    
-//    var body: some View {
-//        Button(action: {
-//            withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
-//                currentTab = tab
-//            }
-//        }) {
-//            VStack(spacing: 4) {
-//                Text(name)
-//                    .font(.system(size: 15))
-//                    .fontWeight(currentTab == tab ? .semibold : .regular)
-//                    .foregroundColor(currentTab == tab ? .black : Color.gray.opacity(0.7))
-//                
-//                ZStack {
-//                    if currentTab == tab {
-//                        // Light blue underline
-//                        Color(red: 0.01, green: 0.66, blue: 0.96)
-//                            .frame(height: 2)
-//                            .matchedGeometryEffect(id: "underline", in: namespace)
-//                    }
-//                    else {
-//                        Color.clear.frame(height: 2)
-//                    }
-//                }
-//            }
-//            .frame(maxWidth: .infinity)
-//            //.padding(.vertical, 8)
-//        }
-//        .buttonStyle(.plain)
-//    }
-//}
-
-// MARK: - TABBAR VIEW
-//struct TabbarView: View {
-//    @Binding var currentTab: Int
-//    @Namespace var namespace
-//    var tapbaroption: [String] = ["TODAY", "MONTHLY", "GATEIN/OUT"]
-//    
-//    var body: some View {
-//        HStack(spacing: 0) {
-//            ForEach(Array(zip(tapbaroption.indices, tapbaroption)), id: \.0) { index, name in
-//                TabbarItems(
-//                    currentTab: self.$currentTab,
-//                    namespace: namespace,
-//                    TabbarItemName: name,
-//                    Tab: index
-//                )
-//            }
-//        }
-//    }
-//}
-//
-//// MARK: - TABBAR ITEMS VIEW
-//struct TabbarItems: View {
-//    @Binding var currentTab: Int
-//    let namespace: Namespace.ID
-//    var TabbarItemName: String
-//    var Tab: Int
-//    
-//    var body: some View {
-//        Button(action: {
-//            currentTab = Tab
-//        }) {
-//            ZStack {
-//                Rectangle()
-//                    .foregroundColor(.white)
-//                
-//                VStack {
-//                    if currentTab == Tab {
-//                        Text(TabbarItemName)
-//                            .font(.system(size: 15))
-//                            .fontWeight(.regular)
-//                            .foregroundColor(.black)
-//                            .padding(.top, 8)
-//                    }
-//                    else {
-//                        Text(TabbarItemName)
-//                            .font(.system(size: 15))
-//                            .fontWeight(.semibold)
-//                            .foregroundColor(.gray)
-//                            .padding(.top, 8)
-//                    }
-//                    
-//                    if currentTab == Tab {
-//                        Color.blue
-//                            .frame(height: 2)
-//                            .matchedGeometryEffect(
-//                                id: "underline",
-//                                in: namespace,
-//                                properties: .frame
-//                            )
-//                    }
-//                    else {
-//                        Color.clear.frame(height: 2)
-//                    }
-//                }
-//                .animation(.spring(), value: currentTab)
-//            }
-//        }
-//        .buttonStyle(.plain)
-//    }
-//}
-
 // MARK: - TABBAR
 struct TabBar: View {
     @Binding var currentTab: Int
@@ -421,13 +312,10 @@ struct TabBar: View {
                 Todayview(myDayPlanCount: myDayPlanCount).tag(0)
                 Monthlyview().tag(1)
                 Gate_in_out().tag(2)
-                // Login().tag(3)
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
-            //.edgesIgnoringSafeArea(.all)
             .ignoresSafeArea()
         }
-        //.background(Color.red)
     }
 }
 

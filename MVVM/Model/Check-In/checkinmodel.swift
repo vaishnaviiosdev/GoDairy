@@ -13,6 +13,12 @@ struct checkinSaveData: Codable {
     let Msg: String
 }
 
+struct checkOutSaveData: Codable {
+    let success: Bool
+    let Query: String?
+    let Msg: String?
+}
+
 struct ImageUploadResponse: Decodable {
     let Qry: String?
     let success: Bool?

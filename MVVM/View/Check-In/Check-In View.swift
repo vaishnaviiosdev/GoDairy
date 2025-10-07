@@ -1,10 +1,9 @@
+////
+////  Check-In View.swift
+////  GoDairy
+////
+////  Created by San eforce on 22/09/25.
 //
-//  Check-In View.swift
-//  GoDairy
-//
-//  Created by San eforce on 22/09/25.
-//
-
 import SwiftUI
 import MapKit
 import Contacts
@@ -22,6 +21,7 @@ struct CheckInFlowView: View {
     @State private var selectedShiftId = ""
     @State private var selectedCutOffDate = ""
     @State private var isCheckingIn = false
+    @State private var isCheckingOut = false
 
     let Cnt: Int?
     let wrkType: String
@@ -71,9 +71,29 @@ struct CheckInFlowView: View {
                             selectedShiftId: $selectedShiftId,
                             selectedCutOffDate: $selectedCutOffDate
                         )
-                    } else if currentStep == 2 {
+                    }
+                    else if currentStep == 2 {
                         SelfieStep(
-                            onNext: handleSelfieStep,
+                            onNext: { lat, long, sName, sStart, sEnd, sId, sCutOff, cnt, wType, onDuty, selfieImage, imageData, fileName, isCheckout in
+                                Task {
+                                    await handleSelfieStep(
+                                        lat: lat,
+                                        long: long,
+                                        sName: sName,
+                                        sStart: sStart,
+                                        sEnd: sEnd,
+                                        sId: sId,
+                                        sCutOff: sCutOff,
+                                        cnt: cnt,
+                                        wType: wType,
+                                        onDuty: onDuty,
+                                        selfieImage: selfieImage,
+                                        imageData: imageData,
+                                        fileName: fileName,
+                                        isCheckout: isCheckout
+                                    )
+                                }
+                            },
                             latitude: currentCoordinate.latitude,
                             longitude: currentCoordinate.longitude,
                             shiftName: selectedShiftName,
@@ -156,6 +176,12 @@ struct CheckInFlowView: View {
                 dismiss()
             }
         }
+        .alert(checkInModel.checkOutSuccessMsg,
+                isPresented: $checkInModel.checkOutSaveAlert) {
+            Button("OK", role: .cancel) {
+                       dismiss()
+            }
+        }
     }
     
     private func handleDismiss() {
@@ -177,35 +203,21 @@ struct CheckInFlowView: View {
         imageData: Data,
         fileName: String,
         isCheckout: Bool
-    ) async @Sendable {
+    ) async {
         await MainActor.run {
-            isCheckingIn = true
+            if isCheckout {
+                isCheckingOut = true
+            }
+            else {
+                isCheckingIn = true
+            }
         }
-
+        
+        print("The IsCheckOut Value is \(isCheckout)")
         if isCheckout {
-            await checkInModel.CheckOutPost(
-                data: [
-                    "Mode": "COUT",
-                    "Divcode": "1",
-                    "sfCode": "MGR80",
-                    "eDate": Date().formatted(date: .numeric, time: .standard),
-                    "eTime": Date().formatted(date: .omitted, time: .standard),
-                    "UKey": "\(sId)-\(Int(Date().timeIntervalSince1970))",
-                    "lat": lat,
-                    "long": long,
-                    "Lattitude": lat,
-                    "Langitude": long,
-                    "PlcNm": "",
-                    "PlcID": "",
-                    "On_Duty_Flag": "\(onDuty)",
-                    "slfy": fileName,
-                    "vstRmks": ""
-                ],
-                selfieImage: selfieImage,
-                selfieImageData: imageData,
-                fileName: fileName
-            )
-        } else {
+            await checkInModel.checkOutSavePost(selfieImage: selfieImage, selfieImageData: imageData, latitude: lat, longitude: long, checkOnDuty: onDuty)
+        }
+        else {
             await checkInModel.CheckInSavePost(
                 shiftId: sId,
                 shiftName: sName,
@@ -225,10 +237,9 @@ struct CheckInFlowView: View {
 
         await MainActor.run {
             isCheckingIn = false
+            isCheckingOut = false
         }
     }
-
-
 }
 
 struct StepIndicator: View {
@@ -550,12 +561,9 @@ struct SelfieStep: View {
     var wType: String
     var checkOnDuty: Int
     var titleName: String
-    private var isCheckout: Bool {
-        titleName.lowercased() == "checkout"
-    }
-    //@State private var captureImage: UIImage?
-
+    
     @StateObject private var cameraVM = CameraViewModel()
+    @State private var isCheckout: Bool = false
     @State private var sliderValue: Double = 0.5
     @State private var capturedImage: UIImage? = nil
     @State private var isCaptured: Bool = false   // ✅ Track state
@@ -694,6 +702,7 @@ struct SelfieStep: View {
                             if let image = image {
                                 capturedImage = image
                                 isCaptured = true
+                                isCheckout = titleName.lowercased() == "check out"
                             }
                         }
                     }) {
@@ -715,4 +724,8 @@ struct SelfieStep: View {
         CheckInFlowView(Cnt: nil, wrkType: "", checkOnDuty: nil, titleName: "")
     }
 }
+
+
+
+
 
