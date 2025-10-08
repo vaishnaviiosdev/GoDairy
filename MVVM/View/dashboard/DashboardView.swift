@@ -98,7 +98,7 @@ struct DashboardView: View {
                 let cnt = dashboardVM.dashboardData?.Checkdayplan?.first?.Cnt ?? 0
                 let wtype = dashboardVM.dashboardData?.Checkdayplan?.first?.wtype ?? "0"
                 let checkOnDuty = dashboardVM.dashboardData?.CheckOnduty
-                CheckInFlowView(Cnt: cnt, wrkType: wtype, checkOnDuty: checkOnDuty, titleName: "Check In")
+                CheckInFlowView(Cnt: cnt, wrkType: wtype, checkOnDuty: checkOnDuty, titleName: "Check In", isFirstTimeCheckIn: dashboardVM.isFirstTimeCheckIn)
             }
         }
     }
@@ -210,7 +210,8 @@ struct CheckInSection: View {
                 wrkType: dashboardVM.checkDayPlanData.first?.wtype ?? "",
                 checkOnDuty: dashboardVM.dashboardData?.CheckOnduty,
                 titleName: "Check Out",
-                startFromStep: startFromStep //2
+                startFromStep: startFromStep, //2
+                isFirstTimeCheckIn: dashboardVM.isFirstTimeCheckIn
             )
         }
     }

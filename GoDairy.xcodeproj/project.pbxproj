@@ -89,6 +89,9 @@
 		38D735AC2E533E0D00197EA1 /* DataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D735AB2E533DEA00197EA1 /* DataViewModel.swift */; };
 		38D735AE2E533E8C00197EA1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D735AD2E533E8000197EA1 /* NetworkManager.swift */; };
 		38D735B22E5342B800197EA1 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D735B12E5342B200197EA1 /* Constant.swift */; };
+		38D9941D2E96378A00EBCD6C /* PrimaryOrderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D9941C2E96378A00EBCD6C /* PrimaryOrderListView.swift */; };
+		38D9941F2E9685BE00EBCD6C /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D9941E2E9685BA00EBCD6C /* Common.swift */; };
+		38D994212E968ED700EBCD6C /* PrimaryOrderHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D994202E968ED700EBCD6C /* PrimaryOrderHistoryView.swift */; };
 		38D997032E696E65005DD972 /* MissedPunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D997022E696E65005DD972 /* MissedPunchView.swift */; };
 		38D997052E6974D5005DD972 /* MissedPunchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D997042E6974C8005DD972 /* MissedPunchModel.swift */; };
 		38D997072E69777E005DD972 /* MissedPunchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D997062E69776E005DD972 /* MissedPunchViewModel.swift */; };
@@ -193,6 +196,9 @@
 		38D735AB2E533DEA00197EA1 /* DataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewModel.swift; sourceTree = "<group>"; };
 		38D735AD2E533E8000197EA1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		38D735B12E5342B200197EA1 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		38D9941C2E96378A00EBCD6C /* PrimaryOrderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryOrderListView.swift; sourceTree = "<group>"; };
+		38D9941E2E9685BA00EBCD6C /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		38D994202E968ED700EBCD6C /* PrimaryOrderHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryOrderHistoryView.swift; sourceTree = "<group>"; };
 		38D997022E696E65005DD972 /* MissedPunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissedPunchView.swift; sourceTree = "<group>"; };
 		38D997042E6974C8005DD972 /* MissedPunchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissedPunchModel.swift; sourceTree = "<group>"; };
 		38D997062E69776E005DD972 /* MissedPunchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissedPunchViewModel.swift; sourceTree = "<group>"; };
@@ -529,6 +535,7 @@
 		38BD708D2E72900B00AFDA7C /* Activity */ = {
 			isa = PBXGroup;
 			children = (
+				38D9941B2E96375400EBCD6C /* Primary Order */,
 				38BD708E2E72902F00AFDA7C /* ActivityDashboardView.swift */,
 			);
 			path = Activity;
@@ -646,6 +653,15 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		38D9941B2E96375400EBCD6C /* Primary Order */ = {
+			isa = PBXGroup;
+			children = (
+				38D9941C2E96378A00EBCD6C /* PrimaryOrderListView.swift */,
+				38D994202E968ED700EBCD6C /* PrimaryOrderHistoryView.swift */,
+			);
+			path = "Primary Order";
+			sourceTree = "<group>";
+		};
 		38E041F82E815C010022C8FC /* Check-In */ = {
 			isa = PBXGroup;
 			children = (
@@ -657,6 +673,7 @@
 		3F67B5BC2CA7DA1000A1BCB7 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				38D9941E2E9685BA00EBCD6C /* Common.swift */,
 				38C5A3B72E853D5F00BF8958 /* cameraPreview.swift */,
 				38EB916A2E603CFB00077669 /* Helper.swift */,
 				38D735B12E5342B200197EA1 /* Constant.swift */,
@@ -808,6 +825,7 @@
 				1505FF012E7C0B4B00A4E033 /* PermissionApprovalView.swift in Sources */,
 				38F1BA502CB1213200D4DFF2 /* ColorFile.swift in Sources */,
 				385ACE232E6AFEC70046FE7D /* DeviationEntryModel.swift in Sources */,
+				38D994212E968ED700EBCD6C /* PrimaryOrderHistoryView.swift in Sources */,
 				38BD708F2E72902F00AFDA7C /* ActivityDashboardView.swift in Sources */,
 				3F67B5BE2CA7DA5000A1BCB7 /* APIClient.swift in Sources */,
 				38CDF9D72E7967B500085DF6 /* approvalMissedPunchModel.swift in Sources */,
@@ -848,10 +866,12 @@
 				38D735AC2E533E0D00197EA1 /* DataViewModel.swift in Sources */,
 				1505FF072E7D603500A4E033 /* PermissionApprovalViewModel.swift in Sources */,
 				1505FEF12E7AEAB900A4E033 /* AdvanceApprovalHistoryView.swift in Sources */,
+				38D9941F2E9685BE00EBCD6C /* Common.swift in Sources */,
 				38EB916F2E60710800077669 /* LeaveRequestDataResponse.swift in Sources */,
 				38C564002C637D5200153761 /* ContentView.swift in Sources */,
 				38D51F7B2CF98A5A004292B4 /* Cameraview.swift in Sources */,
 				38CCC3E62CB648AD0096B309 /* MonthlyPlan.swift in Sources */,
+				38D9941D2E96378A00EBCD6C /* PrimaryOrderListView.swift in Sources */,
 				38E041FA2E815C1E0022C8FC /* Check-In View.swift in Sources */,
 				38A9D4C92E6E9C91009C70D2 /* leaveStatusViewmodel.swift in Sources */,
 				38A9D4CD2E6EE0D2009C70D2 /* missedPunchViewmodel.swift in Sources */,

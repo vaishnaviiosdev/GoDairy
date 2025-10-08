@@ -23,7 +23,8 @@ struct Todayview: View {
         NavigationStack {
             VStack {
                 // MARK: - Check-in Date
-                if myDayPlanCount == 0 {
+                //if myDayPlanCount == 0 {
+                if myDayPlanCount == 0 || dashboardModel.dashboardData?.CheckEndDT != "" && dashboardModel.dashboardData?.Todaycheckin_Flag == 0  {
                     Text("Do check-in for more info")
                         .foregroundColor(.black)
                         .font(.subheadline)
@@ -183,6 +184,7 @@ struct Todayview: View {
             }
             .onAppear {
                 Task {
+                    await dashboardModel.fetchDashboardData()
                     await dashboardModel.getTodayData()
                 }
             }

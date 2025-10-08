@@ -28,6 +28,7 @@ struct CheckInFlowView: View {
     let checkOnDuty: Int?
     var titleName: String
     var startFromStep: Int = 0
+    var isFirstTimeCheckIn: Bool = false
     
     var body: some View {
         ZStack {
@@ -40,16 +41,27 @@ struct CheckInFlowView: View {
                 VStack {
                     if currentStep == 0 {
                         if let location = permissionManager.currentLocation {
+//                            LocationStep(
+//                                onNext: {
+//                                    withAnimation {
+//                                        currentStep = 1
+//                                    }
+//                                },
+//                                latitude: location.coordinate.latitude,
+//                                longitude: location.coordinate.longitude,
+//                                coordinate: $currentCoordinate
+//                            )
                             LocationStep(
                                 onNext: {
                                     withAnimation {
-                                        currentStep = 1
+                                        currentStep = isFirstTimeCheckIn ? 1 : 2
                                     }
                                 },
                                 latitude: location.coordinate.latitude,
                                 longitude: location.coordinate.longitude,
                                 coordinate: $currentCoordinate
-                            )
+                            )//Isfirsttimecheckin == false -> SelfieStep
+                            //Isfirsttimecheckin == true -> shiftstep
                         }
                         else {
                             ProgressView("Fetching location...")
@@ -144,11 +156,7 @@ struct CheckInFlowView: View {
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarLeading) {
                 Button(action: handleDismiss) {
-                    Image(systemName: "chevron.left")
-                        .resizable()
-                        .frame(width: 15, height: 25)
-                        .foregroundColor(.black)
-                        .fontWeight(.bold)
+                    BackIcon()
                 }
             }
             
@@ -180,6 +188,13 @@ struct CheckInFlowView: View {
                 isPresented: $checkInModel.checkOutSaveAlert) {
             Button("OK", role: .cancel) {
                        dismiss()
+            }
+        }
+        .onAppear {
+            Task {
+                await MainActor.run {
+                    print("The isFirstTimeCheckIn is \(isFirstTimeCheckIn)")
+                }
             }
         }
     }

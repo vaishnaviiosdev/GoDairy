@@ -7,34 +7,80 @@
 
 import SwiftUI
 
+//struct PermissionApprovalView: View {
+//    
+//    @StateObject var permissionApprovalVM = PermissionApprovalViewModel()
+//    
+//    var body: some View {
+//        NavigationStack {
+//            VStack(spacing: 0) {
+//                homeBar(frameSize: 40)
+//                    .padding(.bottom, 5)
+//                
+//                VStack(alignment: .leading, spacing: 0) {
+//                    titleCard(title: "PERMISSION APPROVAL", frameHeight: 40, fontSize: 14)
+//                }
+//                .background(Color.white)
+//                .cornerRadius(12)
+//                .padding(.horizontal, 8)
+//                
+//                ApprovalHeader()
+//                
+//                ScrollView {
+//                    LazyVStack(spacing: 10) {
+//                        
+//                        ForEach(permissionApprovalVM.permissionApprovaldata) { item in
+//                            permissionApprovalRow(item: item)
+//                        }
+//                    }
+//                }
+//            }
+//            .task {
+//                await permissionApprovalVM.fetchMissedApprovalData()
+//            }
+//        }
+//    }
+//}
+
 struct PermissionApprovalView: View {
     
     @StateObject var permissionApprovalVM = PermissionApprovalViewModel()
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 0) {
-                homeBar(frameSize: 40)
-                    .padding(.bottom, 5)
+            ZStack {
+                // Background fills full screen
+                Color.white
+                    .ignoresSafeArea()
                 
-                VStack(alignment: .leading, spacing: 0) {
-                    titleCard(title: "PERMISSION APPROVAL", frameHeight: 40, fontSize: 14)
-                }
-                .background(Color.white)
-                .cornerRadius(12)
-                .padding(.horizontal, 8)
-                
-                ApprovalHeader()
-                
-                ScrollView {
-                    LazyVStack(spacing: 10) {
-                        
-                        ForEach(permissionApprovalVM.permissionApprovaldata) { item in
-                            permissionApprovalRow(item: item)
+                VStack(spacing: 0) {
+                    // ✅ Respect top safe area
+                    homeBar(frameSize: 40)
+                        .padding(.top)
+                        .padding(.bottom, 5)
+                    
+                    VStack(alignment: .leading, spacing: 0) {
+                        titleCard(title: "PERMISSION APPROVAL", frameHeight: 40, fontSize: 14)
+                    }
+                    .background(Color.white)
+                    .cornerRadius(12)
+                    .padding(.horizontal, 8)
+                    
+                    ApprovalHeader()
+                    
+                    ScrollView {
+                        LazyVStack(spacing: 10) {
+                            ForEach(permissionApprovalVM.permissionApprovaldata) { item in
+                                permissionApprovalRow(item: item)
+                            }
                         }
+                        .padding(.vertical, 8)
                     }
                 }
             }
+            .navigationTitle("")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(true)
             .task {
                 await permissionApprovalVM.fetchMissedApprovalData()
             }

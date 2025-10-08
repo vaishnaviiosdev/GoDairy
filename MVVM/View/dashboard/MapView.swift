@@ -35,12 +35,7 @@ struct MapView: View {
                 Button(action: {
                     dismiss()
                 }) {
-                    Image(systemName: "chevron.left")
-                        .resizable()
-                        .frame(width: 15, height: 25)
-                        .foregroundColor(.black)
-                        .fontWeight(.semibold)
-                        .padding(10)
+                    BackIcon()
                 }
                 
                 Spacer()

@@ -37,10 +37,16 @@ struct ActivityDashboardView: View {
 
 //MARK: - HEADER VIEW
 struct ActivityDashboardHeader: View {
+    @Environment(\.dismiss) var dismiss
     var sfName: String
 
     var body: some View {
         HStack() {
+//            Button(action:{
+//                dismiss()
+//            }){
+//                BackIcon()
+//            }
             Image("p1")
                 .resizable()
                 .frame(width: 40, height: 40)
@@ -54,6 +60,15 @@ struct ActivityDashboardHeader: View {
                     .font(.system(size: 13))
             }
             Spacer()
+            Button(action: {
+                dismiss()
+            }) {
+                Image(systemName: "house.fill")
+                    .resizable()
+                    .frame(width: 20, height: 20)
+                    .foregroundColor(.appPrimary)
+                    .padding(.trailing, 16)
+            }
         }
         .padding(.horizontal)
     }
@@ -225,19 +240,15 @@ struct MenuItem {
 let menuItems: [MenuItem] = [
     MenuItem(title: "Primary Order", icon: "PrimaryOrder", isSystemIcon: false, destination: AnyView(LeaveRequestView())), 
     MenuItem(title: "Secondary Order", icon: "SecondaryOrder", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
-    MenuItem(title: "Van Sales", icon: "delivery-van", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
-    MenuItem(title: "OverDue List", icon: "SecondaryOrder", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
-    MenuItem(title: "Outlets", icon: "shop", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
-    MenuItem(title: "Geo Tagging", icon: "shop", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
-    MenuItem(title: "Primary Delivery", icon: "delivery-van", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
-    MenuItem(title: "Nearby Outlets", icon: "shop-lock", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
-    MenuItem(title: "Reports", icon: "reports", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
     MenuItem(title: "Distributor", icon: "chart", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
-    MenuItem(title: "New Distributor", icon: "smiley", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
-    MenuItem(title: "Customer Onboarding", icon: "chart", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
+    MenuItem(title: "Outlets", icon: "shop", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
+    MenuItem(title: "Nearby Outlets", icon: "shop-lock", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
     MenuItem(title: "My Team", icon: "users", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
+    MenuItem(title: "Geo Tagging", icon: "shop", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
     MenuItem(title: "Beat Master", icon: "smiley", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
-    MenuItem(title: "Feedback", icon: "smiley", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
+    MenuItem(title: "OverDue List", icon: "SecondaryOrder", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
+    MenuItem(title: "Task", icon: "reports", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
+    MenuItem(title: "Reports", icon: "reports", isSystemIcon: false, destination: AnyView(LeaveRequestView()))
 ]
 
 #Preview {

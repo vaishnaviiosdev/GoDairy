@@ -87,7 +87,7 @@ class dashboardViewModel: ObservableObject {
     }
 
     func updateBtnAppearance() {
-        if dashboardData?.CheckEndKM ?? 0 == 1 && dashboardData?.Todaycheckin_Flag == 1 /*dashboardData?.CheckMOT ?? 0 == 1 */{
+        if dashboardData?.checkMOT ?? 0 == 1 && dashboardData?.Todaycheckin_Flag == 1 && dashboardData?.CheckEndDT != "" /*dashboardData?.CheckMOT ?? 0 == 1 */{
             // ✅ User has checked in already → start Check-Out timer
             startCheckOutTimer()
         }
@@ -99,7 +99,6 @@ class dashboardViewModel: ObservableObject {
             btnBackgroundColor = .appPrimary
             isFirstTimeCheckIn = true
             stopCheckOutTimer()
-            
         }
         //This is Actual Check-In Redirection
 //        else if dashboardData?.CheckEndDT != "" && dashboardData?.Todaycheckin_Flag == 0 {
@@ -125,10 +124,6 @@ class dashboardViewModel: ObservableObject {
         else {
             btnTitle = "-----"
             btnBackgroundColor = .appPrimary
-            // ✅ Default (no plan yet)
-//            btnTitle = "My Day Plan"
-//            btnBackgroundColor = .appPrimary
-//            stopCheckOutTimer(resetTitle: false)
         }
     }
 
