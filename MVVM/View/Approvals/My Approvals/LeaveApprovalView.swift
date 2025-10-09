@@ -52,7 +52,8 @@ struct LeaveApprovalHeader: View {
         HStack {
             ForEach(headers, id: \.0) { title, alignment in
                 Text(title)
-                    .font(.system(size: 14, weight: .medium))
+                    //.font(.system(size: 14, weight: .medium))
+                    .regularTextStyle(size: 14, fontWeight: .medium)
                     .frame(maxWidth: .infinity, alignment: alignment)
             }
         }
@@ -73,7 +74,8 @@ struct LeaveApprovalRow: View {
             
             NavigationLink(destination: LeaveApprovalDetailsView(item: item)) {
                 Text("View")
-                    .font(.system(size: 13, weight: .bold))
+                    //.font(.system(size: 13, weight: .bold))
+                    .regularTextStyle(size: 13, fontWeight: .bold)
                     .foregroundColor(.white)
                     .frame(height: 30)
                     .frame(maxWidth: .infinity)
@@ -93,9 +95,10 @@ struct TextColumn: View {
 
     var body: some View {
         Text(text)
-            .font(.system(size: 13))
-            .foregroundColor(.gray)
-            .fontWeight(.medium)
+//            .font(.system(size: 13))
+//            .foregroundColor(.gray)
+//            .fontWeight(.medium)
+            .regularTextStyle(size: 13, foreground: .gray, fontWeight: .medium)
             .frame(maxWidth: .infinity, alignment: alignment)
     }
 }

@@ -121,12 +121,12 @@ struct homeBar: View {
     
     var body: some View {
         HStack {
-            Button(action:{
-                dismiss()
-            }){
-                BackIcon(color: .white)
-                    .padding()
-            }
+//            Button(action:{
+//                dismiss()
+//            }){
+//                BackIcon(color: .white)
+//                    .padding()
+//            }
             Spacer()
 
             NavigationLink(destination: DashboardView()) {

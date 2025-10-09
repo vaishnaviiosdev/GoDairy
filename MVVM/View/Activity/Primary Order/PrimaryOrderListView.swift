@@ -104,47 +104,47 @@ struct CustomerRow: View {
 
             VStack(alignment: .leading, spacing: 8) {
                 Text(customer.displayName)
-                    .font(.system(size: 16, weight: .medium))
+                    //.font(.system(size: 16, weight: .medium))
+                    .regularTextStyle(size: 16, fontWeight: .medium)
                     .foregroundColor(.black)
 
                 HStack {
                     VStack(alignment: .leading, spacing: 3) {
                         HStack {
                             Text("Outstanding:")
-                                .foregroundColor(.gray)
-                                .font(.system(size: 14))
-                                .fontWeight(.semibold)
+//                                .foregroundColor(.gray)
+//                                .font(.system(size: 14))
+//                                .fontWeight(.semibold)
+                                .regularTextStyle(size: 14, foreground: .gray, fontWeight: .semibold)
                             Text(String(format: "₹ %.2f", customer.outstanding ?? 0))
-                                .font(.system(size: 14))
-                                .foregroundColor(.gray)
-                                .fontWeight(.semibold)
+//                                .font(.system(size: 14))
+//                                .foregroundColor(.gray)
+//                                .fontWeight(.semibold)
+                                .regularTextStyle(size: 14, foreground: .gray, fontWeight: .semibold)
 
-                            Button(action: {
-                                print("Refresh tapped for \(customer.displayName)")
-                            }) {
-                                Image(systemName: "arrow.clockwise")
-                                    .font(.system(size: 20, weight: .semibold))
-                                    .foregroundColor(Color.appPrimary1)
-                                    .padding(.leading, 4)
+                            RefreshButton {
+                                print("The Refresh Button is Tapped")
                             }
-                            .buttonStyle(PlainButtonStyle())
                         }
 
                         HStack {
                             Text("OverDue:")
-                                .foregroundColor(.gray)
-                                .font(.system(size: 14))
-                                .fontWeight(.semibold)
+//                                .foregroundColor(.gray)
+//                                .font(.system(size: 14))
+//                                .fontWeight(.semibold)
+                                .regularTextStyle(size: 14, foreground: .gray, fontWeight: .semibold)
                             Text(String(format: "₹ %.2f", customer.overdue ?? 0))
-                                .font(.system(size: 14))
-                                .foregroundColor(.gray)
-                                .fontWeight(.semibold)
+//                                .font(.system(size: 14))
+//                                .foregroundColor(.gray)
+//                                .fontWeight(.semibold)
+                                .regularTextStyle(size: 14, foreground: .gray, fontWeight: .semibold)
                         }
 
                         Text(customer.phone ?? "")
-                            .font(.system(size: 14))
-                            .foregroundColor(.gray)
-                            .fontWeight(.regular)
+//                            .font(.system(size: 14))
+//                            .foregroundColor(.gray)
+//                            .fontWeight(.regular)
+                            .regularTextStyle(size: 14, foreground: .gray, fontWeight: .regular)
                             .padding(.top, 2)
                     }
                     Spacer()

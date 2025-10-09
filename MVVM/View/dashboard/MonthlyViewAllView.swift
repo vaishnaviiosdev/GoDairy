@@ -74,9 +74,10 @@ struct monthlyViewAllDataList: View {
             bottomRow
         }
         .padding(10)
-        .background(RoundedRectangle(cornerRadius: 12).fill(Color.white))
-        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.gray.opacity(0.5), lineWidth: 0.3))
-        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
+//        .background(RoundedRectangle(cornerRadius: 12).fill(Color.white))
+//        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.gray.opacity(0.5), lineWidth: 0.3))
+//        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
+        .cardStyle()
         .padding(.horizontal, 5)
     }
     

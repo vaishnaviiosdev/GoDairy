@@ -135,12 +135,14 @@ struct DetailRow: View {
     var body: some View {
         HStack(alignment: .top) {
             Text(label)
-                .font(.system(size: 14, weight: .regular))
+                //.font(.system(size: 14, weight: .regular))
+                .regularTextStyle(size: 14)
                 .frame(width: 120, alignment: .leading)
             
             Text(value)
                 .foregroundColor(.green)
-                .font(.system(size: 14, weight: .bold))
+                //.font(.system(size: 14, weight: .bold))
+                .regularTextStyle(size: 14, fontWeight: .bold)
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
@@ -180,7 +182,8 @@ struct ApprovalButtons: View {
                             }
                         }) {
                             Text("SAVE")
-                                .font(.system(size: 14, weight: .bold))
+                                //.font(.system(size: 14, weight: .bold))
+                                .regularTextStyle(size: 14, fontWeight: .bold)
                                 .padding(.horizontal, 30)
                                 .padding(.vertical, 10)
                                 .background(colorData.shared.appPrimary_Button)
@@ -197,7 +200,8 @@ struct ApprovalButtons: View {
                         Task { await approveAction() }
                     }) {
                         Text("APPROVE")
-                            .font(.system(size: 14, weight: .bold))
+                            //.font(.system(size: 14, weight: .bold))
+                            .regularTextStyle(size: 14, fontWeight: .bold)
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(colorData.shared.acceptBtn)
@@ -211,7 +215,8 @@ struct ApprovalButtons: View {
                         }
                     }) {
                         Text("REJECT")
-                            .font(.system(size: 14, weight: .bold))
+                            //.font(.system(size: 14, weight: .bold))
+                            .regularTextStyle(size: 14, fontWeight: .bold)
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(colorData.shared.rejectBtn)
@@ -243,7 +248,8 @@ struct SaveButton: View {
             Spacer()
             Button(action: action) {
                 Text(title)
-                    .font(.system(size: 14, weight: .bold))
+                    //.font(.system(size: 14, weight: .bold))
+                    .regularTextStyle(size: 14, fontWeight: .bold)
                     .padding(.horizontal, 30)
                     .padding(.vertical, 10)
                     .background(colorData.shared.appPrimary_Button)

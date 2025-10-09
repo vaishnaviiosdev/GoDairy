@@ -26,6 +26,7 @@ struct AdvanceRequestView: View {
         NavigationStack {
             VStack {
                 homeBar(frameSize: 40)
+                    .padding(.top,10)
                 ScrollView {
                     AdvanceRequestCard(title: "ADVANCE REQUEST",
                     FromDate: $FromDate,

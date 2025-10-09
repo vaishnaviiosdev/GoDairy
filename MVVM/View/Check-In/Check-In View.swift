@@ -162,8 +162,9 @@ struct CheckInFlowView: View {
             
             ToolbarItem(placement: .principal) {
                 Text(titleName)
-                    .font(.system(size: 17, weight: .regular))
-                    .foregroundColor(.black)
+                    .regularTextStyle(size: 17)
+//                    .font(.system(size: 17, weight: .regular))
+//                    .foregroundColor(.black)
             }
         }
         .alert("Location Permission Required",
@@ -292,9 +293,10 @@ struct StepIndicator: View {
                         .frame(width: circleSize, height: circleSize)
 
                         Text(steps[i])
-                            .font(.system(size: 13))
-                            .fontWeight(.semibold)
-                            .foregroundColor(i <= currentStep ? .black : .gray)
+//                            .font(.system(size: 13))
+//                            .fontWeight(.semibold)
+//                            .foregroundColor(i <= currentStep ? .black : .gray)
+                            .regularTextStyle(size: 13, foreground: (i <= currentStep ? .black : .gray), fontWeight: .semibold)
                     }
 
                     // Connector line
@@ -504,8 +506,9 @@ struct ShiftStep: View {
             onNext()
         }) {
             Text("CONFIRM SHIFT")
-                .font(.system(size: 16, weight: .semibold))
-                .foregroundColor(.white)
+                .regularTextStyle(size: 16, foreground: .white, fontWeight: .semibold)
+//                .font(.system(size: 16, weight: .semibold))
+//                .foregroundColor(.white)
                 .frame(maxWidth: .infinity)
                 .padding()
                 .background(Color.blue)
@@ -527,14 +530,16 @@ struct ShiftGridItem: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(name)
-                .font(.system(size: 17))
-                .fontWeight(.regular)
-                .foregroundColor(Color.black)
+//                .font(.system(size: 17))
+//                .fontWeight(.regular)
+//                .foregroundColor(Color.black)
+                .regularTextStyle(size: 17)
             
             Text("\(Shift_StartTime) - \(Shift_EndTime)")
-                .font(.system(size: 17))
-                .fontWeight(.regular)
-                .foregroundColor(Color.gray)
+//                .font(.system(size: 17))
+//                .fontWeight(.regular)
+//                .foregroundColor(Color.gray)
+                .regularTextStyle(size: 17, foreground: .gray)
                 .multilineTextAlignment(.leading)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -611,8 +616,9 @@ struct SelfieStep: View {
                             capturedImage = nil
                         }) {
                             Text("RETRY")
-                                .font(.system(size: 20, weight: .semibold))
-                                .foregroundColor(.white)
+//                                .font(.system(size: 20, weight: .semibold))
+//                                .foregroundColor(.white)
+                                .regularTextStyle(size: 20, foreground: .white, fontWeight: .semibold)
                                 .frame(height: 35)
                                 .padding(.vertical, 6)
                                 .padding(.horizontal, 10)
@@ -694,8 +700,9 @@ struct SelfieStep: View {
                         }
                     }) {
                         Text("FINISH")
-                            .font(.system(size: 16, weight: .bold))
-                            .foregroundColor(.white)
+//                            .font(.system(size: 16, weight: .bold))
+//                            .foregroundColor(.white)
+                            .regularTextStyle(size: 16, foreground: .white, fontWeight: .bold)
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(Color.blue)

@@ -100,7 +100,8 @@ struct ApprovalHeader: View {
         HStack {
             ForEach(headers, id: \.0) { title, alignment in
                 Text(title)
-                    .font(.system(size: 14, weight: .medium))
+                    //.font(.system(size: 14, weight: .medium))
+                    .regularTextStyle(size: 14, fontWeight: .medium)
                     .frame(maxWidth: .infinity, alignment: alignment)
             }
         }
@@ -121,7 +122,8 @@ struct permissionApprovalRow: View {
             
             NavigationLink(destination: PermissionApprovalDetailsView(item: item)) {
                 Text("View")
-                    .font(.system(size: 13, weight: .bold))
+                    //.font(.system(size: 13, weight: .bold))
+                    .regularTextStyle(size: 13, fontWeight: .bold)
                     .foregroundColor(.white)
                     .frame(height: 30)
                     .frame(maxWidth: .infinity)

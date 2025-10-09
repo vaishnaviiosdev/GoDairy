@@ -57,7 +57,8 @@ struct ActivityDashboardHeader: View {
                     .font(.headline)
                     .bold()
                 Text(sf_Designation.isEmpty ? "---" : sf_Designation)
-                    .font(.system(size: 13))
+                    //.font(.system(size: 13))
+                    .regularTextStyle(size: 13)
             }
             Spacer()
             Button(action: {
@@ -140,8 +141,9 @@ struct ActivityGridItemView: View {
                     VStack {
                         if item.isSystemIcon {
                             Image(systemName: item.icon)
-                                .font(.system(size: 28))
-                                .foregroundColor(.blue)
+//                                .font(.system(size: 28))
+//                                .foregroundColor(.blue)
+                                .regularTextStyle(size: 28, foreground: .blue)
                         }
                         else {
                             Image(item.icon) // asset
@@ -151,9 +153,10 @@ struct ActivityGridItemView: View {
                         }
                         
                         Text(item.title)
-                            .font(.system(size: 14))
-                            .foregroundColor(.black)
-                            .fontWeight(.medium)
+//                            .font(.system(size: 14))
+//                            .foregroundColor(.black)
+//                            .fontWeight(.medium)
+                            .regularTextStyle(size: 14, fontWeight: .medium)
                             .multilineTextAlignment(.center)
                     }
                     .frame(maxWidth: .infinity)
@@ -189,40 +192,44 @@ struct todayOrdersView: View {
             HStack(alignment: .center, spacing: 15) {
                 VStack(alignment: .center, spacing: 10) {
                     Text("Total Value")
-                        .font(.system(size: 14))
-                        .fontWeight(.medium)
+//                        .font(.system(size: 14))
+//                        .fontWeight(.medium)
+                        .regularTextStyle(size: 14, fontWeight: .medium)
                     Text("0.00")
-                        .font(.system(size: 14))
-                        .fontWeight(.medium)
-                        .foregroundColor(.appPrimary3)
+//                        .font(.system(size: 14))
+//                        .fontWeight(.medium)
+                        .regularTextStyle(size: 14, foreground: .appPrimary3, fontWeight: .medium)
+                        //.foregroundColor(.appPrimary3)
                 }
                 Spacer()
                 VStack(alignment: .center, spacing: 10) {
                     Text("Primary Order")
-                        .font(.system(size: 14))
-                        .fontWeight(.medium)
+//                        .font(.system(size: 14))
+//                        .fontWeight(.medium)
+                        .regularTextStyle(size: 14, fontWeight: .medium)
                     Text("0")
-                        .font(.system(size: 14))
-                        .fontWeight(.medium)
-                        .foregroundColor(.appPrimary3)
+                        .regularTextStyle(size: 14, foreground: .appPrimary3, fontWeight: .medium)
                 }
                 Spacer()
                 VStack(alignment: .center, spacing: 10) {
                     Text("No Order")
                         .font(.system(size: 14))
                         .fontWeight(.medium)
+                        .regularTextStyle(size: 14, fontWeight: .medium)
                     Text("216")
-                        .font(.system(size: 14))
-                        .fontWeight(.medium)
-                        .foregroundColor(.appPrimary3)
+                        .regularTextStyle(size: 14, foreground: .appPrimary3, fontWeight: .medium)
+//                        .font(.system(size: 14))
+//                        .fontWeight(.medium)
+//                        .foregroundColor(.appPrimary3)
                 }
             }
             .padding()
             
             Text("Last Updated on : 2025-10-11")
-                .font(.system(size: 14))
-                .foregroundColor(.gray)
-                .fontWeight(.semibold)
+//                .font(.system(size: 14))
+//                .foregroundColor(.gray)
+//                .fontWeight(.semibold)
+                .regularTextStyle(size: 14, foreground: .gray, fontWeight: .semibold)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 10)
                 //.padding(.top, 5)

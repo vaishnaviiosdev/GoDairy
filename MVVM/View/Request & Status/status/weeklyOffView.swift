@@ -79,8 +79,8 @@ struct WeeklyOffCard: View {
             titleCard(title: title, frameHeight: 40, fontSize: 14)
             HStack(spacing: 10) {
                 
-                CustomDatePicker(selectedDate: $fromDate)
-                CustomDatePicker(selectedDate: $toDate)
+                CustomDatePicker(selectedDate: $fromDate, cornerRadius: 5, frameHeight: 45, textForegroundColor: .black, textFontWeight: .regular)
+                CustomDatePicker(selectedDate: $toDate, cornerRadius: 5, frameHeight: 45, textForegroundColor: .black, textFontWeight: .regular)
                 
                 Button(action: onSubmit) {
                     Image(systemName: "chevron.down")
@@ -145,12 +145,17 @@ struct CustomDatePicker: View {
     @Binding var selectedDate: Date
     @State private var showPicker = false
     
+    var cornerRadius: CGFloat = 10
+    var frameHeight: CGFloat? = nil
+    var textForegroundColor: Color = .gray
+    var textFontWeight: Font.Weight = .bold
+    
     var body: some View {
         Button(action: { showPicker.toggle() }) {
             HStack {
                 Text(selectedDate.formattedAsYYYYMMDD())
-                    .foregroundColor(.gray)
-                    .fontWeight(.bold)
+                    .foregroundColor(textForegroundColor)
+                    .fontWeight(textFontWeight)
                     .font(.system(size: 14))
                 
                 Spacer(minLength: 8)
@@ -163,8 +168,9 @@ struct CustomDatePicker: View {
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
+            .frame(height: frameHeight)
             .background(Color.white)
-            .cornerRadius(10)
+            .cornerRadius(cornerRadius)
             .shadow(color: Color.black.opacity(0.15), radius: 4, x: 0, y: 2)
         }
         .sheet(isPresented: $showPicker) {
