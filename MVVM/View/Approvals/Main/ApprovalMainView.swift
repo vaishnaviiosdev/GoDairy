@@ -58,12 +58,12 @@ struct ApprovalMainView: View {
     private let myApprovalItems: [(title: String, destination: AnyView)] = [
         ("Advance Request", AnyView(PermissionApprovalView())),
         ("Leave", AnyView(LeaveApprovalView())),
-        ("Leave Cancel", AnyView(forgetpass())),
+        ("Leave Cancel", AnyView(dummyView())),
         ("Permission", AnyView(PermissionApprovalView())),
         ("Missed Punch", AnyView(MissedPunchApprovalView())),
-        ("Travel Allowance", AnyView(forgetpass())),
-        ("Work Plan-PJP", AnyView(forgetpass())),
-        ("Deviation Entry", AnyView(forgetpass()))
+        ("Travel Allowance", AnyView(dummyView())),
+        ("Work Plan-PJP", AnyView(dummyView())),
+        ("Deviation Entry", AnyView(dummyView()))
     ]
     
     private let approvalHistoryItems: [(title: String, destination: AnyView)] = [
@@ -71,34 +71,11 @@ struct ApprovalMainView: View {
         ("Leave", AnyView(LeaveApprovalHistoryView())),
         ("Permission", AnyView(PermissionApprovalHistoryView())),
         ("Missed Punch", AnyView(MissedPunchApprovalHistoryView())),
-        ("Travel Allowance", AnyView(forgetpass())),
-        ("Leave Cancel", AnyView(forgetpass()))
+        ("Travel Allowance", AnyView(dummyView())),
+        ("Leave Cancel", AnyView(dummyView()))
     ]
     
-//    var body: some View {
-//        NavigationStack {
-//            ZStack {
-//                Color(UIColor.white)
-//
-//                VStack {
-//                    homeBar()
-//                        .padding(.top, 1)
-//                ScrollView {
-//                    VStack(spacing: 16) {
-//                        SectionCard(title: "MY APPROVALS", items: myApprovalItems)
-//                       
-//                        SectionCard(title: "APPROVAL HISTORY", items: approvalHistoryItems)
-//                    }
-//                    .padding(.vertical, 8)
-//                }
-//                .background(Color(UIColor.systemGray6))
-//                .navigationBarTitleDisplayMode(.inline)
-//                Spacer()
-//                }
-//            }
-//        }
-//        .navigationTitle("")
-//    }
+
     
     var body: some View {
         NavigationStack {
@@ -183,11 +160,11 @@ struct ApprovalButtons: View {
                         }) {
                             Text("SAVE")
                                 //.font(.system(size: 14, weight: .bold))
-                                .regularTextStyle(size: 14, fontWeight: .bold)
+                                .regularTextStyle(size: 14, foreground: .white, fontWeight: .bold)
                                 .padding(.horizontal, 30)
                                 .padding(.vertical, 10)
                                 .background(colorData.shared.appPrimary_Button)
-                                .foregroundColor(.white)
+                                //.foregroundColor(.white)
                                 .cornerRadius(8)
                         }
                         Spacer()
@@ -201,11 +178,11 @@ struct ApprovalButtons: View {
                     }) {
                         Text("APPROVE")
                             //.font(.system(size: 14, weight: .bold))
-                            .regularTextStyle(size: 14, fontWeight: .bold)
+                            .regularTextStyle(size: 14, foreground: .white, fontWeight: .bold)
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(colorData.shared.acceptBtn)
-                            .foregroundColor(.white)
+                            //.foregroundColor(.white)
                             .cornerRadius(8)
                     }
                     
@@ -216,11 +193,11 @@ struct ApprovalButtons: View {
                     }) {
                         Text("REJECT")
                             //.font(.system(size: 14, weight: .bold))
-                            .regularTextStyle(size: 14, fontWeight: .bold)
+                            .regularTextStyle(size: 14, foreground: .white, fontWeight: .bold)
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(colorData.shared.rejectBtn)
-                            .foregroundColor(.white)
+                            //.foregroundColor(.white)
                             .cornerRadius(8)
                     }
                 }

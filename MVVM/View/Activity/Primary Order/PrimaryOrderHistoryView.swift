@@ -153,8 +153,8 @@ struct allView: View {
             }) {
                 Text("All")
                     //.font(.system(size: 13, weight: .bold))
-                    .regularTextStyle(size: 13, fontWeight: .bold)
-                    .foregroundColor(.appPrimary1)
+                    .regularTextStyle(size: 13, foreground: .appPrimary1, fontWeight: .bold)
+                    //.foregroundColor(.appPrimary1)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 8)
                     .overlay(

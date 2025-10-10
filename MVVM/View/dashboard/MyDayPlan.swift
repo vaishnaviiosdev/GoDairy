@@ -49,7 +49,8 @@ struct DayPlanView: View {
                     .padding(.top, 10)
 
                     Text("My Day Plan")
-                        .font(.system(size: 25, weight: .medium))
+                        //.font(.system(size: 25, weight: .medium))
+                        .regularTextStyle(size: 25, fontWeight: .medium)
 
                     Text("(\(formattedDate))")
                         .font(.subheadline)
@@ -58,8 +59,9 @@ struct DayPlanView: View {
                     VStack(alignment: .leading, spacing: 0) {
                         Text("WORK TYPE")
                             .font(.subheadline)
-                            .foregroundColor(.gray)
-                            .fontWeight(.semibold)
+//                            .foregroundColor(.gray)
+//                            .fontWeight(.semibold)
+                            .regularTextStyle(foreground: .gray, fontWeight: .semibold)
 
                         Menu {
                             ForEach(dashboardModel.WorkTypeName, id: \.self) { type in
@@ -86,8 +88,9 @@ struct DayPlanView: View {
                     VStack(alignment: .leading, spacing: 0) {
                         Text("REMARKS")
                             .font(.subheadline)
-                            .foregroundColor(.gray)
-                            .fontWeight(.semibold)
+//                            .foregroundColor(.gray)
+//                            .fontWeight(.semibold)
+                            .regularTextStyle(foreground: .gray, fontWeight: .semibold)
                         
                         TextField(
                             text: $remarks,

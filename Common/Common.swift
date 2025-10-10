@@ -70,3 +70,49 @@ extension View {
         self.font(.system(size: size)).foregroundColor(foreground).fontWeight(fontWeight)
     }
 }
+
+struct StatusSection<Content: View>: View {
+    let title: String
+    @ViewBuilder var content: Content
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            titleCard(title: title, frameHeight: 40, fontSize: 14)
+            content
+        }
+        .background(Color.white)
+        .cornerRadius(12)
+        .padding(.horizontal, 8)
+    }
+}
+
+struct StatusBaseCard<Content: View>: View {
+    @ViewBuilder var content: Content
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            content
+        }
+        .padding(10)
+        .background(RoundedRectangle(cornerRadius: 12).fill(Color.white))
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.gray.opacity(0.5), lineWidth: 0.3)
+        )
+        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
+        .padding(.horizontal, 5)
+    }
+}
+
+//extension Color {
+//    init?(cssRGB: String) {
+//        let components = cssRGB
+//            .replacingOccurrences(of: "rgb(", with: "")
+//            .replacingOccurrences(of: ")", with: "")
+//            .split(separator: ",")
+//            .compactMap { Double($0.trimmingCharacters(in: .whitespaces)) }
+//        guard components.count == 3 else { return nil }
+//        self.init(red: components[0]/255, green: components[1]/255, blue: components[2]/255)
+//    }
+//}
+

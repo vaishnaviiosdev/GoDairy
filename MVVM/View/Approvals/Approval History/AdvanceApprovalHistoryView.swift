@@ -178,8 +178,8 @@ struct advanceApprovalCardDataList: View {
             }
         }
         //.font(.system(size: 14, weight: .bold))
-        .regularTextStyle(size: 14, fontWeight: .bold)
-        .foregroundColor(.gray)
+        .regularTextStyle(size: 14, foreground: .gray, fontWeight: .bold)
+        //.foregroundColor(.gray)
     }
 }
 

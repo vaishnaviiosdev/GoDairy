@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct PrimaryOrderListView: View {
+    
+    @StateObject var  primaryorderVM = PrimaryorderViewModel()
+    
     var body: some View {
         ZStack {
             Color.appPrimaryLight
@@ -17,29 +20,20 @@ struct PrimaryOrderListView: View {
 
                 Text("Primary list")
                     .font(.footnote)
-                    .foregroundColor(.black)
-                    .fontWeight(.semibold)
+                    .regularTextStyle(foreground: .black, fontWeight: .semibold)
                     .padding(.horizontal)
 
                 ScrollView {
-                    LazyVStack(spacing: 0) {
-                        ForEach(sampleCustomers.indices, id: \.self) { index in
-                            CustomerRow(
-                                customer: sampleCustomers[index],
-                                isFirst: index == 0
-                            )
-
-                            if index != sampleCustomers.count - 1 {
-                                Divider()
-                                    .padding(.horizontal)
-                            }
-                        }
-                    }
-                    .padding(.top, 10)
+                    PrimaryOrderList(primaryOrderVM: primaryorderVM)
                 }
             }
         }
         .navigationBarBackButtonHidden(true)
+        .onAppear {
+            Task {
+                await primaryorderVM.fetchPrimaryOrderData()
+            }
+        }
     }
 }
 
@@ -49,8 +43,9 @@ struct TopView: View {
             HStack {
                 Text("Search")
                     .font(.title2)
-                    .foregroundColor(.black)
-                    .fontWeight(.medium)
+//                    .foregroundColor(.black)
+//                    .fontWeight(.medium)
+                    .regularTextStyle(foreground: .black, fontWeight: .medium)
 
                 Spacer()
 
@@ -62,6 +57,50 @@ struct TopView: View {
         }
     }
 }
+
+//struct primaryOrderList: View {
+//    var primaryOrdervm: PrimaryorderViewModel
+//    var body: some View {
+//        LazyVStack(spacing: 0) {
+//            ForEach(sampleCustomers.indices, id: \.self) { index in
+//                CustomerRow(
+//                    customer: sampleCustomers[index],
+//                    isFirst: index == 0
+//                )
+//
+//                if index != sampleCustomers.count - 1 {
+//                    Divider()
+//                        .padding(.horizontal)
+//                }
+//            }
+//        }
+//        .padding(.top, 10)
+//    }
+//}
+
+struct PrimaryOrderList: View {
+    @ObservedObject var primaryOrderVM: PrimaryorderViewModel
+    
+    var body: some View {
+        ScrollView {
+            LazyVStack(spacing: 0) {
+                ForEach(primaryOrderVM.primaryOrderDataResponse.indices, id: \.self) { index in
+                    CustomerRow(
+                        customer: primaryOrderVM.primaryOrderDataResponse[index],
+                        isFirst: index == 0 // top corners only for first card
+                    )
+                    
+                    if index != primaryOrderVM.primaryOrderDataResponse.count - 1 {
+                        Divider()
+                            .padding(.horizontal)
+                    }
+                }
+            }
+            .padding(.top, 10)
+        }
+    }
+}
+
 
 // ✅ Customer model
 struct Customer: Identifiable {
@@ -82,8 +121,12 @@ struct Customer: Identifiable {
 
 // ✅ CustomerRow view
 struct CustomerRow: View {
-    let customer: Customer
+    let customer: primaryOrderData
     let isFirst: Bool  // NEW
+    
+    var initial: String {
+        String(customer.name?.prefix(1) ?? "").uppercased()
+    }
 
     var body: some View {
         HStack(alignment: .top, spacing: 5) {
@@ -96,14 +139,14 @@ struct CustomerRow: View {
                     .padding(.horizontal, 10)
                     .padding(.vertical, 10)
 
-                Text(customer.initial)
+                Text(initial)
                     .foregroundColor(.white)
                     .font(.title2)
                     .fontWeight(.heavy)
             }
 
             VStack(alignment: .leading, spacing: 8) {
-                Text(customer.displayName)
+                Text(customer.name ?? "")
                     //.font(.system(size: 16, weight: .medium))
                     .regularTextStyle(size: 16, fontWeight: .medium)
                     .foregroundColor(.black)
@@ -116,7 +159,7 @@ struct CustomerRow: View {
 //                                .font(.system(size: 14))
 //                                .fontWeight(.semibold)
                                 .regularTextStyle(size: 14, foreground: .gray, fontWeight: .semibold)
-                            Text(String(format: "₹ %.2f", customer.outstanding ?? 0))
+                            Text(String(format: "₹ %.2f", customer.Out_stand ?? 0))
 //                                .font(.system(size: 14))
 //                                .foregroundColor(.gray)
 //                                .fontWeight(.semibold)
@@ -133,14 +176,14 @@ struct CustomerRow: View {
 //                                .font(.system(size: 14))
 //                                .fontWeight(.semibold)
                                 .regularTextStyle(size: 14, foreground: .gray, fontWeight: .semibold)
-                            Text(String(format: "₹ %.2f", customer.overdue ?? 0))
+                            Text(String(format: "₹ %.2f", customer.overDue ?? 0))
 //                                .font(.system(size: 14))
 //                                .foregroundColor(.gray)
 //                                .fontWeight(.semibold)
                                 .regularTextStyle(size: 14, foreground: .gray, fontWeight: .semibold)
                         }
 
-                        Text(customer.phone ?? "")
+                        Text(customer.Mobile ?? "------")
 //                            .font(.system(size: 14))
 //                            .foregroundColor(.gray)
 //                            .fontWeight(.regular)

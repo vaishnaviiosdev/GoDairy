@@ -85,13 +85,14 @@ struct monthlyViewAllDataList: View {
         VStack(alignment: .leading) {
             HStack {
                 Text(item.WrkDate ?? "------")
-                    .font(.system(size: 13, weight: .medium))
-                    .foregroundColor(.black)
+//                    .font(.system(size: 13, weight: .medium))
+//                    .foregroundColor(.black)
+                    .regularTextStyle(size: 13, foreground: .black, fontWeight: .medium)
                 
                 Spacer()
                 
                 Text(item.DayStatus ?? "Not Mentioned")
-                    .font(.system(size: 12, weight: .bold))
+                    //.font(.system(size: 12, weight: .bold))
                     .padding(.horizontal, 10)
                     .padding(.vertical, 5)
                     .background(
@@ -99,8 +100,9 @@ struct monthlyViewAllDataList: View {
                         ? Color.approved
                         : Color.reject
                     )
-                    .foregroundColor(.white)
+                    //.foregroundColor(.white)
                     .cornerRadius(12)
+                    .regularTextStyle(size: 12, foreground: .white, fontWeight: .bold)
             }
         }
     }
@@ -112,10 +114,12 @@ struct monthlyViewAllDataList: View {
                 Spacer()
                 VStack(alignment: .trailing, spacing: 2) {
                     Text("SHIFT TIME")
-                        .font(.system(size: 11, weight: .bold))
-                        .foregroundColor(.gray)
+//                        .font(.system(size: 11, weight: .bold))
+//                        .foregroundColor(.gray)
+                        .regularTextStyle(size: 11, foreground: .gray, fontWeight: .bold)
                     Text((item.Shft?.isEmpty == false) ? item.Shft! : "-")
-                        .font(.system(size: 13, weight: .semibold))
+                        //.font(.system(size: 13, weight: .semibold))
+                        .regularTextStyle(size: 13, fontWeight: .semibold)
                 }
             }
             
@@ -123,19 +127,23 @@ struct monthlyViewAllDataList: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text("IN TIME")
                         .font(.caption)
-                        .foregroundColor(.gray)
-                        .fontWeight(.bold)
+//                        .foregroundColor(.gray)
+//                        .fontWeight(.bold)
+                        .regularTextStyle(foreground: .gray, fontWeight: .bold)
                     Text(item.AttTm ?? "")
-                        .font(.system(size: 13, weight: .semibold))
+                        //.font(.system(size: 13, weight: .semibold))
+                        .regularTextStyle(size: 13, fontWeight: .semibold)
                 }
                 Spacer()
                 VStack(alignment: .trailing, spacing: 2) {
                     Text("OUT TIME")
                         .font(.caption)
-                        .foregroundColor(.gray)
-                        .fontWeight(.bold)
+//                        .foregroundColor(.gray)
+//                        .fontWeight(.bold)
+                        .regularTextStyle(foreground: .gray, fontWeight: .bold)
                     Text(item.ET ?? "")
-                        .font(.system(size: 13, weight: .semibold))
+                        //.font(.system(size: 13, weight: .semibold))
+                        .regularTextStyle(size: 13, fontWeight: .semibold)
                 }
             }
             
@@ -143,19 +151,23 @@ struct monthlyViewAllDataList: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text("IN GEO")
                         .font(.caption)
-                        .foregroundColor(.gray)
-                        .fontWeight(.bold)
+//                        .foregroundColor(.gray)
+//                        .fontWeight(.bold)
+                        .regularTextStyle(foreground: .gray, fontWeight: .bold)
                     Text(item.Geoin ?? "-")
-                        .font(.system(size: 13, weight: .semibold))
+                        //.font(.system(size: 13, weight: .semibold))
+                        .regularTextStyle(size: 13, fontWeight: .semibold)
                 }
                 Spacer()
                 VStack(alignment: .trailing, spacing: 2) {
                     Text("OUT GEO")
                         .font(.caption)
-                        .foregroundColor(.gray)
-                        .fontWeight(.bold)
+//                        .foregroundColor(.gray)
+//                        .fontWeight(.bold)
+                        .regularTextStyle(foreground: .gray, fontWeight: .bold)
                     Text(item.Geoout ?? "-")
-                        .font(.system(size: 13, weight: .semibold))
+                        //.font(.system(size: 13, weight: .semibold))
+                        .regularTextStyle(size: 13, fontWeight: .semibold)
                 }
             }
         }

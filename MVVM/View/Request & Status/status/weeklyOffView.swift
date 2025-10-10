@@ -84,8 +84,9 @@ struct WeeklyOffCard: View {
                 
                 Button(action: onSubmit) {
                     Image(systemName: "chevron.down")
-                        .font(.system(size: 20, weight: .bold))
-                        .foregroundColor(.white)
+//                        .font(.system(size: 20, weight: .bold))
+//                        .foregroundColor(.white)
+                        .regularTextStyle(size: 20, foreground: .white, fontWeight: .bold)
                         .padding(12)
                         .background(Color.appPrimary)
                         .clipShape(Circle())
@@ -108,14 +109,17 @@ struct WeekOffRow: View {
         VStack(alignment: .leading, spacing: 6) {
             HStack {
                 Text("Weekoff")
-                    .font(.system(size: 14, weight: .medium))
+                    //.font(.system(size: 14, weight: .medium))
+                    .regularTextStyle(size: 14, fontWeight: .medium)
                 Spacer()
                 Text(item.wkDate)
-                    .font(.system(size: 14, weight: .regular))
-                    .foregroundColor(.gray)
+//                    .font(.system(size: 14, weight: .regular))
+//                    .foregroundColor(.gray)
+                    .regularTextStyle(size: 14, foreground: .gray, fontWeight: .regular)
                 Text("- \(item.DtNm)")
-                    .font(.system(size: 14))
-                    .foregroundColor(.gray)
+//                    .font(.system(size: 14))
+//                    .foregroundColor(.gray)
+                    .regularTextStyle(size: 14, foreground: .gray)
             }
             Divider()
                 .background(Color.black)
@@ -124,12 +128,14 @@ struct WeekOffRow: View {
             
             HStack {
                 Text("Submit on : ")
-                    .font(.system(size: 14, weight: .regular))
-                    .foregroundColor(.gray)
+//                    .font(.system(size: 14, weight: .regular))
+//                    .foregroundColor(.gray)
+                    .regularTextStyle(size: 14, foreground: .gray, fontWeight: .regular)
                 
                 Text(item.sbmtOn)
-                    .font(.system(size: 14, weight: .bold))
-                    .foregroundColor(.gray)
+//                    .font(.system(size: 14, weight: .bold))
+//                    .foregroundColor(.gray)
+                    .regularTextStyle(size: 14, foreground: .gray, fontWeight: .bold)
             }
         }
         .padding()
@@ -154,9 +160,10 @@ struct CustomDatePicker: View {
         Button(action: { showPicker.toggle() }) {
             HStack {
                 Text(selectedDate.formattedAsYYYYMMDD())
-                    .foregroundColor(textForegroundColor)
-                    .fontWeight(textFontWeight)
-                    .font(.system(size: 14))
+//                    .foregroundColor(textForegroundColor)
+//                    .fontWeight(textFontWeight)
+//                    .font(.system(size: 14))
+                    .regularTextStyle(size: 14, foreground: textForegroundColor, fontWeight: textFontWeight)
                 
                 Spacer(minLength: 8)
                 

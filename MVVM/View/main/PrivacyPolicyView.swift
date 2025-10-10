@@ -31,8 +31,9 @@ struct PrivacyPolicyView: View {
                                 .frame(width: 25, height: 25)
                         }
                         Text("Please accept the Privacy Policy")
-                            .fontWeight(.medium)
-                            .font(.system(size: 12))
+//                            .fontWeight(.medium)
+//                            .font(.system(size: 12))
+                            .regularTextStyle(size: 12, fontWeight: .medium)
                         Spacer()
                     }
                     .padding(5)

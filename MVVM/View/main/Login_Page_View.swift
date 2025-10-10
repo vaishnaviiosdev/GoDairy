@@ -34,12 +34,14 @@ struct Login_Page_View: View {
                         Text("Dairy product")
                             .frame(maxWidth: .infinity, alignment: .trailing)
                             .font(.title)
-                            .fontWeight(.bold)
-                            .foregroundStyle(.white)
+                            .regularTextStyle(foreground: .white, fontWeight: .bold)
+//                            .fontWeight(.bold)
+//                            .foregroundStyle(.white)
                         Text("Delivery Solutions")
                             .font(.title)
-                            .fontWeight(.bold)
-                            .foregroundStyle(.white)
+//                            .fontWeight(.bold)
+//                            .foregroundStyle(.white)
+                            .regularTextStyle(foreground: .white, fontWeight: .bold)
                     }
                     .padding()
                 }
@@ -237,11 +239,12 @@ struct CustomBtn: View {
     var body: some View {
         Button(action: action) {   // 👈 executes your action
             Text(title)
-                .font(.system(size: fontsize, weight: fontWeight))
-                .foregroundColor(.white)
+                //.font(.system(size: fontsize, weight: fontWeight))
+                //.foregroundColor(.white)
                 .frame(maxWidth: .infinity, minHeight: height)
                 .background(backgroundColor)
                 .cornerRadius(cornerRadius)
+                .regularTextStyle(size: fontsize, foreground: .white, fontWeight: fontWeight)
         }
     }
 }

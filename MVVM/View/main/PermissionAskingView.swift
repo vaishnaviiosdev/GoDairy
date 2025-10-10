@@ -26,12 +26,14 @@ struct PermissionAskingView: View {
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity, alignment: .center)
             Text("Allow GODIARY App to automatically detect your current location for travel allowance and Collects Location data to enable identification of near by outlets even when the app is closed or not in use")
-                .fontWeight(.medium)
-                .foregroundColor(.gray)
+//                .fontWeight(.medium)
+//                .foregroundColor(.gray)
+                .regularTextStyle(foreground: .gray, fontWeight: .medium)
             Text("To enable, go to 'Settings' and set Location permission as 'Allow all the time' and turn on 'Use precise Location' ")
-                .font(.system(size: 13))
-                .foregroundColor(.gray)
-                .fontWeight(.medium)
+//                .font(.system(size: 13))
+//                .foregroundColor(.gray)
+//                .fontWeight(.medium)
+                .regularTextStyle(size: 13, foreground: .gray, fontWeight: .medium)
             
                 CustomBtn(title: "OPEN SETTINGS", height: 40, backgroundColor: Color.appPrimary) {
                     if let settingsURL = URL(string: UIApplication.openSettingsURLString),

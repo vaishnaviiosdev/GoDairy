@@ -369,8 +369,9 @@ struct DaysView: View {
             if isEditable {
                 TextField("Enter Amount", value: $numberOfValue, format: .number)
                     .keyboardType(.decimalPad)
-                    .font(.system(size: 20, weight: .medium))
-                    .foregroundColor(foregroundColour)
+//                    .font(.system(size: 20, weight: .medium))
+//                    .foregroundColor(foregroundColour)
+                    .regularTextStyle(size: 20, foreground: foregroundColour, fontWeight: .medium)
                     .frame(maxWidth: .infinity, minHeight: 30)
                     .multilineTextAlignment(.center)
                     .padding(.vertical, 8)
@@ -380,8 +381,9 @@ struct DaysView: View {
             }
             else {
                 Text(formatNumber(numberOfValue))
-                    .font(.system(size: 20, weight: .medium))
-                    .foregroundColor(foregroundColour)
+//                    .font(.system(size: 20, weight: .medium))
+//                    .foregroundColor(foregroundColour)
+                    .regularTextStyle(size: 20, foreground: foregroundColour, fontWeight: .medium)
                     .frame(maxWidth: .infinity, minHeight: 30)
                     .multilineTextAlignment(.center)
                     .padding(.vertical, 8)
@@ -442,9 +444,10 @@ struct titleView: View {
     var fontWeight: Font.Weight = .light
     var body: some View {
         Text(title)
-            .foregroundColor(foregroundColor)
-            .font(.system(size: fontSize))
-            .fontWeight(fontWeight)
+//            .foregroundColor(foregroundColor)
+//            .font(.system(size: fontSize))
+//            .fontWeight(fontWeight)
+            .regularTextStyle(size: fontSize, foreground: foregroundColor, fontWeight: fontWeight)
             .padding(.leading, 5)
             .padding(.top, 8)
             .padding(.bottom, 8)
@@ -461,7 +464,8 @@ struct CustomTextView: View {
     var body: some View {
         ZStack(alignment: .topLeading) {
             TextEditor(text: $text)
-                .font(.system(size: fontSize))
+                //.font(.system(size: fontSize))
+                .regularTextStyle(size: fontSize)
                 .padding(.horizontal, 4)
                 .padding(.top, 6)
                 .scrollContentBackground(.hidden)
@@ -472,8 +476,9 @@ struct CustomTextView: View {
             
             if text.isEmpty {
                 Text(placeholder)
-                    .font(.system(size: fontSize))
-                    .foregroundColor(.gray)
+                    //.font(.system(size: fontSize))
+                    .regularTextStyle(size: fontSize, foreground: .gray)
+                    //.foregroundColor(.gray)
                     .padding(.horizontal, 10)
                     .padding(.vertical, 12)
                     .allowsHitTesting(false)
@@ -544,12 +549,13 @@ struct CustomCard: View {
             titleView(title: title, fontWeight: titleFontWeight)
             Button(action: action) {
                 Text(selectedValue ?? placeholderString)
-                    .foregroundColor(selectedValue == nil ? .gray : .black)
+                    //.foregroundColor(selectedValue == nil ? .gray : .black)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.vertical, 8)
                     .padding(.horizontal, 10)
-                    .font(.system(size: 14))
-                    .fontWeight(fontWeight)
+                    //.font(.system(size: 14))
+                    //.fontWeight(fontWeight)
+                    .regularTextStyle(size: 14, foreground: (selectedValue == nil ? .gray : .black), fontWeight: fontWeight)
                     .background(
                         RoundedRectangle(cornerRadius: 8).fill(Color.white)
                     )
@@ -587,8 +593,9 @@ struct DateCard: View {
             }) {
                 HStack {
                     Text(selectedDate == nil ? placeholder : formatDate(selectedDate!))
-                        .foregroundColor(selectedDate == nil ? .gray : .gray)
-                        .font(.system(size: 14))
+//                        .foregroundColor(selectedDate == nil ? .gray : .gray)
+//                        .font(.system(size: 14))
+                        .regularTextStyle(size: 14, foreground: (selectedDate == nil ? .gray : .gray))
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .padding(.vertical, 8)

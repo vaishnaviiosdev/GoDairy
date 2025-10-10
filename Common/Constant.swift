@@ -91,6 +91,15 @@ let image_BaseUrl = "http://qa.godairy.in/server/Db_v300.php?&axn=imgupload&Sf_c
 
 let checkOut_SaveUrl = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl2 + "get%2Flogouttime&Ekey=\(Ukey)&divisionCode=\(division_code)&Sf_code=\(sf_code)&State_Code=&desig="
 
+//Activity
+let primary_OrderUrl = APIClient.shared.New_DBUrl + APIClient.shared.DBURL2 + "get/distributor"
+
+
+
+
+//"http://qa.godairy.in/server/Db_v310.php?axn=get/distributor"
+//qa.godairy.in/server/Db_v310.php?axn=get/distributor
+
 
 
 

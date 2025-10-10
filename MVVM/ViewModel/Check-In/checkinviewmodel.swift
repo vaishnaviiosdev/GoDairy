@@ -10,7 +10,6 @@ import SwiftUI
 
 @MainActor
 class Checkinviewmodel: ObservableObject {
-    
     @Published var checkInSaveDataResponse: checkinSaveData?
     @Published var checkOutSaveDataResponse: checkOutSaveData?
     @Published var isCheckingIn: Bool = false
@@ -56,7 +55,6 @@ class Checkinviewmodel: ObservableObject {
             print("📦 Status Code: \(httpResponse.statusCode)")
         }
         
-        // You can decode or just return the filename
         return validFileName
     }
     

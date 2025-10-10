@@ -1,158 +1,250 @@
+////
+////  missedPunchView.swift
+////  GoDairy
+////
+////  Created by San eforce on 08/09/25.
+////
 //
-//  missedPunchView.swift
-//  GoDairy
+import SwiftUI
 //
-//  Created by San eforce on 08/09/25.
+//struct missedPunchView: View {
+//    
+//    @StateObject var missedPunchDataResponse = missedPunchViewModel()
+//    
+//    var body: some View {
+//        NavigationStack {
+//            VStack {
+//                homeBar(frameSize: 40)
+//                ScrollView {
+//                    MissedPunchStatusCard(title: "MISSED PUNCH", missedModel: missedPunchDataResponse)
+//                }
+//                .padding(5)
+//            }
+//            .task {
+//                await missedPunchDataResponse.fetchMissedPunchData()
+//            }
+//        }
+//        .navigationBarBackButtonHidden(true)
+//    }
+//}
+//
+//struct MissedPunchStatusCard: View {
+//    let title: String
+//    @ObservedObject var missedModel: missedPunchViewModel
+//    
+//    var body: some View {
+//        VStack(alignment: .leading, spacing: 10) {
+//            titleCard(title: title, frameHeight: 40, fontSize: 14)
+//            
+//            MissedPunchStatusList(missedPuchStatusModel: missedModel)
+//        }
+//        .background(Color.backgroundColour)
+//        .cornerRadius(12)
+//        .padding(.horizontal, 8)
+//    }
+//}
+//
+//struct MissedPunchStatusList: View {
+//    @ObservedObject var missedPuchStatusModel: missedPunchViewModel
+//        
+//        var body: some View {
+//            VStack(alignment: .leading, spacing: 10) {
+//                LazyVStack(spacing: 20) {
+//                    ForEach(missedPuchStatusModel.missedPunchData, id: \.id) { item in
+//                        MissedPunchCardDataList(item: item)
+//                    }
+//                }
+//            }
+//            .padding(.vertical, 8)
+//        }
+//}
+//
+//struct MissedPunchCardDataList: View {
+//    let item: missedPunchModel
+//    
+//    var body: some View {
+//        VStack(alignment: .leading, spacing: 16) {
+//            topRow
+//            Divider().background(.gray)
+//            shiftAndReason
+//            appliedAndStatus
+//        }
+//        .padding(10)
+//        .cardStyle()
+//        .padding(.horizontal, 5)
+//    }
+//    
+//    private var topRow: some View {
+//        HStack {
+//            Text(item.Missed_punch_date ?? "")
+//                .regularTextStyle(size: 12, foreground: .black, fontWeight: .medium)
+//            
+//            Spacer()
+//            
+//            Text(item.MPStatus ?? "")
+//                .regularTextStyle(size: 14, foreground: .white, fontWeight: .bold)
+//                .padding(.horizontal, 10)
+//                .padding(.vertical, 5)
+//                .background(Color(cssRGB: item.StusClr ?? "") ?? .gray)
+//                .cornerRadius(12)
+//        }
+//    }
+//    
+//    private var shiftAndReason: some View {
+//        VStack(alignment: .leading, spacing: 12) {
+//            
+//            VStack(alignment: .leading, spacing: 2) {
+//                Text("SHIFT / ONDUTY")
+//                    .font(.caption)
+//                    .foregroundColor(.gray)
+//                Text(item.Shift_Name ?? "")
+//                    .regularTextStyle(size: 14, fontWeight: .semibold)
+//            }
+//            HStack {
+//                VStack(alignment: .leading, spacing: 2) {
+//                    Text("IN TIME")
+//                        .font(.caption)
+//                        .foregroundColor(.gray)
+//                    Text("\(item.Checkin_Time ?? "")")
+//                        .regularTextStyle(size: 14, fontWeight: .semibold)
+//                }
+//                Spacer()
+//                VStack(alignment: .trailing, spacing: 2) {
+//                    Text("OUT TIME")
+//                        .font(.caption)
+//                        .foregroundColor(.gray)
+//                    Text("\(item.Checkout_Tme ?? "")")
+//                        .regularTextStyle(size: 14, fontWeight: .semibold)
+//                }
+//            }
+//            VStack(alignment: .leading, spacing: 2) {
+//                Text("REASON")
+//                    .font(.caption)
+//                    .foregroundColor(.gray)
+//                Text(item.Reason ?? "")
+//                    .regularTextStyle(size: 14, fontWeight: .semibold)
+//            }
+//        }
+//    }
+//    
+//    private var appliedAndStatus: some View {
+//        HStack {
+//            Text("Applied: \(item.Submission_date ?? "N/A")")
+//            Spacer()
+//            
+//            if let rejectDate = item.Rejectdate, !rejectDate.isEmpty {
+//                switch item.MPStatus?.lowercased() {
+//                case "approved", "pending":
+//                    Text("Approved: \(rejectDate)")
+//                case "reject":
+//                    Text("Rejected: \(rejectDate)")
+//                default:
+//                    Text("Updated: \(rejectDate)")
+//                }
+//            }
+//        }
+//        .regularTextStyle(size: 14, foreground: .gray, fontWeight: .bold)
+//    }
+//}
 //
 
-import SwiftUI
 
 struct missedPunchView: View {
-    
-    @StateObject var missedPunchDataResponse = missedPunchViewModel()
+    @StateObject private var viewModel = missedPunchViewModel()
     
     var body: some View {
         NavigationStack {
             VStack {
                 homeBar(frameSize: 40)
+                
                 ScrollView {
-                    MissedPunchStatusCard(title: "MISSED PUNCH", missedModel: missedPunchDataResponse)
+                    StatusSection(title: "MISSED PUNCH") {
+                        LazyVStack(spacing: 20) {
+                            ForEach(viewModel.missedPunchData, id: \.id) { item in
+                                MissedPunchStatusCard(item: item)
+                            }
+                        }
+                    }
                 }
                 .padding(5)
             }
-            .task {
-                await missedPunchDataResponse.fetchMissedPunchData()
-            }
+            .task { await viewModel.fetchMissedPunchData() }
         }
         .navigationBarBackButtonHidden(true)
     }
 }
 
 struct MissedPunchStatusCard: View {
-    let title: String
-    @ObservedObject var missedModel: missedPunchViewModel
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            titleCard(title: title, frameHeight: 40, fontSize: 14)
-            
-            MissedPunchStatusList(missedPuchStatusModel: missedModel)
-        }
-        .background(Color.backgroundColour)
-        .cornerRadius(12)
-        .padding(.horizontal, 8)
-    }
-}
-
-struct MissedPunchStatusList: View {
-    @ObservedObject var missedPuchStatusModel: missedPunchViewModel
-        
-        var body: some View {
-            VStack(alignment: .leading, spacing: 10) {
-                LazyVStack(spacing: 20) {
-                    ForEach(missedPuchStatusModel.missedPunchData, id: \.id) { item in
-                        MissedPunchCardDataList(item: item)
-                    }
-                }
-            }
-            .padding(.vertical, 8)
-        }
-}
-
-struct MissedPunchCardDataList: View {
     let item: missedPunchModel
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            topRow
-            Divider().background(.gray)
-            shiftAndReason
-            appliedAndStatus
-        }
-        .padding(10)
-//        .background(RoundedRectangle(cornerRadius: 12).fill(Color.white))
-//        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.gray.opacity(0.5), lineWidth: 0.3))
-//        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
-        .cardStyle()
-        .padding(.horizontal, 5)
-    }
-    
-    private var topRow: some View {
-        HStack {
-            Text(item.Missed_punch_date ?? "")
-                .font(.system(size: 12, weight: .medium))
-                .foregroundColor(.black)
-            
-            Spacer()
-            
-            Text(item.MPStatus ?? "")
-                .font(.system(size: 12, weight: .bold))
-                .padding(.horizontal, 10)
-                .padding(.vertical, 5)
-                .background(Color(cssRGB: item.StusClr ?? "") ?? .gray)
-                .foregroundColor(.white)
-                .cornerRadius(12)
-        }
-    }
-    
-    private var shiftAndReason: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            
-            VStack(alignment: .leading, spacing: 2) {
-                Text("SHIFT / ONDUTY")
-                    .font(.caption)
-                    .foregroundColor(.gray)
-                Text(item.Shift_Name ?? "")
-                    .font(.system(size: 14, weight: .semibold))
-            }
+        StatusBaseCard {
             HStack {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("IN TIME")
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                    Text("\(item.Checkin_Time ?? "")")
-                        .font(.system(size: 14, weight: .semibold))
-                }
+                Text(item.Missed_punch_date ?? "")
+                    .regularTextStyle(size: 13, foreground: .black, fontWeight: .regular)
                 Spacer()
-                VStack(alignment: .trailing, spacing: 2) {
-                    Text("OUT TIME")
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                    Text("\(item.Checkout_Tme ?? "")")
-                        .font(.system(size: 14, weight: .semibold))
-                }
+                Text(item.MPStatus ?? "")
+                    .regularTextStyle(size: 14, foreground: .white, fontWeight: .bold)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 5)
+                    .background(Color(cssRGB: item.StusClr ?? "") ?? .gray)
+                    .cornerRadius(12)
             }
-            VStack(alignment: .leading, spacing: 2) {
-                Text("REASON")
-                    .font(.caption)
-                    .foregroundColor(.gray)
-                Text(item.Reason ?? "")
-                    .font(.system(size: 14, weight: .semibold))
-            }
-        }
-    }
-    
-    private var appliedAndStatus: some View {
-        HStack {
-            Text("Applied: \(item.Submission_date ?? "N/A")")
-            Spacer()
             
-            if let rejectDate = item.Rejectdate, !rejectDate.isEmpty {
-                switch item.MPStatus?.lowercased() {
-                case "approved", "pending":
-                    Text("Approved: \(rejectDate)")
-                case "reject":
-                    Text("Rejected: \(rejectDate)")
-                default:
-                    Text("Updated: \(rejectDate)")
+            Divider().background(.gray)
+            
+            VStack(alignment: .leading, spacing: 12) {
+                VStack(alignment: .leading) {
+                    Text("SHIFT / ONDUTY")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        //.fontWeight(.medium)
+                    Text(item.Shift_Name ?? "")
+                        .regularTextStyle(size: 14, fontWeight: .semibold)
+                }
+                
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("IN TIME").font(.caption).foregroundColor(.gray)
+                        Text(item.Checkin_Time ?? "")
+                            .regularTextStyle(size: 14, fontWeight: .semibold)
+                    }
+                    Spacer()
+                    VStack(alignment: .trailing) {
+                        Text("OUT TIME").font(.caption).foregroundColor(.gray)
+                        Text(item.Checkout_Tme ?? "")
+                            .regularTextStyle(size: 14, fontWeight: .semibold)
+                    }
+                }
+                
+                VStack(alignment: .leading) {
+                    Text("REASON").font(.caption).foregroundColor(.gray)
+                    Text(item.Reason ?? "")
+                        .regularTextStyle(size: 14, fontWeight: .semibold)
                 }
             }
+            
+            HStack {
+                Text("Applied: \(item.Submission_date ?? "N/A")")
+                Spacer()
+                if let rejectDate = item.Rejectdate, !rejectDate.isEmpty {
+                    switch item.MPStatus?.lowercased() {
+                    case "approved", "pending":
+                        Text("Approved: \(rejectDate)")
+                    case "reject":
+                        Text("Rejected: \(rejectDate)")
+                    default:
+                        Text("Updated: \(rejectDate)")
+                    }
+                }
+            }
+            .regularTextStyle(size: 14, foreground: .gray, fontWeight: .bold)
         }
-        .font(.system(size: 14, weight: .bold))
-        .foregroundColor(.gray)
     }
 }
+
 
 #Preview {
     missedPunchView()
 }
+

@@ -122,7 +122,8 @@ struct DashboardHeader: View {
                 Text("Hi! \(sf_name.isEmpty ? "Guest User" : sf_name)") .font(.headline)
                     .bold()
                 Text(sf_Designation.isEmpty ? "---" : sf_Designation)
-                    .font(.system(size: 13))
+                    //.font(.system(size: 13))
+                    .regularTextStyle(size: 13)
             }
             Spacer()
             Button(action: {
@@ -167,7 +168,8 @@ struct CheckInSection: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Text("Let’s get to work")
-                    .font(.system(size: 12, weight: .semibold))
+                    //.font(.system(size: 12, weight: .semibold))
+                    .regularTextStyle(size: 12, fontWeight: .semibold)
                 Image("write")
                 Spacer()
             }
@@ -233,8 +235,9 @@ struct CheckInButton: View {
         VStack {
             HStack {
                 Text("Let's get to work")
-                    .font(.system(size: 12))
-                    .fontWeight(.semibold)
+//                    .font(.system(size: 12))
+//                    .fontWeight(.semibold)
+                    .regularTextStyle(size: 12, fontWeight: .semibold)
                 Image("write")
                 Spacer()
             }
@@ -271,8 +274,9 @@ struct TabbarView: View {
                     }) {
                         VStack(spacing: 8) {
                             Text(name)
-                                .font(.system(size: 15, weight: currentTab == index ? .semibold : .regular))
-                                .foregroundColor(currentTab == index ? .black : .gray)
+//                                .font(.system(size: 15, weight: currentTab == index ? .semibold : .regular))
+//                                .foregroundColor(currentTab == index ? .black : .gray)
+                                .regularTextStyle(size: 15, foreground: currentTab == index ? .black : .gray, fontWeight: currentTab == index ? .semibold : .regular)
                         }
                         .frame(maxWidth: .infinity)
                     }
@@ -312,7 +316,7 @@ struct TabBar: View {
             TabView(selection: $currentTab) {
                 Todayview(myDayPlanCount: myDayPlanCount).tag(0)
                 Monthlyview().tag(1)
-                Gate_in_out().tag(2)
+                dummyView().tag(2)
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
             .ignoresSafeArea()
@@ -378,7 +382,8 @@ struct GridItemView: View {
                 .padding(.bottom, 5)
             
             Text(name)
-                .font(.system(size: 12))
+                //.font(.system(size: 12))
+                .regularTextStyle(size: 12)
         }
         .frame(maxWidth: .infinity)
         .padding()

@@ -75,8 +75,8 @@ struct LeaveApprovalRow: View {
             NavigationLink(destination: LeaveApprovalDetailsView(item: item)) {
                 Text("View")
                     //.font(.system(size: 13, weight: .bold))
-                    .regularTextStyle(size: 13, fontWeight: .bold)
-                    .foregroundColor(.white)
+                    .regularTextStyle(size: 13, foreground: .white, fontWeight: .bold)
+                    //.foregroundColor(.white)
                     .frame(height: 30)
                     .frame(maxWidth: .infinity)
                     .background(colorData.shared.appPrimary_Button)

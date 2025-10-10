@@ -56,12 +56,13 @@ struct DaysSelectionView: View {
                 // Close button
                 Button(action: { isPresented = false }) {
                     Text("Close")
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundColor(.white)
+//                        .font(.system(size: 16, weight: .bold))
+//                        .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 10)   // ⬅️ smaller height
                         .background(Color.appPrimary)
                         .cornerRadius(8)
+                        .regularTextStyle(size: 16, foreground: .white, fontWeight: .bold)
                 }
                 .padding(.horizontal, 16)
                 .padding(.bottom, 12)
@@ -78,11 +79,12 @@ struct HeaderView: View {
     var title: String
     var body: some View {
         Text(title)
-            .font(.system(size: 17, weight: .bold))
+            //.font(.system(size: 17, weight: .bold))
             .frame(maxWidth: .infinity, alignment: .center)
             .padding()
             .background(Color.appPrimary)
-            .foregroundColor(.white)
+            //.foregroundColor(.white)
+            .regularTextStyle(size: 17, foreground: .white, fontWeight: .bold)
     }
 }
 

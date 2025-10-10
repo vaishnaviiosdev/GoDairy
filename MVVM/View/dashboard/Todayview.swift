@@ -51,14 +51,16 @@ struct Todayview: View {
                     HStack {
                         Text("(\(dashboardModel.shiftTimeRange))")
                             .font(.subheadline)
-                            .foregroundColor(.gray)
-                            .fontWeight(.bold)
+//                            .foregroundColor(.gray)
+//                            .fontWeight(.bold)
+                            .regularTextStyle(foreground: .gray, fontWeight: .bold)
                         Spacer()
                         Image("Late")
                         Text("Late")
-                            .font(.system(size: 17))
-                            .fontWeight(.bold)
-                            .foregroundColor(colorData.shared.app_primary2)
+//                            .font(.system(size: 17))
+//                            .fontWeight(.bold)
+//                            .foregroundColor(colorData.shared.app_primary2)
+                            .regularTextStyle(size: 17, foreground: colorData.shared.app_primary2, fontWeight: .bold)
                     }
                     .padding(.horizontal, 20)
                     
@@ -67,9 +69,10 @@ struct Todayview: View {
                         // IN Time
                         VStack(alignment: .leading) {
                             Text("IN time")
-                                .font(.system(size: 15))
-                                .fontWeight(.heavy)
-                                .foregroundColor(.gray)
+//                                .font(.system(size: 15))
+//                                .fontWeight(.heavy)
+//                                .foregroundColor(.gray)
+                                .regularTextStyle(size: 15, foreground: .gray, fontWeight: .heavy)
                             
                             HStack {
         //                        let inFullPath = getFullPath(for: dashboardModel.InTimeImageStr)
@@ -89,7 +92,8 @@ struct Todayview: View {
                                 Image("p1")
                                 
                                 Text(dashboardModel.AttTm)
-                                    .font(.system(size: 15))
+                                    //.font(.system(size: 15))
+                                    .regularTextStyle(size: 15)
                                 Image("marker")
                                     .frame(width: 10, height: 10)
                                     .padding(.top, 3)
@@ -106,9 +110,10 @@ struct Todayview: View {
                                     }
                                 }) {
                                     Text("View")
-                                        .foregroundColor(Color.appPrimary3)
-                                        .font(.system(size: 15))
-                                        .fontWeight(.bold)
+//                                        .foregroundColor(Color.appPrimary3)
+//                                        .font(.system(size: 15))
+//                                        .fontWeight(.bold)
+                                        .regularTextStyle(size: 15, foreground: Color.appPrimary3, fontWeight: .bold)
                                         .padding(.top, -5)
                                 }
                             }
@@ -121,9 +126,10 @@ struct Todayview: View {
                         if dashboardModel.ET != "00:00:00" {
                             VStack(alignment: .leading) {
                                 Text("OUT time")
-                                    .font(.system(size: 15))
-                                    .fontWeight(.heavy)
-                                    .foregroundColor(.gray)
+//                                    .font(.system(size: 15))
+//                                    .fontWeight(.heavy)
+//                                    .foregroundColor(.gray)
+                                    .regularTextStyle(size: 15, foreground: .gray, fontWeight: .heavy)
                                 
                                 HStack {
         //                            let outFullPath = getFullPath(for: dashboardModel.OutTimeImageStr)
@@ -142,7 +148,8 @@ struct Todayview: View {
         //                            }
                                     Image("p1")
                                     Text(dashboardModel.ET)
-                                        .font(.system(size: 15))
+                                        //.font(.system(size: 15))
+                                        .regularTextStyle(size: 15)
                                     Image("marker")
                                         .frame(width: 10, height: 10)
                                         .padding(.top, 3)
@@ -159,9 +166,10 @@ struct Todayview: View {
                                         }
                                     }) {
                                         Text("View")
-                                            .foregroundColor(Color.appPrimary3)
-                                            .font(.system(size: 15))
-                                            .fontWeight(.bold)
+//                                            .foregroundColor(Color.appPrimary3)
+//                                            .font(.system(size: 15))
+//                                            .fontWeight(.bold)
+                                            .regularTextStyle(size: 15, foreground: Color.appPrimary3, fontWeight: .bold)
                                             .padding(.top, -5)
                                     }
                                 }

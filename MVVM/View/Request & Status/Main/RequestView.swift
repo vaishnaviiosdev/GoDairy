@@ -80,8 +80,9 @@ struct titleCard: View {
     let fontSize: CGFloat
     var body: some View {
         Text(title)
-            .font(.system(size: fontSize, weight: .heavy))
-            .foregroundColor(.white)
+//            .font(.system(size: fontSize, weight: .heavy))
+//            .foregroundColor(.white)
+            .regularTextStyle(size: fontSize, foreground: .white, fontWeight: .heavy)
             .frame(maxWidth: .infinity, alignment: .center)
             .padding()
             .frame(height: frameHeight)

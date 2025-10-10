@@ -9,29 +9,30 @@ import SwiftUI
 
 struct ActivityDashboardView: View {
     var body: some View {
-        ZStack {
-            Color.backgroundColour
-                .ignoresSafeArea()
-            ScrollView {
-                VStack {
-                    ActivityDashboardHeader(sfName: sf_name)
-                    
-                    OutletSummaryView()
-                    
-                    Spacer(minLength: 30)
-                    
-                    ActivityGridItemView()
-                    Spacer(minLength: 20)
-                    Divider()
-                    Spacer(minLength: 10)
-                    
-                    todayOrdersView()
+        NavigationStack {
+            ZStack {
+                Color.backgroundColour
+                    .ignoresSafeArea()
+                ScrollView {
+                    VStack {
+                        ActivityDashboardHeader(sfName: sf_name)
+                        
+                        OutletSummaryView()
+                        
+                        Spacer(minLength: 30)
+                        
+                        ActivityGridItemView()
+                        Spacer(minLength: 20)
+                        Divider()
+                        Spacer(minLength: 10)
+                        
+                        todayOrdersView()
+                    }
                 }
             }
+            .padding(.bottom, 20.0)
+            .navigationBarBackButtonHidden(true)
         }
-        .padding(.bottom, 20.0)
-        
-        .navigationBarBackButtonHidden(true)
     }
 }
 
@@ -87,17 +88,18 @@ struct OutletSummaryView: View {
                 
                 HStack(spacing: 8) {
                     Text("2025-09-11")
-                        .foregroundColor(.white)
-                        .fontWeight(.bold)
+//                        .foregroundColor(.white)
+//                        .fontWeight(.bold)
                     
                     Image(systemName: "calendar")
-                        .foregroundColor(.white)
-                        .fontWeight(.bold)
+//                        .foregroundColor(.white)
+//                        .fontWeight(.bold)
                 }
                 .padding(.horizontal, 12)
                 .frame(height: 50)
                 .background(.appPrimary3)
                 .cornerRadius(10)
+                .regularTextStyle(foreground: .white, fontWeight: .bold)
             }
             
             Spacer(minLength: 30)
@@ -146,16 +148,13 @@ struct ActivityGridItemView: View {
                                 .regularTextStyle(size: 28, foreground: .blue)
                         }
                         else {
-                            Image(item.icon) // asset
+                            Image(item.icon)
                                 .resizable()
-                                .renderingMode(.original) // keeps original colors
+                                .renderingMode(.original)
                                 .frame(width: 28, height: 28)
                         }
                         
                         Text(item.title)
-//                            .font(.system(size: 14))
-//                            .foregroundColor(.black)
-//                            .fontWeight(.medium)
                             .regularTextStyle(size: 14, fontWeight: .medium)
                             .multilineTextAlignment(.center)
                     }
@@ -173,8 +172,9 @@ struct todayOrdersView: View {
             HStack {
                 Text("Today Orders")
                     .font(.headline)
-                    .foregroundColor(.black)
-                    .fontWeight(.semibold)
+//                    .foregroundColor(.black)
+//                    .fontWeight(.semibold)
+                    .regularTextStyle(foreground: .black, fontWeight: .semibold)
                 
                 Spacer()
                 
@@ -183,8 +183,9 @@ struct todayOrdersView: View {
                 }) {
                     Text("View All")
                         .font(.headline)
-                        .foregroundColor(.appPrimary3)
-                        .fontWeight(.semibold)
+//                        .foregroundColor(.appPrimary3)
+//                        .fontWeight(.semibold)
+                        .regularTextStyle(foreground: .appPrimary3, fontWeight: .semibold)
                 }
             }
             .padding(.horizontal, 10)
@@ -213,8 +214,8 @@ struct todayOrdersView: View {
                 Spacer()
                 VStack(alignment: .center, spacing: 10) {
                     Text("No Order")
-                        .font(.system(size: 14))
-                        .fontWeight(.medium)
+//                        .font(.system(size: 14))
+//                        .fontWeight(.medium)
                         .regularTextStyle(size: 14, fontWeight: .medium)
                     Text("216")
                         .regularTextStyle(size: 14, foreground: .appPrimary3, fontWeight: .medium)
@@ -245,7 +246,7 @@ struct MenuItem {
 }
 
 let menuItems: [MenuItem] = [
-    MenuItem(title: "Primary Order", icon: "PrimaryOrder", isSystemIcon: false, destination: AnyView(LeaveRequestView())), 
+    MenuItem(title: "Primary Order", icon: "PrimaryOrder", isSystemIcon: false, destination: AnyView(PrimaryOrderListView())),
     MenuItem(title: "Secondary Order", icon: "SecondaryOrder", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
     MenuItem(title: "Distributor", icon: "chart", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
     MenuItem(title: "Outlets", icon: "shop", isSystemIcon: false, destination: AnyView(LeaveRequestView())),

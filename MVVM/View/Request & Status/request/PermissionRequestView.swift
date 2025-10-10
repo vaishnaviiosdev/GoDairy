@@ -314,8 +314,9 @@ struct PermissionRequestCard: View {
                 VStack(alignment: .leading, spacing: 0) {
                     titleView(title: "To Time")
                     Text(selectedToTime ?? "To Time")
-                        .foregroundColor(.gray)
-                        .font(.system(size: 14))
+//                        .foregroundColor(.gray)
+//                        .font(.system(size: 14))
+                        .regularTextStyle(size: 14, foreground: .gray)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.vertical, 8)
                         .padding(.horizontal, 10)

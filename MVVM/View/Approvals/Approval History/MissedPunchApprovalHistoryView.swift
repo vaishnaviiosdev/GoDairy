@@ -112,7 +112,7 @@ struct missedPunchApprovalCardDataList: View {
                     .foregroundColor(.gray)
                 Text(item.Shift_Name)
                     //.font(.system(size: 14, weight: .semibold))
-                    .regularTextStyle(size: 14, fontWeight: .semibold)
+                    .regularTextStyle(size: 14, foreground: .gray, fontWeight: .semibold)
             }
             
             HStack {
@@ -161,8 +161,8 @@ struct missedPunchApprovalCardDataList: View {
             }
         }
         //.font(.system(size: 14, weight: .bold))
-        .regularTextStyle(size: 14, fontWeight: .bold)
-        .foregroundColor(.gray)
+        .regularTextStyle(size: 14, foreground: .gray, fontWeight: .bold)
+        //.foregroundColor(.gray)
     }
 }
 

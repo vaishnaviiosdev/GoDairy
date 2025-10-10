@@ -46,7 +46,8 @@ struct selectedItem: View {
     var title: String
     var body: some View {
         Text(title)
-            .font(.system(size: 14)).fontWeight(.semibold)
+            //.font(.system(size: 14)).fontWeight(.semibold)
+            .regularTextStyle(size: 14, fontWeight: .semibold)
             .frame(maxWidth: .infinity, alignment: .leading)
             .frame(height: 30)
             .padding(.leading, 8)
@@ -132,9 +133,10 @@ struct closeBtnView: View {
                     .frame(width: 100)
                     .padding()
                     .background(Color.appPrimary)
-                    .foregroundColor(.white)
-                    .font(.system(size: 15))
-                    .fontWeight(.bold)
+//                    .foregroundColor(.white)
+//                    .font(.system(size: 15))
+//                    .fontWeight(.bold)
+                    .regularTextStyle(size: 15, foreground: .white, fontWeight: .bold)
                     .cornerRadius(12)
             }
         }

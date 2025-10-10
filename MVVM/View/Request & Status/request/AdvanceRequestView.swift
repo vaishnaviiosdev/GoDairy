@@ -173,13 +173,15 @@ struct CustommDatePicker: View {
             HStack {
                 if let date = selectedDate {
                     Text(date.formattedAsYYYYMMDD())
-                        .foregroundColor(.gray)
-                        .fontWeight(.regular)
-                        .font(.system(size: 14))
+//                        .foregroundColor(.gray)
+//                        .fontWeight(.regular)
+//                        .font(.system(size: 14))
+                        .regularTextStyle(size: 14, foreground: .gray, fontWeight: .regular)
                 } else {
                     Text(placeholder)
-                        .foregroundColor(.gray)
-                        .font(.system(size: 14))
+//                        .foregroundColor(.gray)
+//                        .font(.system(size: 14))
+                        .regularTextStyle(size: 14, foreground: .gray)
                 }
                 
                 Spacer(minLength: 8)
@@ -208,8 +210,9 @@ struct CustommDatePicker: View {
                     Button("Done") {
                         showPicker = false
                     }
-                    .font(.system(size: 16, weight: .bold))
-                    .foregroundColor(.white)
+//                    .font(.system(size: 16, weight: .bold))
+//                    .foregroundColor(.white)
+                    .regularTextStyle(size: 16, foreground: .white, fontWeight: .bold)
                     .frame(maxWidth: .infinity)
                     .padding()
                     .background(Color.appPrimary)
@@ -236,18 +239,20 @@ struct CustomTxtfield: View {
                 
                 if textValue.isEmpty {
                     Text(placeholderString)
-                        .font(.system(size: 14, weight: .regular))
-                        .foregroundColor(.gray)
+//                        .font(.system(size: 14, weight: .regular))
+//                        .foregroundColor(.gray)
+                        .regularTextStyle(size: 14, foreground: .gray, fontWeight: .regular)
                         .padding(.horizontal, 10)
                 }
                 
                 TextField("", text: $textValue)
-                    .foregroundColor(.black)
+                    //.foregroundColor(.black)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.vertical, 8)
                     .padding(.horizontal, 10)
-                    .font(.system(size: 14))
-                    .fontWeight(fontWeight)
+                    //.font(.system(size: 14))
+                    //.fontWeight(fontWeight)
+                    .regularTextStyle(size: 14, foreground: .black, fontWeight: fontWeight)
             }
             .background(
                 RoundedRectangle(cornerRadius: 8).fill(Color.white)
