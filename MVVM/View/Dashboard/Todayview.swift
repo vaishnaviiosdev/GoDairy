@@ -51,16 +51,11 @@ struct Todayview: View {
                     HStack {
                         Text("(\(dashboardModel.shiftTimeRange))")
                             .font(.subheadline)
-//                            .foregroundColor(.gray)
-//                            .fontWeight(.bold)
                             .regularTextStyle(foreground: .gray, fontWeight: .bold)
                         Spacer()
                         Image("Late")
-                        Text("Late")
-//                            .font(.system(size: 17))
-//                            .fontWeight(.bold)
-//                            .foregroundColor(colorData.shared.app_primary2)
-                            .regularTextStyle(size: 17, foreground: colorData.shared.app_primary2, fontWeight: .bold)
+                        Text(dashboardModel.todayStatus)
+                            .regularTextStyle(size: 17, foreground: dashboardModel.statusColor, fontWeight: .bold)
                     }
                     .padding(.horizontal, 20)
                     
@@ -69,9 +64,6 @@ struct Todayview: View {
                         // IN Time
                         VStack(alignment: .leading) {
                             Text("IN time")
-//                                .font(.system(size: 15))
-//                                .fontWeight(.heavy)
-//                                .foregroundColor(.gray)
                                 .regularTextStyle(size: 15, foreground: .gray, fontWeight: .heavy)
                             
                             HStack {

@@ -36,7 +36,6 @@ struct GeoTaggingView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
-        
     }
 }
 

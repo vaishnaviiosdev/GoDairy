@@ -17,9 +17,9 @@ struct RequestView: View {
     ]
     
     private let StatusItems: [(title: String, destination: AnyView)] = [
-        ("Advance Status",AnyView(LeaveStatusView())),
+        ("Advance Status",AnyView(AdvanceStatusView())),
         ("Leave Status",AnyView(LeaveStatusView())),
-        ("Permission Status",AnyView(LeaveStatusView())),
+        ("Permission Status",AnyView(PermissionStatusView())),
         ("Missed Punch Status",AnyView(missedPunchView())),
         ("Weekly-Off Status",AnyView(weeklyOffView())),
         ("Deviation Entry Status",AnyView(DeviationStatusView())),

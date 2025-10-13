@@ -22,6 +22,8 @@ class dashboardViewModel: ObservableObject {
     @Published var checkInDate: String = ""
     @Published var AttTm: String = ""
     @Published var ET: String = ""
+    @Published var todayStatus: String = ""
+    @Published var statusColor: Color = .gray
     @Published var InTimeImageStr: String = ""
     @Published var OutTimeImageStr: String = ""
     @Published var GeoIn: String = ""
@@ -251,6 +253,8 @@ class dashboardViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.todayPlanData = response
                 
+                print("The TodayPlanData is \(response)")
+                
                 if let first = self.todayPlanData.first,
                    let start = first.Shft?.date,
                    let end = first.ShftE?.date {
@@ -259,6 +263,8 @@ class dashboardViewModel: ObservableObject {
                     self.checkInDate = first.AttDate
                     self.AttTm = first.AttTm
                     self.ET = first.ET
+                    self.todayStatus = first.Status
+                    self.statusColor = Color(hex: first.StaColor)
                     self.InTimeImageStr = first.EImgName
                     self.OutTimeImageStr = first.SImgName
                     self.GeoIn = first.GeoIn ?? ""

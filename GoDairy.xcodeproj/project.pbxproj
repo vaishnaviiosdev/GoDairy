@@ -82,6 +82,9 @@
 		38C4FB9E2E9CDBDF001934AD /* weekOffStatusViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C4FB9D2E9CDBD6001934AD /* weekOffStatusViewmodel.swift */; };
 		38C4FBA02E9CDBFE001934AD /* permissionStatusViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C4FB9F2E9CDBF7001934AD /* permissionStatusViewmodel.swift */; };
 		38C4FBA42E9CDC6F001934AD /* demoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C4FBA32E9CDC6F001934AD /* demoView.swift */; };
+		38C4FBA82E9D03AE001934AD /* advanceStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C4FBA72E9D03A5001934AD /* advanceStatusModel.swift */; };
+		38C4FBAA2E9D0BB9001934AD /* AdvanceStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C4FBA92E9D0BB9001934AD /* AdvanceStatusView.swift */; };
+		38C4FBAC2E9D0C40001934AD /* advanceStatusViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C4FBAB2E9D0C36001934AD /* advanceStatusViewmodel.swift */; };
 		38C563FE2C637D5200153761 /* GoDairyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C563FD2C637D5200153761 /* GoDairyApp.swift */; };
 		38C564002C637D5200153761 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C563FF2C637D5200153761 /* ContentView.swift */; };
 		38C564022C637D5300153761 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38C564012C637D5300153761 /* Assets.xcassets */; };
@@ -204,6 +207,9 @@
 		38C4FB9D2E9CDBD6001934AD /* weekOffStatusViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weekOffStatusViewmodel.swift; sourceTree = "<group>"; };
 		38C4FB9F2E9CDBF7001934AD /* permissionStatusViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = permissionStatusViewmodel.swift; sourceTree = "<group>"; };
 		38C4FBA32E9CDC6F001934AD /* demoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = demoView.swift; sourceTree = "<group>"; };
+		38C4FBA72E9D03A5001934AD /* advanceStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = advanceStatusModel.swift; sourceTree = "<group>"; };
+		38C4FBA92E9D0BB9001934AD /* AdvanceStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvanceStatusView.swift; sourceTree = "<group>"; };
+		38C4FBAB2E9D0C36001934AD /* advanceStatusViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = advanceStatusViewmodel.swift; sourceTree = "<group>"; };
 		38C563FA2C637D5200153761 /* GoDairy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoDairy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38C563FD2C637D5200153761 /* GoDairyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoDairyApp.swift; sourceTree = "<group>"; };
 		38C563FF2C637D5200153761 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -413,7 +419,7 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
-		385ACE1A2E6AC7AB0046FE7D /* Request */ = {
+		385ACE1A2E6AC7AB0046FE7D /* Request 2 */ = {
 			isa = PBXGroup;
 			children = (
 				385ACE242E6B02860046FE7D /* DeviationEntryViewModel.swift */,
@@ -423,7 +429,7 @@
 				38D19F0A2E66E84700399314 /* PermissionRequestViewModel.swift */,
 				38D997062E69776E005DD972 /* MissedPunchViewModel.swift */,
 			);
-			path = Request;
+			path = "Request 2";
 			sourceTree = "<group>";
 		};
 		385ACE1B2E6AC7ED0046FE7D /* Main */ = {
@@ -444,9 +450,10 @@
 			path = MVVM;
 			sourceTree = "<group>";
 		};
-		38A9D4C72E6E9B6A009C70D2 /* Status */ = {
+		38A9D4C72E6E9B6A009C70D2 /* Status 2 */ = {
 			isa = PBXGroup;
 			children = (
+				38C4FBAB2E9D0C36001934AD /* advanceStatusViewmodel.swift */,
 				38C4FB9F2E9CDBF7001934AD /* permissionStatusViewmodel.swift */,
 				38C4FB9D2E9CDBD6001934AD /* weekOffStatusViewmodel.swift */,
 				38C4FB9B2E9CDBBA001934AD /* missedPunchStatusViewmodel.swift */,
@@ -454,12 +461,13 @@
 				38A9D4C82E6E9C7F009C70D2 /* leaveStatusViewmodel.swift */,
 				1505FF242E83CECF00A4E033 /* DeviationStatusViewModel.swift */,
 			);
-			path = Status;
+			path = "Status 2";
 			sourceTree = "<group>";
 		};
 		38AB2EFE2E6C513B007F3501 /* Status */ = {
 			isa = PBXGroup;
 			children = (
+				38C4FBA92E9D0BB9001934AD /* AdvanceStatusView.swift */,
 				38AB2EFF2E6C515A007F3501 /* LeaveStatusView.swift */,
 				38A9D4D22E6EE830009C70D2 /* missedPunchView.swift */,
 				38A9D4D42E6EE84B009C70D2 /* LeaveCancelView.swift */,
@@ -474,6 +482,7 @@
 		38AB2F012E6C52A9007F3501 /* Status */ = {
 			isa = PBXGroup;
 			children = (
+				38C4FBA72E9D03A5001934AD /* advanceStatusModel.swift */,
 				38C4FB942E9CC503001934AD /* permissionStatusModel.swift */,
 				38BC790A2E702F63000A784A /* weekOffStatusModel.swift */,
 				38A9D4CE2E6EE206009C70D2 /* leaveCancelStatusModel.swift */,
@@ -668,6 +677,8 @@
 		38C4FB962E9CC708001934AD /* Request&Status */ = {
 			isa = PBXGroup;
 			children = (
+				38A9D4C72E6E9B6A009C70D2 /* Status 2 */,
+				385ACE1A2E6AC7AB0046FE7D /* Request 2 */,
 			);
 			path = "Request&Status";
 			sourceTree = "<group>";
@@ -757,9 +768,7 @@
 				382455162E8BDCFE00561BB0 /* Check-In */,
 				38D365462E7D70EE0068CA01 /* Dashboard */,
 				38AF3ED02E73EF7200F76C5D /* Approval */,
-				38A9D4C72E6E9B6A009C70D2 /* Status */,
 				15289D352E8BFF2C00251FDE /* GeoTagging */,
-				385ACE1A2E6AC7AB0046FE7D /* Request */,
 				385ACE1B2E6AC7ED0046FE7D /* Main */,
 			);
 			path = ViewModel;
@@ -924,6 +933,7 @@
 				38EA2C012E5C686000428C3C /* AdvanceRequestView.swift in Sources */,
 				38BC79092E701F2C000A784A /* DaysSelectionView.swift in Sources */,
 				38D365482E7D71040068CA01 /* dashboardViewmodel.swift in Sources */,
+				38C4FBAC2E9D0C40001934AD /* advanceStatusViewmodel.swift in Sources */,
 				38D19F072E66AD7C00399314 /* PermissionRequestView.swift in Sources */,
 				38CDF9DB2E79711E00085DF6 /* MissedPunchApprovalHistoryView.swift in Sources */,
 				38BD70922E72DFAB00AFDA7C /* ApprovalMainView.swift in Sources */,
@@ -948,6 +958,7 @@
 				1505FF212E82B0FC00A4E033 /* DeviationEntryApprovalModel.swift in Sources */,
 				1505FEED2E7A8CAF00A4E033 /* LeaveApprovalHistoryViewModel.swift in Sources */,
 				1505FF0D2E82723A00A4E033 /* AdvanceApprovalView.swift in Sources */,
+				38C4FBA82E9D03AE001934AD /* advanceStatusModel.swift in Sources */,
 				38AB43232E598CE700D33B3A /* MyDayPlanModel.swift in Sources */,
 				38BC790B2E702F6B000A784A /* weekOffStatusModel.swift in Sources */,
 				385ACE1D2E6AC86C0046FE7D /* WeekOffModel.swift in Sources */,
@@ -963,6 +974,7 @@
 				38AF3ED72E742DDA00F76C5D /* PermissionApprovalHistoryView.swift in Sources */,
 				385ACE1F2E6AC98A0046FE7D /* WeeklyOffViewModel.swift in Sources */,
 				38C7FB0A2E7AE3CC001CA81D /* LeaveApprovalDetailsView.swift in Sources */,
+				38C4FBAA2E9D0BB9001934AD /* AdvanceStatusView.swift in Sources */,
 				38A7A1382E56E56D006240D1 /* SplashScreenView.swift in Sources */,
 				38D19F092E66E5A500399314 /* PermissionRequestModel.swift in Sources */,
 				38D2FA632E8AA7F700D2CEC8 /* MonthlyViewAllView.swift in Sources */,

@@ -10,7 +10,7 @@ import Foundation
 class APIClient {
     static let shared = APIClient()
     var BaseURL: String = "https://godairy.in"
-    var DBURL="/server/Db_v300.php?axn="
+    var DBURL = "/server/Db_v300.php?axn="
     
     var DBURL2 = "/server/Db_v310.php?axn="
     var DBURL3 = "/server/Db_v310.php?&axn="
