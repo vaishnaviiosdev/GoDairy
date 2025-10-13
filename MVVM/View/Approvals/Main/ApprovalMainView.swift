@@ -61,7 +61,7 @@ struct ApprovalMainView: View {
         ("Leave Cancel", AnyView(dummyView())),
         ("Permission", AnyView(PermissionApprovalView())),
         ("Missed Punch", AnyView(MissedPunchApprovalView())),
-        ("Travel Allowance", AnyView(forgetpass())),
+        ("Travel Allowance", AnyView(demoView())),
         ("Work Plan-PJP", AnyView(GeoTaggingView())),
         ("Deviation Entry", AnyView(DeviationApprovalView()))
     ]
@@ -73,7 +73,7 @@ struct ApprovalMainView: View {
 
         ("Permission",AnyView(PermissionApprovalHistoryView())),
         ("Missed Punch",AnyView(MissedPunchApprovalHistoryView())),
-        ("Travel Allowance",AnyView(forgetpass())),
+        ("Travel Allowance",AnyView(demoView())),
         ("Leave Cancel",AnyView(LeaveCancelApprovalHistoryView()))
     ]
     
