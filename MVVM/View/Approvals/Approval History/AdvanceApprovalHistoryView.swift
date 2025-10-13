@@ -19,7 +19,7 @@ struct AdvanceApprovalHistoryView: View {
                 homeBar(frameSize: 40)
                 
                 ScrollView {
-                    advanceApprovalStatusCard(title: "", Model: advanceApprovalHistoryVM)
+                    advanceApprovalStatusCard(title: "ADVANCE STATUS", Model: advanceApprovalHistoryVM)
                     
                 }
                 .padding(5)

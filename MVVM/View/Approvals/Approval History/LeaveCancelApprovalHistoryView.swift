@@ -1,15 +1,15 @@
 //
-//  LeaveApprovalHistoryView.swift
+//  LeaveCancelApprovalHistoryView.swift
 //  GoDairy
 //
-//  Created by Naga Prasath on 17/09/25.
+//  Created by Naga Prasath on 23/09/25.
 //
 
 import SwiftUI
 
-struct LeaveApprovalHistoryView: View {
+struct LeaveCancelApprovalHistoryView: View {
     
-    @StateObject var leaveApprovalHistoryVM = LeaveApprovalHistoryViewModel()
+    @StateObject var leaveCancelHistoryVM = LeaveCancelApprovalHistoryViewModel()
     
     var body: some View {
         NavigationStack {
@@ -17,14 +17,13 @@ struct LeaveApprovalHistoryView: View {
                 homeBar(frameSize: 40)
                 
                 ScrollView {
-                    leaveApprovalStatusCard(title: "LEAVE STATUS", Model: leaveApprovalHistoryVM)
+                    leaveCancelApprovalStatusCard(title: "LEAVE CANCEL STATUS", Model: leaveCancelHistoryVM)
                     
-                    //missedPunchApprovalStatusCard(title: "MISSED PUNCH", Model: leaveApprovalHistoryVM)
                 }
                 .padding(5)
             }
             .task {
-                await leaveApprovalHistoryVM.fetchLeaveHistoryData()
+                await leaveCancelHistoryVM.fetchLeaveCancelHistoryData()
             }
         }
         .navigationBarBackButtonHidden()
@@ -32,15 +31,15 @@ struct LeaveApprovalHistoryView: View {
 }
 
 
-struct leaveApprovalStatusCard: View {
+struct leaveCancelApprovalStatusCard: View {
     let title: String
-    @ObservedObject var Model: LeaveApprovalHistoryViewModel
+    @ObservedObject var Model: LeaveCancelApprovalHistoryViewModel
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             titleCard(title: title, frameHeight: 40, fontSize: 14)
             
-            leaveApprovalStatusList(Model: Model)
+            leaveCancelApprovalStatusList(Model: Model)
             
         }
         .background(Color.backgroundColour)
@@ -49,16 +48,16 @@ struct leaveApprovalStatusCard: View {
     }
 }
 
-struct leaveApprovalStatusList: View {
-    @ObservedObject var Model: LeaveApprovalHistoryViewModel
+struct leaveCancelApprovalStatusList: View {
+    @ObservedObject var Model: LeaveCancelApprovalHistoryViewModel
         
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             LazyVStack(spacing: 20) {
                 
-                ForEach(Model.leaveApprovalHistoryList) { item in
+                ForEach(Model.leaveCancelApprovalHistoryList) { item in
                     
-                    LeaveApprovalCardDataList(item: item)
+                    leaveCancelApprovalCardDataList(item: item)
                 }
             }
         }
@@ -66,8 +65,8 @@ struct leaveApprovalStatusList: View {
     }
 }
 
-struct LeaveApprovalCardDataList: View {
-    let item: LeaveApprovalHistoryModel
+struct leaveCancelApprovalCardDataList: View {
+    let item: LeaveCancelApprovalHistoryModel
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -77,31 +76,27 @@ struct LeaveApprovalCardDataList: View {
             appliedAndStatus
         }
         .padding(10)
-//        .background(RoundedRectangle(cornerRadius: 12).fill(Color.white))
-//        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.gray.opacity(0.5), lineWidth: 0.3))
-//        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
-        .cardStyle()
+        .background(RoundedRectangle(cornerRadius: 12).fill(Color.white))
+        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.gray.opacity(0.5), lineWidth: 0.3))
+        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
         .padding(.horizontal, 5)
     }
     
     private var topRow: some View {
         VStack(alignment: .leading) {
             Text(item.SFNm)
-                //.font(.system(size: 11, weight: .semibold))
-                .regularTextStyle(size: 11, fontWeight: .semibold)
+                .font(.system(size: 11, weight: .semibold))
                 .foregroundColor(Color(cssRGB: item.StusClr) ?? .gray)
             
             HStack {
-                Text(item.From_Date + " TO " + item.To_Date)
-                    //.font(.system(size: 12, weight: .medium))
-                    .regularTextStyle(size: 12, fontWeight: .medium)
+                Text(item.Created_Date)
+                    .font(.system(size: 12, weight: .medium))
                     .foregroundColor(.black)
                 
                 Spacer()
                 
                 Text(item.LStatus)
-                    //.font(.system(size: 12, weight: .bold))
-                    .regularTextStyle(size: 12, fontWeight: .bold)
+                    .font(.system(size: 12, weight: .bold))
                     .padding(.horizontal, 10)
                     .padding(.vertical, 5)
                     .background(Color(cssRGB: item.StusClr) ?? .gray)
@@ -120,8 +115,7 @@ struct LeaveApprovalCardDataList: View {
                         .font(.caption)
                         .foregroundColor(.gray)
                     Text(item.Leave_Type)
-                        //.font(.system(size: 14, weight: .semibold))
-                        .regularTextStyle(size: 14, fontWeight: .semibold)
+                        .font(.system(size: 14, weight: .semibold))
                 }
                 Spacer()
                 VStack(alignment: .trailing, spacing: 2) {
@@ -129,8 +123,7 @@ struct LeaveApprovalCardDataList: View {
                         .font(.caption)
                         .foregroundColor(.gray)
                     Text("\(item.No_of_Days)")
-                        //.font(.system(size: 14, weight: .semibold))
-                        .regularTextStyle(size: 14, fontWeight: .semibold)
+                        .font(.system(size: 14, weight: .semibold))
                 }
             }
             
@@ -140,9 +133,9 @@ struct LeaveApprovalCardDataList: View {
                     .font(.caption)
                     .foregroundColor(.gray)
                 Text(item.Reason)
-                    //.font(.system(size: 14, weight: .semibold))
-                    .regularTextStyle(size: 14, fontWeight: .semibold)
+                    .font(.system(size: 14, weight: .semibold))
             }
+            
         }
     }
     
@@ -160,12 +153,11 @@ struct LeaveApprovalCardDataList: View {
                 Text("Updated: \(item.LastUpdt_Date)")
             }
         }
-        //.font(.system(size: 14, weight: .bold))
-        .regularTextStyle(size: 14, foreground: .gray, fontWeight: .bold)
-        //.foregroundColor(.gray)
+        .font(.system(size: 14, weight: .bold))
+        .foregroundColor(.gray)
     }
 }
 
 #Preview {
-    LeaveApprovalHistoryView()
+    LeaveCancelApprovalHistoryView()
 }

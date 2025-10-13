@@ -250,6 +250,8 @@ let menuItems: [MenuItem] = [
     MenuItem(title: "Secondary Order", icon: "SecondaryOrder", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
     MenuItem(title: "Distributor", icon: "chart", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
     MenuItem(title: "Outlets", icon: "shop", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
+    MenuItem(title: "Geo Tagging", icon: "shop", isSystemIcon: false, destination: AnyView(GeoTaggingView())),
+    MenuItem(title: "Primary Delivery", icon: "delivery-van", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
     MenuItem(title: "Nearby Outlets", icon: "shop-lock", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
     MenuItem(title: "My Team", icon: "users", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
     MenuItem(title: "Geo Tagging", icon: "shop", isSystemIcon: false, destination: AnyView(LeaveRequestView())),

@@ -61,18 +61,20 @@ struct ApprovalMainView: View {
         ("Leave Cancel", AnyView(dummyView())),
         ("Permission", AnyView(PermissionApprovalView())),
         ("Missed Punch", AnyView(MissedPunchApprovalView())),
-        ("Travel Allowance", AnyView(dummyView())),
-        ("Work Plan-PJP", AnyView(dummyView())),
-        ("Deviation Entry", AnyView(dummyView()))
+        ("Travel Allowance", AnyView(forgetpass())),
+        ("Work Plan-PJP", AnyView(GeoTaggingView())),
+        ("Deviation Entry", AnyView(DeviationApprovalView()))
     ]
     
     private let approvalHistoryItems: [(title: String, destination: AnyView)] = [
-        ("Advance Request", AnyView(AdvanceApprovalHistoryView())),
-        ("Leave", AnyView(LeaveApprovalHistoryView())),
-        ("Permission", AnyView(PermissionApprovalHistoryView())),
-        ("Missed Punch", AnyView(MissedPunchApprovalHistoryView())),
-        ("Travel Allowance", AnyView(dummyView())),
-        ("Leave Cancel", AnyView(dummyView()))
+
+        ("Advance Request",AnyView(AdvanceApprovalHistoryView())),
+        ("Leave",AnyView(LeaveApprovalHistoryView())),
+
+        ("Permission",AnyView(PermissionApprovalHistoryView())),
+        ("Missed Punch",AnyView(MissedPunchApprovalHistoryView())),
+        ("Travel Allowance",AnyView(forgetpass())),
+        ("Leave Cancel",AnyView(LeaveCancelApprovalHistoryView()))
     ]
     
 

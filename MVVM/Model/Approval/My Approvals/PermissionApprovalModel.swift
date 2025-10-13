@@ -52,21 +52,3 @@ struct PermissionApprovalModel: Codable, Identifiable {
     }
 }
 
-//"Sl_no":"44",
-//"SF_Mobile":"8886622371",
-//"Sf_Code":"MGR80",
-//"Permissiondate":"025-09-07",
-//"FromTime":"05:47 AM",
-//"Applieddate":"03-09-2025",
-//"ToTime":"06:47 AM",
-//"Reason":"Jjjjjjj",
-//"Noof_hours":"",
-//"FieldForceName":"G RAMESH",
-//"Reporting_To_SF":"MGR93",
-//"Designation":"SALES PERSON",
-//"HQ":"2524-PLMNR - MARKETING",
-//"EmpCode":"801090",
-//"Submission_date":"025-09-07",
-//"Approval_Flag":2,
-//"Rejected_Reason":"",
-//"Pstatus_Sf":"MGR80"

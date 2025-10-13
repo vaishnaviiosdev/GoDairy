@@ -117,7 +117,7 @@ struct permissionApprovalRow: View {
     var body: some View {
         HStack {
             TextColumn(text: item.FieldForceName, alignment: .leading)
-            TextColumn(text: item.FieldForceName, alignment: .leading)
+            TextColumn(text: item.Applieddate, alignment: .leading)
             TextColumn(text: item.Noof_hours, alignment: .center)
             
             NavigationLink(destination: PermissionApprovalDetailsView(item: item)) {

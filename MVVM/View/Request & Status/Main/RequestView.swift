@@ -22,7 +22,7 @@ struct RequestView: View {
         ("Permission Status",AnyView(LeaveStatusView())),
         ("Missed Punch Status",AnyView(missedPunchView())),
         ("Weekly-Off Status",AnyView(weeklyOffView())),
-        ("Deviation Entry Status",AnyView(LeaveStatusView())),
+        ("Deviation Entry Status",AnyView(DeviationStatusView())),
         ("Leave Cancel Status",AnyView(LeaveCancelView()))
     ]
     
