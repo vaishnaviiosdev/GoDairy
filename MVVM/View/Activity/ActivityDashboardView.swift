@@ -9,38 +9,45 @@ import SwiftUI
 
 struct ActivityDashboardView: View {
     var body: some View {
-        ZStack {
-            Color.backgroundColour
-                .ignoresSafeArea()
-            ScrollView {
-                VStack {
-                    ActivityDashboardHeader(sfName: sf_name)
-                    
-                    OutletSummaryView()
-                    
-                    Spacer(minLength: 30)
-                    
-                    ActivityGridItemView()
-                    Spacer(minLength: 20)
-                    Divider()
-                    Spacer(minLength: 10)
-                    
-                    todayOrdersView()
+        NavigationStack {
+            ZStack {
+                Color.backgroundColour
+                    .ignoresSafeArea()
+                ScrollView {
+                    VStack {
+                        ActivityDashboardHeader(sfName: sf_name)
+                        
+                        OutletSummaryView()
+                        
+                        Spacer(minLength: 30)
+                        
+                        ActivityGridItemView()
+                        Spacer(minLength: 20)
+                        Divider()
+                        Spacer(minLength: 10)
+                        
+                        todayOrdersView()
+                    }
                 }
             }
+            .padding(.bottom, 20.0)
+            .navigationBarBackButtonHidden(true)
         }
-        .padding(.bottom, 20.0)
-        
-        .navigationBarBackButtonHidden(true)
     }
 }
 
 //MARK: - HEADER VIEW
 struct ActivityDashboardHeader: View {
+    @Environment(\.dismiss) var dismiss
     var sfName: String
 
     var body: some View {
         HStack() {
+//            Button(action:{
+//                dismiss()
+//            }){
+//                BackIcon()
+//            }
             Image("p1")
                 .resizable()
                 .frame(width: 40, height: 40)
@@ -51,9 +58,19 @@ struct ActivityDashboardHeader: View {
                     .font(.headline)
                     .bold()
                 Text(sf_Designation.isEmpty ? "---" : sf_Designation)
-                    .font(.system(size: 13))
+                    //.font(.system(size: 13))
+                    .regularTextStyle(size: 13)
             }
             Spacer()
+            Button(action: {
+                dismiss()
+            }) {
+                Image(systemName: "house.fill")
+                    .resizable()
+                    .frame(width: 20, height: 20)
+                    .foregroundColor(.appPrimary)
+                    .padding(.trailing, 16)
+            }
         }
         .padding(.horizontal)
     }
@@ -71,17 +88,18 @@ struct OutletSummaryView: View {
                 
                 HStack(spacing: 8) {
                     Text("2025-09-11")
-                        .foregroundColor(.white)
-                        .fontWeight(.bold)
+//                        .foregroundColor(.white)
+//                        .fontWeight(.bold)
                     
                     Image(systemName: "calendar")
-                        .foregroundColor(.white)
-                        .fontWeight(.bold)
+//                        .foregroundColor(.white)
+//                        .fontWeight(.bold)
                 }
                 .padding(.horizontal, 12)
                 .frame(height: 50)
                 .background(.appPrimary3)
                 .cornerRadius(10)
+                .regularTextStyle(foreground: .white, fontWeight: .bold)
             }
             
             Spacer(minLength: 30)
@@ -125,20 +143,19 @@ struct ActivityGridItemView: View {
                     VStack {
                         if item.isSystemIcon {
                             Image(systemName: item.icon)
-                                .font(.system(size: 28))
-                                .foregroundColor(.blue)
+//                                .font(.system(size: 28))
+//                                .foregroundColor(.blue)
+                                .regularTextStyle(size: 28, foreground: .blue)
                         }
                         else {
-                            Image(item.icon) // asset
+                            Image(item.icon)
                                 .resizable()
-                                .renderingMode(.original) // keeps original colors
+                                .renderingMode(.original)
                                 .frame(width: 28, height: 28)
                         }
                         
                         Text(item.title)
-                            .font(.system(size: 14))
-                            .foregroundColor(.black)
-                            .fontWeight(.medium)
+                            .regularTextStyle(size: 14, fontWeight: .medium)
                             .multilineTextAlignment(.center)
                     }
                     .frame(maxWidth: .infinity)
@@ -155,8 +172,9 @@ struct todayOrdersView: View {
             HStack {
                 Text("Today Orders")
                     .font(.headline)
-                    .foregroundColor(.black)
-                    .fontWeight(.semibold)
+//                    .foregroundColor(.black)
+//                    .fontWeight(.semibold)
+                    .regularTextStyle(foreground: .black, fontWeight: .semibold)
                 
                 Spacer()
                 
@@ -165,8 +183,9 @@ struct todayOrdersView: View {
                 }) {
                     Text("View All")
                         .font(.headline)
-                        .foregroundColor(.appPrimary3)
-                        .fontWeight(.semibold)
+//                        .foregroundColor(.appPrimary3)
+//                        .fontWeight(.semibold)
+                        .regularTextStyle(foreground: .appPrimary3, fontWeight: .semibold)
                 }
             }
             .padding(.horizontal, 10)
@@ -174,40 +193,44 @@ struct todayOrdersView: View {
             HStack(alignment: .center, spacing: 15) {
                 VStack(alignment: .center, spacing: 10) {
                     Text("Total Value")
-                        .font(.system(size: 14))
-                        .fontWeight(.medium)
+//                        .font(.system(size: 14))
+//                        .fontWeight(.medium)
+                        .regularTextStyle(size: 14, fontWeight: .medium)
                     Text("0.00")
-                        .font(.system(size: 14))
-                        .fontWeight(.medium)
-                        .foregroundColor(.appPrimary3)
+//                        .font(.system(size: 14))
+//                        .fontWeight(.medium)
+                        .regularTextStyle(size: 14, foreground: .appPrimary3, fontWeight: .medium)
+                        //.foregroundColor(.appPrimary3)
                 }
                 Spacer()
                 VStack(alignment: .center, spacing: 10) {
                     Text("Primary Order")
-                        .font(.system(size: 14))
-                        .fontWeight(.medium)
+//                        .font(.system(size: 14))
+//                        .fontWeight(.medium)
+                        .regularTextStyle(size: 14, fontWeight: .medium)
                     Text("0")
-                        .font(.system(size: 14))
-                        .fontWeight(.medium)
-                        .foregroundColor(.appPrimary3)
+                        .regularTextStyle(size: 14, foreground: .appPrimary3, fontWeight: .medium)
                 }
                 Spacer()
                 VStack(alignment: .center, spacing: 10) {
                     Text("No Order")
-                        .font(.system(size: 14))
-                        .fontWeight(.medium)
+//                        .font(.system(size: 14))
+//                        .fontWeight(.medium)
+                        .regularTextStyle(size: 14, fontWeight: .medium)
                     Text("216")
-                        .font(.system(size: 14))
-                        .fontWeight(.medium)
-                        .foregroundColor(.appPrimary3)
+                        .regularTextStyle(size: 14, foreground: .appPrimary3, fontWeight: .medium)
+//                        .font(.system(size: 14))
+//                        .fontWeight(.medium)
+//                        .foregroundColor(.appPrimary3)
                 }
             }
             .padding()
             
             Text("Last Updated on : 2025-10-11")
-                .font(.system(size: 14))
-                .foregroundColor(.gray)
-                .fontWeight(.semibold)
+//                .font(.system(size: 14))
+//                .foregroundColor(.gray)
+//                .fontWeight(.semibold)
+                .regularTextStyle(size: 14, foreground: .gray, fontWeight: .semibold)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 10)
                 //.padding(.top, 5)
@@ -223,21 +246,19 @@ struct MenuItem {
 }
 
 let menuItems: [MenuItem] = [
-    MenuItem(title: "Primary Order", icon: "PrimaryOrder", isSystemIcon: false, destination: AnyView(LeaveRequestView())), 
+    MenuItem(title: "Primary Order", icon: "PrimaryOrder", isSystemIcon: false, destination: AnyView(PrimaryOrderListView())),
     MenuItem(title: "Secondary Order", icon: "SecondaryOrder", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
-    MenuItem(title: "Van Sales", icon: "delivery-van", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
-    MenuItem(title: "OverDue List", icon: "SecondaryOrder", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
+    MenuItem(title: "Distributor", icon: "chart", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
     MenuItem(title: "Outlets", icon: "shop", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
     MenuItem(title: "Geo Tagging", icon: "shop", isSystemIcon: false, destination: AnyView(GeoTaggingView())),
     MenuItem(title: "Primary Delivery", icon: "delivery-van", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
     MenuItem(title: "Nearby Outlets", icon: "shop-lock", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
-    MenuItem(title: "Reports", icon: "reports", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
-    MenuItem(title: "Distributor", icon: "chart", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
-    MenuItem(title: "New Distributor", icon: "smiley", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
-    MenuItem(title: "Customer Onboarding", icon: "chart", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
     MenuItem(title: "My Team", icon: "users", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
+    MenuItem(title: "Geo Tagging", icon: "shop", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
     MenuItem(title: "Beat Master", icon: "smiley", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
-    MenuItem(title: "Feedback", icon: "smiley", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
+    MenuItem(title: "OverDue List", icon: "SecondaryOrder", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
+    MenuItem(title: "Task", icon: "reports", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
+    MenuItem(title: "Reports", icon: "reports", isSystemIcon: false, destination: AnyView(LeaveRequestView()))
 ]
 
 #Preview {

@@ -50,7 +50,8 @@ struct MissedApprovalHeader: View {
         HStack {
             ForEach(headers, id: \.0) { title, alignment in
                 Text(title)
-                    .font(.system(size: 14, weight: .medium))
+                    //.font(.system(size: 14, weight: .medium))
+                    .regularTextStyle(size: 14, fontWeight: .medium)
                     .frame(maxWidth: .infinity, alignment: alignment)
             }
         }
@@ -71,8 +72,9 @@ struct MissedApprovalRow: View {
                         
             NavigationLink(destination: MissedPunchApprovalDetailsView(item: item)) {
                 Text("View")
-                    .font(.system(size: 13, weight: .bold))
-                    .foregroundColor(.white)
+                    //.font(.system(size: 13, weight: .bold))
+                    .regularTextStyle(size: 13, foreground: .white, fontWeight: .bold)
+                    //.foregroundColor(.white)
                     .frame(height: 30)
                     .frame(maxWidth: .infinity)
                     .background(colorData.shared.appPrimary_Button)

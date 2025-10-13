@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class NetworkManager {
     
@@ -107,7 +108,7 @@ class NetworkManager {
                 print("🔹 Raw Response: \(responseString)")
             }
             return try JSONDecoder().decode(T.self, from: data)
-        }
+    }
 }
 
 

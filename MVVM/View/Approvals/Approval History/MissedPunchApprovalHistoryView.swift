@@ -69,27 +69,31 @@ struct missedPunchApprovalCardDataList: View {
             appliedAndStatus
         }
         .padding(10)
-        .background(RoundedRectangle(cornerRadius: 12).fill(Color.white))
-        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.gray.opacity(0.5), lineWidth: 0.3))
-        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
+//        .background(RoundedRectangle(cornerRadius: 12).fill(Color.white))
+//        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.gray.opacity(0.5), lineWidth: 0.3))
+//        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
+        .cardStyle()
         .padding(.horizontal, 5)
     }
     
     private var topRow: some View {
         VStack(alignment: .leading) {
             Text(item.SFNm)
-                .font(.system(size: 11, weight: .semibold))
+                //.font(.system(size: 11, weight: .semibold))
+                .regularTextStyle(size: 11, fontWeight: .semibold)
                 .foregroundColor(Color(cssRGB: item.StusClr) ?? .gray)
             
             HStack {
                 Text(item.Missed_punch_date)
-                    .font(.system(size: 12, weight: .medium))
+                    //.font(.system(size: 12, weight: .medium))
+                    .regularTextStyle(size: 12, fontWeight: .medium)
                     .foregroundColor(.black)
                 
                 Spacer()
                 
                 Text(item.MPStatus)
-                    .font(.system(size: 12, weight: .bold))
+                    //.font(.system(size: 12, weight: .bold))
+                    .regularTextStyle(size: 12, fontWeight: .bold)
                     .padding(.horizontal, 10)
                     .padding(.vertical, 5)
                     .background(Color(cssRGB: item.StusClr) ?? .gray)
@@ -107,7 +111,8 @@ struct missedPunchApprovalCardDataList: View {
                     .font(.caption)
                     .foregroundColor(.gray)
                 Text(item.Shift_Name)
-                    .font(.system(size: 14, weight: .semibold))
+                    //.font(.system(size: 14, weight: .semibold))
+                    .regularTextStyle(size: 14, foreground: .gray, fontWeight: .semibold)
             }
             
             HStack {
@@ -116,7 +121,8 @@ struct missedPunchApprovalCardDataList: View {
                         .font(.caption)
                         .foregroundColor(.gray)
                     Text(item.Checkin_Time)
-                        .font(.system(size: 14, weight: .semibold))
+                        //.font(.system(size: 14, weight: .semibold))
+                        .regularTextStyle(size: 14, fontWeight: .semibold)
                 }
                 Spacer()
                 VStack(alignment: .trailing, spacing: 2) {
@@ -124,7 +130,8 @@ struct missedPunchApprovalCardDataList: View {
                         .font(.caption)
                         .foregroundColor(.gray)
                     Text(item.Checkout_Tme)
-                        .font(.system(size: 14, weight: .semibold))
+                        //.font(.system(size: 14, weight: .semibold))
+                        .regularTextStyle(size: 14, fontWeight: .semibold)
                 }
             }
 
@@ -133,7 +140,8 @@ struct missedPunchApprovalCardDataList: View {
                     .font(.caption)
                     .foregroundColor(.gray)
                 Text(item.Reason)
-                    .font(.system(size: 14, weight: .semibold))
+                    //.font(.system(size: 14, weight: .semibold))
+                    .regularTextStyle(size: 14, fontWeight: .semibold)
             }
         }
     }
@@ -152,8 +160,9 @@ struct missedPunchApprovalCardDataList: View {
                 Text("Updated: \(item.Rejectdate)")
             }
         }
-        .font(.system(size: 14, weight: .bold))
-        .foregroundColor(.gray)
+        //.font(.system(size: 14, weight: .bold))
+        .regularTextStyle(size: 14, foreground: .gray, fontWeight: .bold)
+        //.foregroundColor(.gray)
     }
 }
 

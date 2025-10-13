@@ -32,7 +32,44 @@ extension Date {
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter.string(from: self)
     }
+    
+    func formattedAsDDMMYYYY() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy"
+        return formatter.string(from: self)
+    }
 }
+
+extension String {
+    func toDate(format: String = "dd/MM/yyyy") -> Date? { // match input format
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        return formatter.date(from: self)
+    }
+}
+
+func formatShiftTime(start: String, end: String) -> String {
+    let inputFormatter = DateFormatter()
+    inputFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    inputFormatter.timeZone = TimeZone(identifier: "Asia/Kolkata")
+    
+    let outputFormatter = DateFormatter()
+    outputFormatter.dateFormat = "h.mm a"
+    outputFormatter.amSymbol = "AM"
+    outputFormatter.pmSymbol = "PM"
+    outputFormatter.timeZone = TimeZone(identifier: "Asia/Kolkata")
+    
+    guard let startDate = inputFormatter.date(from: start),
+          let endDate = inputFormatter.date(from: end) else {
+        return ""
+    }
+    
+    let startString = outputFormatter.string(from: startDate)
+    let endString = outputFormatter.string(from: endDate)
+    
+    return "\(startString) - \(endString)"
+}
+
 
 
 

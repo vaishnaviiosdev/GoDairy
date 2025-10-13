@@ -80,8 +80,9 @@ struct titleCard: View {
     let fontSize: CGFloat
     var body: some View {
         Text(title)
-            .font(.system(size: fontSize, weight: .heavy))
-            .foregroundColor(.white)
+//            .font(.system(size: fontSize, weight: .heavy))
+//            .foregroundColor(.white)
+            .regularTextStyle(size: fontSize, foreground: .white, fontWeight: .heavy)
             .frame(maxWidth: .infinity, alignment: .center)
             .padding()
             .frame(height: frameHeight)
@@ -102,7 +103,10 @@ struct RowView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Image(systemName: "chevron.right")
+                    .resizable()
+                    .frame(width: 8, height: 12)
                     .foregroundColor(.gray)
+                    .fontWeight(.bold)
                     .padding(.trailing)
             }
             .background(Color.white)
@@ -118,17 +122,18 @@ struct homeBar: View {
     
     var body: some View {
         HStack {
-            Button(action:{
-                dismiss()
-            }){
-                Image(systemName: "chevron.left")
-                    .foregroundColor(.white)
-                    .padding() // optional padding from edge
-            }
+//            Button(action:{
+//                dismiss()
+//            }){
+//                BackIcon(color: .white)
+//                    .padding()
+//            }
             Spacer()
 
             NavigationLink(destination: DashboardView()) {
                 Image(systemName: "house.fill")
+                    .resizable()
+                    .frame(width: 20, height: 20)
                     .foregroundColor(.white)
                     .padding(.trailing, 16)
             }

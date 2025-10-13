@@ -7,12 +7,58 @@
 
 import SwiftUI
 
+//struct ApprovalMainView: View {
+//    
+//    private let myApprovalItems: [(title: String, destination: AnyView)] = [
+//        ("Advance Request", AnyView(PermissionApprovalView())),
+//        ("Leave", AnyView(LeaveApprovalView())),
+//        ("Leave Cancel", AnyView(forgetpass())),
+//        ("Permission", AnyView(PermissionApprovalView())),
+//        ("Missed Punch", AnyView(MissedPunchApprovalView())),
+//        ("Travel Allowance", AnyView(forgetpass())),
+//        ("Work Plan-PJP", AnyView(forgetpass())),
+//        ("Deviation Entry", AnyView(forgetpass()))
+//    ]
+//    
+//    private let approvalHistoryItems: [(title: String, destination: AnyView)] = [
+//
+//        ("Advance Request",AnyView(AdvanceApprovalHistoryView())),
+//        ("Leave",AnyView(LeaveApprovalHistoryView())),
+//
+//        ("Permission",AnyView(PermissionApprovalHistoryView())),
+//        ("Missed Punch",AnyView(MissedPunchApprovalHistoryView())),
+//        ("Travel Allowance",AnyView(forgetpass())),
+//        ("Leave Cancel",AnyView(forgetpass()))
+//    ]
+//    
+//    var body: some View {
+//        NavigationStack {
+//                VStack {
+//                    homeBar()
+//                ScrollView {
+//                    VStack(spacing: 16) {
+//                        SectionCard(title: "MY APPROVALS", items: myApprovalItems)
+//                       
+//                        SectionCard(title: "APPROVAL HISTORY", items: approvalHistoryItems)
+//                    }
+//                    .padding(.vertical, 8)
+//                }
+//                .background(Color(UIColor.systemGray6))
+//                .navigationBarTitleDisplayMode(.inline)
+//                Spacer()
+//                }
+//            }
+//        //.ignoresSafeArea(.all)
+//        .navigationTitle("")
+//    }
+//}
+
 struct ApprovalMainView: View {
-    
+
     private let myApprovalItems: [(title: String, destination: AnyView)] = [
         ("Advance Request", AnyView(PermissionApprovalView())),
         ("Leave", AnyView(LeaveApprovalView())),
-        ("Leave Cancel", AnyView(forgetpass())),
+        ("Leave Cancel", AnyView(dummyView())),
         ("Permission", AnyView(PermissionApprovalView())),
         ("Missed Punch", AnyView(MissedPunchApprovalView())),
         ("Travel Allowance", AnyView(forgetpass())),
@@ -31,25 +77,31 @@ struct ApprovalMainView: View {
         ("Leave Cancel",AnyView(LeaveCancelApprovalHistoryView()))
     ]
     
+
+    
     var body: some View {
         NavigationStack {
-            VStack {
-                homeBar()
-            ScrollView {
-                VStack(spacing: 16) {
-                    SectionCard(title: "MY APPROVALS", items: myApprovalItems)
-                   
-                    SectionCard(title: "APPROVAL HISTORY", items: approvalHistoryItems)
+            ZStack {
+                Color.white
+                    .ignoresSafeArea()
+
+                VStack(spacing: 0) {
+                    homeBar()
+                        .padding(.top)
+
+                    ScrollView {
+                        VStack(spacing: 16) {
+                            SectionCard(title: "MY APPROVALS", items: myApprovalItems)
+                            SectionCard(title: "APPROVAL HISTORY", items: approvalHistoryItems)
+                        }
+                        .padding(.vertical, 8)
+                    }
+                    .background(Color(UIColor.systemGray6))
                 }
-                .padding(.vertical, 8)
             }
-            .background(Color(UIColor.systemGray6))
-            .navigationBarTitleDisplayMode(.inline)
-            Spacer()
-            }
+            .navigationTitle("")
+            //.navigationBarTitleDisplayMode(.inline)
         }
-        .ignoresSafeArea(.all)
-        .navigationTitle("")
     }
 }
 
@@ -62,12 +114,14 @@ struct DetailRow: View {
     var body: some View {
         HStack(alignment: .top) {
             Text(label)
-                .font(.system(size: 14, weight: .regular))
+                //.font(.system(size: 14, weight: .regular))
+                .regularTextStyle(size: 14)
                 .frame(width: 120, alignment: .leading)
             
             Text(value)
                 .foregroundColor(.green)
-                .font(.system(size: 14, weight: .bold))
+                //.font(.system(size: 14, weight: .bold))
+                .regularTextStyle(size: 14, fontWeight: .bold)
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
@@ -107,11 +161,12 @@ struct ApprovalButtons: View {
                             }
                         }) {
                             Text("SAVE")
-                                .font(.system(size: 14, weight: .bold))
+                                //.font(.system(size: 14, weight: .bold))
+                                .regularTextStyle(size: 14, foreground: .white, fontWeight: .bold)
                                 .padding(.horizontal, 30)
                                 .padding(.vertical, 10)
                                 .background(colorData.shared.appPrimary_Button)
-                                .foregroundColor(.white)
+                                //.foregroundColor(.white)
                                 .cornerRadius(8)
                         }
                         Spacer()
@@ -124,11 +179,12 @@ struct ApprovalButtons: View {
                         Task { await approveAction() }
                     }) {
                         Text("APPROVE")
-                            .font(.system(size: 14, weight: .bold))
+                            //.font(.system(size: 14, weight: .bold))
+                            .regularTextStyle(size: 14, foreground: .white, fontWeight: .bold)
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(colorData.shared.acceptBtn)
-                            .foregroundColor(.white)
+                            //.foregroundColor(.white)
                             .cornerRadius(8)
                     }
                     
@@ -138,11 +194,12 @@ struct ApprovalButtons: View {
                         }
                     }) {
                         Text("REJECT")
-                            .font(.system(size: 14, weight: .bold))
+                            //.font(.system(size: 14, weight: .bold))
+                            .regularTextStyle(size: 14, foreground: .white, fontWeight: .bold)
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(colorData.shared.rejectBtn)
-                            .foregroundColor(.white)
+                            //.foregroundColor(.white)
                             .cornerRadius(8)
                     }
                 }
@@ -170,7 +227,8 @@ struct SaveButton: View {
             Spacer()
             Button(action: action) {
                 Text(title)
-                    .font(.system(size: 14, weight: .bold))
+                    //.font(.system(size: 14, weight: .bold))
+                    .regularTextStyle(size: 14, fontWeight: .bold)
                     .padding(.horizontal, 30)
                     .padding(.vertical, 10)
                     .background(colorData.shared.appPrimary_Button)

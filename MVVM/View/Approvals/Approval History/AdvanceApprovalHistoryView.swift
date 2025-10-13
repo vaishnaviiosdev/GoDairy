@@ -77,9 +77,10 @@ struct advanceApprovalCardDataList: View {
             appliedAndStatus
         }
         .padding(10)
-        .background(RoundedRectangle(cornerRadius: 12).fill(Color.white))
-        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.gray.opacity(0.5), lineWidth: 0.3))
-        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
+//        .background(RoundedRectangle(cornerRadius: 12).fill(Color.white))
+//        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.gray.opacity(0.5), lineWidth: 0.3))
+//        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
+        .cardStyle()
         .padding(.horizontal, 5)
     }
     
@@ -88,13 +89,15 @@ struct advanceApprovalCardDataList: View {
             
             HStack {
                 Text(item.From_Date + " TO " + item.To_Date)
-                    .font(.system(size: 12, weight: .medium))
+                    //.font(.system(size: 12, weight: .medium))
+                    .regularTextStyle(size: 12, fontWeight: .medium)
                     .foregroundColor(.black)
                 
                 Spacer()
                 
                 Text(item.LStatus)
-                    .font(.system(size: 12, weight: .bold))
+                    //.font(.system(size: 12, weight: .bold))
+                    .regularTextStyle(size: 12, fontWeight: .bold)
                     .padding(.horizontal, 10)
                     .padding(.vertical, 5)
                     .background(Color(cssRGB: item.StusClr) ?? .gray)
@@ -113,7 +116,8 @@ struct advanceApprovalCardDataList: View {
                         .font(.caption)
                         .foregroundColor(.gray)
                     Text(item.AdvTyp)
-                        .font(.system(size: 14, weight: .semibold))
+                        //.font(.system(size: 14, weight: .semibold))
+                        .regularTextStyle(size: 14, fontWeight: .semibold)
                 }
                 Spacer()
                 VStack(alignment: .trailing, spacing: 2) {
@@ -121,7 +125,8 @@ struct advanceApprovalCardDataList: View {
                         .font(.caption)
                         .foregroundColor(.gray)
                     Text("\(item.AdvAmt)")
-                        .font(.system(size: 14, weight: .semibold))
+                        //.font(.system(size: 14, weight: .semibold))
+                        .regularTextStyle(size: 14, fontWeight: .semibold)
                 }
             }
             
@@ -131,7 +136,8 @@ struct advanceApprovalCardDataList: View {
                         .font(.caption)
                         .foregroundColor(.gray)
                     Text(item.AdvLoc)
-                        .font(.system(size: 14, weight: .semibold))
+                        //.font(.system(size: 14, weight: .semibold))
+                        .regularTextStyle(size: 14, fontWeight: .semibold)
                 }
                 Spacer()
                 VStack(alignment: .trailing, spacing: 2) {
@@ -139,7 +145,8 @@ struct advanceApprovalCardDataList: View {
                         .font(.caption)
                         .foregroundColor(.gray)
                     Text("\(item.eDate)")
-                        .font(.system(size: 14, weight: .semibold))
+                        //.font(.system(size: 14, weight: .semibold))
+                        .regularTextStyle(size: 14, fontWeight: .semibold)
                 }
             }
             
@@ -149,7 +156,8 @@ struct advanceApprovalCardDataList: View {
                     .font(.caption)
                     .foregroundColor(.gray)
                 Text(item.AdvPurp)
-                    .font(.system(size: 14, weight: .semibold))
+                    //.font(.system(size: 14, weight: .semibold))
+                    .regularTextStyle(size: 14, fontWeight: .semibold)
             }
             
         }
@@ -169,8 +177,9 @@ struct advanceApprovalCardDataList: View {
                 Text("Updated: \(item.ApprDt)")
             }
         }
-        .font(.system(size: 14, weight: .bold))
-        .foregroundColor(.gray)
+        //.font(.system(size: 14, weight: .bold))
+        .regularTextStyle(size: 14, foreground: .gray, fontWeight: .bold)
+        //.foregroundColor(.gray)
     }
 }
 

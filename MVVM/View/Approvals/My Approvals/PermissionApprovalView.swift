@@ -7,34 +7,80 @@
 
 import SwiftUI
 
+//struct PermissionApprovalView: View {
+//    
+//    @StateObject var permissionApprovalVM = PermissionApprovalViewModel()
+//    
+//    var body: some View {
+//        NavigationStack {
+//            VStack(spacing: 0) {
+//                homeBar(frameSize: 40)
+//                    .padding(.bottom, 5)
+//                
+//                VStack(alignment: .leading, spacing: 0) {
+//                    titleCard(title: "PERMISSION APPROVAL", frameHeight: 40, fontSize: 14)
+//                }
+//                .background(Color.white)
+//                .cornerRadius(12)
+//                .padding(.horizontal, 8)
+//                
+//                ApprovalHeader()
+//                
+//                ScrollView {
+//                    LazyVStack(spacing: 10) {
+//                        
+//                        ForEach(permissionApprovalVM.permissionApprovaldata) { item in
+//                            permissionApprovalRow(item: item)
+//                        }
+//                    }
+//                }
+//            }
+//            .task {
+//                await permissionApprovalVM.fetchMissedApprovalData()
+//            }
+//        }
+//    }
+//}
+
 struct PermissionApprovalView: View {
     
     @StateObject var permissionApprovalVM = PermissionApprovalViewModel()
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 0) {
-                homeBar(frameSize: 40)
-                    .padding(.bottom, 5)
+            ZStack {
+                // Background fills full screen
+                Color.white
+                    .ignoresSafeArea()
                 
-                VStack(alignment: .leading, spacing: 0) {
-                    titleCard(title: "PERMISSION APPROVAL", frameHeight: 40, fontSize: 14)
-                }
-                .background(Color.white)
-                .cornerRadius(12)
-                .padding(.horizontal, 8)
-                
-                ApprovalHeader()
-                
-                ScrollView {
-                    LazyVStack(spacing: 10) {
-                        
-                        ForEach(permissionApprovalVM.permissionApprovaldata) { item in
-                            permissionApprovalRow(item: item)
+                VStack(spacing: 0) {
+                    // ✅ Respect top safe area
+                    homeBar(frameSize: 40)
+                        .padding(.top)
+                        .padding(.bottom, 5)
+                    
+                    VStack(alignment: .leading, spacing: 0) {
+                        titleCard(title: "PERMISSION APPROVAL", frameHeight: 40, fontSize: 14)
+                    }
+                    .background(Color.white)
+                    .cornerRadius(12)
+                    .padding(.horizontal, 8)
+                    
+                    ApprovalHeader()
+                    
+                    ScrollView {
+                        LazyVStack(spacing: 10) {
+                            ForEach(permissionApprovalVM.permissionApprovaldata) { item in
+                                permissionApprovalRow(item: item)
+                            }
                         }
+                        .padding(.vertical, 8)
                     }
                 }
             }
+            .navigationTitle("")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(true)
             .task {
                 await permissionApprovalVM.fetchMissedApprovalData()
             }
@@ -54,7 +100,8 @@ struct ApprovalHeader: View {
         HStack {
             ForEach(headers, id: \.0) { title, alignment in
                 Text(title)
-                    .font(.system(size: 14, weight: .medium))
+                    //.font(.system(size: 14, weight: .medium))
+                    .regularTextStyle(size: 14, fontWeight: .medium)
                     .frame(maxWidth: .infinity, alignment: alignment)
             }
         }
@@ -75,8 +122,9 @@ struct permissionApprovalRow: View {
             
             NavigationLink(destination: PermissionApprovalDetailsView(item: item)) {
                 Text("View")
-                    .font(.system(size: 13, weight: .bold))
-                    .foregroundColor(.white)
+                    //.font(.system(size: 13, weight: .bold))
+                    .regularTextStyle(size: 13, foreground: .white, fontWeight: .bold)
+                    //.foregroundColor(.white)
                     .frame(height: 30)
                     .frame(maxWidth: .infinity)
                     .background(colorData.shared.appPrimary_Button)

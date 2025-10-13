@@ -13,6 +13,8 @@ let Ukey = String(format: "EK%@-%i", sf_code,Int(Date().timeIntervalSince1970))
 let division_code = UserDefaults.standard.string(forKey: "Division_Code") ?? ""
 let sf_name = UserDefaults.standard.string(forKey: "Sf_Name") ?? ""
 let sf_Designation = UserDefaults.standard.string(forKey: "sf_Designation_Short_Name") ?? ""
+let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+
 
 let milk_url = "https://admin.godairy.in/server/milk_url_config.json"
 let privacy_url = "https://admin.godairy.in/Privacy.html"
@@ -58,11 +60,18 @@ let deviationStatus_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUr
 
 let advanceStatus_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=GetAdvance_Status"
 
+let permissionStatus_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "AMod=0&divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=GetPermission_Status"
 
 //Dashboard
 let myDayPlanCheck_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "desig=MGR&divisionCode=\(division_code)&Sf_code=\(sf_code)&axn=check%2Fmydayplan&Date=\(Date())%2014%3A46%3A13"
 
 let myDayPlanSave_Url = APIClient.shared.New_DBUrl + APIClient.shared.db_new_activity1 + "State_Code=1&desig=MGR&divisionCode=\(division_code)&axn=save/dayplandynamic&sfCode=\(sf_code)"
+
+let todayDashboard_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "&axn=get%2FAttnDySty&divisionCode=\(division_code)&sfCode=\(sf_code)&State_Code=&desig="
+
+let monthlyDashboard_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "State_Code=1&desig=MGR&divisionCode=\(division_code)&rSF=\(sf_code)&axn=ViewAllCount&sfCode=\(sf_code)"
+
+let monthlyViewAll_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "Priod=0&sfCode=\(sf_code)&axn=get%2FAttnStatus&Status="
 
 //My Approval
 let missedPunchApproval_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=vwmissedpunch"
@@ -78,11 +87,31 @@ let deviationApproval_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DB
 let permissionHistoryApproval_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "AMod=1&divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=GetPermission_Status"
 let missedPunchHistoryApproval_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "AMod=1&divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=GetMissedPunch_Status"
 
-
 let leaveApprovalHistory_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "AMod=1&divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=GetLeave_Status"
 
-
 let advanceApprovalHistory_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "&desig=MGR&divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=GetAdvance_Status_AMOD"
+
+//Check-In
+let checkIn_SaveUrl = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl2 +
+"dcr%2Fsave&Ekey=\(Ukey)&divisionCode=\(division_code)&Sf_code=\(sf_code)&State_Code=&desig="
+
+let image_BaseUrl = "http://qa.godairy.in/server/Db_v300.php?&axn=imgupload&Sf_code=\(sf_code)&="
+
+let checkOut_SaveUrl = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl2 + "get%2Flogouttime&Ekey=\(Ukey)&divisionCode=\(division_code)&Sf_code=\(sf_code)&State_Code=&desig="
+
+//Activity
+let primary_OrderUrl = APIClient.shared.New_DBUrl + APIClient.shared.DBURL2 + "get/distributor"
+
+
+
+
+
+
+
+
+
+
+
 
 
 
