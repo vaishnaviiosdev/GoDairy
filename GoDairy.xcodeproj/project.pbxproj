@@ -32,10 +32,10 @@
 		385EDAF62E5480B6003F7AD0 /* PermissionAskingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385EDAF52E5480B6003F7AD0 /* PermissionAskingView.swift */; };
 		38A7A1382E56E56D006240D1 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A7A1372E56E56D006240D1 /* SplashScreenView.swift */; };
 		38A9D4C92E6E9C91009C70D2 /* leaveStatusViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A9D4C82E6E9C7F009C70D2 /* leaveStatusViewmodel.swift */; };
-		38A9D4CB2E6ED702009C70D2 /* missedPunchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A9D4CA2E6ED6F6009C70D2 /* missedPunchModel.swift */; };
-		38A9D4CD2E6EE0D2009C70D2 /* missedPunchViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A9D4CC2E6EE0C2009C70D2 /* missedPunchViewmodel.swift */; };
-		38A9D4CF2E6EE20C009C70D2 /* leaveCancelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A9D4CE2E6EE206009C70D2 /* leaveCancelModel.swift */; };
-		38A9D4D12E6EE52B009C70D2 /* leaveCancelViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A9D4D02E6EE51A009C70D2 /* leaveCancelViewmodel.swift */; };
+		38A9D4CB2E6ED702009C70D2 /* missedPunchStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A9D4CA2E6ED6F6009C70D2 /* missedPunchStatusModel.swift */; };
+		38A9D4CD2E6EE0D2009C70D2 /* missedPunchStatusViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A9D4CC2E6EE0C2009C70D2 /* missedPunchStatusViewmodel.swift */; };
+		38A9D4CF2E6EE20C009C70D2 /* leaveCancelStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A9D4CE2E6EE206009C70D2 /* leaveCancelStatusModel.swift */; };
+		38A9D4D12E6EE52B009C70D2 /* leaveCancelStatusViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A9D4D02E6EE51A009C70D2 /* leaveCancelStatusViewmodel.swift */; };
 		38A9D4D32E6EE830009C70D2 /* missedPunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A9D4D22E6EE830009C70D2 /* missedPunchView.swift */; };
 		38A9D4D52E6EE84B009C70D2 /* LeaveCancelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A9D4D42E6EE84B009C70D2 /* LeaveCancelView.swift */; };
 		38AB2F002E6C515A007F3501 /* LeaveStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AB2EFF2E6C515A007F3501 /* LeaveStatusView.swift */; };
@@ -54,14 +54,16 @@
 		38B15E882E9930500089A006 /* PermissionStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B15E872E9930500089A006 /* PermissionStatusView.swift */; };
 		38BC79072E6FF03D000A784A /* weeklyOffView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BC79062E6FF03D000A784A /* weeklyOffView.swift */; };
 		38BC79092E701F2C000A784A /* DaysSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BC79082E701F2C000A784A /* DaysSelectionView.swift */; };
-		38BC790B2E702F6B000A784A /* weekOffModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BC790A2E702F63000A784A /* weekOffModel.swift */; };
-		38BC790D2E70316F000A784A /* weeklyoffViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BC790C2E703164000A784A /* weeklyoffViewmodel.swift */; };
+		38BC790B2E702F6B000A784A /* weekOffStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BC790A2E702F63000A784A /* weekOffStatusModel.swift */; };
+		38BC790D2E70316F000A784A /* weeklyoffStatusViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BC790C2E703164000A784A /* weeklyoffStatusViewmodel.swift */; };
 		38BD708F2E72902F00AFDA7C /* ActivityDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BD708E2E72902F00AFDA7C /* ActivityDashboardView.swift */; };
 		38BD70922E72DFAB00AFDA7C /* ApprovalMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BD70912E72DFAB00AFDA7C /* ApprovalMainView.swift */; };
 		38BD70952E72E72600AFDA7C /* MissedPunchApprovalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BD70942E72E72600AFDA7C /* MissedPunchApprovalView.swift */; };
 		38BF101F2E87CA8C00DDCA04 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BF101E2E87CA8C00DDCA04 /* MapView.swift */; };
 		38C26F332D2BF97E00595798 /* RequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C26F322D2BF97E00595798 /* RequestView.swift */; };
 		38C3C10A2E83FB100014DCA2 /* MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C3C1092E83FB0B0014DCA2 /* MapKit.swift */; };
+		38C4FB952E9CC510001934AD /* permissionStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C4FB942E9CC503001934AD /* permissionStatusModel.swift */; };
+		38C4FB982E9CC7D9001934AD /* permissionStatusViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C4FB972E9CC7C8001934AD /* permissionStatusViewmodel.swift */; };
 		38C563FE2C637D5200153761 /* GoDairyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C563FD2C637D5200153761 /* GoDairyApp.swift */; };
 		38C564002C637D5200153761 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C563FF2C637D5200153761 /* ContentView.swift */; };
 		38C564022C637D5300153761 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38C564012C637D5300153761 /* Assets.xcassets */; };
@@ -134,10 +136,10 @@
 		385EDAF52E5480B6003F7AD0 /* PermissionAskingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionAskingView.swift; sourceTree = "<group>"; };
 		38A7A1372E56E56D006240D1 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		38A9D4C82E6E9C7F009C70D2 /* leaveStatusViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = leaveStatusViewmodel.swift; sourceTree = "<group>"; };
-		38A9D4CA2E6ED6F6009C70D2 /* missedPunchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = missedPunchModel.swift; sourceTree = "<group>"; };
-		38A9D4CC2E6EE0C2009C70D2 /* missedPunchViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = missedPunchViewmodel.swift; sourceTree = "<group>"; };
-		38A9D4CE2E6EE206009C70D2 /* leaveCancelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = leaveCancelModel.swift; sourceTree = "<group>"; };
-		38A9D4D02E6EE51A009C70D2 /* leaveCancelViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = leaveCancelViewmodel.swift; sourceTree = "<group>"; };
+		38A9D4CA2E6ED6F6009C70D2 /* missedPunchStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = missedPunchStatusModel.swift; sourceTree = "<group>"; };
+		38A9D4CC2E6EE0C2009C70D2 /* missedPunchStatusViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = missedPunchStatusViewmodel.swift; sourceTree = "<group>"; };
+		38A9D4CE2E6EE206009C70D2 /* leaveCancelStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = leaveCancelStatusModel.swift; sourceTree = "<group>"; };
+		38A9D4D02E6EE51A009C70D2 /* leaveCancelStatusViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = leaveCancelStatusViewmodel.swift; sourceTree = "<group>"; };
 		38A9D4D22E6EE830009C70D2 /* missedPunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = missedPunchView.swift; sourceTree = "<group>"; };
 		38A9D4D42E6EE84B009C70D2 /* LeaveCancelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveCancelView.swift; sourceTree = "<group>"; };
 		38AB2EFF2E6C515A007F3501 /* LeaveStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveStatusView.swift; sourceTree = "<group>"; };
@@ -156,14 +158,16 @@
 		38B15E872E9930500089A006 /* PermissionStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionStatusView.swift; sourceTree = "<group>"; };
 		38BC79062E6FF03D000A784A /* weeklyOffView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weeklyOffView.swift; sourceTree = "<group>"; };
 		38BC79082E701F2C000A784A /* DaysSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysSelectionView.swift; sourceTree = "<group>"; };
-		38BC790A2E702F63000A784A /* weekOffModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weekOffModel.swift; sourceTree = "<group>"; };
-		38BC790C2E703164000A784A /* weeklyoffViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weeklyoffViewmodel.swift; sourceTree = "<group>"; };
+		38BC790A2E702F63000A784A /* weekOffStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weekOffStatusModel.swift; sourceTree = "<group>"; };
+		38BC790C2E703164000A784A /* weeklyoffStatusViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = weeklyoffStatusViewmodel.swift; sourceTree = "<group>"; };
 		38BD708E2E72902F00AFDA7C /* ActivityDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDashboardView.swift; sourceTree = "<group>"; };
 		38BD70912E72DFAB00AFDA7C /* ApprovalMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovalMainView.swift; sourceTree = "<group>"; };
 		38BD70942E72E72600AFDA7C /* MissedPunchApprovalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissedPunchApprovalView.swift; sourceTree = "<group>"; };
 		38BF101E2E87CA8C00DDCA04 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		38C26F322D2BF97E00595798 /* RequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestView.swift; sourceTree = "<group>"; };
 		38C3C1092E83FB0B0014DCA2 /* MapKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKit.swift; sourceTree = "<group>"; };
+		38C4FB942E9CC503001934AD /* permissionStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = permissionStatusModel.swift; sourceTree = "<group>"; };
+		38C4FB972E9CC7C8001934AD /* permissionStatusViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = permissionStatusViewmodel.swift; sourceTree = "<group>"; };
 		38C563FA2C637D5200153761 /* GoDairy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoDairy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38C563FD2C637D5200153761 /* GoDairyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoDairyApp.swift; sourceTree = "<group>"; };
 		38C563FF2C637D5200153761 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -271,15 +275,15 @@
 			path = "Check-In";
 			sourceTree = "<group>";
 		};
-		385ACE102E6ABCF10046FE7D /* login */ = {
+		385ACE102E6ABCF10046FE7D /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				385EDAE92E544DCF003F7AD0 /* LoginModel.swift */,
 			);
-			path = login;
+			path = Login;
 			sourceTree = "<group>";
 		};
-		385ACE112E6ABD890046FE7D /* request */ = {
+		385ACE112E6ABD890046FE7D /* Request */ = {
 			isa = PBXGroup;
 			children = (
 				385ACE222E6AFEBC0046FE7D /* DeviationEntryModel.swift */,
@@ -289,18 +293,18 @@
 				38EB916E2E60710100077669 /* LeaveRequestDataResponse.swift */,
 				38CA96BE2E6572CF000532A5 /* AdvanceRequestModel.swift */,
 			);
-			path = request;
+			path = Request;
 			sourceTree = "<group>";
 		};
-		385ACE122E6ABDDD0046FE7D /* dashboard */ = {
+		385ACE122E6ABDDD0046FE7D /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
 				38AB43222E598CDC00D33B3A /* MyDayPlanModel.swift */,
 			);
-			path = dashboard;
+			path = Dashboard;
 			sourceTree = "<group>";
 		};
-		385ACE132E6ABFAF0046FE7D /* request */ = {
+		385ACE132E6ABFAF0046FE7D /* Request */ = {
 			isa = PBXGroup;
 			children = (
 				38EEA3B22E5DC83200CAC7FD /* SelectionView.swift */,
@@ -311,18 +315,18 @@
 				38EA2C002E5C686000428C3C /* AdvanceRequestView.swift */,
 				385ACE202E6ADA740046FE7D /* DeviationEntryView.swift */,
 			);
-			path = request;
+			path = Request;
 			sourceTree = "<group>";
 		};
-		385ACE142E6AC0450046FE7D /* splash */ = {
+		385ACE142E6AC0450046FE7D /* Splash */ = {
 			isa = PBXGroup;
 			children = (
 				38A7A1372E56E56D006240D1 /* SplashScreenView.swift */,
 			);
-			path = splash;
+			path = Splash;
 			sourceTree = "<group>";
 		};
-		385ACE182E6AC35A0046FE7D /* dashboard */ = {
+		385ACE182E6AC35A0046FE7D /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
 				381CCF832CE5C41900159560 /* MyDayPlan.swift */,
@@ -333,10 +337,10 @@
 				38D2FA622E8AA7F700D2CEC8 /* MonthlyViewAllView.swift */,
 				38B15E7D2E98E9D70089A006 /* dummyView.swift */,
 			);
-			path = dashboard;
+			path = Dashboard;
 			sourceTree = "<group>";
 		};
-		385ACE192E6AC5750046FE7D /* main */ = {
+		385ACE192E6AC5750046FE7D /* Main */ = {
 			isa = PBXGroup;
 			children = (
 				3F67B5B52CA7D12400A1BCB7 /* Login_Page_View.swift */,
@@ -345,10 +349,10 @@
 				38C563FF2C637D5200153761 /* ContentView.swift */,
 				38C563FD2C637D5200153761 /* GoDairyApp.swift */,
 			);
-			path = main;
+			path = Main;
 			sourceTree = "<group>";
 		};
-		385ACE1A2E6AC7AB0046FE7D /* request */ = {
+		385ACE1A2E6AC7AB0046FE7D /* Request */ = {
 			isa = PBXGroup;
 			children = (
 				385ACE242E6B02860046FE7D /* DeviationEntryViewModel.swift */,
@@ -358,15 +362,15 @@
 				38D19F0A2E66E84700399314 /* PermissionRequestViewModel.swift */,
 				38D997062E69776E005DD972 /* MissedPunchViewModel.swift */,
 			);
-			path = request;
+			path = Request;
 			sourceTree = "<group>";
 		};
-		385ACE1B2E6AC7ED0046FE7D /* main */ = {
+		385ACE1B2E6AC7ED0046FE7D /* Main */ = {
 			isa = PBXGroup;
 			children = (
 				38D735AB2E533DEA00197EA1 /* DataViewModel.swift */,
 			);
-			path = main;
+			path = Main;
 			sourceTree = "<group>";
 		};
 		385EDAEC2E544EB3003F7AD0 /* MVVM */ = {
@@ -379,18 +383,19 @@
 			path = MVVM;
 			sourceTree = "<group>";
 		};
-		38A9D4C72E6E9B6A009C70D2 /* status */ = {
+		38A9D4C72E6E9B6A009C70D2 /* Status */ = {
 			isa = PBXGroup;
 			children = (
-				38BC790C2E703164000A784A /* weeklyoffViewmodel.swift */,
-				38A9D4D02E6EE51A009C70D2 /* leaveCancelViewmodel.swift */,
-				38A9D4CC2E6EE0C2009C70D2 /* missedPunchViewmodel.swift */,
+				38C4FB972E9CC7C8001934AD /* permissionStatusViewmodel.swift */,
+				38BC790C2E703164000A784A /* weeklyoffStatusViewmodel.swift */,
+				38A9D4D02E6EE51A009C70D2 /* leaveCancelStatusViewmodel.swift */,
+				38A9D4CC2E6EE0C2009C70D2 /* missedPunchStatusViewmodel.swift */,
 				38A9D4C82E6E9C7F009C70D2 /* leaveStatusViewmodel.swift */,
 			);
-			path = status;
+			path = Status;
 			sourceTree = "<group>";
 		};
-		38AB2EFE2E6C513B007F3501 /* status */ = {
+		38AB2EFE2E6C513B007F3501 /* Status */ = {
 			isa = PBXGroup;
 			children = (
 				38AB2EFF2E6C515A007F3501 /* LeaveStatusView.swift */,
@@ -400,18 +405,19 @@
 				38BC79082E701F2C000A784A /* DaysSelectionView.swift */,
 				38B15E872E9930500089A006 /* PermissionStatusView.swift */,
 			);
-			path = status;
+			path = Status;
 			sourceTree = "<group>";
 		};
-		38AB2F012E6C52A9007F3501 /* status */ = {
+		38AB2F012E6C52A9007F3501 /* Status */ = {
 			isa = PBXGroup;
 			children = (
-				38BC790A2E702F63000A784A /* weekOffModel.swift */,
-				38A9D4CE2E6EE206009C70D2 /* leaveCancelModel.swift */,
-				38A9D4CA2E6ED6F6009C70D2 /* missedPunchModel.swift */,
+				38C4FB942E9CC503001934AD /* permissionStatusModel.swift */,
+				38BC790A2E702F63000A784A /* weekOffStatusModel.swift */,
+				38A9D4CE2E6EE206009C70D2 /* leaveCancelStatusModel.swift */,
+				38A9D4CA2E6ED6F6009C70D2 /* missedPunchStatusModel.swift */,
 				38AB2F022E6C52BB007F3501 /* leaveStatusModel.swift */,
 			);
-			path = status;
+			path = Status;
 			sourceTree = "<group>";
 		};
 		38AF3ECD2E73ECD500F76C5D /* Approval */ = {
@@ -537,8 +543,8 @@
 			isa = PBXGroup;
 			children = (
 				38AF3EE22E74397400F76C5D /* Main */,
-				385ACE132E6ABFAF0046FE7D /* request */,
-				38AB2EFE2E6C513B007F3501 /* status */,
+				385ACE132E6ABFAF0046FE7D /* Request */,
+				38AB2EFE2E6C513B007F3501 /* Status */,
 			);
 			path = "Request & Status";
 			sourceTree = "<group>";
@@ -573,6 +579,24 @@
 				1505FF0A2E7D7FD600A4E033 /* PermissionApprovalDetailsView.swift */,
 			);
 			path = "My Approvals";
+			sourceTree = "<group>";
+		};
+		38C4FB932E9CC4C9001934AD /* Request&Status */ = {
+			isa = PBXGroup;
+			children = (
+				385ACE112E6ABD890046FE7D /* Request */,
+				38AB2F012E6C52A9007F3501 /* Status */,
+			);
+			path = "Request&Status";
+			sourceTree = "<group>";
+		};
+		38C4FB962E9CC708001934AD /* Request&Status */ = {
+			isa = PBXGroup;
+			children = (
+				385ACE1A2E6AC7AB0046FE7D /* Request */,
+				38A9D4C72E6E9B6A009C70D2 /* Status */,
+			);
+			path = "Request&Status";
 			sourceTree = "<group>";
 		};
 		38C563F12C637D5200153761 = {
@@ -626,13 +650,12 @@
 		38D735A22E53275700197EA1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				38C4FB932E9CC4C9001934AD /* Request&Status */,
 				38B15E7F2E98FDB00089A006 /* Activity */,
 				382455132E8BDC2C00561BB0 /* Check-In */,
 				38AF3ECD2E73ECD500F76C5D /* Approval */,
-				38AB2F012E6C52A9007F3501 /* status */,
-				385ACE122E6ABDDD0046FE7D /* dashboard */,
-				385ACE112E6ABD890046FE7D /* request */,
-				385ACE102E6ABCF10046FE7D /* login */,
+				385ACE122E6ABDDD0046FE7D /* Dashboard */,
+				385ACE102E6ABCF10046FE7D /* Login */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -644,9 +667,9 @@
 				38BD70902E72DF3500AFDA7C /* Approvals */,
 				38BD708D2E72900B00AFDA7C /* Activity */,
 				38BD708C2E728FCA00AFDA7C /* Request & Status */,
-				385ACE192E6AC5750046FE7D /* main */,
-				385ACE182E6AC35A0046FE7D /* dashboard */,
-				385ACE142E6AC0450046FE7D /* splash */,
+				385ACE192E6AC5750046FE7D /* Main */,
+				385ACE182E6AC35A0046FE7D /* Dashboard */,
+				385ACE142E6AC0450046FE7D /* Splash */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -654,13 +677,12 @@
 		38D735A42E53276900197EA1 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				38C4FB962E9CC708001934AD /* Request&Status */,
 				38B15E832E9900D20089A006 /* Activity */,
 				382455162E8BDCFE00561BB0 /* Check-In */,
 				38D365462E7D70EE0068CA01 /* Dashboard */,
 				38AF3ED02E73EF7200F76C5D /* Approval */,
-				38A9D4C72E6E9B6A009C70D2 /* status */,
-				385ACE1B2E6AC7ED0046FE7D /* main */,
-				385ACE1A2E6AC7AB0046FE7D /* request */,
+				385ACE1B2E6AC7ED0046FE7D /* Main */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -844,11 +866,12 @@
 				38CA96C12E6573C0000532A5 /* AdvanceRequestViewModel.swift in Sources */,
 				38D735B22E5342B800197EA1 /* Constant.swift in Sources */,
 				38D997032E696E65005DD972 /* MissedPunchView.swift in Sources */,
+				38C4FB982E9CC7D9001934AD /* permissionStatusViewmodel.swift in Sources */,
 				1505FEED2E7A8CAF00A4E033 /* LeaveApprovalHistoryViewModel.swift in Sources */,
 				38AB43232E598CE700D33B3A /* MyDayPlanModel.swift in Sources */,
-				38BC790B2E702F6B000A784A /* weekOffModel.swift in Sources */,
+				38BC790B2E702F6B000A784A /* weekOffStatusModel.swift in Sources */,
 				385ACE1D2E6AC86C0046FE7D /* WeekOffModel.swift in Sources */,
-				38A9D4CF2E6EE20C009C70D2 /* leaveCancelModel.swift in Sources */,
+				38A9D4CF2E6EE20C009C70D2 /* leaveCancelStatusModel.swift in Sources */,
 				38C7FB082E7ADD71001CA81D /* LeaveApprovalView.swift in Sources */,
 				38AF3ECF2E73ED0300F76C5D /* missedApprovalModel.swift in Sources */,
 				382455152E8BDC3D00561BB0 /* checkinmodel.swift in Sources */,
@@ -864,9 +887,10 @@
 				38AB2F002E6C515A007F3501 /* LeaveStatusView.swift in Sources */,
 				382455182E8BDD8C00561BB0 /* checkinviewmodel.swift in Sources */,
 				1505FEEF2E7A8E6F00A4E033 /* LeaveApprovalHistoryModel.swift in Sources */,
-				38A9D4CB2E6ED702009C70D2 /* missedPunchModel.swift in Sources */,
-				38A9D4D12E6EE52B009C70D2 /* leaveCancelViewmodel.swift in Sources */,
+				38A9D4CB2E6ED702009C70D2 /* missedPunchStatusModel.swift in Sources */,
+				38A9D4D12E6EE52B009C70D2 /* leaveCancelStatusViewmodel.swift in Sources */,
 				1505FF092E7D622E00A4E033 /* PermissionApprovalModel.swift in Sources */,
+				38C4FB952E9CC510001934AD /* permissionStatusModel.swift in Sources */,
 				38D997052E6974D5005DD972 /* MissedPunchModel.swift in Sources */,
 				38EEA3B32E5DC83200CAC7FD /* SelectionView.swift in Sources */,
 				38B15E862E9900FA0089A006 /* PrimaryorderViewModel.swift in Sources */,
@@ -882,7 +906,7 @@
 				38D9941D2E96378A00EBCD6C /* PrimaryOrderListView.swift in Sources */,
 				38E041FA2E815C1E0022C8FC /* Check-In View.swift in Sources */,
 				38A9D4C92E6E9C91009C70D2 /* leaveStatusViewmodel.swift in Sources */,
-				38A9D4CD2E6EE0D2009C70D2 /* missedPunchViewmodel.swift in Sources */,
+				38A9D4CD2E6EE0D2009C70D2 /* missedPunchStatusViewmodel.swift in Sources */,
 				38AF3ED42E74139800F76C5D /* MissedPunchApprovalDetailsView.swift in Sources */,
 				3F67B5B92CA7D30F00A1BCB7 /* Toast message.swift in Sources */,
 				38CA96BF2E6572CF000532A5 /* AdvanceRequestModel.swift in Sources */,
@@ -897,7 +921,7 @@
 				38EB916B2E603D0000077669 /* Helper.swift in Sources */,
 				385EDAF62E5480B6003F7AD0 /* PermissionAskingView.swift in Sources */,
 				385ACE212E6ADA740046FE7D /* DeviationEntryView.swift in Sources */,
-				38BC790D2E70316F000A784A /* weeklyoffViewmodel.swift in Sources */,
+				38BC790D2E70316F000A784A /* weeklyoffStatusViewmodel.swift in Sources */,
 				385EDAEA2E544DD6003F7AD0 /* LoginModel.swift in Sources */,
 				38A9D4D32E6EE830009C70D2 /* missedPunchView.swift in Sources */,
 				38B15E822E98FDD10089A006 /* primaryordermodel.swift in Sources */,

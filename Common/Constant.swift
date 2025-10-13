@@ -56,6 +56,8 @@ let missedPunch_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 +
 
 let leaveCancelStatus_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "AMod=0&divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=GetLeaveCancel_Status"
 
+let permissionStatus_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "AMod=0&divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=GetPermission_Status"
+
 //Dashboard
 let myDayPlanCheck_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "desig=MGR&divisionCode=\(division_code)&Sf_code=\(sf_code)&axn=check%2Fmydayplan&Date=\(Date())%2014%3A46%3A13"
 
@@ -97,8 +99,6 @@ let primary_OrderUrl = APIClient.shared.New_DBUrl + APIClient.shared.DBURL2 + "g
 
 
 
-//"http://qa.godairy.in/server/Db_v310.php?axn=get/distributor"
-//qa.godairy.in/server/Db_v310.php?axn=get/distributor
 
 
 
