@@ -18,6 +18,8 @@ class NetworkManager {
         }
         
         print(url)
+        
+        print("url : \(url)")
 
         let (data, response) = try await URLSession.shared.data(from: url)
         print("The response of the fetchData is \(response)")//qad-801090

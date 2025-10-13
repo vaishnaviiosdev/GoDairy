@@ -54,6 +54,11 @@ let missedPunch_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 +
 
 let leaveCancelStatus_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "AMod=0&divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=GetLeaveCancel_Status"
 
+let deviationStatus_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "AMod=0&divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=GetDeviation_Status"
+
+let advanceStatus_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=GetAdvance_Status"
+
+
 //Dashboard
 let myDayPlanCheck_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "desig=MGR&divisionCode=\(division_code)&Sf_code=\(sf_code)&axn=check%2Fmydayplan&Date=\(Date())%2014%3A46%3A13"
 
@@ -67,6 +72,8 @@ let leaveApproval_RejectUrl = APIClient.shared.New_DBUrl + APIClient.shared.New_
 
 let permissionApproval_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=ViewPermission"
 
+let deviationApproval_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=vwDeviation"
+
 //Approval History
 let permissionHistoryApproval_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "AMod=1&divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=GetPermission_Status"
 let missedPunchHistoryApproval_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "AMod=1&divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=GetMissedPunch_Status"
@@ -79,19 +86,14 @@ let advanceApprovalHistory_Url = APIClient.shared.New_DBUrl + APIClient.shared.N
 
 
 
+let leaveCancelApprovalHistory_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "AMod=1&divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=GetLeaveCancel_Status"
 
 
 
 
 
 
-
-
-
-
-
-
-
+let geoTagging_Url = "http://qa.godairy.in/server/MyPHP.php?&drCode=OutletCode&div=1&sfc=MGR93&loginType=CheckIn&axn=getStockistGeoTagInfo&stk=1566"
 
 
 

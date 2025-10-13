@@ -1,5 +1,5 @@
 //
-//  LeaveCancelHistoryViewModel.swift
+//  LeaveCancelApprovalHistoryViewModel.swift
 //  GoDairy
 //
 //  Created by Naga Prasath on 23/09/25.
@@ -10,7 +10,7 @@ import SwiftUI
 
 
 @MainActor
-class LeaveCancelHistoryViewModel: ObservableObject {
+class LeaveCancelApprovalHistoryViewModel: ObservableObject {
     
     @Published var leaveCancelApprovalHistoryList: [LeaveCancelApprovalHistoryModel] = []
     
@@ -25,4 +25,5 @@ class LeaveCancelHistoryViewModel: ObservableObject {
             print("Error Fetching data is \(error)")
         }
     }
+    
 }

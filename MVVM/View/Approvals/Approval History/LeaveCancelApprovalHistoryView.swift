@@ -1,5 +1,5 @@
 //
-//  LeaveCancelHistoryView.swift
+//  LeaveCancelApprovalHistoryView.swift
 //  GoDairy
 //
 //  Created by Naga Prasath on 23/09/25.
@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LeaveCancelApprovalHistoryView: View {
     
-    @StateObject var leaveCancelHistoryVM = LeaveCancelApprovalHistoryModel()
+    @StateObject var leaveCancelHistoryVM = LeaveCancelApprovalHistoryViewModel()
     
     var body: some View {
         NavigationStack {
@@ -17,7 +17,7 @@ struct LeaveCancelApprovalHistoryView: View {
                 homeBar(frameSize: 40)
                 
                 ScrollView {
-                    leaveCancelApprovalStatusCard(title: "", Model: leaveCancelHistoryVM)
+                    leaveCancelApprovalStatusCard(title: "LEAVE CANCEL STATUS", Model: leaveCancelHistoryVM)
                     
                 }
                 .padding(5)
@@ -33,7 +33,7 @@ struct LeaveCancelApprovalHistoryView: View {
 
 struct leaveCancelApprovalStatusCard: View {
     let title: String
-    @ObservedObject var Model: LeaveCancelApprovalHistoryModel
+    @ObservedObject var Model: LeaveCancelApprovalHistoryViewModel
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -49,7 +49,7 @@ struct leaveCancelApprovalStatusCard: View {
 }
 
 struct leaveCancelApprovalStatusList: View {
-    @ObservedObject var Model: LeaveCancelApprovalHistoryModel
+    @ObservedObject var Model: LeaveCancelApprovalHistoryViewModel
         
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -84,9 +84,12 @@ struct leaveCancelApprovalCardDataList: View {
     
     private var topRow: some View {
         VStack(alignment: .leading) {
+            Text(item.SFNm)
+                .font(.system(size: 11, weight: .semibold))
+                .foregroundColor(Color(cssRGB: item.StusClr) ?? .gray)
             
             HStack {
-                Text(item.From_Date + " TO " + item.To_Date)
+                Text(item.Created_Date)
                     .font(.system(size: 12, weight: .medium))
                     .foregroundColor(.black)
                 
@@ -111,43 +114,25 @@ struct leaveCancelApprovalCardDataList: View {
                     Text("TYPE")
                         .font(.caption)
                         .foregroundColor(.gray)
-                    Text(item.AdvTyp)
+                    Text(item.Leave_Type)
                         .font(.system(size: 14, weight: .semibold))
                 }
                 Spacer()
                 VStack(alignment: .trailing, spacing: 2) {
-                    Text("AMOUNT")
+                    Text("DAYS")
                         .font(.caption)
                         .foregroundColor(.gray)
-                    Text("\(item.AdvAmt)")
-                        .font(.system(size: 14, weight: .semibold))
-                }
-            }
-            
-            HStack {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("LOCATION")
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                    Text(item.AdvLoc)
-                        .font(.system(size: 14, weight: .semibold))
-                }
-                Spacer()
-                VStack(alignment: .trailing, spacing: 2) {
-                    Text("SETTLEMENT DATE")
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                    Text("\(item.eDate)")
+                    Text("\(item.No_of_Days)")
                         .font(.system(size: 14, weight: .semibold))
                 }
             }
             
             
             VStack(alignment: .leading, spacing: 2) {
-                Text("PURPOSE")
+                Text("REASON")
                     .font(.caption)
                     .foregroundColor(.gray)
-                Text(item.AdvPurp)
+                Text(item.Reason)
                     .font(.system(size: 14, weight: .semibold))
             }
             
@@ -156,16 +141,16 @@ struct leaveCancelApprovalCardDataList: View {
     
     private var appliedAndStatus: some View {
         HStack {
-            Text("Applied: \(item.AdvSettle)")
+            Text("Applied: \(item.Created_Date)")
             Spacer()
             
-            switch item.flag {
-            case 1:
-                Text("Approved: \(item.ApprDt)")
-            case 2:
-                Text("Rejected: \(item.ApprDt)")
+            switch item.Leave_Active_Flag {
+            case "0":
+                Text("Approved: \(item.LastUpdt_Date)")
+            case "1":
+                Text("Rejected: \(item.LastUpdt_Date)")
             default:
-                Text("Updated: \(item.ApprDt)")
+                Text("Updated: \(item.LastUpdt_Date)")
             }
         }
         .font(.system(size: 14, weight: .bold))
@@ -174,5 +159,5 @@ struct leaveCancelApprovalCardDataList: View {
 }
 
 #Preview {
-    LeaveCancelHistoryView()
+    LeaveCancelApprovalHistoryView()
 }

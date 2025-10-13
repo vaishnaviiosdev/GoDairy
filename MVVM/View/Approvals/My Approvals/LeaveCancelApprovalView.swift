@@ -8,8 +8,37 @@
 import SwiftUI
 
 struct LeaveCancelApprovalView: View {
+    
+    @StateObject var advanceApprovalVM = PermissionApprovalViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            VStack(spacing: 0) {
+                homeBar(frameSize: 40)
+                    .padding(.bottom, 5)
+                
+                VStack(alignment: .leading, spacing: 0) {
+                    titleCard(title: "LEAVE CANCEL APPROVAL", frameHeight: 40, fontSize: 14)
+                }
+                .background(Color.white)
+                .cornerRadius(12)
+                .padding(.horizontal, 8)
+                
+                ApprovalHeader()
+                
+                ScrollView {
+                    LazyVStack(spacing: 10) {
+                        
+                        ForEach(advanceApprovalVM.permissionApprovaldata) { item in
+                            permissionApprovalRow(item: item)
+                        }
+                    }
+                }
+            }
+            .task {
+                await advanceApprovalVM.fetchMissedApprovalData()
+            }
+        }
     }
 }
 

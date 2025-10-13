@@ -17,7 +17,7 @@ struct LeaveApprovalHistoryView: View {
                 homeBar(frameSize: 40)
                 
                 ScrollView {
-                    leaveApprovalStatusCard(title: "Leave", Model: leaveApprovalHistoryVM)
+                    leaveApprovalStatusCard(title: "LEAVE STATUS", Model: leaveApprovalHistoryVM)
                     
                     //missedPunchApprovalStatusCard(title: "MISSED PUNCH", Model: leaveApprovalHistoryVM)
                 }

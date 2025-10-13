@@ -228,7 +228,7 @@ let menuItems: [MenuItem] = [
     MenuItem(title: "Van Sales", icon: "delivery-van", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
     MenuItem(title: "OverDue List", icon: "SecondaryOrder", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
     MenuItem(title: "Outlets", icon: "shop", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
-    MenuItem(title: "Geo Tagging", icon: "shop", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
+    MenuItem(title: "Geo Tagging", icon: "shop", isSystemIcon: false, destination: AnyView(GeoTaggingView())),
     MenuItem(title: "Primary Delivery", icon: "delivery-van", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
     MenuItem(title: "Nearby Outlets", icon: "shop-lock", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
     MenuItem(title: "Reports", icon: "reports", isSystemIcon: false, destination: AnyView(LeaveRequestView())),
