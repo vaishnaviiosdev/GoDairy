@@ -85,6 +85,7 @@
 		38C4FBA82E9D03AE001934AD /* advanceStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C4FBA72E9D03A5001934AD /* advanceStatusModel.swift */; };
 		38C4FBAA2E9D0BB9001934AD /* AdvanceStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C4FBA92E9D0BB9001934AD /* AdvanceStatusView.swift */; };
 		38C4FBAC2E9D0C40001934AD /* advanceStatusViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C4FBAB2E9D0C36001934AD /* advanceStatusViewmodel.swift */; };
+		38C4FBB02E9D1A3F001934AD /* OrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C4FBAF2E9D1A3F001934AD /* OrdersView.swift */; };
 		38C563FE2C637D5200153761 /* GoDairyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C563FD2C637D5200153761 /* GoDairyApp.swift */; };
 		38C564002C637D5200153761 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C563FF2C637D5200153761 /* ContentView.swift */; };
 		38C564022C637D5300153761 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38C564012C637D5300153761 /* Assets.xcassets */; };
@@ -210,6 +211,7 @@
 		38C4FBA72E9D03A5001934AD /* advanceStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = advanceStatusModel.swift; sourceTree = "<group>"; };
 		38C4FBA92E9D0BB9001934AD /* AdvanceStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvanceStatusView.swift; sourceTree = "<group>"; };
 		38C4FBAB2E9D0C36001934AD /* advanceStatusViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = advanceStatusViewmodel.swift; sourceTree = "<group>"; };
+		38C4FBAF2E9D1A3F001934AD /* OrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersView.swift; sourceTree = "<group>"; };
 		38C563FA2C637D5200153761 /* GoDairy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoDairy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38C563FD2C637D5200153761 /* GoDairyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoDairyApp.swift; sourceTree = "<group>"; };
 		38C563FF2C637D5200153761 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -683,6 +685,23 @@
 			path = "Request&Status";
 			sourceTree = "<group>";
 		};
+		38C4FBAD2E9D1A02001934AD /* PrimaryOrderHistory */ = {
+			isa = PBXGroup;
+			children = (
+				38C4FBAE2E9D1A22001934AD /* Orders */,
+				38D994202E968ED700EBCD6C /* PrimaryOrderHistoryView.swift */,
+			);
+			path = PrimaryOrderHistory;
+			sourceTree = "<group>";
+		};
+		38C4FBAE2E9D1A22001934AD /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				38C4FBAF2E9D1A3F001934AD /* OrdersView.swift */,
+			);
+			path = Orders;
+			sourceTree = "<group>";
+		};
 		38C563F12C637D5200153761 = {
 			isa = PBXGroup;
 			children = (
@@ -778,7 +797,7 @@
 			isa = PBXGroup;
 			children = (
 				38D9941C2E96378A00EBCD6C /* PrimaryOrderListView.swift */,
-				38D994202E968ED700EBCD6C /* PrimaryOrderHistoryView.swift */,
+				38C4FBAD2E9D1A02001934AD /* PrimaryOrderHistory */,
 			);
 			path = "Primary Order";
 			sourceTree = "<group>";
@@ -925,6 +944,7 @@
 				38C3C10A2E83FB100014DCA2 /* MapKit.swift in Sources */,
 				1505FF0B2E7D7FD600A4E033 /* PermissionApprovalDetailsView.swift in Sources */,
 				38AF3EDA2E74341700F76C5D /* approvalPermissionmodel.swift in Sources */,
+				38C4FBB02E9D1A3F001934AD /* OrdersView.swift in Sources */,
 				1505FF032E7C1A7400A4E033 /* AdvanceApprovalHistoryModel.swift in Sources */,
 				1505FF172E82745A00A4E033 /* LeaveCancelApprovalDetailsView.swift in Sources */,
 				1505FF1D2E827A2C00A4E033 /* LeaveCancelApprovalHistoryModel.swift in Sources */,
