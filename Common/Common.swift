@@ -22,13 +22,18 @@ struct BackIcon: View {
 
 struct RefreshButton: View {
     var action: () -> Void   // closure for custom tap behavior
+    var foregroundColour: Color = .appPrimary1
+    var frameSize: CGFloat = 20
     
     var body: some View {
         Button(action: action) {
-            Image(systemName: "arrow.clockwise")
-                .font(.system(size: 20, weight: .semibold))
-                .foregroundColor(Color.appPrimary1)
-                .regularTextStyle(size: 20, foreground: .appPrimary1, fontWeight: .semibold)
+            Image("refresh1")
+                .resizable()
+                //.font(.system(size: 20, weight: .semibold))
+                .frame(width: frameSize, height: frameSize)
+                .fontWeight(.bold)
+                .foregroundColor(foregroundColour)
+                //.regularTextStyle(size: 20, foreground: foregroundColour, fontWeight: .semibold)
                 .padding(.leading, 4)
         }
         .buttonStyle(PlainButtonStyle())
@@ -38,7 +43,7 @@ struct RefreshButton: View {
 struct CardStyleModifier: ViewModifier {
     var cornerRadius: CGFloat = 12
     var backgroundColor: Color = .white
-    var borderColor: Color = Color.gray.opacity(0.5)
+    var borderColor: Color = Color.black.opacity(0.2) //0.5
     var shadowColor: Color = Color.black.opacity(0.17)
     var shadowRadius: CGFloat = 4
     var shadowX: CGFloat = 0
@@ -52,7 +57,7 @@ struct CardStyleModifier: ViewModifier {
             )
             .overlay(
                 RoundedRectangle(cornerRadius: cornerRadius)
-                    .stroke(borderColor, lineWidth: 0.1)
+                    .stroke(borderColor, lineWidth: 0.5) //0.1
             )
             .shadow(color: shadowColor, radius: shadowRadius, x: shadowX, y: shadowY)
     }
@@ -101,6 +106,35 @@ struct StatusBaseCard<Content: View>: View {
         )
         .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
         .padding(.horizontal, 5)
+    }
+}
+
+struct BorderedTabModifier: ViewModifier {
+    var isSelected: Bool
+    var selectedColor: Color = .blue
+    var unselectedColor: Color = .secondary
+    var cornerRadius: CGFloat = 12
+    var lineWidth: CGFloat = 2
+    var leadingPadding: CGFloat = 0
+    var verticalPadding: CGFloat = 0
+
+    func body(content: Content) -> some View {
+        content
+            .padding(.leading, leadingPadding)
+            .padding(.vertical, verticalPadding)
+            .padding(.horizontal, 10)
+            
+            .overlay(
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .stroke(isSelected ? selectedColor : unselectedColor, lineWidth: lineWidth)
+            )
+            .cornerRadius(cornerRadius)
+    }
+}
+
+extension View {
+    func borderedTab(isSelected: Bool, selectedColor: Color = .blue, leading: CGFloat = 12, vertical: CGFloat = 8, cornerR: CGFloat = 12) -> some View {
+        self.modifier(BorderedTabModifier(isSelected: isSelected, selectedColor: selectedColor, cornerRadius: cornerR, leadingPadding: leading, verticalPadding: vertical))
     }
 }
 

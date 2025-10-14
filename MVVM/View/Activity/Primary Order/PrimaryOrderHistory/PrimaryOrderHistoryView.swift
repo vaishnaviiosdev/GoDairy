@@ -19,7 +19,8 @@ struct PrimaryOrderHistoryView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.white.ignoresSafeArea()
+                Color.backgroundColour
+                    .ignoresSafeArea()
 
                 VStack(spacing: 0) {
                     homeBar(frameSize: 40)

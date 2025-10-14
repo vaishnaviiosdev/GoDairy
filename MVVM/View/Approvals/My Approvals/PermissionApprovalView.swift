@@ -50,7 +50,7 @@ struct PermissionApprovalView: View {
         NavigationStack {
             ZStack {
                 // Background fills full screen
-                Color.white
+                Color.backgroundColour
                     .ignoresSafeArea()
                 
                 VStack(spacing: 0) {

@@ -82,7 +82,7 @@ struct ApprovalMainView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.white
+                Color.backgroundColour
                     .ignoresSafeArea()
 
                 VStack(spacing: 0) {
