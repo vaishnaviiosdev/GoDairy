@@ -43,8 +43,6 @@ struct TopView: View {
             HStack {
                 Text("Search")
                     .font(.title2)
-//                    .foregroundColor(.black)
-//                    .fontWeight(.medium)
                     .regularTextStyle(foreground: .black, fontWeight: .medium)
 
                 Spacer()
@@ -58,23 +56,26 @@ struct TopView: View {
     }
 }
 
-//struct primaryOrderList: View {
-//    var primaryOrdervm: PrimaryorderViewModel
+//struct PrimaryOrderList: View {
+//    @ObservedObject var primaryOrderVM: PrimaryorderViewModel
+//    
 //    var body: some View {
-//        LazyVStack(spacing: 0) {
-//            ForEach(sampleCustomers.indices, id: \.self) { index in
-//                CustomerRow(
-//                    customer: sampleCustomers[index],
-//                    isFirst: index == 0
-//                )
-//
-//                if index != sampleCustomers.count - 1 {
-//                    Divider()
-//                        .padding(.horizontal)
+//        ScrollView {
+//            LazyVStack(spacing: 0) {
+//                ForEach(primaryOrderVM.primaryOrderDataResponse.indices, id: \.self) { index in
+//                    CustomerRow(
+//                        customer: primaryOrderVM.primaryOrderDataResponse[index],
+//                        isFirst: index == 0
+//                    )
+//                    
+//                    if index != primaryOrderVM.primaryOrderDataResponse.count - 1 {
+//                        Divider()
+//                            .padding(.horizontal)
+//                    }
 //                }
 //            }
+//            .padding(.top, 10)
 //        }
-//        .padding(.top, 10)
 //    }
 //}
 
@@ -84,13 +85,15 @@ struct PrimaryOrderList: View {
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 0) {
-                ForEach(primaryOrderVM.primaryOrderDataResponse.indices, id: \.self) { index in
-                    CustomerRow(
-                        customer: primaryOrderVM.primaryOrderDataResponse[index],
-                        isFirst: index == 0 // top corners only for first card
-                    )
+                ForEach(primaryOrderVM.primaryOrderDataResponse) { customer in
+                    NavigationLink(destination: PrimaryOrderHistoryView(customer: customer)) {
+                        CustomerRow(
+                            customer: customer,
+                            isFirst: primaryOrderVM.primaryOrderDataResponse.first?.id == customer.id
+                        )
+                    }
                     
-                    if index != primaryOrderVM.primaryOrderDataResponse.count - 1 {
+                    if customer.id != primaryOrderVM.primaryOrderDataResponse.last?.id {
                         Divider()
                             .padding(.horizontal)
                     }
@@ -101,23 +104,6 @@ struct PrimaryOrderList: View {
     }
 }
 
-
-// ✅ Customer model
-struct Customer: Identifiable {
-    let id: String?
-    let name: String?
-    let outstanding: Double?
-    let overdue: Double?
-    let phone: String?
-
-    var displayName: String {
-        "\(name ?? "SAI PRASANNA")(\(id ?? "10085"))"
-    }
-
-    var initial: String {
-        String(name?.prefix(1) ?? "S").uppercased()
-    }
-}
 
 // ✅ CustomerRow view
 struct CustomerRow: View {
@@ -130,7 +116,6 @@ struct CustomerRow: View {
 
     var body: some View {
         HStack(alignment: .top, spacing: 5) {
-            // Initial Circle
             ZStack {
                 Circle()
                     .fill(LinearGradient(colors: [Color.blue.opacity(0.9), Color.blue.opacity(0.7)],
@@ -140,29 +125,20 @@ struct CustomerRow: View {
                     .padding(.vertical, 10)
 
                 Text(initial)
-                    .foregroundColor(.white)
                     .font(.title2)
-                    .fontWeight(.heavy)
+                    .regularTextStyle(foreground: .white, fontWeight: .heavy)
             }
 
             VStack(alignment: .leading, spacing: 8) {
                 Text(customer.name ?? "")
-                    //.font(.system(size: 16, weight: .medium))
-                    .regularTextStyle(size: 16, fontWeight: .medium)
-                    .foregroundColor(.black)
+                    .regularTextStyle(size: 16, foreground: .black, fontWeight: .medium)
 
                 HStack {
                     VStack(alignment: .leading, spacing: 3) {
                         HStack {
                             Text("Outstanding:")
-//                                .foregroundColor(.gray)
-//                                .font(.system(size: 14))
-//                                .fontWeight(.semibold)
                                 .regularTextStyle(size: 14, foreground: .gray, fontWeight: .semibold)
                             Text(String(format: "₹ %.2f", customer.Out_stand ?? 0))
-//                                .font(.system(size: 14))
-//                                .foregroundColor(.gray)
-//                                .fontWeight(.semibold)
                                 .regularTextStyle(size: 14, foreground: .gray, fontWeight: .semibold)
 
                             RefreshButton {
@@ -172,50 +148,27 @@ struct CustomerRow: View {
 
                         HStack {
                             Text("OverDue:")
-//                                .foregroundColor(.gray)
-//                                .font(.system(size: 14))
-//                                .fontWeight(.semibold)
                                 .regularTextStyle(size: 14, foreground: .gray, fontWeight: .semibold)
                             Text(String(format: "₹ %.2f", customer.overDue ?? 0))
-//                                .font(.system(size: 14))
-//                                .foregroundColor(.gray)
-//                                .fontWeight(.semibold)
                                 .regularTextStyle(size: 14, foreground: .gray, fontWeight: .semibold)
                         }
 
                         Text(customer.Mobile ?? "------")
-//                            .font(.system(size: 14))
-//                            .foregroundColor(.gray)
-//                            .fontWeight(.regular)
                             .regularTextStyle(size: 14, foreground: .gray, fontWeight: .regular)
                             .padding(.top, 2)
                     }
                     Spacer()
                 }
             }
-            //.padding(.vertical, 10)
         }
         .padding()
-        .background(
-            // ✅ RoundedCorners only for the first item
+        .background( //tl: topleft; tr: topright; bl: bottomleft; bottomright: bottomright.
             isFirst ?
             RoundedCorners(color: .white, tl: 40, tr: 40, bl: 0, br: 0) :
             RoundedCorners(color: .white, tl: 0, tr: 0, bl: 0, br: 0)
         )
     }
 }
-
-
-// ✅ Sample data for preview/testing
-let sampleCustomers: [Customer] = [
-    Customer(id: "105005", name: "SAI PRASANNA", outstanding: 0.0, overdue: 0.0, phone: "9866607280"),
-    Customer(id: "105006", name: "R.NAIDU", outstanding: 24.0, overdue: 0.0, phone: "7893632949"),
-    Customer(id: "105007", name: "VENKATASWARA", outstanding: 0.0, overdue: 0.0, phone: "9866493102"),
-    Customer(id: "105011", name: "AQSA MILK(ALAM KHAN)", outstanding: 0.0, overdue: 0.0, phone: "9989170065"),
-    Customer(id: "105013", name: "ICB", outstanding: 0.0, overdue: 0.0, phone: "9000870092"),
-    Customer(id: "105076", name: "CHANDRA", outstanding: 0.0, overdue: 0.0, phone: "9980117012")
-]
-
 
 #Preview {
     PrimaryOrderListView()

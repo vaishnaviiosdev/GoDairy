@@ -138,15 +138,5 @@ extension View {
     }
 }
 
-//extension Color {
-//    init?(cssRGB: String) {
-//        let components = cssRGB
-//            .replacingOccurrences(of: "rgb(", with: "")
-//            .replacingOccurrences(of: ")", with: "")
-//            .split(separator: ",")
-//            .compactMap { Double($0.trimmingCharacters(in: .whitespaces)) }
-//        guard components.count == 3 else { return nil }
-//        self.init(red: components[0]/255, green: components[1]/255, blue: components[2]/255)
-//    }
-//}
+
 

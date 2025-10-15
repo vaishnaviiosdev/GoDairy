@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PrimaryOrderHistoryView: View {
+    let customer: primaryOrderData
     @State private var selectedEmployee = "SAI PRASANNA(105005)"
     @State private var startDate = Date()
     @State private var endDate = Date()
@@ -24,19 +25,19 @@ struct PrimaryOrderHistoryView: View {
 
                 VStack(spacing: 0) {
                     homeBar(frameSize: 40)
-                        .padding(.top)
+                        .padding(.top, 4)
                     
                     titleCard(title: "PRIMARY ORDER HISTORY", frameHeight: 40, fontSize: 18)
 
                     VStack(spacing: 8) {
                         
-                        CustomDropdownButton(title: "SAI PRASANNA(105005)") {
+                        CustomDropdownButton(title: customer.name ?? "") {
                             print("Tapped dropdown")
                         }
 
                         HStack(spacing: 10) {
-                            CustomDatePicker(selectedDate: $startDate, cornerRadius: 5, frameHeight: 45, textForegroundColor: .black, textFontWeight: .regular)
-                            CustomDatePicker(selectedDate: $endDate, cornerRadius: 5, frameHeight: 45, textForegroundColor: .black, textFontWeight: .regular)
+                            CustomDatePicker(selectedDate: $startDate, cornerRadius: 5, frameHeight: 45, textForegroundColor: .gray, textFontWeight: .medium)
+                            CustomDatePicker(selectedDate: $endDate, cornerRadius: 5, frameHeight: 45, textForegroundColor: .gray, textFontWeight: .medium)
                         }
                         .padding(.horizontal, 8)
 
@@ -61,7 +62,7 @@ struct PrimaryOrderHistoryView: View {
                         totalAmountView()
                             .padding(.horizontal, 8)
 
-                        bottomButtonView()
+                        bottomButtonView(customer: customer)
                     }
                 }
             }
@@ -119,15 +120,15 @@ struct CustomDropdownButton: View {
             HStack {
                 Text(title)
                     .regularTextStyle(size: fontSize, foreground: foreground, fontWeight: fontWeight)
-                Image(systemName: icon)
-                    .resizable()
-                    .frame(width: 8, height: 6)
-                    .foregroundColor(foreground)
+//                Image(systemName: icon)
+//                    .resizable()
+//                    .frame(width: 8, height: 6)
+//                    .foregroundColor(foreground)
                 Spacer()
             }
             .padding(.vertical, 5)
             .padding(.horizontal, 5)
-            .background(background)
+            .background(.clear)
             .cornerRadius(6)
             //.shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
         }
@@ -204,8 +205,6 @@ struct tableHeader: View {
                     .frame(maxWidth: .infinity, alignment: header.1)
             }
         }
-//        .font(.system(size: 15, weight: .bold))
-//        .foregroundColor(.white)
         .regularTextStyle(size: 15, foreground: .white, fontWeight: .bold)
         .padding(.horizontal, 8)
     }
@@ -217,15 +216,9 @@ struct invoiceListView: View {
             HStack {
                 VStack(alignment: .leading, spacing: 5) {
                     Text("SAI PRASANNA")
-//                        .font(.system(size: 16))
-//                        .foregroundColor(.black)
-//                        .fontWeight(.bold)
                         .regularTextStyle(size: 16, foreground: .black, fontWeight: .bold)
                     
                     Text("105005")
-//                        .font(.system(size: 14))
-//                        .foregroundColor(.black)
-//                        .fontWeight(.regular)
                         .regularTextStyle(size: 14, foreground: .black, fontWeight: .regular)
                     
                     HStack() {
@@ -236,9 +229,6 @@ struct invoiceListView: View {
                         Spacer()
                         Text("960.00")
                     }
-//                    .font(.system(size: 14))
-//                    .foregroundColor(.black)
-//                    .fontWeight(.regular)
                     .regularTextStyle()
                     .frame(maxWidth: .infinity, alignment: .center)
                 }
@@ -260,17 +250,11 @@ struct invoiceListView: View {
                     .padding(.leading, 12)
                 
                 Text("07/10/2025 11:42:51")
-//                    .font(.system(size: 14))
-//                    .foregroundColor(.black)
-//                    .fontWeight(.regular)
                     .regularTextStyle()
                 
                 Spacer()
                 
                 Text("Cutoff Time:13:00:00")
-//                    .font(.system(size: 11))
-//                    .foregroundColor(.black)
-//                    .fontWeight(.regular)
                     .regularTextStyle(size: 11)
             }
         }
@@ -304,22 +288,47 @@ struct totalAmountView: View {
     }
 }
 
+//struct bottomButtonView: View {
+//    let bottomButtons = ["Orders", "NO ORDER", "Activity", "Activity View", "Approval"]
+//    var body: some View {
+//        ScrollView(.horizontal, showsIndicators: false) {
+//            HStack(spacing: 10) {
+//                ForEach(bottomButtons, id: \.self) { button in
+//                    Button(action: {
+//                        
+//                    }) {
+//                        Text(button)
+//                            //.font(.system(size: 14, weight: .bold))
+//                            .regularTextStyle(size: 14, fontWeight: .bold)
+//                            .padding(.horizontal, 10)
+//                            .padding(.vertical, 10)
+//                            .background(Color.appPrimary)
+//                            .foregroundColor(.white)
+//                            .cornerRadius(11)
+//                    }
+//                }
+//            }
+//            .padding(.horizontal, 8)
+//            .padding(.vertical, 8)
+//        }
+//    }
+//}
+
 struct bottomButtonView: View {
+    let customer: primaryOrderData
+    // Example button names
     let bottomButtons = ["Orders", "NO ORDER", "Activity", "Activity View", "Approval"]
+    
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 10) {
                 ForEach(bottomButtons, id: \.self) { button in
-                    Button(action: {
-                        
-                    }) {
+                    NavigationLink(destination: destinationView(for: button)) {
                         Text(button)
-                            //.font(.system(size: 14, weight: .bold))
-                            .regularTextStyle(size: 14, fontWeight: .bold)
+                            .regularTextStyle(size: 14, foreground: .white, fontWeight: .bold)
                             .padding(.horizontal, 10)
                             .padding(.vertical, 10)
                             .background(Color.appPrimary)
-                            .foregroundColor(.white)
                             .cornerRadius(11)
                     }
                 }
@@ -328,8 +337,58 @@ struct bottomButtonView: View {
             .padding(.vertical, 8)
         }
     }
+    
+    // MARK: - Destination Selector
+    @ViewBuilder
+    private func destinationView(for button: String) -> some View {
+        switch button {
+        case "Orders":
+            OrdersView(customer: customer)
+        case "NO ORDER":
+            OrdersView(customer: customer)
+        case "Activity":
+            OrdersView(customer: customer)
+        case "Activity View":
+            ActivityDashboardView()
+        case "Approval":
+            ApprovalMainView()
+        default:
+            Text("Coming Soon...")
+        }
+    }
 }
 
+
 #Preview {
-    PrimaryOrderHistoryView()
+    PrimaryOrderHistoryView(
+        customer: primaryOrderData(
+            id: "John Doe",
+            StateCode: "1200",
+            orderTaken: 300,
+            name: "9876543210",
+            Out_stand: nil,
+            overDue: nil,
+            Town_Code: nil,
+            Town_Name: nil,
+            Addr1: nil,
+            Addr2: nil,
+            City: nil,
+            Pincode: nil,
+            GSTN: nil,
+            FSSAI: nil,
+            lat: nil,
+            long: nil,
+            addrs: nil,
+            Mobile: nil,
+            Tcode: nil,
+            Dis_Cat_Code: nil,
+            ERP_Code: nil,
+            DivERP: nil,
+            Latlong: nil,
+            CusSubGrpErp: nil,
+            flag: nil,
+            remarks: nil
+        )
+    )
 }
+

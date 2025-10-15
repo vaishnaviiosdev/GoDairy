@@ -7,35 +7,52 @@
 
 import SwiftUI
 
-let CategoryList: [String] = ["Milk", "UHT Milk", "Butter and Yogurt", "Ice Cream"]
+//let CategoryList: [String] = ["Milk", "UHT Milk", "Butter and Yogurt", "Ice Cream"]
 let SubCategoryList: [String] = ["FRESH MILK", "CURD", "BUTTER WITH LONG 123", "LASSI"]
 let productList: [String] = ["FULL CREAM MILK", "STANDARD MILK", "TONED MILK"]
 
 struct OrdersView: View {
+    let customer: primaryOrderData
+    @StateObject var ordersDataVM = ordersViewModel()
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.backgroundColour.ignoresSafeArea()
-                
+                Color.backgroundColour
+                    .ignoresSafeArea()
+
                 VStack(spacing: 0) {
-                    homeBarTop(frameSize: 50)
-                    
-                    VStack {
-                        CustomerSection()
-                        DependentScrollViewUI()
-                        ProductDetailView()
+                    homeBarTop(frameSize: 50, customer: customer)
+                        .padding(.top)
+
+                    ScrollView(.vertical, showsIndicators: false) {
+                        VStack(spacing: 16) {
+                            CustomerSection(customer: customer)
+                            DependentScrollViewUI(customer: customer, ordersDataViewModel: ordersDataVM)
+                            ProductDetailView()
+                            proceedBtnView()
+                                .padding(.horizontal, 6)
+                                .padding(.bottom, 10)
+                        }
                     }
                 }
             }
             .navigationTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                Task {
+                    await ordersDataVM.PostCategoryList(id: customer.id)
+                }
+            }
         }
     }
 }
 
 struct homeBarTop: View {
+    @State private var currentTime: String = ""
+    let fixedTime = "13:00:00"
     var frameSize: CGFloat = 40
+    var customer: primaryOrderData
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -45,10 +62,11 @@ struct homeBarTop: View {
                     Text("GoDiary")
                         .regularTextStyle(size: 15, foreground: .white, fontWeight: .heavy)
                         
-                    Text("Version v3.4")
+                    Text("Version : \(appVersion ?? "")")
                         .regularTextStyle(size: 11, foreground: .white, fontWeight: .heavy)
                 }
                 .padding(.vertical, 5)
+                .padding(.horizontal, 5)
                 Spacer()
                 
                 Text("VIEW HISTORY")
@@ -59,7 +77,7 @@ struct homeBarTop: View {
                         .resizable()
                         .frame(width: 20, height: 20)
                         .foregroundColor(.white)
-                        .padding(.trailing, 16)
+                        .padding(.trailing, 5)
                 }
             }
             .frame(height: frameSize)
@@ -75,22 +93,36 @@ struct homeBarTop: View {
                 
                 Spacer()
                 
-                Text("17:30:13  /  13:00:00 ")
+                Text("\(currentTime)  /  \(fixedTime)")
                     .regularTextStyle(size: 15, foreground: .white, fontWeight: .heavy)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .frame(height: 30)
+            .padding(.horizontal, 5)
             .background(Color.appPrimary)
         }
+        .onAppear {
+            updateTime()
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                updateTime()
+            }
+        }
+    }
+    
+    private func updateTime() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm:ss" // 24-hour format
+        currentTime = formatter.string(from: Date())
     }
 }
 
 struct CustomerSection: View {
+    var customer: primaryOrderData
     var body: some View {
         VStack {
-            CustomerSection1()
-            CustomerSection2()
-            CustomerSection3()
+            CustomerSection1(customer: customer)
+            CustomerSection2(customer: customer)
+            CustomerSection3(customer: customer)
         }
         .background(Color.white)
         .cornerRadius(5)
@@ -101,9 +133,10 @@ struct CustomerSection: View {
 }
 
 struct CustomerSection1: View {
+    var customer: primaryOrderData
     var body: some View {
         HStack {
-            CustomDropdownButton(title: "SAI PRASANNA(105005)", fontSize: 16, fontWeight: .semibold) {
+            CustomDropdownButton(title: customer.name ?? "---", fontSize: 16, fontWeight: .semibold) {
                 print("Tapped dropdown")
             }
             Spacer()
@@ -114,7 +147,7 @@ struct CustomerSection1: View {
                         .frame(width: 20, height: 20)
                         .padding(.leading, 10)
                     Text("Event Capture")
-                        .regularTextStyle(size: 15, foreground: .white, fontWeight: .bold)
+                        .regularTextStyle(size: 13, foreground: .white, fontWeight: .heavy)
                         .font(.subheadline)
                         .padding(.trailing, 10)
                         .padding(.vertical, 10)
@@ -129,21 +162,22 @@ struct CustomerSection1: View {
 }
 
 struct CustomerSection2: View {
+    var customer: primaryOrderData
     var body: some View {
-        HStack(spacing: 15) {
+        HStack(spacing: 5) {
             VStack(alignment: .leading, spacing: 5) {
-                Text("105005")
-                    .regularTextStyle(size: 14, foreground: .black, fontWeight: .bold)
-                Text("14-Oct-2025")
-                    .regularTextStyle(size: 14, foreground: .black, fontWeight: .bold)
+                Text(customer.ERP_Code ?? "0")
+                    .regularTextStyle(size: 12, foreground: .black, fontWeight: .medium)
+                Text(Date().formattedAsDDMMYYYY())
+                    .regularTextStyle(size: 12, foreground: .black, fontWeight: .medium)
             }
             
             Button(action: {
                 print("Repeat Order is Tapped")
             }) {
                 Text("REPEAT ORDER")
-                    .font(.subheadline)
-                    .regularTextStyle(foreground: .white, fontWeight: .semibold)
+                    //.font(.subheadline)
+                    .regularTextStyle(size: 13, foreground: .white, fontWeight: .bold)
                     .padding(.horizontal, 20)
                     .padding(.vertical, 6)
                     .background(
@@ -156,7 +190,7 @@ struct CustomerSection2: View {
                             endPoint: .bottom
                         )
                     )
-                    .cornerRadius(15)
+                    .cornerRadius(10)
             }
             Spacer()
             Text("₹9,185.10")
@@ -168,9 +202,11 @@ struct CustomerSection2: View {
 }
 
 struct CustomerSection3: View {
+    var customer: primaryOrderData
     var body: some View {
         HStack(spacing: 0) {
-            Text("Outstanding: ₹ 0.00")
+            Text("Outstanding: \(String(format: "₹ %.2f", customer.Out_stand ?? 0))")
+            //String(format: "₹ %.2f", customer.Out_stand ?? 0)
                 .regularTextStyle(size: 14, foreground: .black, fontWeight: .regular)
             Spacer()
             Text("Order Limit Value")
@@ -185,6 +221,9 @@ struct CustomerSection3: View {
 }
 
 struct DependentScrollViewUI: View {
+    var customer: primaryOrderData
+    @ObservedObject var ordersDataViewModel: ordersViewModel
+
     @State private var selectedCategory: String = "Milk"
     @State private var selectedSubCategory: String = "FRESH MILK"
     @State private var selectedProduct: String = "FULL CREAM MILK"
@@ -198,62 +237,172 @@ struct DependentScrollViewUI: View {
             categoryScrollView
             subCategoryScrollView
             Divider()
-                .background(.gray)
+                .background(Color.gray)
                 .padding(.horizontal, 8)
             productScrollView
         }
         .padding(.top, 8)
     }
+}
 
-    private var categoryScrollView: some View {
+// MARK: - Category Scroll
+private extension DependentScrollViewUI {
+    var categoryScrollView: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 10) {
-                ForEach(categoryList, id: \.self) { category in
-                    Text(category)
-                        .regularTextStyle(size: 12, foreground: selectedCategory == category ? .blue : .gray, fontWeight: .bold)
-                        .borderedTab(isSelected: selectedCategory == category, leading: 0, cornerR: 10)
-                        .onTapGesture {
-                            selectedCategory = category
-                        }
+                ForEach(ordersDataViewModel.categoryData) { category in
+                    categoryItem(category.name)
                 }
             }
             .padding(.horizontal)
         }
     }
 
-    private var subCategoryScrollView: some View {
+    @ViewBuilder
+    private func categoryItem(_ category: String) -> some View {
+        let isSelected = selectedCategory == category
+
+        Text(category)
+            .regularTextStyle(
+                size: 12,
+                foreground: isSelected ? .blue : .gray,
+                fontWeight: .bold
+            )
+            .borderedTab(isSelected: isSelected, leading: 0, cornerR: 10)
+            .onTapGesture { selectedCategory = category }
+    }
+}
+
+// MARK: - Subcategory Scroll
+private extension DependentScrollViewUI {
+    var subCategoryScrollView: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 10) {
                 ForEach(subCategoryList, id: \.self) { sub in
-                    Text(sub)
-                        .regularTextStyle(size: 12, foreground: selectedSubCategory == sub ? .blue : .gray, fontWeight: .bold)
-                        .borderedTab(isSelected: selectedSubCategory == sub, leading: 0, cornerR: 10)
-                        .onTapGesture {
-                            selectedSubCategory = sub
-                        }
+                    subCategoryItem(sub)
                 }
             }
             .padding(.horizontal)
         }
     }
 
-    private var productScrollView: some View {
+    @ViewBuilder
+    private func subCategoryItem(_ sub: String) -> some View {
+        let isSelected = selectedSubCategory == sub
+
+        Text(sub)
+            .regularTextStyle(
+                size: 12,
+                foreground: isSelected ? .blue : .gray,
+                fontWeight: .bold
+            )
+            .borderedTab(isSelected: isSelected, leading: 0, cornerR: 10)
+            .onTapGesture { selectedSubCategory = sub }
+    }
+}
+
+// MARK: - Product Scroll
+private extension DependentScrollViewUI {
+    var productScrollView: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 10) {
                 ForEach(productList, id: \.self) { product in
-                    Text(product)
-                        .regularTextStyle(size: 12, foreground: selectedProduct == product ? .blue : .gray, fontWeight: .bold)
-                        .borderedTab(isSelected: selectedProduct == product, leading: 25, vertical: 13, cornerR: 10)
-                        .onTapGesture {
-                            selectedProduct = product
-                        }
+                    productItem(product)
                 }
             }
             .padding(.horizontal)
             .padding(.bottom)
         }
     }
+
+    @ViewBuilder
+    private func productItem(_ product: String) -> some View {
+        let isSelected = selectedProduct == product
+
+        Text(product)
+            .regularTextStyle(
+                size: 12,
+                foreground: isSelected ? .blue : .gray,
+                fontWeight: .bold
+            )
+            .borderedTab(isSelected: isSelected, leading: 25, vertical: 13, cornerR: 10)
+            .onTapGesture { selectedProduct = product }
+    }
 }
+
+
+//struct DependentScrollViewUI: View {
+//    var customer: primaryOrderData
+//    @ObservedObject var ordersDataViewModel: ordersViewModel
+//    @State private var selectedCategory: String = "Milk"
+//    @State private var selectedSubCategory: String = "FRESH MILK"
+//    @State private var selectedProduct: String = "FULL CREAM MILK"
+//
+//    let categoryList: [String] = ["Milk", "UHT Milk", "Butter and Yogurt", "Ice Cream"]
+//    let subCategoryList: [String] = ["FRESH MILK", "CURD", "BUTTER WITH LONG 123", "LASSI"]
+//    let productList: [String] = ["FULL CREAM MILK", "STANDARD MILK", "TONED MILK"]
+//
+//    var body: some View {
+//        VStack(alignment: .leading, spacing: 10) {
+//            categoryScrollView
+//            subCategoryScrollView
+//            Divider()
+//                .background(.gray)
+//                .padding(.horizontal, 8)
+//            productScrollView
+//        }
+//        .padding(.top, 8)
+//    }
+//
+//    private var categoryScrollView: some View {
+//        ScrollView(.horizontal, showsIndicators: false) {
+//            HStack(spacing: 10) {
+//                ForEach(ordersDataViewModel.categoryData) { category in
+//                    Text(category)
+//                        .regularTextStyle(size: 12, foreground: selectedCategory == category ? .blue : .gray, fontWeight: .bold)
+//                        .borderedTab(isSelected: selectedCategory == category, leading: 0, cornerR: 10)
+//                        .onTapGesture {
+//                            selectedCategory = category
+//                        }
+//                }
+//            }
+//            .padding(.horizontal)
+//        }
+//    }
+//    
+//    private var subCategoryScrollView: some View {
+//        ScrollView(.horizontal, showsIndicators: false) {
+//            HStack(spacing: 10) {
+//                ForEach(subCategoryList, id: \.self) { sub in
+//                    Text(sub)
+//                        .regularTextStyle(size: 12, foreground: selectedSubCategory == sub ? .blue : .gray, fontWeight: .bold)
+//                        .borderedTab(isSelected: selectedSubCategory == sub, leading: 0, cornerR: 10)
+//                        .onTapGesture {
+//                            selectedSubCategory = sub
+//                        }
+//                }
+//            }
+//            .padding(.horizontal)
+//        }
+//    }
+//
+//    private var productScrollView: some View {
+//        ScrollView(.horizontal, showsIndicators: false) {
+//            HStack(spacing: 10) {
+//                ForEach(productList, id: \.self) { product in
+//                    Text(product)
+//                        .regularTextStyle(size: 12, foreground: selectedProduct == product ? .blue : .gray, fontWeight: .bold)
+//                        .borderedTab(isSelected: selectedProduct == product, leading: 25, vertical: 13, cornerR: 10)
+//                        .onTapGesture {
+//                            selectedProduct = product
+//                        }
+//                }
+//            }
+//            .padding(.horizontal)
+//            .padding(.bottom)
+//        }
+//    }
+//}
 
 struct ProductDetailView: View {
     var body: some View {
@@ -274,33 +423,46 @@ struct ProductDetailView: View {
             .padding(.horizontal, 8)
             
             VStack {
-                VStack(alignment: .leading) {
-                    Text("FCMHOMOGENIZE")
-                        .regularTextStyle(size: 16, foreground: .black, fontWeight: .semibold)
-                    Text("DMILKSACHET500")
-                        .regularTextStyle(size: 16, foreground: .black, fontWeight: .semibold)
-                    Text("ML-FARM-1104")
-                        .regularTextStyle(size: 16, foreground: .black, fontWeight: .semibold)
-                    Text("10375")
-                        .regularTextStyle(size: 12, foreground: .black, fontWeight: .medium)
-                    
-                    PriceDetailView()
-                    QtyView()
-                    
-                    Text("Order Qty Multiple of : 1")
-                        .regularTextStyle(size: 11, foreground: .black, fontWeight: .regular)
-                    
-                    productSubDetails()
-                    
-                    productAmountDetails()
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading, 9)
-                .padding(.vertical, 13)
+                productListView()
             }
+            //.padding()
             .cardStyle(cornerRadius: 4)
             .padding(.horizontal, 8)
         }
+    }
+}
+
+struct productListView: View {
+    var body: some View {
+        VStack {
+            VStack(alignment: .leading) {
+                Text("FCMHOMOGENIZE")
+                    .regularTextStyle(size: 16, foreground: .black, fontWeight: .semibold)
+                Text("DMILKSACHET500")
+                    .regularTextStyle(size: 16, foreground: .black, fontWeight: .semibold)
+                Text("ML-FARM-1104")
+                    .regularTextStyle(size: 16, foreground: .black, fontWeight: .semibold)
+                Text("10375")
+                    .regularTextStyle(size: 12, foreground: .black, fontWeight: .medium)
+                
+                PriceDetailView()
+                QtyView()
+                
+                Text("Order Qty Multiple of : 1")
+                    .regularTextStyle(size: 11, foreground: .black, fontWeight: .regular)
+                
+                productSubDetails()
+                
+                productAmountDetails()
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.leading, 9)
+            .padding(.vertical, 13)
+        }
+        .cardStyle(cornerRadius: 4)
+        .padding(.horizontal, 8)
+        .padding(.vertical, 8)
+
     }
 }
 
@@ -447,6 +609,65 @@ struct productAmountDetails: View {
     }
 }
 
+struct proceedBtnView: View {
+    
+    var body: some View {
+        HStack {
+            HStack {
+                Image(systemName: "bag.fill")
+                Text("₹ 0.00  Items: 0  Qty: 0")
+                    .font(.system(size: 16, weight: .heavy))
+            }
+            .foregroundColor(.white)
+            
+            Spacer()
+            
+            Text("PROCEED")
+                .font(.system(size: 16, weight: .heavy))
+                .foregroundColor(.white)
+        }
+        .padding()
+        .background(
+            LinearGradient(
+                gradient: Gradient(colors: [
+                    Color.appPrimary,
+                    Color.gradientColour2
+                ]),
+                startPoint: .top,
+                endPoint: .bottom
+            )
+        )
+        .cornerRadius(10)
+    }
+}
+
 #Preview {
-    OrdersView()
+    OrdersView(customer: primaryOrderData(
+        id: "John Doe",
+        StateCode: "1200",
+        orderTaken: 300,
+        name: "9876543210",
+        Out_stand: nil,
+        overDue: nil,
+        Town_Code: nil,
+        Town_Name: nil,
+        Addr1: nil,
+        Addr2: nil,
+        City: nil,
+        Pincode: nil,
+        GSTN: nil,
+        FSSAI: nil,
+        lat: nil,
+        long: nil,
+        addrs: nil,
+        Mobile: nil,
+        Tcode: nil,
+        Dis_Cat_Code: nil,
+        ERP_Code: nil,
+        DivERP: nil,
+        Latlong: nil,
+        CusSubGrpErp: nil,
+        flag: nil,
+        remarks: nil
+    ))
 }

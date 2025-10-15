@@ -105,24 +105,14 @@ let checkOut_SaveUrl = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl2 
 let primary_OrderUrl = APIClient.shared.New_DBUrl + APIClient.shared.DBURL2 + "get/distributor"
 
 
+//Orders
+let prodGroup_Url = APIClient.shared.New_DBUrl + APIClient.shared.DBURL2 + "get%2FprodGroup"
 
-
-
-
-
-
-
-
-
+let prodTypes_Url = APIClient.shared.New_DBUrl + APIClient.shared.DBURL2 + "get%2FprodTypes"
 
 
 
 let leaveCancelApprovalHistory_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "AMod=1&divisionCode=\(division_code)&sfCode=\(sf_code)&rSF=\(sf_code)&State_Code=1&axn=GetLeaveCancel_Status"
-
-
-
-
-
 
 let geoTagging_Url = "http://qa.godairy.in/server/MyPHP.php?&drCode=OutletCode&div=1&sfc=MGR93&loginType=CheckIn&axn=getStockistGeoTagInfo&stk=1566"
 

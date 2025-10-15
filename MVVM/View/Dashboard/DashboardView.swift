@@ -138,10 +138,10 @@ struct DashboardHeader: View {
         .padding()
         .alert("Are you sure you want to logout?", isPresented: $showLogoutAlert) {
             Button("Yes", role: .destructive) {
-                UserDefaults.standard.removeObject(forKey: "Sf_code")
-                UserDefaults.standard.removeObject(forKey: "Division_Code")
-                UserDefaults.standard.removeObject(forKey: "Sf_Name")
-                UserDefaults.standard.removeObject(forKey: "sf_Designation_Short_Name")
+                ["Sf_code", "Division_Code", "Sf_Name", "sf_Designation_Short_Name"].forEach {
+                    UserDefaults.standard.removeObject(forKey: $0)
+                }
+                UserDefaults.standard.synchronize()
                 isLoggedIn = false
                 router.root = .login
             }

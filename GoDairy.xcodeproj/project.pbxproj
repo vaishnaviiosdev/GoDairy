@@ -91,6 +91,8 @@
 		38C564022C637D5300153761 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38C564012C637D5300153761 /* Assets.xcassets */; };
 		38C564052C637D5300153761 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38C564042C637D5300153761 /* Preview Assets.xcassets */; };
 		38C5A3B82E853D6800BF8958 /* cameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C5A3B72E853D5F00BF8958 /* cameraPreview.swift */; };
+		38C6D63A2E9FAEBC0053F585 /* ordersmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C6D6392E9FAEAF0053F585 /* ordersmodel.swift */; };
+		38C6D63D2E9FB02B0053F585 /* ordersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C6D63C2E9FB02B0053F585 /* ordersViewModel.swift */; };
 		38C7FB042E7ACA3A001CA81D /* leaveApprovalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C7FB032E7ACA2E001CA81D /* leaveApprovalModel.swift */; };
 		38C7FB062E7AD2BB001CA81D /* LeaveApprovalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C7FB052E7AD2A7001CA81D /* LeaveApprovalViewModel.swift */; };
 		38C7FB082E7ADD71001CA81D /* LeaveApprovalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C7FB072E7ADD71001CA81D /* LeaveApprovalView.swift */; };
@@ -218,6 +220,8 @@
 		38C564012C637D5300153761 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38C564042C637D5300153761 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		38C5A3B72E853D5F00BF8958 /* cameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cameraPreview.swift; sourceTree = "<group>"; };
+		38C6D6392E9FAEAF0053F585 /* ordersmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ordersmodel.swift; sourceTree = "<group>"; };
+		38C6D63C2E9FB02B0053F585 /* ordersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ordersViewModel.swift; sourceTree = "<group>"; };
 		38C7FB032E7ACA2E001CA81D /* leaveApprovalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = leaveApprovalModel.swift; sourceTree = "<group>"; };
 		38C7FB052E7AD2A7001CA81D /* LeaveApprovalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveApprovalViewModel.swift; sourceTree = "<group>"; };
 		38C7FB072E7ADD71001CA81D /* LeaveApprovalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveApprovalView.swift; sourceTree = "<group>"; };
@@ -599,6 +603,7 @@
 			isa = PBXGroup;
 			children = (
 				38B15E812E98FDC60089A006 /* primaryordermodel.swift */,
+				38C6D6382E9FAEA50053F585 /* Order */,
 			);
 			path = "Primary Order";
 			sourceTree = "<group>";
@@ -614,6 +619,7 @@
 		38B15E842E9900E60089A006 /* PrimaryOrder */ = {
 			isa = PBXGroup;
 			children = (
+				38C6D63B2E9FB00E0053F585 /* Orders */,
 				38B15E852E9900F30089A006 /* PrimaryorderViewModel.swift */,
 			);
 			path = PrimaryOrder;
@@ -740,6 +746,22 @@
 				38C564042C637D5300153761 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		38C6D6382E9FAEA50053F585 /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				38C6D6392E9FAEAF0053F585 /* ordersmodel.swift */,
+			);
+			path = Order;
+			sourceTree = "<group>";
+		};
+		38C6D63B2E9FB00E0053F585 /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				38C6D63C2E9FB02B0053F585 /* ordersViewModel.swift */,
+			);
+			path = Orders;
 			sourceTree = "<group>";
 		};
 		38D365462E7D70EE0068CA01 /* Dashboard */ = {
@@ -971,6 +993,7 @@
 				3F67B5BE2CA7DA5000A1BCB7 /* APIClient.swift in Sources */,
 				38CDF9D72E7967B500085DF6 /* approvalMissedPunchModel.swift in Sources */,
 				38C7FB062E7AD2BB001CA81D /* LeaveApprovalViewModel.swift in Sources */,
+				38C6D63A2E9FAEBC0053F585 /* ordersmodel.swift in Sources */,
 				385EDAF02E54521E003F7AD0 /* PrivacyPolicyView.swift in Sources */,
 				38CA96C12E6573C0000532A5 /* AdvanceRequestViewModel.swift in Sources */,
 				38D735B22E5342B800197EA1 /* Constant.swift in Sources */,
@@ -1003,6 +1026,7 @@
 				382455182E8BDD8C00561BB0 /* checkinviewmodel.swift in Sources */,
 				1505FEEF2E7A8E6F00A4E033 /* LeaveApprovalHistoryModel.swift in Sources */,
 				38A9D4CB2E6ED702009C70D2 /* missedPunchStatusModel.swift in Sources */,
+				38C6D63D2E9FB02B0053F585 /* ordersViewModel.swift in Sources */,
 				38A9D4D12E6EE52B009C70D2 /* leaveCancelStatusViewmodel.swift in Sources */,
 				1505FF092E7D622E00A4E033 /* PermissionApprovalModel.swift in Sources */,
 				1505FF132E82740200A4E033 /* DeviationApprovalDetailsView.swift in Sources */,
