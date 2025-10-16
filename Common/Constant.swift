@@ -14,6 +14,7 @@ let division_code = UserDefaults.standard.string(forKey: "Division_Code") ?? ""
 let sf_name = UserDefaults.standard.string(forKey: "Sf_Name") ?? ""
 let sf_Designation = UserDefaults.standard.string(forKey: "sf_Designation_Short_Name") ?? ""
 let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+let dateTime = getCurrentDateAndTime()
 
 
 let milk_url = "https://admin.godairy.in/server/milk_url_config.json"
@@ -109,6 +110,9 @@ let primary_OrderUrl = APIClient.shared.New_DBUrl + APIClient.shared.DBURL2 + "g
 let prodGroup_Url = APIClient.shared.New_DBUrl + APIClient.shared.DBURL2 + "get%2FprodGroup"
 
 let prodTypes_Url = APIClient.shared.New_DBUrl + APIClient.shared.DBURL2 + "get%2FprodTypes"
+
+//Gate In
+let Gate_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "State_Code=1&divisionCode=\(division_code)&axn=dcr%2Fsave&sfCode=\(sf_code)"
 
 
 

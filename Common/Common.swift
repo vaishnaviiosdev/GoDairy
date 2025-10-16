@@ -20,6 +20,20 @@ struct BackIcon: View {
     }
 }
 
+func getCurrentDateAndTime() -> (eDate: String, eTime: String) {
+    let now = Date()
+    
+    let fullDateFormatter = DateFormatter()
+    fullDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    let eDate = fullDateFormatter.string(from: now)
+    
+    let timeOnlyFormatter = DateFormatter()
+    timeOnlyFormatter.dateFormat = "HH:mm:ss"
+    let eTime = timeOnlyFormatter.string(from: now)
+    
+    return (eDate, eTime)
+}
+
 struct RefreshButton: View {
     var action: () -> Void   // closure for custom tap behavior
     var foregroundColour: Color = .appPrimary1

@@ -40,7 +40,6 @@ class PreviewView: UIView {
     }
 }
 
-
 // MARK: - Camera Preview
 class CameraViewModel: ObservableObject {
     let session = AVCaptureSession()
@@ -104,7 +103,8 @@ class CameraViewModel: ObservableObject {
                 }
                 isFlashOn.toggle()
                 device.unlockForConfiguration()
-            } catch {
+            }
+            catch {
                 print("Flash toggle failed: \(error)")
             }
         }
@@ -123,7 +123,8 @@ class CameraViewModel: ObservableObject {
             }
 
             device.unlockForConfiguration()
-        } catch {
+        }
+        catch {
             print("Failed to set brightness: \(error)")
         }
     }
@@ -183,8 +184,76 @@ class PhotoCaptureProcessor: NSObject, AVCapturePhotoCaptureDelegate {
             completionHandler(nil)
             return
         }
-
         completionHandler(image)
     }
 }
+
+final class CameraService: NSObject, ObservableObject, AVCaptureMetadataOutputObjectsDelegate {
+    static let shared = CameraService()
+    
+    let session = AVCaptureSession()
+    @Published var scannedCode: String? = nil
+    
+    private override init() {
+        super.init()
+        configure()
+    }
+    
+    private func configure() {
+        session.beginConfiguration()
+        
+        // Camera input
+        guard let device = AVCaptureDevice.default(for: .video),
+              let input = try? AVCaptureDeviceInput(device: device),
+              session.canAddInput(input) else {
+            print("Camera not available")
+            session.commitConfiguration()
+            return
+        }
+        session.addInput(input)
+        
+        // QR code output
+        let metadataOutput = AVCaptureMetadataOutput()
+        if session.canAddOutput(metadataOutput) {
+            session.addOutput(metadataOutput)
+            metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+            metadataOutput.metadataObjectTypes = [.qr] // detect QR only
+        }
+        
+        session.commitConfiguration()
+    }
+    
+    func startSession() {
+        DispatchQueue.global(qos: .userInitiated).async {
+            if !self.session.isRunning {
+                self.session.startRunning()
+            }
+        }
+    }
+    
+    func stopSession() {
+        DispatchQueue.global(qos: .background).async {
+            if self.session.isRunning {
+                self.session.stopRunning()
+            }
+        }
+    }
+    
+    // Called automatically when QR detected
+    func metadataOutput(_ output: AVCaptureMetadataOutput,
+                        didOutput metadataObjects: [AVMetadataObject],
+                        from connection: AVCaptureConnection) {
+        if let metadataObject = metadataObjects.first as? AVMetadataMachineReadableCodeObject,
+           metadataObject.type == .qr,
+           let code = metadataObject.stringValue {
+            DispatchQueue.main.async {
+                self.scannedCode = code
+                print("QR Scanned: \(code)")
+            }
+        }
+    }
+}
+
+
+
 

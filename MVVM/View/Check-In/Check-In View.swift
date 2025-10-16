@@ -507,8 +507,6 @@ struct ShiftStep: View {
         }) {
             Text("CONFIRM SHIFT")
                 .regularTextStyle(size: 16, foreground: .white, fontWeight: .semibold)
-//                .font(.system(size: 16, weight: .semibold))
-//                .foregroundColor(.white)
                 .frame(maxWidth: .infinity)
                 .padding()
                 .background(Color.blue)
@@ -530,15 +528,8 @@ struct ShiftGridItem: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(name)
-//                .font(.system(size: 17))
-//                .fontWeight(.regular)
-//                .foregroundColor(Color.black)
                 .regularTextStyle(size: 17)
-            
             Text("\(Shift_StartTime) - \(Shift_EndTime)")
-//                .font(.system(size: 17))
-//                .fontWeight(.regular)
-//                .foregroundColor(Color.gray)
                 .regularTextStyle(size: 17, foreground: .gray)
                 .multilineTextAlignment(.leading)
         }
@@ -586,11 +577,10 @@ struct SelfieStep: View {
     @State private var isCheckout: Bool = false
     @State private var sliderValue: Double = 0.5
     @State private var capturedImage: UIImage? = nil
-    @State private var isCaptured: Bool = false   // ✅ Track state
+    @State private var isCaptured: Bool = false
     
     var body: some View {
         ZStack {
-            // 👇 Camera only when not captured
             if !isCaptured {
                 CameraPreview(session: cameraVM.session)
                     .cornerRadius(12)
@@ -599,7 +589,6 @@ struct SelfieStep: View {
                     .padding(.horizontal, 20)
             }
 
-            // ✅ Show captured image when available
             if let image = capturedImage, isCaptured {
                 VStack {
                     ZStack(alignment: .topTrailing) {
@@ -616,8 +605,6 @@ struct SelfieStep: View {
                             capturedImage = nil
                         }) {
                             Text("RETRY")
-//                                .font(.system(size: 20, weight: .semibold))
-//                                .foregroundColor(.white)
                                 .regularTextStyle(size: 20, foreground: .white, fontWeight: .semibold)
                                 .frame(height: 35)
                                 .padding(.vertical, 6)

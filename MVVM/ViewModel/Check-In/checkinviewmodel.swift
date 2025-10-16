@@ -76,18 +76,11 @@ class Checkinviewmodel: ObservableObject {
         DispatchQueue.main.async {
             self.isCheckingIn = true
         } // START loader
-
-        let now = Date()
-        let fullDateFormatter = DateFormatter()
-        fullDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let timeOnlyFormatter = DateFormatter()
-        timeOnlyFormatter.dateFormat = "HH:mm:ss"
-
-        let eDate = fullDateFormatter.string(from: now)
-        let eTime = timeOnlyFormatter.string(from: now)
         
+        
+    
         DispatchQueue.main.async {
-            self.lastCheckInTime = eTime
+            self.lastCheckInTime = dateTime.eTime
         }
 
         guard selfieImage.jpegData(compressionQuality: 0.8) != nil else {
@@ -120,8 +113,8 @@ class Checkinviewmodel: ObservableObject {
                 "CheckDutyFlag": cnt,
                 "On_Duty_Flag": checkOnDuty,
                 "vstRmks": "",
-                "eDate": eDate,
-                "eTime": eTime,
+                "eDate": dateTime.eDate,
+                "eTime": dateTime.eTime,
                 "UKey": Ukey,
                 "lat": latitude,
                 "long": longitude,

@@ -358,7 +358,7 @@ struct ExploreMore: View {
         .fullScreenCover(isPresented: $showRequestStatus) { RequestView() }
         .fullScreenCover(isPresented: $showTAClaim) { MonthlyViewAllView() }
         .fullScreenCover(isPresented: $showActivity) { ActivityDashboardView() }
-//        .fullScreenCover(isPresented: $showGateIn) { GateInView() }
+        .fullScreenCover(isPresented: $showGateIn) { GateInView() }
 //        .fullScreenCover(isPresented: $showGateOut) { GateOutView() }
 //        .fullScreenCover(isPresented: $showTP) { TPView() }
 //        .fullScreenCover(isPresented: $showExtendedShift) { ExtendedShiftView() }
