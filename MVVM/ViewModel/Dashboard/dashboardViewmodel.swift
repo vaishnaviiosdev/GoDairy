@@ -89,7 +89,7 @@ class dashboardViewModel: ObservableObject {
     }
 
     func updateBtnAppearance() {
-        if dashboardData?.checkMOT ?? 0 == 1 && dashboardData?.Todaycheckin_Flag == 1 && dashboardData?.CheckEndDT != "" /*dashboardData?.CheckMOT ?? 0 == 1 */{
+        if dashboardData?.checkMOT ?? 0 >= 1 && dashboardData?.Todaycheckin_Flag == 1 && dashboardData?.CheckEndDT != "" /*dashboardData?.CheckMOT ?? 0 == 1 */{
             // ✅ User has checked in already → start Check-Out timer
             startCheckOutTimer()
         }

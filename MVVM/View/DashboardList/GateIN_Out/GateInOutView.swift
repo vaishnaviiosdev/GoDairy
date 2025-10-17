@@ -9,7 +9,12 @@ import SwiftUI
 import AVFoundation
 import CoreLocation
 
-struct GateInView: View {
+enum GateType {
+    case gateIn
+    case gateOut
+}
+
+struct GateInOutView: View {
     @Environment(\.dismiss) private var dismiss
     @ObservedObject private var camera = CameraService.shared
     //@State private var qrCode: String? = nil
@@ -18,6 +23,11 @@ struct GateInView: View {
     @State private var showLocationAlert = false
     @State private var hasScanned = false
     @State private var isLoading = false
+    var gateType: GateType
+    var titleName: String {
+        gateType == .gateIn ? "GATE IN" : "GATE OUT"
+    }
+    
     
     var body: some View {
         ZStack {
@@ -40,7 +50,7 @@ struct GateInView: View {
             VStack {
                 // Header
                 ZStack {
-                    Text("GATE - IN")
+                    Text(titleName)
                         .font(.system(size: 35, weight: .heavy))
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity, alignment: .center)
@@ -116,24 +126,42 @@ struct GateInView: View {
                     
                     Task {
                         await MainActor.run { isLoading = true }
-                        await gateViewModel.PostGateInData(
-                            hdloc: data["HQLoc"] ?? "",
-                            hqLocId: data["HQLocID"] ?? "",
-                            location: data["Location"] ?? "",
-                            majourType: data["MajourType"] ?? "",
-                            latLng: latLng,
-                            mode: data["mode"] ?? ""
-                        )
+                        
+                        // ✅ Unified API call
+                        if titleName.uppercased().contains("IN") {
+                            await gateViewModel.postGateData(
+                                type: "GateIn",
+                                hdloc: data["HQLoc"] ?? "",
+                                hqLocId: data["HQLocID"] ?? "",
+                                location: data["Location"] ?? "",
+                                majourType: data["MajourType"] ?? "",
+                                latLng: latLng,
+                                mode: data["mode"] ?? ""
+                            )
+                        }
+                        else if titleName.uppercased().contains("OUT") {
+                            await gateViewModel.postGateData(
+                                type: "GateOut",
+                                hdloc: data["HQLoc"] ?? "",
+                                hqLocId: data["HQLocID"] ?? "",
+                                location: data["Location"] ?? "",
+                                majourType: data["MajourType"] ?? "",
+                                latLng: latLng,
+                                mode: data["mode"] ?? ""
+                            )
+                        }
+                        else {
+                            print("⚠️ Unknown title: \(titleName). No API called.")
+                        }
+                        
                         await MainActor.run { isLoading = false }
                     }
                 }
                 else {
-                    // Only show alert if permission denied/restricted
                     if CLLocationManager().authorizationStatus == .denied || CLLocationManager().authorizationStatus == .restricted {
                         showLocationAlert = true
                     }
                     else {
-                        // Permission granted but location not yet fetched
                         permissionManager.requestLocation()
                     }
                     hasScanned = false
@@ -194,5 +222,5 @@ struct CameraView: UIViewRepresentable {
 }
 
 #Preview {
-    GateInView()
+    GateInOutView(gateType: .gateIn)
 }

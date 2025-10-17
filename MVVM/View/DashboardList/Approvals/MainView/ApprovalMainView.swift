@@ -58,7 +58,7 @@ struct ApprovalMainView: View {
     private let myApprovalItems: [(title: String, destination: AnyView)] = [
         ("Advance Request", AnyView(PermissionApprovalView())),
         ("Leave", AnyView(LeaveApprovalView())),
-        ("Leave Cancel", AnyView(dummyView())),
+        ("Leave Cancel", AnyView(GateInOutListView())),
         ("Permission", AnyView(PermissionApprovalView())),
         ("Missed Punch", AnyView(MissedPunchApprovalView())),
         ("Travel Allowance", AnyView(demoView())),

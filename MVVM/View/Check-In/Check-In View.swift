@@ -12,6 +12,7 @@ struct CheckInFlowView: View {
     @Environment(\.dismiss) private var dismiss
     @StateObject private var permissionManager = PermissionManager()
     @StateObject private var checkInModel = Checkinviewmodel()
+    @EnvironmentObject var router: AppRouter
     @State private var currentStep = 0
     @State private var currentCoordinate = CLLocationCoordinate2D()
     
@@ -188,7 +189,7 @@ struct CheckInFlowView: View {
         .alert(checkInModel.checkOutSuccessMsg,
                 isPresented: $checkInModel.checkOutSaveAlert) {
             Button("OK", role: .cancel) {
-                       dismiss()
+                router.completePermissionFlow()
             }
         }
         .onAppear {

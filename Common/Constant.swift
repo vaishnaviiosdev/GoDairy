@@ -111,8 +111,10 @@ let prodGroup_Url = APIClient.shared.New_DBUrl + APIClient.shared.DBURL2 + "get%
 
 let prodTypes_Url = APIClient.shared.New_DBUrl + APIClient.shared.DBURL2 + "get%2FprodTypes"
 
-//Gate In
+//Gate IN / Out
 let Gate_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl4 + "State_Code=1&divisionCode=\(division_code)&axn=dcr%2Fsave&sfCode=\(sf_code)"
+
+let GateInOutList_Url = APIClient.shared.New_DBUrl + APIClient.shared.New_DBUrl3 + "axn=get/GateEntryHome&Sf_code=\(sf_code)&TodayDate=\(Date().formattedAsYYYYMMDD())"
 
 
 

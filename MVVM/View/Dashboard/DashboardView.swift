@@ -316,7 +316,7 @@ struct TabBar: View {
             TabView(selection: $currentTab) {
                 Todayview(myDayPlanCount: myDayPlanCount).tag(0)
                 Monthlyview().tag(1)
-                dummyView().tag(2)
+                GateInOutListView().tag(2)
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
             .ignoresSafeArea()
@@ -358,8 +358,8 @@ struct ExploreMore: View {
         .fullScreenCover(isPresented: $showRequestStatus) { RequestView() }
         .fullScreenCover(isPresented: $showTAClaim) { MonthlyViewAllView() }
         .fullScreenCover(isPresented: $showActivity) { ActivityDashboardView() }
-        .fullScreenCover(isPresented: $showGateIn) { GateInView() }
-//        .fullScreenCover(isPresented: $showGateOut) { GateOutView() }
+        .fullScreenCover(isPresented: $showGateIn) { GateInOutView(gateType: .gateIn) }
+        .fullScreenCover(isPresented: $showGateOut) { GateInOutView(gateType: .gateOut) }
 //        .fullScreenCover(isPresented: $showTP) { TPView() }
 //        .fullScreenCover(isPresented: $showExtendedShift) { ExtendedShiftView() }
         .fullScreenCover(isPresented: $showApprovals) { ApprovalMainView() }
